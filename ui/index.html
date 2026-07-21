@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Leave Eligibility Engine</title>
+<style>
+  :root {
+    --navy: #123152;
+    --navy-2: #1a3f68;
+    --navy-active: #1f4c7d;
+    --bg: #f4f6f9;
+    --panel: #ffffff;
+    --border: #e3e8ef;
+    --text: #16324f;
+    --text-dim: #6b7a8d;
+    --accent: #2f6fed;
+    --accent-bg: #eaf2fd;
+    --green: #1a9c63;
+    --green-bg: #e5f7ee;
+    --red: #d64545;
+    --red-bg: #fdecea;
+    --amber: #b9791b;
+    --amber-bg: #fdf3e2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+  }
+  .app { display: flex; height: 100vh; }
+
+  /* ---- outer icon sidebar ---- */
+  .sidebar {
+    width: 84px;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 0;
+    flex-shrink: 0;
+  }
+  .sidebar .logo {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px;
+    margin-bottom: 22px;
+  }
+  .nav-item {
+    width: 100%;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: 11px 4px;
+    color: #9fb3cc;
+    cursor: pointer;
+    font-size: 11px;
+    border-left: 3px solid transparent;
+  }
+  .nav-item svg { width: 20px; height: 20px; }
+  .nav-item:hover { color: #ffffff; }
+  .nav-item.active {
+    color: #ffffff;
+    background: var(--navy-active);
+    border-left: 3px solid #ffffff;
+  }
+  .nav-item.bottom { margin-top: auto; }
+
+  /* ---- inner sub-nav ---- */
+  .subnav {
+    width: 230px;
+    background: #fafbfd;
+    border-right: 1px solid var(--border);
+    padding: 20px 16px;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .subnav h2 { font-size: 15px; margin: 0 0 16px; color: var(--navy); }
+  .subnav .group { margin-bottom: 6px; }
+  .subnav .group-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .subnav .group-head:hover { background: #eef1f6; }
+  .subnav .group-head .chev { transition: transform .15s; color: var(--text-dim); font-size: 11px; }
+  .subnav .group.open .group-head .chev { transform: rotate(90deg); }
+  .subnav .group-body { display: none; padding-left: 10px; }
+  .subnav .group.open .group-body { display: block; }
+  .subnav .pack-item {
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    cursor: pointer;
+  }
+  .subnav .pack-item:hover { background: var(--accent-bg); color: var(--accent); }
+  .subnav .pack-item.active { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
+
+  /* ---- main content ---- */
+  .content { flex: 1; overflow-y: auto; }
+  .topbar {
+    padding: 20px 30px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .topbar .crumb { font-size: 12px; color: var(--text-dim); margin-bottom: 3px; }
+  .topbar h1 { font-size: 19px; margin: 0; color: var(--navy); }
+  .btn {
+    border-radius: 7px;
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: #ffffff;
+    color: var(--text);
+  }
+  .btn:hover { background: #f2f4f8; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover { background: #2560d6; }
+  .btn:disabled { opacity: .55; cursor: default; }
+  .btn.small { padding: 6px 11px; font-size: 12px; }
+
+  .page { padding: 24px 30px 60px; max-width: 1180px; }
+
+  /* ---- cards ---- */
+  .cards-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
+  .stat-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    min-width: 140px;
+  }
+  .stat-card .num { font-size: 24px; font-weight: 700; color: var(--navy); }
+  .stat-card .label { font-size: 11.5px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .04em; margin-top: 3px; }
+
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+  }
+  .card.highlight { background: var(--accent-bg); border-color: #d3e4fb; }
+  .card-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .card h3 { margin: 0; font-size: 15px; color: var(--navy); }
+  .card .desc { color: var(--text-dim); font-size: 12.5px; margin: 4px 0 14px; }
+
+  /* ---- pills / badges ---- */
+  .pill { display: inline-block; padding: 3px 11px; border-radius: 20px; font-size: 11.5px; font-weight: 700; }
+  .pill.approved { background: var(--green-bg); color: var(--green); }
+  .pill.review { background: var(--red-bg); color: var(--red); }
+  .badge-pass { color: var(--green); font-weight: 700; }
+  .badge-fail { color: var(--red); font-weight: 700; }
+  .badge-pending { color: var(--amber); font-weight: 700; }
+
+  /* ---- evaluate view: input tabs ---- */
+  .tabs { display: flex; gap: 4px; margin-bottom: 14px; }
+  .tab {
+    padding: 8px 14px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+    border-radius: 7px; color: var(--text-dim);
+  }
+  .tab.active { background: var(--accent-bg); color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  textarea {
+    width: 100%; min-height: 220px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12.5px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    background: #fbfcfe;
+    color: var(--text);
+    resize: vertical;
+  }
+  select, input[type=text] {
+    background: #fff;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 12.5px;
+  }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .file-drop {
+    border: 1.5px dashed var(--border);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  .file-drop input { display: block; margin: 10px auto 0; }
+  .file-list { margin-top: 12px; font-size: 12.5px; color: var(--text-dim); }
+  .file-list .f { padding: 4px 0; }
+
+  #evalError {
+    display: none;
+    background: var(--red-bg); color: var(--red);
+    border-radius: 8px; padding: 10px 14px; font-size: 12.5px; margin-bottom: 14px;
+  }
+
+  /* ---- result cards ---- */
+  .result-card { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+  .result-head {
+    padding: 14px 18px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    background: #fbfcfe;
+    border-bottom: 1px solid var(--border);
+  }
+  .result-head .titles { display: flex; flex-direction: column; gap: 2px; }
+  .result-head .cid { font-weight: 700; font-size: 14px; color: var(--navy); }
+  .result-head .cmeta { font-size: 12px; color: var(--text-dim); }
+  .result-body { padding: 16px 18px; }
+  .reasoning { list-style: none; margin: 0 0 16px; padding: 0; }
+  .reasoning li {
+    padding: 8px 12px; border-radius: 7px; margin-bottom: 6px; font-size: 13px;
+    background: #f7f9fc;
+  }
+  .reasoning li.ok { background: var(--green-bg); color: #106e46; }
+  .reasoning li.bad { background: var(--red-bg); color: #a02e2e; }
+  .reasoning li.pending { background: var(--amber-bg); color: #8a5b12; }
+
+  .track { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; }
+  .track-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; background: #fafbfd; cursor: pointer; font-weight: 600; font-size: 13px;
+  }
+  .track-body { display: none; padding: 6px 14px 12px; }
+  .track.open .track-body { display: block; }
+
+  .part-block { border-top: 1px solid var(--border); padding: 10px 0; }
+  .part-block:first-child { border-top: none; }
+  .part-title {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12.5px; font-weight: 700; text-transform: capitalize; color: var(--text);
+    margin-bottom: 6px;
+  }
+  table.cond-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  table.cond-table th {
+    text-align: left; color: var(--text-dim); font-weight: 600; padding: 4px 8px 4px 0;
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase; font-size: 10.5px; letter-spacing: .03em;
+  }
+  table.cond-table td { padding: 5px 8px 5px 0; vertical-align: top; border-bottom: 1px solid #f0f2f6; }
+  table.cond-table td.result { text-align: right; white-space: nowrap; }
+
+  /* ---- rules tree ---- */
+  .rule-meta { font-size: 12px; color: var(--text-dim); margin-bottom: 14px; }
+  .rule-node { margin-bottom: 6px; }
+  .rule-node-head {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 700; color: var(--navy);
+    padding: 6px 0;
+  }
+  .rule-op {
+    font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+    background: var(--accent-bg); color: var(--accent);
+  }
+  .rule-leaf {
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+    padding: 6px 10px; border-left: 2px solid var(--border); margin: 2px 0 2px 6px;
+    font-size: 12.5px;
+  }
+  .rule-name { font-weight: 600; color: var(--text); }
+  .rule-expr { color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+  .rule-cite { color: var(--text-dim); font-size: 11px; margin-left: auto; }
+  details.raw { margin-top: 16px; }
+  details.raw summary { cursor: pointer; color: var(--text-dim); font-size: 12px; }
+  details.raw pre {
+    background: #0c1420; color: #cbd5e1; padding: 12px; border-radius: 8px;
+    font-size: 11px; overflow-x: auto; max-height: 400px;
+  }
+
+  .empty-state { color: var(--text-dim); padding: 40px; text-align: center; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="sidebar">
+    <div class="logo">LE</div>
+    <div class="nav-item active" data-view="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+      Overview
+    </div>
+    <div class="nav-item" data-view="rules">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+      Rules
+    </div>
+    <div class="nav-item" data-view="evaluate">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Evaluate
+    </div>
+    <div class="nav-item bottom" data-view="settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.14.43.5.77 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </div>
+  </div>
+
+  <div class="subnav" id="subnav" style="display:none;"></div>
+
+  <div class="content">
+    <div class="topbar">
+      <div>
+        <div class="crumb" id="crumb">Leave Eligibility Engine</div>
+        <h1 id="pageTitle">Overview</h1>
+      </div>
+      <div id="topbarActions"></div>
+    </div>
+    <div class="page" id="page"></div>
+  </div>
+</div>
+
+<script>
+let RULES = null;
+let EXAMPLES = null;
+let currentView = 'overview';
+let currentPack = null; // {jurisdiction, key} for rules view
+let evalHistory = JSON.parse(localStorage.getItem('leg_eval_history') || '[]');
+let uploadedClaims = []; // from file uploads, staged before running
+
+const REASON_LABELS = {
+  health_condition: 'Health condition',
+  birth_or_pregnancy: 'Birth or pregnancy',
+  adoption: 'Adoption',
+  military_exigency: 'Military exigency',
+  military_caregiver: 'Military caregiver',
+};
+
+// ---------------------------------------------------------------- bootstrap
+
+async function boot() {
+  const [rulesRes, examplesRes] = await Promise.all([
+    fetch('/api/rules'), fetch('/api/examples')
+  ]);
+  RULES = await rulesRes.json();
+  EXAMPLES = await examplesRes.json();
+  setupNav();
+  renderView('overview');
+}
+
+function setupNav() {
+  document.querySelectorAll('.nav-item[data-view]').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      item.classList.add('active');
+      renderView(item.dataset.view);
+    });
+  });
+}
+
+function renderView(view) {
+  currentView = view;
+  if (view === 'overview') renderOverview();
+  else if (view === 'rules') renderRulesView();
+  else if (view === 'evaluate') renderEvaluateView();
+  else renderSettings();
+}
+
+// ---------------------------------------------------------------- overview
+
+function renderOverview() {
+  document.getElementById('subnav').style.display = 'none';
+  document.getElementById('crumb').textContent = 'Leave Eligibility Engine';
+  document.getElementById('pageTitle').textContent = 'Overview';
+  document.getElementById('topbarActions').innerHTML = `<button class="btn primary" onclick="goEvaluate()">Evaluate a claim</button>`;
+
+  const jCount = Object.keys(RULES).length;
+  let packCount = 0;
+  for (const j of Object.values(RULES)) {
+    packCount += ['ee','notice','cert'].filter(k => j[k]).length;
+    packCount += Object.keys(j.leave_reasons || {}).length;
+  }
+
+  const recent = evalHistory.slice(0, 6);
+
+  document.getElementById('page').innerHTML = `
+    <div class="cards-row">
+      <div class="stat-card"><div class="num">${jCount}</div><div class="label">Jurisdictions covered</div></div>
+      <div class="stat-card"><div class="num">${packCount}</div><div class="label">Saved rule packs</div></div>
+      <div class="stat-card"><div class="num">${evalHistory.length}</div><div class="label">Claims evaluated this session</div></div>
+    </div>
+
+    <div class="card highlight">
+      <div class="card-head"><h3>How this works</h3></div>
+      <div class="desc" style="margin-bottom:0;">
+        Eligibility rules for each jurisdiction (employee eligibility, leave-reason pathways, notice, and
+        certification) are pre-loaded and saved on the <b>Rules</b> tab. On the <b>Evaluate</b> tab you submit
+        one or more claims — paste a claim's facts as JSON or upload file(s) — and the engine checks every
+        applicable condition, then returns a decision (Approved / Needs human review) with the full reasoning
+        and a condition-by-condition breakdown.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h3>Recent evaluations</h3></div>
+      ${recent.length === 0
+        ? `<div class="desc" style="margin-bottom:0;">No claims evaluated yet in this session.</div>`
+        : recent.map(r => `
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-top:1px solid var(--border);">
+            <div>
+              <div style="font-weight:600;">${r.id}</div>
+              <div style="font-size:11.5px;color:var(--text-dim);">${r.jurisdiction} · ${REASON_LABELS[r.leave_reason] || r.leave_reason}</div>
+            </div>
+            <span class="pill ${r.decision === 'APPROVED' ? 'approved' : 'review'}">${r.decision === 'APPROVED' ? 'Approved' : 'Needs review'}</span>
+          </div>
+        `).join('')}
+    </div>
+  `;
+}
+
+function goEvaluate() {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelector('.nav-item[data-view="evaluate"]').classList.add('active');
+  renderView('evaluate');
+}
+
+function renderSettings() {
+  document.getElementById('subnav').style.display = 'none';
+  document.getElementById('crumb').textContent = 'Leave Eligibility Engine';
+  document.getElementById('pageTitle').textContent = 'Settings';
+  document.getElementById('topbarActions').innerHTML = '';
+  document.getElementById('page').innerHTML = `
+    <div class="card"><div class="desc" style="margin-bottom:0;">Nothing to configure yet — this is a local read-only view of the saved rule packs and the claim evaluator.</div></div>
+  `;
+}
+
+// ---------------------------------------------------------------- rules view
+
+function renderRulesView() {
+  document.getElementById('crumb').textContent = 'Rules';
+  document.getElementById('pageTitle').textContent = 'Saved eligibility rules';
+  document.getElementById('topbarActions').innerHTML = '';
+
+  const subnav = document.getElementById('subnav');
+  subnav.style.display = 'block';
+  subnav.innerHTML = `<h2>Jurisdictions</h2>` + Object.keys(RULES).map(j => {
+    const packs = RULES[j];
+    const items = [];
+    if (packs.ee) items.push(['ee', 'Employee eligibility']);
+    if (packs.notice) items.push(['notice', 'Notice requirement']);
+    if (packs.cert) items.push(['cert', 'Certification']);
+    Object.keys(packs.leave_reasons || {}).forEach(reason => {
+      items.push([`lr:${reason}`, REASON_LABELS[reason] || reason]);
+    });
+    const isOpen = currentPack && currentPack.jurisdiction === j;
+    return `
+      <div class="group ${isOpen ? 'open' : ''}" data-j="${j}">
+        <div class="group-head" onclick="toggleGroup('${j}')">
+          <span>${j === 'federal' ? 'Federal (FMLA)' : j}</span>
+          <span class="chev">›</span>
+        </div>
+        <div class="group-body">
+          ${items.map(([key, label]) => `
+            <div class="pack-item ${currentPack && currentPack.jurisdiction === j && currentPack.key === key ? 'active' : ''}"
+                 onclick="selectPack('${j}','${key}')">${label}</div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  if (currentPack) {
+    renderPackDetail(currentPack.jurisdiction, currentPack.key);
+  } else {
+    document.getElementById('page').innerHTML = `<div class="empty-state">Choose a jurisdiction and a rule pack from the left to view its conditions.</div>`;
+  }
+}
+
+function toggleGroup(j) {
+  document.querySelectorAll('.subnav .group').forEach(g => {
+    if (g.dataset.j !== j) g.classList.remove('open');
+  });
+  const el = document.querySelector(`.subnav .group[data-j="${j}"]`);
+  el.classList.toggle('open');
+}
+
+function selectPack(j, key) {
+  currentPack = { jurisdiction: j, key };
+  renderRulesView();
+}
+
+function renderPackDetail(j, key) {
+  const packs = RULES[j];
+  let pack, title, citation = '';
+  if (key === 'ee') { pack = packs.ee; title = 'Employee eligibility conditions'; }
+  else if (key === 'notice') { pack = packs.notice; title = 'Notice requirement'; }
+  else if (key === 'cert') { pack = packs.cert; title = 'Certification requirement'; }
+  else if (key.startsWith('lr:')) {
+    const reason = key.slice(3);
+    pack = packs.leave_reasons[reason];
+    title = (REASON_LABELS[reason] || reason) + ' — leave-reason pathways';
+  }
+
+  if (!pack) {
+    document.getElementById('page').innerHTML = `<div class="empty-state">No saved rules for this pack.</div>`;
+    return;
+  }
+
+  const data = pack.data;
+  const conditions = toConditionList(data);
+  let relHtml = '';
+  if (data && data.included_relationships) {
+    const rel = data.included_relationships;
+    relHtml = `
+      <div class="rule-leaf" style="margin-left:0;">
+        <span class="rule-name">Included relationships</span>
+        <span class="rule-expr">${rel.operator || 'IN'} ${formatRequired(rel.required_value)}</span>
+        ${rel.citation ? `<span class="rule-cite">${rel.citation}</span>` : ''}
+      </div>
+    `;
+  }
+
+  document.getElementById('page').innerHTML = `
+    <div class="card">
+      <div class="card-head"><h3>${title}</h3></div>
+      <div class="rule-meta">Source: ${pack.path}</div>
+      ${relHtml}
+      ${conditions.map(c => renderNode(c, 0)).join('') || '<div class="desc">No conditions found in this file.</div>'}
+      <details class="raw">
+        <summary>View raw JSON</summary>
+        <pre>${escapeHtml(JSON.stringify(data, null, 2))}</pre>
+      </details>
+    </div>
+  `;
+}
+
+function toConditionList(pack) {
+  if (!pack) return [];
+  if (Array.isArray(pack)) return pack;
+  if (Array.isArray(pack.conditions)) return pack.conditions;
+  if (Array.isArray(pack.employee_eligibility_conditions)) return pack.employee_eligibility_conditions;
+  if (pack.field || pack.condition_name) return [pack];
+  return [];
+}
+
+function isChildGroup(node) {
+  const v = node.required_value;
+  return Array.isArray(v) && v.length > 0 && v.every(x => x && typeof x === 'object' && !Array.isArray(x));
+}
+
+function renderNode(node, depth) {
+  const name = node.condition_name || node.field || 'condition';
+  const secondary = (node.condition_name && node.field && node.field !== node.condition_name) ? node.field : '';
+  const op = (node.operator || '==').toUpperCase();
+
+  if (isChildGroup(node)) {
+    const children = node.required_value.map(c => renderNode(c, depth + 1)).join('');
+    return `
+      <div class="rule-node" style="margin-left:${depth * 16}px">
+        <div class="rule-node-head"><span>${name}</span><span class="rule-op">${op === 'ANY_OF' ? 'ANY OF' : 'ALL OF'}</span></div>
+        ${children}
+      </div>
+    `;
+  }
+  return `
+    <div class="rule-leaf" style="margin-left:${depth * 16}px">
+      <span class="rule-name">${name}${secondary ? ` <span style="color:var(--text-dim);font-weight:400;">(${secondary})</span>` : ''}</span>
+      <span class="rule-expr">${op} ${formatRequired(node.required_value)}${node.unit ? ' ' + node.unit : ''}</span>
+      ${node.citation ? `<span class="rule-cite">${node.citation}</span>` : ''}
+    </div>
+  `;
+}
+
+function formatRequired(v) {
+  if (v === null || v === undefined) return '';
+  if (Array.isArray(v)) return JSON.stringify(v);
+  return String(v);
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ---------------------------------------------------------------- evaluate view
+
+function renderEvaluateView() {
+  document.getElementById('subnav').style.display = 'none';
+  document.getElementById('crumb').textContent = 'Evaluate';
+  document.getElementById('pageTitle').textContent = 'Evaluate a claim';
+  document.getElementById('topbarActions').innerHTML = '';
+
+  const jurisdictions = Object.keys(RULES);
+  const reasons = Object.keys(REASON_LABELS);
+
+  document.getElementById('page').innerHTML = `
+    <div class="card">
+      <div class="card-head"><h3>Submit claim(s)</h3></div>
+      <div class="desc">Paste a claim's facts as JSON, or upload one or more claim files. Each claim needs a
+        <code>jurisdiction</code>, a <code>leave_reason</code>, and the relevant facts.</div>
+
+      <div class="tabs">
+        <div class="tab active" data-tab="paste" onclick="switchTab('paste')">Paste JSON</div>
+        <div class="tab" data-tab="upload" onclick="switchTab('upload')">Upload file(s)</div>
+      </div>
+
+      <div class="tab-panel active" data-panel="paste">
+        <div class="row">
+          <select id="pJurisdiction">${jurisdictions.map(j => `<option value="${j}">${j === 'federal' ? 'Federal' : j}</option>`).join('')}</select>
+          <select id="pReason">${reasons.map(r => `<option value="${r}">${REASON_LABELS[r]}</option>`).join('')}</select>
+          <button class="btn small" onclick="loadExample()">Load example claim</button>
+        </div>
+        <textarea id="pasteArea" placeholder='{
+  "jurisdiction": "CA",
+  "leave_reason": "adoption",
+  "facts": {
+    "employment_duration_months": 18,
+    "hours_worked_last_12_months": 1400,
+    "relationship": "child",
+    "...": "..."
+  }
+}'></textarea>
+      </div>
+
+      <div class="tab-panel" data-panel="upload">
+        <div class="file-drop">
+          Upload one or more <code>.json</code> claim files (a single claim object, or an array of claims).
+          <input type="file" id="fileInput" accept="application/json" multiple />
+        </div>
+        <div class="file-list" id="fileList"></div>
+      </div>
+
+      <div id="evalError"></div>
+      <div class="row" style="margin-top: 6px;">
+        <button class="btn primary" id="runBtn" onclick="runEvaluation()">Run evaluation</button>
+        <span id="runStatus" style="font-size:12.5px;color:var(--text-dim);"></span>
+      </div>
+    </div>
+
+    <div id="resultsArea"></div>
+  `;
+
+  document.getElementById('fileInput').addEventListener('change', handleFiles);
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
+}
+
+function loadExample() {
+  const j = document.getElementById('pJurisdiction').value;
+  const r = document.getElementById('pReason').value;
+  const ex = EXAMPLES[`${j}::${r}`];
+  if (!ex) {
+    document.getElementById('pasteArea').value = `// No example available for ${j} / ${r}`;
+    return;
+  }
+  document.getElementById('pasteArea').value = JSON.stringify(
+    { jurisdiction: ex.jurisdiction, leave_reason: ex.leave_reason, narrative: ex.narrative, facts: ex.facts },
+    null, 2
+  );
+}
+
+function handleFiles(e) {
+  const files = Array.from(e.target.files || []);
+  uploadedClaims = [];
+  const list = document.getElementById('fileList');
+  list.innerHTML = '';
+  let pending = files.length;
+  files.forEach(f => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(reader.result);
+        const items = Array.isArray(parsed) ? parsed : [parsed];
+        uploadedClaims.push(...items);
+        list.innerHTML += `<div class="f">✓ ${f.name} — ${items.length} claim(s)</div>`;
+      } catch (err) {
+        list.innerHTML += `<div class="f" style="color:var(--red);">✗ ${f.name} — invalid JSON</div>`;
+      }
+      pending--;
+    };
+    reader.readAsText(f);
+  });
+}
+
+async function runEvaluation() {
+  const errEl = document.getElementById('evalError');
+  errEl.style.display = 'none';
+  const activeTab = document.querySelector('.tab.active').dataset.tab;
+
+  let claims = [];
+  try {
+    if (activeTab === 'paste') {
+      const raw = document.getElementById('pasteArea').value.trim();
+      if (!raw) throw new Error('Paste a claim as JSON first.');
+      const parsed = JSON.parse(raw);
+      claims = Array.isArray(parsed) ? parsed : [parsed];
+    } else {
+      if (uploadedClaims.length === 0) throw new Error('Upload at least one claim file first.');
+      claims = uploadedClaims;
+    }
+  } catch (e) {
+    errEl.textContent = 'Could not parse input: ' + e.message;
+    errEl.style.display = 'block';
+    return;
+  }
+
+  const btn = document.getElementById('runBtn');
+  const status = document.getElementById('runStatus');
+  btn.disabled = true;
+  status.textContent = 'Evaluating…';
+
+  try {
+    const res = await fetch('/api/evaluate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ claims })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    renderResults(data.results);
+    status.textContent = `Evaluated ${data.results.length} claim(s) — ${new Date().toLocaleTimeString()}`;
+
+    evalHistory = data.results.map(r => ({ id: r.id, jurisdiction: r.jurisdiction, leave_reason: r.leave_reason, decision: r.decision }))
+      .concat(evalHistory).slice(0, 25);
+    localStorage.setItem('leg_eval_history', JSON.stringify(evalHistory));
+  } catch (e) {
+    errEl.textContent = 'Evaluation failed: ' + e.message;
+    errEl.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function buildReasoning(r) {
+  const lines = [];
+  lines.push({ cls: '', text: `Evaluated against ${r.tracks_evaluated.length} track${r.tracks_evaluated.length > 1 ? 's' : ''}: ${r.tracks_evaluated.join(', ')}.` });
+  for (const t of r.tracks_evaluated) {
+    const tr = r.tracks[t];
+    if (tr.passed) {
+      lines.push({ cls: 'ok', text: `${t} track: all conditions satisfied (employee eligibility, leave-reason pathway, notice, and certification).` });
+    } else {
+      const failed = Object.entries(tr.parts).filter(([, p]) => p.passed === false).map(([n]) => n.replace(/_/g,' '));
+      const pending = Object.entries(tr.parts).filter(([, p]) => p.passed === null).map(([n]) => n.replace(/_/g,' '));
+      if (failed.length) lines.push({ cls: 'bad', text: `${t} track: failed — ${failed.join(', ')}.` });
+      if (pending.length) lines.push({ cls: 'pending', text: `${t} track: pending — missing facts for ${pending.join(', ')}.` });
+      if (!failed.length && !pending.length) lines.push({ cls: 'bad', text: `${t} track: not satisfied.` });
+    }
+  }
+  if (r.decision === 'APPROVED') {
+    const passedTrack = r.tracks_evaluated.find(t => r.tracks[t].passed);
+    lines.push({ cls: 'ok', text: `Decision: APPROVED — via the ${passedTrack} track.` });
+  } else {
+    lines.push({ cls: 'bad', text: `Decision: NEED HUMAN REVIEW — no track fully satisfied all conditions.` });
+  }
+  return lines;
+}
+
+function parseNoteLine(line) {
+  const m = line.match(/^(.*?):\s*(.*?)\s*→\s*(True|False)$/);
+  if (m) return { path: m[1], expr: m[2], result: m[3] === 'True' };
+  return { path: '', expr: line, result: null };
+}
+
+function renderConditionTable(notes) {
+  const rows = notes.map(parseNoteLine).filter(r => r.result !== null || !/^(EE skip|source=|tracks=|is_government)/.test(r.expr));
+  if (rows.length === 0) return `<div class="desc" style="margin:0;">No individual conditions were evaluated for this part.</div>`;
+  return `
+    <table class="cond-table">
+      <thead><tr><th>Condition</th><th>Check</th><th>Result</th></tr></thead>
+      <tbody>
+        ${rows.map(r => `
+          <tr>
+            <td>${escapeHtml(r.path || '—')}</td>
+            <td>${escapeHtml(r.expr)}</td>
+            <td class="result">${r.result === true ? '<span class="badge-pass">Pass</span>' : r.result === false ? '<span class="badge-fail">Fail</span>' : '<span class="badge-pending">—</span>'}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function renderResults(results) {
+  const area = document.getElementById('resultsArea');
+  area.innerHTML = results.map((r, idx) => {
+    const reasoning = buildReasoning(r);
+    const tracksHtml = Object.entries(r.tracks).map(([tname, t]) => {
+      const partsHtml = Object.entries(t.parts).map(([pname, p]) => `
+        <div class="part-block">
+          <div class="part-title">
+            <span>${pname.replace(/_/g,' ')}</span>
+            <span class="${p.passed === true ? 'badge-pass' : p.passed === false ? 'badge-fail' : 'badge-pending'}">
+              ${p.passed === true ? 'Pass' : p.passed === false ? 'Fail' : 'Pending'}
+            </span>
+          </div>
+          ${renderConditionTable(p.notes || [])}
+        </div>
+      `).join('');
+      return `
+        <div class="track" id="track-${idx}-${tname}">
+          <div class="track-head" onclick="document.getElementById('track-${idx}-${tname}').classList.toggle('open')">
+            <span>${tname} track</span>
+            <span class="${t.passed ? 'badge-pass' : 'badge-fail'}">${t.passed ? 'Passed' : 'Not approved'}</span>
+          </div>
+          <div class="track-body">${partsHtml}</div>
+        </div>
+      `;
+    }).join('');
+
+    return `
+      <div class="result-card">
+        <div class="result-head">
+          <div class="titles">
+            <span class="cid">${r.id}</span>
+            <span class="cmeta">${r.jurisdiction} · ${REASON_LABELS[r.leave_reason] || r.leave_reason}${r.narrative ? ' — ' + r.narrative : ''}</span>
+          </div>
+          <span class="pill ${r.decision === 'APPROVED' ? 'approved' : 'review'}">${r.decision === 'APPROVED' ? 'Approved' : 'Needs human review'}</span>
+        </div>
+        <div class="result-body">
+          <ul class="reasoning">
+            ${reasoning.map(l => `<li class="${l.cls}">${escapeHtml(l.text)}</li>`).join('')}
+          </ul>
+          ${tracksHtml}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+boot();
+</script>
+
+</body>
+</html>
