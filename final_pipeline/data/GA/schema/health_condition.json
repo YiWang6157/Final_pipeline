@@ -1,0 +1,51 @@
+{
+  "leave_reason": "health condition",
+  "included_relationships": {
+    "operator": null,
+    "required_value": null,
+    "citation": null,
+    "notes": null
+  },
+  "conditions": [
+    {
+      "condition_name": "personal_illness_injury_or_disability",
+      "field": "employee personal illness injury or disability",
+      "operator": null,
+      "required_value": null,
+      "unit": null,
+      "citation": null,
+      "notes": null,
+      "source_text": null
+    },
+    {
+      "condition_name": "employee_medical_or_dental_care",
+      "field": "employee medical or dental care",
+      "operator": null,
+      "required_value": null,
+      "unit": null,
+      "citation": null,
+      "notes": null,
+      "source_text": null
+    },
+    {
+      "condition_name": "immediate_family_illness_injury_or_disability",
+      "field": "immediate family illness injury or disability requiring employee presence",
+      "operator": null,
+      "required_value": null,
+      "unit": null,
+      "citation": null,
+      "notes": null,
+      "source_text": null
+    },
+    {
+      "condition_name": "contagious_disease_exposure",
+      "field": "employee exposed to contagious disease and presence at work may endanger others",
+      "operator": null,
+      "required_value": null,
+      "unit": null,
+      "citation": null,
+      "notes": null,
+      "source_text": null
+    }
+  ]
+}

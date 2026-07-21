@@ -1,0 +1,61 @@
+{
+    "leave_reason": "adoption",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "placement_for_adoption",
+        "field": "placement with employee of son or daughter for adoption",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "qualifying event",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "leave taken within entitlement period",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "pre_placement_absence_required",
+        "field": "pre-placement absence required for adoption to proceed",
+        "operator": "",
+        "required_value": "",
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "adopted_child_serious_health_condition",
+        "field": "care for adopted child with serious health condition",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "qualifying event",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "serious health condition criteria met",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      }
+    ]
+  }

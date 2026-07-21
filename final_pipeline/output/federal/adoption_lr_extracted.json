@@ -1,0 +1,105 @@
+{
+  "extracted_at": "2026-07-15T18:02:18.672329+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/fmla_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/schema/adoption.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "adoption",
+  "matched_chunk_count": 3,
+  "section_count": 6,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "son or daughter"
+    ],
+    "citation": "825.112(a)(2), 825.121",
+    "notes": "Applies equally to male and female employees. Source of adopted child is not a factor."
+  },
+  "conditions": [
+    {
+      "condition_name": "placement_for_adoption",
+      "field": "placement of son or daughter for adoption",
+      "operator": "==",
+      "required_value": "placement with employee of son or daughter for adoption",
+      "unit": null,
+      "citation": "825.112(a)(2), 825.121(a)",
+      "notes": "Source of adopted child (licensed agency or otherwise) is not a factor in eligibility.",
+      "source_text": "Eligible employees are entitled to FMLA leave for placement with the employee of a son or daughter for adoption or foster care."
+    },
+    {
+      "condition_name": "pre_placement_absence_required",
+      "field": "pre-placement absence required for adoption to proceed",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "825.121(a)(1)",
+      "notes": "Examples include attending counseling sessions, appearing in court, consulting attorneys or doctors, submitting to physical examination, or traveling to another country.",
+      "source_text": "Employees may take FMLA leave before the actual placement or adoption of a child if an absence from work is required for the placement for adoption or foster care to proceed."
+    },
+    {
+      "condition_name": "adopted_child_serious_health_condition",
+      "field": "care for adopted child with serious health condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "serious health condition",
+          "operator": "==",
+          "required_value": "illness, injury, impairment, or physical or mental condition involving inpatient care or continuing treatment by a health care provider",
+          "unit": null
+        },
+        {
+          "field": "requirements of 825.113 through 825.115 and 825.122(d) met",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.121(a)(4), 825.113, 825.114, 825.115, 825.122(d)",
+      "notes": "Entitlement to leave for an adopted child's serious health condition is not subject to the combined-spouse 12-week cap that applies to placement leave.",
+      "source_text": "An eligible employee is entitled to FMLA leave in order to care for an adopted or foster child with a serious health condition if the requirements of §§ 825.113 through 825.115 and 825.122(d) are met."
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 11025,
+    "output_tokens": 826,
+    "processing_duration": 9.299160480499268
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"adoption\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"child\"],\n    \"citation\": \"825.112(a)(2), 825.121\",\n    \"notes\": \"Leave is for placement of a son or daughter with the employee for adoption; applies equally to male and female employees.\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"placement_for_adoption\",\n      \"field\": \"placement with employee of son or daughter for adoption\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"qualifying event\",\n          \"operator\": \"==\",\n          \"required_value\": \"placement of son or daughter for adoption\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"leave taken within entitlement period\",\n          \"operator\": \"<=\",\n          \"required_value\": 12,\n          \"unit\": \"months from date of placement\"\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.121(a)(1), 825.121(a)(2)\",\n      \"notes\": \"Source of adopted child (licensed agency or otherwise) is not a factor in eligibility.\",\n      \"source_text\": \"Eligible employees are entitled to FMLA leave for placement with the employee of a son or daughter for adoption... An employee's entitlement to leave for adoption or foster care expires at the end of the 12-month period beginning on the date of the placement.\"\n    },\n    {\n      \"condition_name\": \"pre_placement_absence_required\",\n      \"field\": \"pre-placement absence required for adoption to proceed\",\n      \"operator\": \"==\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"825.121(a)(1)\",\n      \"notes\": \"Examples include attending counseling sessions, appearing in court, consulting attorneys or doctors, submitting to physical examination, or traveling to another country.\",\n      \"source_text\": \"Employees may take FMLA leave before the actual placement or adoption of a child if an absence from work is required for the placement for adoption or foster care to proceed.\"\n    },\n    {\n      \"condition_name\": \"adopted_child_serious_health_condition\",\n      \"field\": \"care for adopted child with serious health condition\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"qualifying event\",\n          \"operator\": \"==\",\n          \"required_value\": \"care for adopted child with serious health condition\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"serious health condition criteria met\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.121(a)(4), 825.113, 825.114, 825.115, 825.122(d)\",\n      \"notes\": \"When leave is for an adopted child's serious health condition, the 12-week combined-spouse limit does not apply; each spouse may take up to 12 weeks.\",\n      \"source_text\": \"An eligible employee is entitled to FMLA leave in order to care for an adopted or foster child with a serious health condition if the requirements of §§ 825.113 through 825.115 and 825.122(d) are met.\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "included_relationships.required_value uses 'child' but the regulation text specifies 'son or daughter'; should be corrected to 'son or daughter'."
+    ],
+    "logic_issues": [
+      "condition 'placement_for_adoption' nests the 12-month entitlement deadline as a required qualifying condition, but 825.121(a)(2) states the entitlement expires at the end of 12 months — this is a leave-use deadline, not a reason-qualification condition. It should be removed from conditions.",
+      "condition 'adopted_child_serious_health_condition' is a separate qualifying pathway (care for adopted child with serious health condition) that is already covered under the general serious health condition leave reason (825.112(a)(3)); however, 825.121(a)(4) explicitly extends this to adopted/foster children and is directly relevant to the adoption leave reason, so retaining it is appropriate.",
+      "condition 'adopted_child_serious_health_condition' notes mention the combined-spouse 12-week limit not applying — this is a leave-amount/scheduling rule, not a reason-qualification condition; it should be removed from notes or kept only as a brief clarification."
+    ],
+    "missing_conditions": [],
+    "unsupported_conditions": [
+      "The 12-month entitlement period sub-check inside 'placement_for_adoption' is a leave-use deadline rule (825.121(a)(2)), not a leave-reason qualification condition, and should be removed from conditions."
+    ],
+    "format_issues": [
+      "included_relationships.required_value should use 'son or daughter' not 'child' to match the regulation text."
+    ],
+    "revision_summary": [
+      "Corrected included_relationships.required_value from 'child' to 'son or daughter'.",
+      "Removed the 12-month entitlement deadline sub-check from 'placement_for_adoption' as it is a leave-use deadline, not a reason-qualification condition.",
+      "Simplified 'placement_for_adoption' to a single qualifying event check.",
+      "Retained 'pre_placement_absence_required' and 'adopted_child_serious_health_condition' as supported parallel pathways.",
+      "Removed combined-spouse limit note from 'adopted_child_serious_health_condition' as it is a leave-amount rule.",
+      "Cleaned up notes and source_text for conciseness."
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 10716,
+    "output_tokens": 1351,
+    "processing_duration": 19.99610996246338
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"included_relationships.required_value uses 'child' but the regulation text specifies 'son or daughter'; should be corrected to 'son or daughter'.\"\n    ],\n    \"logic_issues\": [\n      \"condition 'placement_for_adoption' nests the 12-month entitlement deadline as a required qualifying condition, but 825.121(a)(2) states the entitlement expires at the end of 12 months — this is a leave-use deadline, not a reason-qualification condition. It should be removed from conditions.\",\n      \"condition 'adopted_child_serious_health_condition' is a separate qualifying pathway (care for adopted child with serious health condition) that is already covered under the general serious health condition leave reason (825.112(a)(3)); however, 825.121(a)(4) explicitly extends this to adopted/foster children and is directly relevant to the adoption leave reason, so retaining it is appropriate.\",\n      \"condition 'adopted_child_serious_health_condition' notes mention the combined-spouse 12-week limit not applying — this is a leave-amount/scheduling rule, not a reason-qualification condition; it should be removed from notes or kept only as a brief clarification.\"\n    ],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [\n      \"The 12-month entitlement period sub-check inside 'placement_for_adoption' is a leave-use deadline rule (825.121(a)(2)), not a leave-reason qualification condition, and should be removed from conditions.\"\n    ],\n    \"format_issues\": [\n      \"included_relationships.required_value should use 'son or daughter' not 'child' to match the regulation text.\"\n    ],\n    \"revision_summary\": [\n      \"Corrected included_relationships.required_value from 'child' to 'son or daughter'.\",\n      \"Removed the 12-month entitlement deadline sub-check from 'placement_for_adoption' as it is a leave-use deadline, not a reason-qualification condition.\",\n      \"Simplified 'placement_for_adoption' to a single qualifying event check.\",\n      \"Retained 'pre_placement_absence_required' and 'adopted_child_serious_health_condition' as supported parallel pathways.\",\n      \"Removed combined-spouse limit note from 'adopted_child_serious_health_condition' as it is a leave-amount rule.\",\n      \"Cleaned up notes and source_text for conciseness.\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"adoption\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"son or daughter\"\n      ],\n      \"citation\": \"825.112(a)(2), 825.121\",\n      \"notes\": \"Applies equally to male and female employees. Source of adopted child is not a factor.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"placement_for_adoption\",\n        \"field\": \"placement of son or daughter for adoption\",\n        \"operator\": \"==\",\n        \"required_value\": \"placement with employee of son or daughter for adoption\",\n        \"unit\": null,\n        \"citation\": \"825.112(a)(2), 825.121(a)\",\n        \"notes\": \"Source of adopted child (licensed agency or otherwise) is not a factor in eligibility.\",\n        \"source_text\": \"Eligible employees are entitled to FMLA leave for placement with the employee of a son or daughter for adoption or foster care.\"\n      },\n      {\n        \"condition_name\": \"pre_placement_absence_required\",\n        \"field\": \"pre-placement absence required for adoption to proceed\",\n        \"operator\": \"==\",\n        \"required_value\": true,\n        \"unit\": null,\n        \"citation\": \"825.121(a)(1)\",\n        \"notes\": \"Examples include attending counseling sessions, appearing in court, consulting attorneys or doctors, submitting to physical examination, or traveling to another country.\",\n        \"source_text\": \"Employees may take FMLA leave before the actual placement or adoption of a child if an absence from work is required for the placement for adoption or foster care to proceed.\"\n      },\n      {\n        \"condition_name\": \"adopted_child_serious_health_condition\",\n        \"field\": \"care for adopted child with serious health condition\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"serious health condition\",\n            \"operator\": \"==\",\n            \"required_value\": \"illness, injury, impairment, or physical or mental condition involving inpatient care or continuing treatment by a health care provider\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"requirements of 825.113 through 825.115 and 825.122(d) met\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.121(a)(4), 825.113, 825.114, 825.115, 825.122(d)\",\n        \"notes\": \"Entitlement to leave for an adopted child's serious health condition is not subject to the combined-spouse 12-week cap that applies to placement leave.\",\n        \"source_text\": \"An eligible employee is entitled to FMLA leave in order to care for an adopted or foster child with a serious health condition if the requirements of §§ 825.113 through 825.115 and 825.122(d) are met.\"\n      }\n    ]\n  }\n}"
+}

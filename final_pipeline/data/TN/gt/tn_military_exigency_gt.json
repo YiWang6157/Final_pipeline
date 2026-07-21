@@ -1,0 +1,302 @@
+{
+    "leave_reason": "military_exigency",
+    "included_relationships": {
+      "operator": "IN",
+      "required_value": [
+        "spouse",
+        "child",
+        "parent"
+      ],
+      "citation": "6.08, 6.03",
+      "notes": "The military member must be the employee's spouse, child, or parent. For military exigency, child includes biological, adopted, foster, stepchild, legal ward, or in loco parentis child of any age."
+    },
+    "conditions": [
+      {
+        "condition_name": "qualifying_exigency",
+        "field": "qualifying exigency",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "covered active duty",
+            "operator": "ALL_OF",
+            "required_value": [
+              {
+                "field": "active duty status",
+                "operator": "IN",
+                "required_value": [
+                  ["covered", "active", "duty"],
+                  ["call", "covered", "active", "duty"],
+                  ["impending", "call"]
+                ],
+                "unit": null
+              },
+              {
+                "field": "deployment location",
+                "operator": "IN",
+                "required_value": [
+                  ["foreign", "country"]
+                ],
+                "unit": null
+              }
+            ],
+            "unit": null
+          },
+          {
+            "field": "qualifying exigency type",
+            "operator": "ANY_OF",
+            "required_value": [
+              {
+                "field": "short-notice deployment",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "notice before deployment",
+                    "operator": "<=",
+                    "required_value": 7,
+                    "unit": "calendar days"
+                  },
+                  {
+                    "field": "active duty support",
+                    "operator": "IN",
+                    "required_value": [
+                      ["contingency", "operation"]
+                    ],
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.08"
+              },
+              {
+                "field": "military events",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "activity",
+                    "operator": "IN",
+                    "required_value": [
+                      ["official", "ceremony"],
+                      ["official", "program"],
+                      ["official", "event"],
+                      ["family", "support"],
+                      ["assistance", "program"],
+                      ["informational", "briefing"]
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "related to active duty",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.08"
+              },
+              {
+                "field": "childcare and school",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "activity",
+                    "operator": "IN",
+                    "required_value": [
+                      ["alternative", "childcare"],
+                      ["urgent", "childcare"],
+                      ["non-routine", "childcare"],
+                      ["enroll", "school"],
+                      ["transfer", "school"],
+                      ["day", "care"],
+                      ["school", "meeting"]
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "necessitated by active duty",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.08"
+              },
+              {
+                "field": "financial and legal arrangements",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "activity",
+                    "operator": "IN",
+                    "required_value": [
+                      ["financial", "arrangements"],
+                      ["legal", "arrangements"]
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "member absence",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.08"
+              },
+              {
+                "field": "counseling",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "health care provider",
+                    "operator": "==",
+                    "required_value": false,
+                    "unit": null
+                  },
+                  {
+                    "field": "recipient",
+                    "operator": "IN",
+                    "required_value": [
+                      ["self"],
+                      ["covered", "military", "member"],
+                      ["child", "covered", "military", "member"]
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "arises from active duty",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.08"
+              },
+              {
+                "field": "rest and recuperation",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "during deployment",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "leave duration",
+                    "operator": "<=",
+                    "required_value": 15,
+                    "unit": "days"
+                  }
+                ],
+                "unit": null,
+                "citation": "6.08"
+              },
+              {
+                "field": "post-deployment activities",
+                "operator": "ANY_OF",
+                "required_value": [
+                  {
+                    "field": "official post-deployment activity",
+                    "operator": "ALL_OF",
+                    "required_value": [
+                      {
+                        "field": "activity",
+                        "operator": "IN",
+                        "required_value": [
+                          ["arrival", "ceremony"],
+                          ["reintegration", "briefing"],
+                          ["reintegration", "event"],
+                          ["official", "ceremony"],
+                          ["official", "program"]
+                        ],
+                        "unit": null
+                      },
+                      {
+                        "field": "days after duty ends",
+                        "operator": "<=",
+                        "required_value": 90,
+                        "unit": "days"
+                      }
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "death of covered member",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.08"
+              },
+              {
+                "field": "parental care",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "military member parent",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "parent incapable of self-care",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "care necessitated by active duty",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "activity",
+                    "operator": "IN",
+                    "required_value": [
+                      ["alternative", "care"],
+                      ["immediate", "care"],
+                      ["care", "facility"],
+                      ["facility", "meeting"]
+                    ],
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.08"
+              },
+              {
+                "field": "other qualifying exigency",
+                "operator": "ANY_OF",
+                "required_value": [
+                  {
+                    "field": "employee employer agreement",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "Secretary of Labor determination",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.08"
+              }
+            ],
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.08"
+      }
+    ]
+  }

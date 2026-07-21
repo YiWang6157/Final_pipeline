@@ -1,0 +1,140 @@
+[
+  {
+    "id": "federal-military_caregiver-01",
+    "jurisdiction": "federal",
+    "leave_reason": "military_caregiver",
+    "label": "Pass — EE met and leave-reason pathway satisfied",
+    "case_type": "pass",
+    "expected": {
+      "ee_pass": true,
+      "relationship_pass": true,
+      "leave_reason_pass": true,
+      "pathways_expected": [
+        "current_servicemember_serious_injury_or_illness"
+      ],
+      "decision": "APPROVED"
+    },
+    "facts": {
+      "jurisdiction": "federal",
+      "leave_reason": "military_caregiver",
+      "employment_duration_months": 18,
+      "hours_worked_last_12_months": 1400,
+      "employer_size_within_75_miles": 80,
+      "is_air_crew": false,
+      "relationship": "spouse",
+      "covered_service_member": true,
+      "service_member_type": "Armed Forces",
+      "service_member_status": "medical treatment",
+      "serious_injury_or_illness": true,
+      "needed_to_care": true,
+      "foreseeable_need": true,
+      "leave_request_approval_required": true,
+      "foreseeable_leave_notice": 30,
+      "foreseeable_leave": true,
+      "advance_notice": 30,
+      "medical_certification_provided": true,
+      "military_caregiver_certification_provided": true,
+      "qualifying_exigency_certification_provided": true,
+      "notice_timing": "as soon as practicable",
+      "notice_30_days_practicable": true,
+      "advance_notice_days": 30,
+      "current_servicemember_serious_injury_or_illness": true
+    },
+    "narrative": "Employee requests leave to care for spouse who is a covered service member receiving medical treatment for a serious injury.",
+    "gt_refs": {
+      "ee": "federal/gt/ee_gt.json",
+      "leave_reason": "federal/gt/military_caregiver_gt.json"
+    }
+  },
+  {
+    "id": "federal-military_caregiver-02",
+    "jurisdiction": "federal",
+    "leave_reason": "military_caregiver",
+    "label": "Fail EE — leave facts otherwise valid",
+    "case_type": "fail_ee",
+    "expected": {
+      "ee_pass": false,
+      "relationship_pass": true,
+      "leave_reason_pass": true,
+      "pathways_expected": [
+        "current_servicemember_serious_injury_or_illness"
+      ],
+      "decision": "NEED HUMAN REVIEW"
+    },
+    "facts": {
+      "jurisdiction": "federal",
+      "leave_reason": "military_caregiver",
+      "employment_duration_months": 8,
+      "hours_worked_last_12_months": 1400,
+      "employer_size_within_75_miles": 80,
+      "is_air_crew": false,
+      "relationship": "spouse",
+      "covered_service_member": true,
+      "service_member_type": "Armed Forces",
+      "service_member_status": "medical treatment",
+      "serious_injury_or_illness": true,
+      "needed_to_care": true,
+      "foreseeable_need": true,
+      "leave_request_approval_required": true,
+      "foreseeable_leave_notice": 30,
+      "foreseeable_leave": true,
+      "advance_notice": 30,
+      "medical_certification_provided": true,
+      "military_caregiver_certification_provided": true,
+      "qualifying_exigency_certification_provided": true,
+      "notice_timing": "as soon as practicable",
+      "notice_30_days_practicable": true,
+      "advance_notice_days": 30,
+      "current_servicemember_serious_injury_or_illness": true
+    },
+    "narrative": "Same leave facts as pass case, but employee eligibility thresholds not met.",
+    "gt_refs": {
+      "ee": "federal/gt/ee_gt.json",
+      "leave_reason": "federal/gt/military_caregiver_gt.json"
+    }
+  },
+  {
+    "id": "federal-military_caregiver-03",
+    "jurisdiction": "federal",
+    "leave_reason": "military_caregiver",
+    "label": "Fail leave reason — EE met, pathway/relationship not satisfied",
+    "case_type": "fail_reason",
+    "expected": {
+      "ee_pass": true,
+      "relationship_pass": false,
+      "leave_reason_pass": false,
+      "pathways_expected": [],
+      "decision": "NEED HUMAN REVIEW"
+    },
+    "facts": {
+      "jurisdiction": "federal",
+      "leave_reason": "military_caregiver",
+      "employment_duration_months": 18,
+      "hours_worked_last_12_months": 1400,
+      "employer_size_within_75_miles": 80,
+      "is_air_crew": false,
+      "relationship": "cousin",
+      "covered_service_member": false,
+      "service_member_type": "Armed Forces",
+      "service_member_status": "medical treatment",
+      "serious_injury_or_illness": false,
+      "needed_to_care": false,
+      "foreseeable_need": true,
+      "leave_request_approval_required": true,
+      "foreseeable_leave_notice": 30,
+      "foreseeable_leave": true,
+      "advance_notice": 30,
+      "medical_certification_provided": true,
+      "military_caregiver_certification_provided": true,
+      "qualifying_exigency_certification_provided": true,
+      "notice_timing": "as soon as practicable",
+      "notice_30_days_practicable": true,
+      "advance_notice_days": 30
+    },
+    "narrative": "Cousin is not a covered caregiver relationship and service-member injury facts are missing.",
+    "gt_refs": {
+      "ee": "federal/gt/ee_gt.json",
+      "leave_reason": "federal/gt/military_caregiver_gt.json"
+    }
+  }
+]

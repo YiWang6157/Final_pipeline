@@ -1,0 +1,32 @@
+{
+    "category": "certification",
+    "conditions": [
+      {
+        "condition_name": "cfra_family_member_health_certification_required",
+        "field": "CFRA family member serious health condition certification",
+        "operator": "==",
+        "required_value": "employer may require",
+        "unit": null,
+        "citation": "2 CCR § 11091(b)(1)",
+        "notes": "Applies when CFRA leave is requested to care for a family member with a serious health condition."
+      },
+      {
+        "condition_name": "cfra_employee_own_health_certification_required",
+        "field": "CFRA employee own serious health condition certification",
+        "operator": "==",
+        "required_value": "employer may require",
+        "unit": null,
+        "citation": "2 CCR § 11091(b)(2)",
+        "notes": "Applies when CFRA leave is requested for the employee's own serious health condition."
+      },
+      {
+        "condition_name": "pdl_medical_certification_required",
+        "field": "PDL medical certification",
+        "operator": "==",
+        "required_value": "employer may require",
+        "unit": null,
+        "citation": "2 CCR § 11050(b)",
+        "notes": "Applies to reasonable accommodation, transfer, or pregnancy disability leave."
+      }
+    ]
+  }

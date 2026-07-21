@@ -1,0 +1,202 @@
+{
+    "leave_reason": "birth_or_pregnancy",
+    "included_relationships": {
+      "operator": "IN",
+      "required_value": [
+        "self",
+        "child",
+        "spouse"
+      ],
+      "citation": "6.02(A), 6.02(C), 6.02(D), 6.04, 6.06(B)(2), 6.06(D), 13.01",
+      "notes": "Self applies to the employee's own pregnancy, childbirth, prenatal care, nursing, or pregnancy-related incapacity. Child applies to birth and bonding with the newborn. Spouse applies when the employee cares for a spouse with pregnancy-related incapacity or prenatal care."
+    },
+    "conditions": [
+      {
+        "condition_name": "birth_and_bonding",
+        "field": "birth and bonding",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "==",
+            "required_value": "child",
+            "unit": null
+          },
+          {
+            "field": "birth of child",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "bonding with newborn",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "time since birth",
+            "operator": "<=",
+            "required_value": 1,
+            "unit": "year"
+          }
+        ],
+        "unit": null,
+        "citation": "6.02(A), 6.10, 13.01"
+      },
+      {
+        "condition_name": "prenatal_care",
+        "field": "prenatal care",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "==",
+            "required_value": "self",
+            "unit": null
+          },
+          {
+            "field": "expectant mother",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "prenatal care",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.04, 6.06(B)(2), 6.06(D)"
+      },
+      {
+        "condition_name": "pregnancy_incapacity",
+        "field": "pregnancy incapacity",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "==",
+            "required_value": "self",
+            "unit": null
+          },
+          {
+            "field": "incapacity due to pregnancy",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "unable to perform job duties",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.02(D), 6.04, 6.06(B)(2)"
+      },
+      {
+        "condition_name": "pregnancy_no_treatment_or_duration_required",
+        "field": "pregnancy absence",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "==",
+            "required_value": "self",
+            "unit": null
+          },
+          {
+            "field": "absence reason",
+            "operator": "IN",
+            "required_value": [
+              ["pregnancy"],
+              ["prenatal", "care"]
+            ],
+            "unit": null
+          },
+          {
+            "field": "treatment required",
+            "operator": "==",
+            "required_value": false,
+            "unit": null
+          },
+          {
+            "field": "three-day absence required",
+            "operator": "==",
+            "required_value": false,
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.06(D)"
+      },
+      {
+        "condition_name": "care_for_pregnant_spouse",
+        "field": "care for pregnant spouse",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "==",
+            "required_value": "spouse",
+            "unit": null
+          },
+          {
+            "field": "care for spouse",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "spouse condition",
+            "operator": "IN",
+            "required_value": [
+              ["pregnancy", "incapacity"],
+              ["prenatal", "care"]
+            ],
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.02(C), 6.06(B)(2), 6.06(D)"
+      },
+      {
+        "condition_name": "parental_leave_pregnancy_childbirth_nursing",
+        "field": "parental leave",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "IN",
+            "required_value": [
+              "self",
+              "child"
+            ],
+            "unit": null
+          },
+          {
+            "field": "leave reason",
+            "operator": "IN",
+            "required_value": [
+              ["pregnancy"],
+              ["childbirth"],
+              ["nursing", "infant"]
+            ],
+            "unit": null
+          },
+          {
+            "field": "time since birth",
+            "operator": "<=",
+            "required_value": 12,
+            "unit": "months"
+          }
+        ],
+        "unit": null,
+        "citation": "13.01"
+      }
+    ]
+  }

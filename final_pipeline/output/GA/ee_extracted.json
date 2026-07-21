@@ -1,0 +1,104 @@
+{
+  "extracted_at": "2026-07-15T18:09:43.776994+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/GA/chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "ee_extraction",
+  "model_key": "ari_model",
+  "employee_eligibility_chunk_count": 2,
+  "chunks_sent_count": 4,
+  "employee_eligibility_conditions": [
+    {
+      "field": "employment_type",
+      "operator": "==",
+      "required_value": "non-temporary salaried",
+      "unit": null,
+      "citation": "478-1-.16(7)",
+      "notes": "Applies to most agencies; Georgia Industries for the Blind also covers non-temporary manufacturing employees under same hours threshold.",
+      "source_text": "Each agency provides paid sick leave for non-temporary salaried employees who are regularly scheduled to work 20 or more hours a week."
+    },
+    {
+      "field": "scheduled_hours_per_week",
+      "operator": ">=",
+      "required_value": 20,
+      "unit": "hours",
+      "citation": "478-1-.16(7)",
+      "notes": "Applies to sick leave eligibility for both salaried and manufacturing employees.",
+      "source_text": "Each agency provides paid sick leave for non-temporary salaried employees who are regularly scheduled to work 20 or more hours a week."
+    },
+    {
+      "field": "is_temporary_employee",
+      "operator": "==",
+      "required_value": false,
+      "unit": null,
+      "citation": "478-1-.16(7)",
+      "notes": "All temporary employees are not eligible to accrue sick leave.",
+      "source_text": "The following employees are not eligible to accrue sick leave: (i) All temporary employees,"
+    },
+    {
+      "field": "is_hourly_employee",
+      "operator": "==",
+      "required_value": false,
+      "unit": null,
+      "citation": "478-1-.16(7)",
+      "notes": "All hourly employees are not eligible to accrue sick leave.",
+      "source_text": "The following employees are not eligible to accrue sick leave: ... (ii) All hourly employees,"
+    },
+    {
+      "field": "is_rehired_ers_retiree_receiving_annuity_within_1040_hours",
+      "operator": "==",
+      "required_value": false,
+      "unit": null,
+      "citation": "478-1-.16(7)",
+      "notes": "Active, salaried, non-temporary rehired retirees of ERS receiving retirement annuity payments during the first 1,040 hours of work in the calendar year are not eligible to accrue sick leave.",
+      "source_text": "Active, salaried, non-temporary employees who are rehired retirees of the Employees' Retirement System of Georgia while receiving retirement annuity payments during the first 1,040 hours of work performed in the calendar year."
+    },
+    {
+      "field": "qualifying_life_event",
+      "operator": "in",
+      "required_value": [
+        "birth of employee's child",
+        "placement of minor child for adoption",
+        "placement of minor child for foster care"
+      ],
+      "unit": null,
+      "citation": "478-1-.16(26)",
+      "notes": "Employee must have one of these qualifying life events to be eligible for paid parental leave.",
+      "source_text": "Eligibility for paid parental leave is based on one of the following qualifying life events: (i) birth of the employee's child; (ii) placement of a minor child for adoption with the employee; or (iii) placement of a minor child for foster care with the employee."
+    },
+    {
+      "field": "employment_duration_months_continuous_salaried",
+      "operator": ">=",
+      "required_value": 6,
+      "unit": "months",
+      "citation": "478-1-.16(26)",
+      "notes": "Applies to salaried employees seeking paid parental leave; must be continuous employment with an employing entity as defined in O.C.G.A. 45-20-17(a)(2)(A).",
+      "source_text": "if salaried, the employee must have six continuous months of employment with an employing entity (as defined in O.C.G.A. 45-20-17(a)(2)(A));"
+    },
+    {
+      "field": "hours_worked_last_6_months_hourly",
+      "operator": ">=",
+      "required_value": 700,
+      "unit": "hours",
+      "citation": "478-1-.16(26)",
+      "notes": "Applies to hourly employees seeking paid parental leave; hours must be worked in the six months immediately preceding the first requested paid parental leave date.",
+      "source_text": "if hourly, the employee must have worked 700 hours for an employing entity (as defined in O.C.G.A. 45-20-17(a)(2)(A)) in the six months immediately preceding the first requested paid parental leave date."
+    },
+    {
+      "field": "is_rehired_ers_retiree_receiving_annuity_within_1040_hours",
+      "operator": "==",
+      "required_value": false,
+      "unit": null,
+      "citation": "478-1-.16(26)",
+      "notes": "Rehired retirees of ERS, whether salaried or hourly, are not eligible for paid parental leave while receiving retirement annuity payments during the first 1,040 hours of work performed in the calendar year.",
+      "source_text": "Rehired retirees of the Employees' Retirement System of Georgia, whether salaried or hourly, are not eligible for paid parental leave while receiving retirement annuity payments during the first 1,040 hours of work performed in the calendar year."
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 5589,
+    "output_tokens": 1366,
+    "processing_duration": 13.887470722198486
+  },
+  "raw_llm_response": "{\n  \"employee_eligibility_conditions\": [\n    {\n      \"field\": \"employment_type\",\n      \"operator\": \"==\",\n      \"required_value\": \"non-temporary salaried\",\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)\",\n      \"notes\": \"Applies to most agencies; Georgia Industries for the Blind also covers non-temporary manufacturing employees under same hours threshold.\",\n      \"source_text\": \"Each agency provides paid sick leave for non-temporary salaried employees who are regularly scheduled to work 20 or more hours a week.\"\n    },\n    {\n      \"field\": \"scheduled_hours_per_week\",\n      \"operator\": \">=\",\n      \"required_value\": 20,\n      \"unit\": \"hours\",\n      \"citation\": \"478-1-.16(7)\",\n      \"notes\": \"Applies to sick leave eligibility for both salaried and manufacturing employees.\",\n      \"source_text\": \"Each agency provides paid sick leave for non-temporary salaried employees who are regularly scheduled to work 20 or more hours a week.\"\n    },\n    {\n      \"field\": \"is_temporary_employee\",\n      \"operator\": \"==\",\n      \"required_value\": false,\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)\",\n      \"notes\": \"All temporary employees are not eligible to accrue sick leave.\",\n      \"source_text\": \"The following employees are not eligible to accrue sick leave: (i) All temporary employees,\"\n    },\n    {\n      \"field\": \"is_hourly_employee\",\n      \"operator\": \"==\",\n      \"required_value\": false,\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)\",\n      \"notes\": \"All hourly employees are not eligible to accrue sick leave.\",\n      \"source_text\": \"The following employees are not eligible to accrue sick leave: ... (ii) All hourly employees,\"\n    },\n    {\n      \"field\": \"is_rehired_ers_retiree_receiving_annuity_within_1040_hours\",\n      \"operator\": \"==\",\n      \"required_value\": false,\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)\",\n      \"notes\": \"Active, salaried, non-temporary rehired retirees of ERS receiving retirement annuity payments during the first 1,040 hours of work in the calendar year are not eligible to accrue sick leave.\",\n      \"source_text\": \"Active, salaried, non-temporary employees who are rehired retirees of the Employees' Retirement System of Georgia while receiving retirement annuity payments during the first 1,040 hours of work performed in the calendar year.\"\n    },\n    {\n      \"field\": \"qualifying_life_event\",\n      \"operator\": \"in\",\n      \"required_value\": [\"birth of employee's child\", \"placement of minor child for adoption\", \"placement of minor child for foster care\"],\n      \"unit\": null,\n      \"citation\": \"478-1-.16(26)\",\n      \"notes\": \"Employee must have one of these qualifying life events to be eligible for paid parental leave.\",\n      \"source_text\": \"Eligibility for paid parental leave is based on one of the following qualifying life events: (i) birth of the employee's child; (ii) placement of a minor child for adoption with the employee; or (iii) placement of a minor child for foster care with the employee.\"\n    },\n    {\n      \"field\": \"employment_duration_months_continuous_salaried\",\n      \"operator\": \">=\",\n      \"required_value\": 6,\n      \"unit\": \"months\",\n      \"citation\": \"478-1-.16(26)\",\n      \"notes\": \"Applies to salaried employees seeking paid parental leave; must be continuous employment with an employing entity as defined in O.C.G.A. 45-20-17(a)(2)(A).\",\n      \"source_text\": \"if salaried, the employee must have six continuous months of employment with an employing entity (as defined in O.C.G.A. 45-20-17(a)(2)(A));\"\n    },\n    {\n      \"field\": \"hours_worked_last_6_months_hourly\",\n      \"operator\": \">=\",\n      \"required_value\": 700,\n      \"unit\": \"hours\",\n      \"citation\": \"478-1-.16(26)\",\n      \"notes\": \"Applies to hourly employees seeking paid parental leave; hours must be worked in the six months immediately preceding the first requested paid parental leave date.\",\n      \"source_text\": \"if hourly, the employee must have worked 700 hours for an employing entity (as defined in O.C.G.A. 45-20-17(a)(2)(A)) in the six months immediately preceding the first requested paid parental leave date.\"\n    },\n    {\n      \"field\": \"is_rehired_ers_retiree_receiving_annuity_within_1040_hours\",\n      \"operator\": \"==\",\n      \"required_value\": false,\n      \"unit\": null,\n      \"citation\": \"478-1-.16(26)\",\n      \"notes\": \"Rehired retirees of ERS, whether salaried or hourly, are not eligible for paid parental leave while receiving retirement annuity payments during the first 1,040 hours of work performed in the calendar year.\",\n      \"source_text\": \"Rehired retirees of the Employees' Retirement System of Georgia, whether salaried or hourly, are not eligible for paid parental leave while receiving retirement annuity payments during the first 1,040 hours of work performed in the calendar year.\"\n    }\n  ]\n}"
+}

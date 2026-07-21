@@ -1,0 +1,54 @@
+{
+  "leave_reason": "adoption",
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      ["child"]
+    ],
+    "citation": "478-1-.16(7)(c)1(ii), 478-1-.16(26)(a)1(ii), 478-1-.16(26)(a)1(iii)",
+    "notes": "Georgia sick leave covers adoption of a child when the employee's presence is required for health-related reasons. Georgia paid parental leave covers placement of a minor child for adoption or foster care with the employee."
+  },
+  "conditions": [
+    {
+      "condition_name": "adoption_health_related_presence",
+      "field": "adoption of child requiring employee presence for health-related reasons",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "IN",
+          "required_value": [
+            ["adoption", "child"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "employee presence required",
+          "operator": "IN",
+          "required_value": [
+            ["health-related reasons"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(7)(c)1(ii)"
+    },
+    {
+      "condition_name": "minor_child_placement_for_adoption",
+      "field": "placement of minor child for adoption with employee",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "478-1-.16(26)(a)1(ii)"
+    },
+    {
+      "condition_name": "minor_child_placement_for_foster_care",
+      "field": "placement of minor child for foster care with employee",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "478-1-.16(26)(a)1(iii)"
+    }
+  ]
+}

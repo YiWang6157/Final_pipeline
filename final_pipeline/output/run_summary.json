@@ -1,0 +1,214 @@
+{
+  "extracted_at": "2026-07-15T18:16:37.137714+00:00",
+  "output_dir": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/output",
+  "jurisdictions": [
+    "federal",
+    "CA",
+    "GA",
+    "TN"
+  ],
+  "options": {
+    "run_ee": true,
+    "run_lr": true,
+    "run_notice_cert": true,
+    "run_critique": true,
+    "continue_on_error": true
+  },
+  "results": [
+    {
+      "jurisdiction": "federal",
+      "started_at": "2026-07-15T18:01:28.402703+00:00",
+      "tasks": [
+        {
+          "task": "ee",
+          "status": "ok",
+          "detail": "4 EE-tagged chunk(s)"
+        },
+        {
+          "task": "lr:adoption",
+          "status": "ok",
+          "schema": "adoption.json"
+        },
+        {
+          "task": "lr:birth_or_pregnancy",
+          "status": "ok",
+          "schema": "birth_or_pregnancy.json"
+        },
+        {
+          "task": "lr:health_condition",
+          "status": "ok",
+          "schema": "health_condition.json"
+        },
+        {
+          "task": "lr:military_caregiver",
+          "status": "ok",
+          "schema": "military_caregiver.json"
+        },
+        {
+          "task": "lr:military_exigency",
+          "status": "ok",
+          "schema": "military_exigency.json"
+        },
+        {
+          "task": "notice",
+          "status": "ok",
+          "detail": "5 notice_requirements chunk(s)"
+        },
+        {
+          "task": "certification",
+          "status": "ok",
+          "detail": "5 notice_requirements chunk(s)"
+        }
+      ],
+      "finished_at": "2026-07-15T18:06:58.954931+00:00",
+      "counts": {
+        "ok": 8,
+        "error": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "jurisdiction": "CA",
+      "started_at": "2026-07-15T18:06:58.955023+00:00",
+      "tasks": [
+        {
+          "task": "ee",
+          "status": "ok",
+          "detail": "6 EE-tagged chunk(s)"
+        },
+        {
+          "task": "lr:adoption",
+          "status": "ok",
+          "schema": "adoption.json"
+        },
+        {
+          "task": "lr:birth_or_pregnancy",
+          "status": "ok",
+          "schema": "birth_or_pregnancy.json"
+        },
+        {
+          "task": "lr:health_condition",
+          "status": "error",
+          "detail": "Expecting value: line 1 column 1 (char 0)",
+          "schema": "health_condition.json",
+          "traceback": "Traceback (most recent call last):\n  File \"/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/run_pipeline.py\", line 231, in run_jurisdiction\n    extract_lr_conditions(\n  File \"/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/function/lr_extractor.py\", line 227, in extract_lr_conditions\n    predefined_schema = prepare_schema_template(load_json(schema_path), leave_reason)\n                                                ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/function/common.py\", line 34, in load_json\n    return json.load(f)\n           ^^^^^^^^^^^^\n  File \"/opt/conda/lib/python3.12/json/__init__.py\", line 293, in load\n    return loads(fp.read(),\n           ^^^^^^^^^^^^^^^^\n  File \"/opt/conda/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/conda/lib/python3.12/json/decoder.py\", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/conda/lib/python3.12/json/decoder.py\", line 356, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n"
+        },
+        {
+          "task": "lr:military_exigency",
+          "status": "ok",
+          "schema": "military_exigency.json"
+        },
+        {
+          "task": "notice",
+          "status": "ok",
+          "detail": "21 notice_requirements chunk(s)"
+        },
+        {
+          "task": "certification",
+          "status": "ok",
+          "detail": "21 notice_requirements chunk(s)"
+        }
+      ],
+      "finished_at": "2026-07-15T18:09:29.836422+00:00",
+      "counts": {
+        "ok": 6,
+        "error": 1,
+        "skipped": 0
+      }
+    },
+    {
+      "jurisdiction": "GA",
+      "started_at": "2026-07-15T18:09:29.836645+00:00",
+      "tasks": [
+        {
+          "task": "ee",
+          "status": "ok",
+          "detail": "2 EE-tagged chunk(s)"
+        },
+        {
+          "task": "lr:adoption",
+          "status": "ok",
+          "schema": "adoption.json"
+        },
+        {
+          "task": "lr:birth_or_pregnancy",
+          "status": "ok",
+          "schema": "birth_or_pregnancy.json"
+        },
+        {
+          "task": "lr:health_condition",
+          "status": "ok",
+          "schema": "health_condition.json"
+        },
+        {
+          "task": "notice",
+          "status": "ok",
+          "detail": "3 notice_requirements chunk(s)"
+        },
+        {
+          "task": "certification",
+          "status": "ok",
+          "detail": "3 notice_requirements chunk(s)"
+        }
+      ],
+      "finished_at": "2026-07-15T18:11:36.314543+00:00",
+      "counts": {
+        "ok": 6,
+        "error": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "jurisdiction": "TN",
+      "started_at": "2026-07-15T18:11:36.314608+00:00",
+      "tasks": [
+        {
+          "task": "ee",
+          "status": "ok",
+          "detail": "2 EE-tagged chunk(s)"
+        },
+        {
+          "task": "lr:adoption",
+          "status": "ok",
+          "schema": "tn_adoption.json"
+        },
+        {
+          "task": "lr:birth_or_pregnancy",
+          "status": "ok",
+          "schema": "tn_birth_or_pregnancy.json"
+        },
+        {
+          "task": "lr:health_condition",
+          "status": "ok",
+          "schema": "tn_health_condition.json"
+        },
+        {
+          "task": "lr:military_caregiver",
+          "status": "ok",
+          "schema": "tn_military_caregiver.json"
+        },
+        {
+          "task": "lr:military_exigency",
+          "status": "ok",
+          "schema": "tn_military_exigency.json"
+        },
+        {
+          "task": "notice",
+          "status": "ok",
+          "detail": "5 notice_requirements chunk(s)"
+        },
+        {
+          "task": "certification",
+          "status": "ok",
+          "detail": "5 notice_requirements chunk(s)"
+        }
+      ],
+      "finished_at": "2026-07-15T18:16:37.137485+00:00",
+      "counts": {
+        "ok": 8,
+        "error": 0,
+        "skipped": 0
+      }
+    }
+  ]
+}

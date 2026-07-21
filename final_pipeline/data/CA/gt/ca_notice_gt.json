@@ -1,0 +1,125 @@
+{
+    "category": "notice",
+    "conditions": [
+      {
+        "condition_name": "cfra_foreseeable_advance_notice",
+        "field": "CFRA foreseeable leave notice",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "foreseeable leave",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "advance notice",
+            "operator": ">=",
+            "required_value": 30,
+            "unit": "days"
+          }
+        ],
+        "unit": null,
+        "citation": "2 CCR § 11091(a)(2)",
+        "notes": "Applies when the need for CFRA leave is foreseeable based on expected birth, placement for adoption or foster care, or planned medical treatment."
+      },
+      {
+        "condition_name": "cfra_unforeseeable_notice",
+        "field": "CFRA unforeseeable leave notice",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "30-day notice practicable",
+            "operator": "==",
+            "required_value": false,
+            "unit": null
+          },
+          {
+            "field": "notice timing",
+            "operator": "==",
+            "required_value": "as soon as practicable",
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "2 CCR § 11091(a)(3), 2 CCR § 11091(a)(4)"
+      },
+      {
+        "condition_name": "pdl_foreseeable_advance_notice",
+        "field": "PDL foreseeable notice",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "foreseeable need",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "advance notice",
+            "operator": ">=",
+            "required_value": 30,
+            "unit": "days"
+          }
+        ],
+        "unit": null,
+        "citation": "2 CCR § 11050(a)(2)",
+        "notes": "Applies to foreseeable reasonable accommodation, transfer, or pregnancy disability leave."
+      },
+      {
+        "condition_name": "pdl_unforeseeable_notice",
+        "field": "PDL unforeseeable notice",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "30-day notice practicable",
+            "operator": "==",
+            "required_value": false,
+            "unit": null
+          },
+          {
+            "field": "notice timing",
+            "operator": "==",
+            "required_value": "as soon as practicable",
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "2 CCR § 11050(a)(3), 2 CCR § 11050(a)(4)"
+      },
+      {
+        "condition_name": "pdl_foreseeable_late_notice_delay",
+        "field": "PDL late foreseeable notice consequence",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "foreseeable accommodation or transfer need",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "timely advance notice given",
+            "operator": "==",
+            "required_value": false,
+            "unit": null
+          },
+          {
+            "field": "delay allowed",
+            "operator": "<=",
+            "required_value": 30,
+            "unit": "days after notice"
+          },
+          {
+            "field": "delay endangers health or pregnancy",
+            "operator": "==",
+            "required_value": false,
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "2 CCR § 11050(a)(6)",
+        "notes": "Employer may delay reasonable accommodation or transfer for late foreseeable notice, but not if delay would endanger health, pregnancy, or coworkers' health."
+      }
+    ]
+  }

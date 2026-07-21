@@ -1,0 +1,191 @@
+{
+  "extracted_at": "2026-07-15T18:11:13.981762+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/GA/chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/GA/schema/health_condition.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "health condition",
+  "matched_chunk_count": 2,
+  "section_count": 2,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self",
+      "spouse",
+      "child",
+      "parent",
+      "grandparent",
+      "grandchild",
+      "brother",
+      "sister",
+      "step and in-law relationships",
+      "household dependent recognized by law"
+    ],
+    "citation": "478-1-.16(3)(b); 478-1-.16(7)(c)1",
+    "notes": "Immediate family defined in 478-1-.16(3)(b). Self applies for personal illness, injury, disability, medical/dental care, contagious disease exposure, and adoption. Immediate family applies for illness/injury/disability and death pathways."
+  },
+  "conditions": [
+    {
+      "condition_name": "personal_illness_injury_or_disability",
+      "field": "personal illness, injury, or disability",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "478-1-.16(7)(c)1(i)",
+      "notes": null,
+      "source_text": "Personal illness, injury, or disability"
+    },
+    {
+      "condition_name": "employee_medical_or_dental_care",
+      "field": "dental or medical care",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "478-1-.16(7)(c)1(iii)",
+      "notes": null,
+      "source_text": "Dental or medical care"
+    },
+    {
+      "condition_name": "adoption_health_related_presence",
+      "field": "adoption requiring employee presence for health-related reasons",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "adoption of a child by the employee",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "employee presence required for health-related reasons",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(7)(c)1(ii)",
+      "notes": null,
+      "source_text": "Adoption of a child by the employee when the employee's presence is required for health-related reasons"
+    },
+    {
+      "condition_name": "immediate_family_illness_injury_or_disability",
+      "field": "immediate family illness, injury, or disability requiring employee presence",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "immediate family illness, injury, or disability",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "employee presence required",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(7)(c)1(iv)",
+      "notes": "Immediate family defined in 478-1-.16(3)(b).",
+      "source_text": "Illness, injury, or disability in the employee's immediate family which requires the employee's presence"
+    },
+    {
+      "condition_name": "immediate_family_death_requiring_presence",
+      "field": "death in immediate family requiring employee presence",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "death in immediate family",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "employee presence required",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "sick leave used for this purpose",
+          "operator": "<=",
+          "required_value": 5,
+          "unit": "workdays"
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(7)(c)1(v)",
+      "notes": "Sick leave for this purpose is limited to 5 workdays or the equivalent of a workweek.",
+      "source_text": "Death in the employee's immediate family which requires the employee's presence; however, sick leave used for this purpose shall be limited to five (5) workdays or the equivalent of a workweek"
+    },
+    {
+      "condition_name": "contagious_disease_exposure",
+      "field": "contagious disease exposure endangering coworkers",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "exposure to contagious disease",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "presence at work may reasonably endanger others",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(7)(c)2",
+      "notes": null,
+      "source_text": "Exposed to a contagious disease and may reasonably expose others and endanger their health by being present at work"
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 7034,
+    "output_tokens": 823,
+    "processing_duration": 9.382225751876831
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"health condition\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"self\", \"spouse\", \"child\", \"parent\"],\n    \"citation\": \"478-1-.16(3)(b); 478-1-.16(7)(c)1\",\n    \"notes\": \"Immediate family includes spouse, child, parent, grandparent, grandchild, brother, sister, step and in-law relationships, and household dependents. Sick leave for family health conditions requires employee presence.\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"personal_illness_injury_or_disability\",\n      \"field\": \"employee personal illness injury or disability\",\n      \"operator\": \"==\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)(c)1(i)\",\n      \"notes\": null,\n      \"source_text\": \"Personal illness, injury, or disability\"\n    },\n    {\n      \"condition_name\": \"employee_medical_or_dental_care\",\n      \"field\": \"employee medical or dental care\",\n      \"operator\": \"==\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)(c)1(iii)\",\n      \"notes\": null,\n      \"source_text\": \"Dental or medical care\"\n    },\n    {\n      \"condition_name\": \"immediate_family_illness_injury_or_disability\",\n      \"field\": \"immediate family illness injury or disability requiring employee presence\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"immediate family illness injury or disability\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"employee presence required\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)(c)1(iv)\",\n      \"notes\": \"Immediate family defined in 478-1-.16(3)(b): spouse, child, parent, grandparent, grandchild, brother, sister, step and in-law relationships, and household dependents.\",\n      \"source_text\": \"Illness, injury, or disability in the employee's immediate family which requires the employee's presence\"\n    },\n    {\n      \"condition_name\": \"contagious_disease_exposure\",\n      \"field\": \"employee exposed to contagious disease and presence at work may endanger others\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"exposure to contagious disease\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"presence at work may reasonably endanger others\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)(c)2\",\n      \"notes\": null,\n      \"source_text\": \"Exposed to a contagious disease and may reasonably expose others and endanger their health by being present at work\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "included_relationships lists 'child' but the regulation uses 'immediate family' which includes child; the broader term is fine, but the full immediate family definition from 478-1-.16(3)(b) includes grandparent, grandchild, brother, sister, step and in-law relationships, and household dependents — all of whom are covered for the family illness pathway, so included_relationships should reflect the full immediate family scope rather than only spouse, child, parent",
+      "included_relationships notes mention 'household dependents' but the regulation text says 'any other person who resides in the employee's household and is recognized by law as a dependent' — the label should be more precise"
+    ],
+    "logic_issues": [
+      "The adoption pathway (478-1-.16(7)(c)1(ii)) is missing from conditions — it is a distinct qualifying pathway for sick leave use",
+      "The death-in-immediate-family pathway (478-1-.16(7)(c)1(v)) is missing from conditions — it is a distinct qualifying pathway with a specific workday cap that is part of reason qualification",
+      "The contagious_disease_exposure condition field is too long; it should be shortened per format rules"
+    ],
+    "missing_conditions": [
+      "Adoption of a child when employee's presence is required for health-related reasons (478-1-.16(7)(c)1(ii))",
+      "Death in the employee's immediate family which requires the employee's presence, limited to 5 workdays (478-1-.16(7)(c)1(v))"
+    ],
+    "unsupported_conditions": [],
+    "format_issues": [
+      "contagious_disease_exposure field value is too long and contains full rule logic; should be shortened",
+      "included_relationships.required_value should reflect the full immediate family definition from the regulation, not just a subset"
+    ],
+    "revision_summary": [
+      "Expanded included_relationships.required_value to reflect the full immediate family definition from 478-1-.16(3)(b)",
+      "Added missing adoption pathway condition",
+      "Added missing death-in-immediate-family pathway condition with 5-workday cap nested inside",
+      "Shortened contagious_disease_exposure field value",
+      "Kept all other API1 conditions as they were correct"
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 6796,
+    "output_tokens": 1936,
+    "processing_duration": 25.92074489593506
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"included_relationships lists 'child' but the regulation uses 'immediate family' which includes child; the broader term is fine, but the full immediate family definition from 478-1-.16(3)(b) includes grandparent, grandchild, brother, sister, step and in-law relationships, and household dependents — all of whom are covered for the family illness pathway, so included_relationships should reflect the full immediate family scope rather than only spouse, child, parent\",\n      \"included_relationships notes mention 'household dependents' but the regulation text says 'any other person who resides in the employee's household and is recognized by law as a dependent' — the label should be more precise\"\n    ],\n    \"logic_issues\": [\n      \"The adoption pathway (478-1-.16(7)(c)1(ii)) is missing from conditions — it is a distinct qualifying pathway for sick leave use\",\n      \"The death-in-immediate-family pathway (478-1-.16(7)(c)1(v)) is missing from conditions — it is a distinct qualifying pathway with a specific workday cap that is part of reason qualification\",\n      \"The contagious_disease_exposure condition field is too long; it should be shortened per format rules\"\n    ],\n    \"missing_conditions\": [\n      \"Adoption of a child when employee's presence is required for health-related reasons (478-1-.16(7)(c)1(ii))\",\n      \"Death in the employee's immediate family which requires the employee's presence, limited to 5 workdays (478-1-.16(7)(c)1(v))\"\n    ],\n    \"unsupported_conditions\": [],\n    \"format_issues\": [\n      \"contagious_disease_exposure field value is too long and contains full rule logic; should be shortened\",\n      \"included_relationships.required_value should reflect the full immediate family definition from the regulation, not just a subset\"\n    ],\n    \"revision_summary\": [\n      \"Expanded included_relationships.required_value to reflect the full immediate family definition from 478-1-.16(3)(b)\",\n      \"Added missing adoption pathway condition\",\n      \"Added missing death-in-immediate-family pathway condition with 5-workday cap nested inside\",\n      \"Shortened contagious_disease_exposure field value\",\n      \"Kept all other API1 conditions as they were correct\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"health condition\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"self\",\n        \"spouse\",\n        \"child\",\n        \"parent\",\n        \"grandparent\",\n        \"grandchild\",\n        \"brother\",\n        \"sister\",\n        \"step and in-law relationships\",\n        \"household dependent recognized by law\"\n      ],\n      \"citation\": \"478-1-.16(3)(b); 478-1-.16(7)(c)1\",\n      \"notes\": \"Immediate family defined in 478-1-.16(3)(b). Self applies for personal illness, injury, disability, medical/dental care, contagious disease exposure, and adoption. Immediate family applies for illness/injury/disability and death pathways.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"personal_illness_injury_or_disability\",\n        \"field\": \"personal illness, injury, or disability\",\n        \"operator\": \"==\",\n        \"required_value\": true,\n        \"unit\": null,\n        \"citation\": \"478-1-.16(7)(c)1(i)\",\n        \"notes\": null,\n        \"source_text\": \"Personal illness, injury, or disability\"\n      },\n      {\n        \"condition_name\": \"employee_medical_or_dental_care\",\n        \"field\": \"dental or medical care\",\n        \"operator\": \"==\",\n        \"required_value\": true,\n        \"unit\": null,\n        \"citation\": \"478-1-.16(7)(c)1(iii)\",\n        \"notes\": null,\n        \"source_text\": \"Dental or medical care\"\n      },\n      {\n        \"condition_name\": \"adoption_health_related_presence\",\n        \"field\": \"adoption requiring employee presence for health-related reasons\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"adoption of a child by the employee\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"employee presence required for health-related reasons\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"478-1-.16(7)(c)1(ii)\",\n        \"notes\": null,\n        \"source_text\": \"Adoption of a child by the employee when the employee's presence is required for health-related reasons\"\n      },\n      {\n        \"condition_name\": \"immediate_family_illness_injury_or_disability\",\n        \"field\": \"immediate family illness, injury, or disability requiring employee presence\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"immediate family illness, injury, or disability\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"employee presence required\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"478-1-.16(7)(c)1(iv)\",\n        \"notes\": \"Immediate family defined in 478-1-.16(3)(b).\",\n        \"source_text\": \"Illness, injury, or disability in the employee's immediate family which requires the employee's presence\"\n      },\n      {\n        \"condition_name\": \"immediate_family_death_requiring_presence\",\n        \"field\": \"death in immediate family requiring employee presence\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"death in immediate family\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"employee presence required\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"sick leave used for this purpose\",\n            \"operator\": \"<=\",\n            \"required_value\": 5,\n            \"unit\": \"workdays\"\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"478-1-.16(7)(c)1(v)\",\n        \"notes\": \"Sick leave for this purpose is limited to 5 workdays or the equivalent of a workweek.\",\n        \"source_text\": \"Death in the employee's immediate family which requires the employee's presence; however, sick leave used for this purpose shall be limited to five (5) workdays or the equivalent of a workweek\"\n      },\n      {\n        \"condition_name\": \"contagious_disease_exposure\",\n        \"field\": \"contagious disease exposure endangering coworkers\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"exposure to contagious disease\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"presence at work may reasonably endanger others\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"478-1-.16(7)(c)2\",\n        \"notes\": null,\n        \"source_text\": \"Exposed to a contagious disease and may reasonably expose others and endanger their health by being present at work\"\n      }\n    ]\n  }\n}"
+}

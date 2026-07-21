@@ -1,0 +1,187 @@
+{
+  "extracted_at": "2026-07-15T18:09:29.835176+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/cfra_chunk_schema_filled.json",
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/pdl_chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "notice_cert",
+  "model_key": "ari_model",
+  "matched_chunk_count": 21,
+  "category": "certification",
+  "conditions": [
+    {
+      "condition_name": "cfra_family_member_health_condition_cert",
+      "operator": "==",
+      "required_value": "may require",
+      "unit": null,
+      "citation": "2 CCR § 11091(b)(1)",
+      "notes": "Certification must meet § 11087(a)(1); employer may not contact provider except to authenticate.",
+      "source_text": "As a condition of granting a leave for the serious health condition of the employee's family member, the employer may require certification of the serious health condition."
+    },
+    {
+      "condition_name": "cfra_employee_health_condition_cert",
+      "operator": "==",
+      "required_value": "may require",
+      "unit": null,
+      "citation": "2 CCR § 11091(b)(2)",
+      "notes": "Employer may require second opinion at employer's expense if good-faith doubt; third opinion is binding.",
+      "source_text": "As a condition of granting a leave for the serious health condition of the employee, the employer may require certification of the serious health condition."
+    },
+    {
+      "condition_name": "cfra_cert_submission_deadline",
+      "operator": ">=",
+      "required_value": 15,
+      "unit": "calendar days",
+      "citation": "2 CCR § 11091(b)(3)",
+      "notes": "Employer must allow at least 15 days; leave may begin before cert is received.",
+      "source_text": "The employer may require that the employee provide any certification within no less than 15 calendar days of the employer's request."
+    },
+    {
+      "condition_name": "cfra_recertification",
+      "operator": "==",
+      "required_value": "may require if additional leave requested",
+      "unit": null,
+      "citation": "2 CCR § 11091(b)(1), 2 CCR § 11091(b)(2)",
+      "notes": "Recertification only upon expiration of original estimated period and only if more leave is requested.",
+      "source_text": "Upon expiration of the time period the health care provider originally estimated...the employer may require the employee to obtain recertification, but only if additional leave is requested."
+    },
+    {
+      "condition_name": "cfra_return_to_work_release",
+      "operator": "==",
+      "required_value": "may require if uniform policy",
+      "unit": null,
+      "citation": "2 CCR § 11091(b)(2)(E)",
+      "notes": "Release required only if employer has uniformly applied policy; not required for each intermittent absence unless safety concern (max once per 30 days).",
+      "source_text": "As a condition of an employee's return from medical leave, the employer may require the employee to obtain a release to return-to-work...only if the employer has a uniformly applied practice or policy."
+    },
+    {
+      "condition_name": "cfra_cert_form",
+      "operator": "==",
+      "required_value": "CFRA/FMLA HCP form or equivalent",
+      "unit": null,
+      "citation": "2 CCR § 11097",
+      "notes": "Employer may use its own form; diagnosis disclosure requires patient consent.",
+      "source_text": "The employer may utilize the following Certification of Health Care Provider form or its equivalent."
+    },
+    {
+      "condition_name": "pregnancy_disability_cert",
+      "operator": "==",
+      "required_value": "may require",
+      "unit": null,
+      "citation": "2 CCR § 11042(c), 2 CCR § 11050(b)",
+      "notes": "Applies to reasonable accommodation, transfer, or pregnancy disability leave.",
+      "source_text": "The employer may require medical certification of the medical advisability of the leave, as set forth in sections 11049(a) and (b), and 11050(b)."
+    },
+    {
+      "condition_name": "pregnancy_cert_foreseeable_timing",
+      "operator": "==",
+      "required_value": "before leave begins",
+      "unit": null,
+      "citation": "2 CCR § 11050(b)(2)",
+      "notes": "Applies when leave is foreseeable and 30 days notice given; otherwise at least 15 calendar days after employer request.",
+      "source_text": "When the leave is foreseeable and at least 30 days' notice has been provided, the employee shall provide the medical certification before the leave begins."
+    },
+    {
+      "condition_name": "pregnancy_cert_submission_deadline",
+      "operator": ">=",
+      "required_value": 15,
+      "unit": "calendar days",
+      "citation": "2 CCR § 11050(b)(2), 2 CCR § 11050(c)",
+      "notes": "Employer-set deadline must be at least 15 calendar days after request.",
+      "source_text": "The employee shall provide the requested certification to the employer within the time frame requested by the employer (which must be at least 15 calendar days after the employer's request)."
+    },
+    {
+      "condition_name": "pregnancy_cert_employer_request_timing",
+      "operator": "<=",
+      "required_value": 2,
+      "unit": "business days",
+      "citation": "2 CCR § 11050(b)(3)",
+      "notes": "Employer must request cert at time of notice or within 2 business days; for unforeseen leave, within 2 business days after leave commences.",
+      "source_text": "The employer shall request that an employee furnish medical certification...at the time the employee gives notice...or within two business days thereafter."
+    },
+    {
+      "condition_name": "pregnancy_cert_accommodation_content",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "accommodation description",
+          "operator": "==",
+          "required_value": "required",
+          "unit": null
+        },
+        {
+          "field": "medical advisability statement",
+          "operator": "==",
+          "required_value": "required",
+          "unit": null
+        },
+        {
+          "field": "start date and duration",
+          "operator": "==",
+          "required_value": "required",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "2 CCR § 11050(b)(6)",
+      "notes": "Required content for cert supporting reasonable accommodation or transfer.",
+      "source_text": "The medical certification indicating the medical advisability of reasonable accommodation or a transfer is sufficient if it contains: a description, a statement of medical advisability, and the date and estimated duration."
+    },
+    {
+      "condition_name": "pregnancy_cert_disability_leave_content",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "disability statement",
+          "operator": "==",
+          "required_value": "required",
+          "unit": null
+        },
+        {
+          "field": "disability start date and duration",
+          "operator": "==",
+          "required_value": "required",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "2 CCR § 11050(b)(7)",
+      "notes": "Required content for cert supporting pregnancy disability leave.",
+      "source_text": "The medical certification indicating disability necessitating a leave is sufficient if it contains: a statement of disability and the date and estimated duration."
+    },
+    {
+      "condition_name": "pregnancy_recertification",
+      "operator": "==",
+      "required_value": "may require if additional time requested",
+      "unit": null,
+      "citation": "2 CCR § 11050(b)(8)",
+      "notes": "Recertification only upon expiration of original estimated period.",
+      "source_text": "Upon expiration of the time period that the health care provider originally estimated the employee would need...the employer may require the employee to obtain recertification if additional time is requested."
+    },
+    {
+      "condition_name": "pregnancy_return_to_work_release",
+      "operator": "==",
+      "required_value": "may require if uniform policy",
+      "unit": null,
+      "citation": "2 CCR § 11050(d)",
+      "notes": "Only if employer has uniformly applied policy for similarly situated non-pregnancy disability employees.",
+      "source_text": "The employer may require the employee to obtain a release to return-to-work...only if the employer has a uniformly applied practice or policy of requiring such releases from other similarly situated employees."
+    },
+    {
+      "condition_name": "pregnancy_cert_form",
+      "operator": "==",
+      "required_value": "employer form, HCP form, or § 11050(e) form",
+      "unit": null,
+      "citation": "2 CCR § 11050(e)",
+      "notes": "Employer may develop own form or use the Civil Rights Council form.",
+      "source_text": "Employers requiring written medical certification...may develop their own form, utilize one provided by the employee's health care provider or use the form provided below."
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 12078,
+    "output_tokens": 2241,
+    "processing_duration": 26.94196391105652
+  },
+  "raw_llm_response": "{\n  \"category\": \"certification\",\n  \"conditions\": [\n    {\n      \"condition_name\": \"cfra_family_member_health_condition_cert\",\n      \"operator\": \"==\",\n      \"required_value\": \"may require\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11091(b)(1)\",\n      \"notes\": \"Certification must meet § 11087(a)(1); employer may not contact provider except to authenticate.\",\n      \"source_text\": \"As a condition of granting a leave for the serious health condition of the employee's family member, the employer may require certification of the serious health condition.\"\n    },\n    {\n      \"condition_name\": \"cfra_employee_health_condition_cert\",\n      \"operator\": \"==\",\n      \"required_value\": \"may require\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11091(b)(2)\",\n      \"notes\": \"Employer may require second opinion at employer's expense if good-faith doubt; third opinion is binding.\",\n      \"source_text\": \"As a condition of granting a leave for the serious health condition of the employee, the employer may require certification of the serious health condition.\"\n    },\n    {\n      \"condition_name\": \"cfra_cert_submission_deadline\",\n      \"operator\": \">=\",\n      \"required_value\": 15,\n      \"unit\": \"calendar days\",\n      \"citation\": \"2 CCR § 11091(b)(3)\",\n      \"notes\": \"Employer must allow at least 15 days; leave may begin before cert is received.\",\n      \"source_text\": \"The employer may require that the employee provide any certification within no less than 15 calendar days of the employer's request.\"\n    },\n    {\n      \"condition_name\": \"cfra_recertification\",\n      \"operator\": \"==\",\n      \"required_value\": \"may require if additional leave requested\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11091(b)(1), 2 CCR § 11091(b)(2)\",\n      \"notes\": \"Recertification only upon expiration of original estimated period and only if more leave is requested.\",\n      \"source_text\": \"Upon expiration of the time period the health care provider originally estimated...the employer may require the employee to obtain recertification, but only if additional leave is requested.\"\n    },\n    {\n      \"condition_name\": \"cfra_return_to_work_release\",\n      \"operator\": \"==\",\n      \"required_value\": \"may require if uniform policy\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11091(b)(2)(E)\",\n      \"notes\": \"Release required only if employer has uniformly applied policy; not required for each intermittent absence unless safety concern (max once per 30 days).\",\n      \"source_text\": \"As a condition of an employee's return from medical leave, the employer may require the employee to obtain a release to return-to-work...only if the employer has a uniformly applied practice or policy.\"\n    },\n    {\n      \"condition_name\": \"cfra_cert_form\",\n      \"operator\": \"==\",\n      \"required_value\": \"CFRA/FMLA HCP form or equivalent\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11097\",\n      \"notes\": \"Employer may use its own form; diagnosis disclosure requires patient consent.\",\n      \"source_text\": \"The employer may utilize the following Certification of Health Care Provider form or its equivalent.\"\n    },\n    {\n      \"condition_name\": \"pregnancy_disability_cert\",\n      \"operator\": \"==\",\n      \"required_value\": \"may require\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11042(c), 2 CCR § 11050(b)\",\n      \"notes\": \"Applies to reasonable accommodation, transfer, or pregnancy disability leave.\",\n      \"source_text\": \"The employer may require medical certification of the medical advisability of the leave, as set forth in sections 11049(a) and (b), and 11050(b).\"\n    },\n    {\n      \"condition_name\": \"pregnancy_cert_foreseeable_timing\",\n      \"operator\": \"==\",\n      \"required_value\": \"before leave begins\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11050(b)(2)\",\n      \"notes\": \"Applies when leave is foreseeable and 30 days notice given; otherwise at least 15 calendar days after employer request.\",\n      \"source_text\": \"When the leave is foreseeable and at least 30 days' notice has been provided, the employee shall provide the medical certification before the leave begins.\"\n    },\n    {\n      \"condition_name\": \"pregnancy_cert_submission_deadline\",\n      \"operator\": \">=\",\n      \"required_value\": 15,\n      \"unit\": \"calendar days\",\n      \"citation\": \"2 CCR § 11050(b)(2), 2 CCR § 11050(c)\",\n      \"notes\": \"Employer-set deadline must be at least 15 calendar days after request.\",\n      \"source_text\": \"The employee shall provide the requested certification to the employer within the time frame requested by the employer (which must be at least 15 calendar days after the employer's request).\"\n    },\n    {\n      \"condition_name\": \"pregnancy_cert_employer_request_timing\",\n      \"operator\": \"<=\",\n      \"required_value\": 2,\n      \"unit\": \"business days\",\n      \"citation\": \"2 CCR § 11050(b)(3)\",\n      \"notes\": \"Employer must request cert at time of notice or within 2 business days; for unforeseen leave, within 2 business days after leave commences.\",\n      \"source_text\": \"The employer shall request that an employee furnish medical certification...at the time the employee gives notice...or within two business days thereafter.\"\n    },\n    {\n      \"condition_name\": \"pregnancy_cert_accommodation_content\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\"field\": \"accommodation description\", \"operator\": \"==\", \"required_value\": \"required\", \"unit\": null},\n        {\"field\": \"medical advisability statement\", \"operator\": \"==\", \"required_value\": \"required\", \"unit\": null},\n        {\"field\": \"start date and duration\", \"operator\": \"==\", \"required_value\": \"required\", \"unit\": null}\n      ],\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11050(b)(6)\",\n      \"notes\": \"Required content for cert supporting reasonable accommodation or transfer.\",\n      \"source_text\": \"The medical certification indicating the medical advisability of reasonable accommodation or a transfer is sufficient if it contains: a description, a statement of medical advisability, and the date and estimated duration.\"\n    },\n    {\n      \"condition_name\": \"pregnancy_cert_disability_leave_content\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\"field\": \"disability statement\", \"operator\": \"==\", \"required_value\": \"required\", \"unit\": null},\n        {\"field\": \"disability start date and duration\", \"operator\": \"==\", \"required_value\": \"required\", \"unit\": null}\n      ],\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11050(b)(7)\",\n      \"notes\": \"Required content for cert supporting pregnancy disability leave.\",\n      \"source_text\": \"The medical certification indicating disability necessitating a leave is sufficient if it contains: a statement of disability and the date and estimated duration.\"\n    },\n    {\n      \"condition_name\": \"pregnancy_recertification\",\n      \"operator\": \"==\",\n      \"required_value\": \"may require if additional time requested\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11050(b)(8)\",\n      \"notes\": \"Recertification only upon expiration of original estimated period.\",\n      \"source_text\": \"Upon expiration of the time period that the health care provider originally estimated the employee would need...the employer may require the employee to obtain recertification if additional time is requested.\"\n    },\n    {\n      \"condition_name\": \"pregnancy_return_to_work_release\",\n      \"operator\": \"==\",\n      \"required_value\": \"may require if uniform policy\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11050(d)\",\n      \"notes\": \"Only if employer has uniformly applied policy for similarly situated non-pregnancy disability employees.\",\n      \"source_text\": \"The employer may require the employee to obtain a release to return-to-work...only if the employer has a uniformly applied practice or policy of requiring such releases from other similarly situated employees.\"\n    },\n    {\n      \"condition_name\": \"pregnancy_cert_form\",\n      \"operator\": \"==\",\n      \"required_value\": \"employer form, HCP form, or § 11050(e) form\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11050(e)\",\n      \"notes\": \"Employer may develop own form or use the Civil Rights Council form.\",\n      \"source_text\": \"Employers requiring written medical certification...may develop their own form, utilize one provided by the employee's health care provider or use the form provided below.\"\n    }\n  ]\n}"
+}

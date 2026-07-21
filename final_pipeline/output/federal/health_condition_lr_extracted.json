@@ -1,0 +1,321 @@
+{
+  "extracted_at": "2026-07-15T18:04:11.807158+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/fmla_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/schema/health_condition.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "health condition",
+  "matched_chunk_count": 4,
+  "section_count": 7,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self",
+      "spouse",
+      "son or daughter",
+      "parent"
+    ],
+    "citation": "825.112(a)(3), 825.112(a)(4)",
+    "notes": "Self covers employee's own serious health condition making them unable to perform job functions; spouse, son or daughter, and parent covered for care leave"
+  },
+  "conditions": [
+    {
+      "condition_name": "inpatient_care",
+      "field": "inpatient care",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "overnight stay location",
+          "operator": "IN",
+          "required_value": [
+            "hospital",
+            "hospice",
+            "residential medical care facility"
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.114",
+      "notes": "Includes any period of incapacity or subsequent treatment connected to the inpatient stay",
+      "source_text": "Inpatient care means an overnight stay in a hospital, hospice, or residential medical care facility, including any period of incapacity or any subsequent treatment in connection with such inpatient care."
+    },
+    {
+      "condition_name": "continuing_treatment_incapacity_and_treatment",
+      "field": "incapacity and treatment",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "duration of incapacity",
+          "operator": ">",
+          "required_value": 3,
+          "unit": "consecutive full calendar days"
+        },
+        {
+          "field": "first in-person visit timing",
+          "operator": "<=",
+          "required_value": 7,
+          "unit": "days after first day of incapacity"
+        },
+        {
+          "field": "treatment requirement",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "treatment visits within 30 days",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "visit count",
+                  "operator": ">=",
+                  "required_value": 2,
+                  "unit": "visits"
+                },
+                {
+                  "field": "visit window",
+                  "operator": "<=",
+                  "required_value": 30,
+                  "unit": "days from first day of incapacity"
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "single treatment resulting in regimen",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "treatment by health care provider",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                },
+                {
+                  "field": "regimen of continuing treatment",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.115(a)",
+      "notes": "Extenuating circumstances may excuse failure to complete second visit within 30 days",
+      "source_text": "A period of incapacity of more than three consecutive, full calendar days, and any subsequent treatment or period of incapacity relating to the same condition, that also involves: Treatment two or more times, within 30 days of the first day of incapacity... or Treatment by a health care provider on at least one occasion, which results in a regimen of continuing treatment."
+    },
+    {
+      "condition_name": "continuing_treatment_pregnancy",
+      "field": "pregnancy or prenatal care incapacity",
+      "operator": "IN",
+      "required_value": [
+        "incapacity due to pregnancy",
+        "prenatal care"
+      ],
+      "unit": null,
+      "citation": "825.115(b)",
+      "notes": "Qualifies even without 3-day incapacity threshold or treatment visit",
+      "source_text": "Any period of incapacity due to pregnancy, or for prenatal care."
+    },
+    {
+      "condition_name": "continuing_treatment_chronic_condition",
+      "field": "chronic serious health condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "periodic treatment visits",
+          "operator": ">=",
+          "required_value": 2,
+          "unit": "visits per year"
+        },
+        {
+          "field": "extended duration",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "incapacity pattern",
+          "operator": "IN",
+          "required_value": [
+            "episodic",
+            "continuing"
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.115(c)",
+      "notes": "Examples include asthma, diabetes, epilepsy; qualifies even without 3-day incapacity or treatment during absence",
+      "source_text": "Any period of incapacity or treatment for such incapacity due to a chronic serious health condition. A chronic serious health condition is one which: Requires periodic visits (defined as at least twice a year)... Continues over an extended period of time... and May cause episodic rather than a continuing period of incapacity."
+    },
+    {
+      "condition_name": "continuing_treatment_permanent_long_term",
+      "field": "permanent or long-term condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "incapacity type",
+          "operator": "IN",
+          "required_value": [
+            "permanent",
+            "long-term"
+          ],
+          "unit": null
+        },
+        {
+          "field": "treatment effectiveness",
+          "operator": "==",
+          "required_value": "treatment may not be effective",
+          "unit": null
+        },
+        {
+          "field": "continuing supervision by health care provider",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.115(d)",
+      "notes": "Active treatment not required; examples include Alzheimer's, severe stroke, terminal disease",
+      "source_text": "A period of incapacity which is permanent or long-term due to a condition for which treatment may not be effective. The employee or family member must be under the continuing supervision of, but need not be receiving active treatment by, a health care provider."
+    },
+    {
+      "condition_name": "continuing_treatment_multiple_treatments",
+      "field": "multiple treatments condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "multiple treatments by or on referral of health care provider",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "qualifying condition",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "restorative surgery after accident or injury",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "likely incapacity without treatment",
+              "operator": ">",
+              "required_value": 3,
+              "unit": "consecutive full calendar days"
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.115(e)",
+      "notes": "Examples of likely-incapacity conditions: cancer, severe arthritis, kidney disease",
+      "source_text": "Any period of absence to receive multiple treatments (including any period of recovery therefrom) by a health care provider or by a provider of health care services under orders of, or on referral by, a health care provider, for: Restorative surgery after an accident or other injury; or A condition that would likely result in a period of incapacity of more than three consecutive, full calendar days in the absence of medical intervention or treatment."
+    },
+    {
+      "condition_name": "substance_abuse_treatment",
+      "field": "substance abuse treatment",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "serious health condition criteria met",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "leave purpose",
+          "operator": "==",
+          "required_value": "treatment, not substance use",
+          "unit": null
+        },
+        {
+          "field": "treatment provider",
+          "operator": "IN",
+          "required_value": [
+            "health care provider",
+            "health care services provider on referral"
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.119(a)",
+      "notes": "Absence due to substance use itself does not qualify; only treatment qualifies",
+      "source_text": "Substance abuse may be a serious health condition if the conditions of §§ 825.113 through 825.115 are met. However, FMLA leave may only be taken for treatment for substance abuse by a health care provider or by a provider of health care services on referral by a health care provider."
+    },
+    {
+      "condition_name": "employee_unable_to_perform_job_functions",
+      "field": "employee unable to perform job functions",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "serious health condition criteria met",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "unable to perform job functions",
+          "operator": "IN",
+          "required_value": [
+            "unable to work at all",
+            "unable to perform any essential function"
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(4), 825.123(a)",
+      "notes": "Employee absent to receive medical treatment is considered unable to perform essential functions during absence; applies to self only per 825.112(a)(4)",
+      "source_text": "An employee is unable to perform the functions of the position where the health care provider finds that the employee is unable to work at all or is unable to perform any one of the essential functions of the employee's position."
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 12485,
+    "output_tokens": 2627,
+    "processing_duration": 30.429937601089478
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"health condition\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"self\", \"spouse\", \"child\", \"parent\"],\n    \"citation\": \"825.112(a)(3), 825.112(a)(4)\",\n    \"notes\": \"Self covers employee's own serious health condition; spouse, child, parent covered for care leave\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"inpatient_care\",\n      \"field\": \"inpatient care\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"overnight stay location\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"hospital\", \"hospice\", \"residential medical care facility\"],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.114\",\n      \"notes\": \"Includes any period of incapacity or subsequent treatment connected to the inpatient stay\",\n      \"source_text\": \"Inpatient care means an overnight stay in a hospital, hospice, or residential medical care facility, including any period of incapacity or any subsequent treatment in connection with such inpatient care.\"\n    },\n    {\n      \"condition_name\": \"continuing_treatment_incapacity_and_treatment\",\n      \"field\": \"incapacity and treatment\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"duration of incapacity\",\n          \"operator\": \">\",\n          \"required_value\": 3,\n          \"unit\": \"consecutive full calendar days\"\n        },\n        {\n          \"field\": \"first in-person visit timing\",\n          \"operator\": \"<=\",\n          \"required_value\": 7,\n          \"unit\": \"days after first day of incapacity\"\n        },\n        {\n          \"field\": \"treatment requirement\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"treatment visits within 30 days\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"visit count\",\n                  \"operator\": \">=\",\n                  \"required_value\": 2,\n                  \"unit\": \"visits\"\n                },\n                {\n                  \"field\": \"visit window\",\n                  \"operator\": \"<=\",\n                  \"required_value\": 30,\n                  \"unit\": \"days from first day of incapacity\"\n                }\n              ],\n              \"unit\": null\n            },\n            {\n              \"field\": \"single treatment resulting in regimen\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"treatment by health care provider\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"regimen of continuing treatment\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.115(a)\",\n      \"notes\": \"Extenuating circumstances may excuse failure to complete second visit within 30 days\",\n      \"source_text\": \"A period of incapacity of more than three consecutive, full calendar days, and any subsequent treatment or period of incapacity relating to the same condition, that also involves: Treatment two or more times, within 30 days of the first day of incapacity... or Treatment by a health care provider on at least one occasion, which results in a regimen of continuing treatment.\"\n    },\n    {\n      \"condition_name\": \"continuing_treatment_pregnancy\",\n      \"field\": \"pregnancy or prenatal care incapacity\",\n      \"operator\": \"IN\",\n      \"required_value\": [\"incapacity due to pregnancy\", \"prenatal care\"],\n      \"unit\": null,\n      \"citation\": \"825.115(b)\",\n      \"notes\": \"Qualifies even without 3-day incapacity threshold or treatment visit\",\n      \"source_text\": \"Any period of incapacity due to pregnancy, or for prenatal care.\"\n    },\n    {\n      \"condition_name\": \"continuing_treatment_chronic_condition\",\n      \"field\": \"chronic serious health condition\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"periodic treatment visits\",\n          \"operator\": \">=\",\n          \"required_value\": 2,\n          \"unit\": \"visits per year\"\n        },\n        {\n          \"field\": \"extended duration\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"incapacity pattern\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"episodic\", \"continuing\"],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.115(c)\",\n      \"notes\": \"Examples include asthma, diabetes, epilepsy; qualifies even without 3-day incapacity or treatment during absence\",\n      \"source_text\": \"Any period of incapacity or treatment for such incapacity due to a chronic serious health condition. A chronic serious health condition is one which: Requires periodic visits (defined as at least twice a year)... Continues over an extended period of time... and May cause episodic rather than a continuing period of incapacity.\"\n    },\n    {\n      \"condition_name\": \"continuing_treatment_permanent_long_term\",\n      \"field\": \"permanent or long-term condition\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"incapacity type\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"permanent\", \"long-term\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"treatment effectiveness\",\n          \"operator\": \"==\",\n          \"required_value\": \"treatment may not be effective\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"continuing supervision by health care provider\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.115(d)\",\n      \"notes\": \"Active treatment not required; examples include Alzheimer's, severe stroke, terminal disease\",\n      \"source_text\": \"A period of incapacity which is permanent or long-term due to a condition for which treatment may not be effective. The employee or family member must be under the continuing supervision of, but need not be receiving active treatment by, a health care provider.\"\n    },\n    {\n      \"condition_name\": \"continuing_treatment_multiple_treatments\",\n      \"field\": \"multiple treatments condition\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"multiple treatments by or on referral of health care provider\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"qualifying condition\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"restorative surgery after accident or injury\",\n              \"operator\": \"==\",\n              \"required_value\": true,\n              \"unit\": null\n            },\n            {\n              \"field\": \"likely incapacity without treatment\",\n              \"operator\": \">\",\n              \"required_value\": 3,\n              \"unit\": \"consecutive full calendar days\"\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.115(e)\",\n      \"notes\": \"Examples of likely-incapacity conditions: cancer, severe arthritis, kidney disease\",\n      \"source_text\": \"Any period of absence to receive multiple treatments (including any period of recovery therefrom) by a health care provider or by a provider of health care services under orders of, or on referral by, a health care provider, for: Restorative surgery after an accident or other injury; or A condition that would likely result in a period of incapacity of more than three consecutive, full calendar days in the absence of medical intervention or treatment.\"\n    },\n    {\n      \"condition_name\": \"substance_abuse_treatment\",\n      \"field\": \"substance abuse treatment\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"serious health condition criteria met\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"leave purpose\",\n          \"operator\": \"==\",\n          \"required_value\": \"treatment, not substance use\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"treatment provider\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"health care provider\", \"health care services provider on referral\"],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.119(a)\",\n      \"notes\": \"Absence due to substance use itself does not qualify; only treatment qualifies\",\n      \"source_text\": \"Substance abuse may be a serious health condition if the conditions of §§ 825.113 through 825.115 are met. However, FMLA leave may only be taken for treatment for substance abuse by a health care provider or by a provider of health care services on referral by a health care provider.\"\n    },\n    {\n      \"condition_name\": \"employee_unable_to_perform_job_functions\",\n      \"field\": \"employee unable to perform job functions\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"==\",\n          \"required_value\": \"self\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"serious health condition criteria met\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"unable to perform job functions\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"unable to work at all\", \"unable to perform any essential function\"],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.112(a)(4), 825.123(a)\",\n      \"notes\": \"Employee absent to receive medical treatment is considered unable to perform essential functions during absence\",\n      \"source_text\": \"An employee is unable to perform the functions of the position where the health care provider finds that the employee is unable to work at all or is unable to perform any one of the essential functions of the employee's position.\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "API1 uses 'child' in included_relationships but 825.112(a)(3) uses 'son or daughter'; label should match regulation wording"
+    ],
+    "logic_issues": [
+      "employee_unable_to_perform_job_functions contains a nested 'relationship == self' check inside conditions; relationship coverage belongs only in included_relationships, not inside condition objects",
+      "employee_unable_to_perform_job_functions is not a parallel qualifying pathway for what constitutes a serious health condition; it is a separate qualifying reason (825.112(a)(4)) that applies only to self and should be kept as a top-level condition but without the relationship sub-check"
+    ],
+    "missing_conditions": [],
+    "unsupported_conditions": [
+      "The nested 'relationship == self' field inside employee_unable_to_perform_job_functions is not a condition on the health condition itself; it is relationship scoping and must be removed from conditions"
+    ],
+    "format_issues": [
+      "included_relationships uses 'child' instead of 'son or daughter' per 825.112(a)(3)"
+    ],
+    "revision_summary": [
+      "Changed 'child' to 'son or daughter' in included_relationships.required_value to match 825.112(a)(3) wording",
+      "Removed the nested 'relationship == self' check from employee_unable_to_perform_job_functions; relationship scoping belongs only in included_relationships",
+      "All other conditions retained as API1 had them correctly structured and grounded in the regulation chunks"
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 12761,
+    "output_tokens": 3097,
+    "processing_duration": 36.218987703323364
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"API1 uses 'child' in included_relationships but 825.112(a)(3) uses 'son or daughter'; label should match regulation wording\"\n    ],\n    \"logic_issues\": [\n      \"employee_unable_to_perform_job_functions contains a nested 'relationship == self' check inside conditions; relationship coverage belongs only in included_relationships, not inside condition objects\",\n      \"employee_unable_to_perform_job_functions is not a parallel qualifying pathway for what constitutes a serious health condition; it is a separate qualifying reason (825.112(a)(4)) that applies only to self and should be kept as a top-level condition but without the relationship sub-check\"\n    ],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [\n      \"The nested 'relationship == self' field inside employee_unable_to_perform_job_functions is not a condition on the health condition itself; it is relationship scoping and must be removed from conditions\"\n    ],\n    \"format_issues\": [\n      \"included_relationships uses 'child' instead of 'son or daughter' per 825.112(a)(3)\"\n    ],\n    \"revision_summary\": [\n      \"Changed 'child' to 'son or daughter' in included_relationships.required_value to match 825.112(a)(3) wording\",\n      \"Removed the nested 'relationship == self' check from employee_unable_to_perform_job_functions; relationship scoping belongs only in included_relationships\",\n      \"All other conditions retained as API1 had them correctly structured and grounded in the regulation chunks\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"health condition\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"self\",\n        \"spouse\",\n        \"son or daughter\",\n        \"parent\"\n      ],\n      \"citation\": \"825.112(a)(3), 825.112(a)(4)\",\n      \"notes\": \"Self covers employee's own serious health condition making them unable to perform job functions; spouse, son or daughter, and parent covered for care leave\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"inpatient_care\",\n        \"field\": \"inpatient care\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"overnight stay location\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"hospital\",\n              \"hospice\",\n              \"residential medical care facility\"\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.114\",\n        \"notes\": \"Includes any period of incapacity or subsequent treatment connected to the inpatient stay\",\n        \"source_text\": \"Inpatient care means an overnight stay in a hospital, hospice, or residential medical care facility, including any period of incapacity or any subsequent treatment in connection with such inpatient care.\"\n      },\n      {\n        \"condition_name\": \"continuing_treatment_incapacity_and_treatment\",\n        \"field\": \"incapacity and treatment\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"duration of incapacity\",\n            \"operator\": \">\",\n            \"required_value\": 3,\n            \"unit\": \"consecutive full calendar days\"\n          },\n          {\n            \"field\": \"first in-person visit timing\",\n            \"operator\": \"<=\",\n            \"required_value\": 7,\n            \"unit\": \"days after first day of incapacity\"\n          },\n          {\n            \"field\": \"treatment requirement\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"treatment visits within 30 days\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"visit count\",\n                    \"operator\": \">=\",\n                    \"required_value\": 2,\n                    \"unit\": \"visits\"\n                  },\n                  {\n                    \"field\": \"visit window\",\n                    \"operator\": \"<=\",\n                    \"required_value\": 30,\n                    \"unit\": \"days from first day of incapacity\"\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"single treatment resulting in regimen\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"treatment by health care provider\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"regimen of continuing treatment\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.115(a)\",\n        \"notes\": \"Extenuating circumstances may excuse failure to complete second visit within 30 days\",\n        \"source_text\": \"A period of incapacity of more than three consecutive, full calendar days, and any subsequent treatment or period of incapacity relating to the same condition, that also involves: Treatment two or more times, within 30 days of the first day of incapacity... or Treatment by a health care provider on at least one occasion, which results in a regimen of continuing treatment.\"\n      },\n      {\n        \"condition_name\": \"continuing_treatment_pregnancy\",\n        \"field\": \"pregnancy or prenatal care incapacity\",\n        \"operator\": \"IN\",\n        \"required_value\": [\n          \"incapacity due to pregnancy\",\n          \"prenatal care\"\n        ],\n        \"unit\": null,\n        \"citation\": \"825.115(b)\",\n        \"notes\": \"Qualifies even without 3-day incapacity threshold or treatment visit\",\n        \"source_text\": \"Any period of incapacity due to pregnancy, or for prenatal care.\"\n      },\n      {\n        \"condition_name\": \"continuing_treatment_chronic_condition\",\n        \"field\": \"chronic serious health condition\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"periodic treatment visits\",\n            \"operator\": \">=\",\n            \"required_value\": 2,\n            \"unit\": \"visits per year\"\n          },\n          {\n            \"field\": \"extended duration\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"incapacity pattern\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"episodic\",\n              \"continuing\"\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.115(c)\",\n        \"notes\": \"Examples include asthma, diabetes, epilepsy; qualifies even without 3-day incapacity or treatment during absence\",\n        \"source_text\": \"Any period of incapacity or treatment for such incapacity due to a chronic serious health condition. A chronic serious health condition is one which: Requires periodic visits (defined as at least twice a year)... Continues over an extended period of time... and May cause episodic rather than a continuing period of incapacity.\"\n      },\n      {\n        \"condition_name\": \"continuing_treatment_permanent_long_term\",\n        \"field\": \"permanent or long-term condition\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"incapacity type\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"permanent\",\n              \"long-term\"\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"treatment effectiveness\",\n            \"operator\": \"==\",\n            \"required_value\": \"treatment may not be effective\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"continuing supervision by health care provider\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.115(d)\",\n        \"notes\": \"Active treatment not required; examples include Alzheimer's, severe stroke, terminal disease\",\n        \"source_text\": \"A period of incapacity which is permanent or long-term due to a condition for which treatment may not be effective. The employee or family member must be under the continuing supervision of, but need not be receiving active treatment by, a health care provider.\"\n      },\n      {\n        \"condition_name\": \"continuing_treatment_multiple_treatments\",\n        \"field\": \"multiple treatments condition\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"multiple treatments by or on referral of health care provider\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"qualifying condition\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"restorative surgery after accident or injury\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              },\n              {\n                \"field\": \"likely incapacity without treatment\",\n                \"operator\": \">\",\n                \"required_value\": 3,\n                \"unit\": \"consecutive full calendar days\"\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.115(e)\",\n        \"notes\": \"Examples of likely-incapacity conditions: cancer, severe arthritis, kidney disease\",\n        \"source_text\": \"Any period of absence to receive multiple treatments (including any period of recovery therefrom) by a health care provider or by a provider of health care services under orders of, or on referral by, a health care provider, for: Restorative surgery after an accident or other injury; or A condition that would likely result in a period of incapacity of more than three consecutive, full calendar days in the absence of medical intervention or treatment.\"\n      },\n      {\n        \"condition_name\": \"substance_abuse_treatment\",\n        \"field\": \"substance abuse treatment\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"serious health condition criteria met\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"leave purpose\",\n            \"operator\": \"==\",\n            \"required_value\": \"treatment, not substance use\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"treatment provider\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"health care provider\",\n              \"health care services provider on referral\"\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.119(a)\",\n        \"notes\": \"Absence due to substance use itself does not qualify; only treatment qualifies\",\n        \"source_text\": \"Substance abuse may be a serious health condition if the conditions of §§ 825.113 through 825.115 are met. However, FMLA leave may only be taken for treatment for substance abuse by a health care provider or by a provider of health care services on referral by a health care provider.\"\n      },\n      {\n        \"condition_name\": \"employee_unable_to_perform_job_functions\",\n        \"field\": \"employee unable to perform job functions\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"serious health condition criteria met\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"unable to perform job functions\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"unable to work at all\",\n              \"unable to perform any essential function\"\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.112(a)(4), 825.123(a)\",\n        \"notes\": \"Employee absent to receive medical treatment is considered unable to perform essential functions during absence; applies to self only per 825.112(a)(4)\",\n        \"source_text\": \"An employee is unable to perform the functions of the position where the health care provider finds that the employee is unable to work at all or is unable to perform any one of the essential functions of the employee's position.\"\n      }\n    ]\n  }\n}"
+}

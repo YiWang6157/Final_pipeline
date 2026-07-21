@@ -1,0 +1,143 @@
+[
+  {
+    "id": "CA-birth_or_pregnancy-01",
+    "jurisdiction": "CA",
+    "leave_reason": "birth_or_pregnancy",
+    "label": "Pass — EE met and leave-reason pathway satisfied",
+    "case_type": "pass",
+    "expected": {
+      "ee_pass": true,
+      "relationship_pass": true,
+      "leave_reason_pass": true,
+      "pathways_expected": [
+        "cfra_leave_for_birth_of_child"
+      ],
+      "decision": "APPROVED"
+    },
+    "facts": {
+      "jurisdiction": "CA",
+      "leave_reason": "birth_or_pregnancy",
+      "employment_duration_months": 18,
+      "hours_worked_last_12_months": 1400,
+      "relationship": "child",
+      "birth_of_child": true,
+      "bonding_with_newborn": true,
+      "time_since_birth_years": 0,
+      "pregnancy_disability": false,
+      "parental_leave": true,
+      "foreseeable_need": true,
+      "leave_request_approval_required": true,
+      "foreseeable_leave_notice": 30,
+      "foreseeable_leave": true,
+      "is_air_crew": false,
+      "advance_notice": 30,
+      "medical_certification_provided": true,
+      "military_caregiver_certification_provided": true,
+      "qualifying_exigency_certification_provided": true,
+      "employer_size_within_75_miles": 80,
+      "notice_timing": "as soon as practicable",
+      "notice_30_days_practicable": true,
+      "advance_notice_days": 30,
+      "employee_location": "California",
+      "cfra_leave_for_birth_of_child": true
+    },
+    "narrative": "Employee requests bonding leave after birth of a child within the entitlement window.",
+    "gt_refs": {
+      "ee": "CA/gt/ca_ee_gt.json",
+      "leave_reason": "CA/gt/ca_birth_or_pregnancy_gt.json"
+    }
+  },
+  {
+    "id": "CA-birth_or_pregnancy-02",
+    "jurisdiction": "CA",
+    "leave_reason": "birth_or_pregnancy",
+    "label": "Fail EE — leave facts otherwise valid",
+    "case_type": "fail_ee",
+    "expected": {
+      "ee_pass": false,
+      "relationship_pass": true,
+      "leave_reason_pass": true,
+      "pathways_expected": [
+        "cfra_leave_for_birth_of_child"
+      ],
+      "decision": "NEED HUMAN REVIEW"
+    },
+    "facts": {
+      "jurisdiction": "CA",
+      "leave_reason": "birth_or_pregnancy",
+      "employment_duration_months": 18,
+      "hours_worked_last_12_months": 900,
+      "relationship": "child",
+      "birth_of_child": true,
+      "bonding_with_newborn": true,
+      "time_since_birth_years": 0,
+      "pregnancy_disability": false,
+      "parental_leave": true,
+      "foreseeable_need": true,
+      "leave_request_approval_required": true,
+      "foreseeable_leave_notice": 30,
+      "foreseeable_leave": true,
+      "is_air_crew": false,
+      "advance_notice": 30,
+      "medical_certification_provided": true,
+      "military_caregiver_certification_provided": true,
+      "qualifying_exigency_certification_provided": true,
+      "employer_size_within_75_miles": 80,
+      "notice_timing": "as soon as practicable",
+      "notice_30_days_practicable": true,
+      "advance_notice_days": 30,
+      "employee_location": "California",
+      "cfra_leave_for_birth_of_child": true
+    },
+    "narrative": "Same leave facts as pass case, but employee eligibility thresholds not met.",
+    "gt_refs": {
+      "ee": "CA/gt/ca_ee_gt.json",
+      "leave_reason": "CA/gt/ca_birth_or_pregnancy_gt.json"
+    }
+  },
+  {
+    "id": "CA-birth_or_pregnancy-03",
+    "jurisdiction": "CA",
+    "leave_reason": "birth_or_pregnancy",
+    "label": "Fail leave reason — EE met, pathway/relationship not satisfied",
+    "case_type": "fail_reason",
+    "expected": {
+      "ee_pass": true,
+      "relationship_pass": false,
+      "leave_reason_pass": false,
+      "pathways_expected": [],
+      "decision": "NEED HUMAN REVIEW"
+    },
+    "facts": {
+      "jurisdiction": "CA",
+      "leave_reason": "birth_or_pregnancy",
+      "employment_duration_months": 18,
+      "hours_worked_last_12_months": 1400,
+      "relationship": "parent",
+      "birth_of_child": false,
+      "bonding_with_newborn": false,
+      "time_since_birth_years": 0,
+      "pregnancy_disability": false,
+      "parental_leave": false,
+      "foreseeable_need": true,
+      "leave_request_approval_required": true,
+      "foreseeable_leave_notice": 30,
+      "foreseeable_leave": true,
+      "is_air_crew": false,
+      "advance_notice": 30,
+      "medical_certification_provided": true,
+      "military_caregiver_certification_provided": true,
+      "qualifying_exigency_certification_provided": true,
+      "employer_size_within_75_miles": 80,
+      "notice_timing": "as soon as practicable",
+      "notice_30_days_practicable": true,
+      "advance_notice_days": 30,
+      "employee_location": "California"
+    },
+    "narrative": "Relationship is parent (not covered for birth/bonding) and no birth/bonding facts.",
+    "gt_refs": {
+      "ee": "CA/gt/ca_ee_gt.json",
+      "leave_reason": "CA/gt/ca_birth_or_pregnancy_gt.json"
+    }
+  }
+]

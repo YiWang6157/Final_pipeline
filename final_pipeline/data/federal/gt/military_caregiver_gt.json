@@ -1,0 +1,204 @@
+{
+  "leave_reason": "military caregiver",
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      ["spouse"],
+      ["son or daughter"],
+      ["parent"],
+      ["next of kin"]
+    ],
+    "citation": "825.127(d)",
+    "notes": "Son or daughter includes biological, adopted, foster, step, legal ward, or in loco parentis child of any age. Parent does not include parents-in-law. Next of kin is the nearest blood relative other than spouse, parent, son, or daughter, in priority order unless servicemember designates otherwise."
+  },
+  "conditions": [
+    {
+      "condition_name": "current_servicemember_serious_injury_or_illness",
+      "field": "covered servicemember status and condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "needed to care",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "servicemember type",
+          "operator": "IN",
+          "required_value": [
+            ["current", "Armed", "Forces"],
+            ["National", "Guard"],
+            ["Reserves"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "servicemember medical status",
+          "operator": "IN",
+          "required_value": [
+            ["medical", "treatment"],
+            ["recuperation"],
+            ["therapy"],
+            ["outpatient", "status"],
+            ["temporary", "disability", "retired", "list"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious injury or illness origin",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "injury or illness origin",
+              "operator": "IN",
+              "required_value": [
+                ["incurred", "line", "duty", "active", "duty"]
+              ],
+              "unit": null
+            },
+            {
+              "field": "injury or illness origin",
+              "operator": "IN",
+              "required_value": [
+                ["existed", "before", "active", "duty"],
+                ["aggravated", "service", "line", "duty"]
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        },
+        {
+          "field": "injury or illness effect",
+          "operator": "IN",
+          "required_value": [
+            ["medically", "unfit"],
+            ["duties", "office", "grade", "rank", "rating"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(6), 825.124, 825.127(b)(1), 825.127(c)(1)"
+    },
+    {
+      "condition_name": "covered_veteran_serious_injury_or_illness",
+      "field": "covered veteran status and condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "needed to care",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "veteran discharge status",
+          "operator": "IN",
+          "required_value": [
+            ["discharged"],
+            ["released"],
+            ["other", "than", "dishonorable"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "time since discharge",
+          "operator": "<=",
+          "required_value": 5,
+          "unit": "years"
+        },
+        {
+          "field": "veteran medical status",
+          "operator": "IN",
+          "required_value": [
+            ["medical", "treatment"],
+            ["recuperation"],
+            ["therapy"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious injury or illness origin",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "injury or illness origin",
+              "operator": "IN",
+              "required_value": [
+                ["incurred", "line", "duty", "active", "duty"]
+              ],
+              "unit": null
+            },
+            {
+              "field": "injury or illness origin",
+              "operator": "IN",
+              "required_value": [
+                ["existed", "before", "active", "duty"],
+                ["aggravated", "service", "line", "duty"]
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious injury or illness manifestation",
+          "operator": "IN",
+          "required_value": [
+            ["manifested", "before", "veteran"],
+            ["manifested", "after", "veteran"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious injury or illness qualifying type",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "continuation of serious injury or illness",
+              "operator": "IN",
+              "required_value": [
+                ["continuation"],
+                ["unable", "perform", "duties"],
+                ["office", "grade", "rank", "rating"]
+              ],
+              "unit": null
+            },
+            {
+              "field": "VASRD rating for condition precipitating military caregiver leave",
+              "operator": ">=",
+              "required_value": 50,
+              "unit": "percent"
+            },
+            {
+              "field": "substantial occupational impairment",
+              "operator": "IN",
+              "required_value": [
+                ["substantially", "impairs"],
+                ["secure", "follow"],
+                ["substantially", "gainful", "occupation"],
+                ["military", "service", "disability"]
+              ],
+              "unit": null
+            },
+            {
+              "field": "VA caregiver program enrollment",
+              "operator": "IN",
+              "required_value": [
+                ["injury"],
+                ["psychological", "injury"],
+                ["VA", "Program", "Comprehensive", "Assistance", "Family", "Caregivers"]
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(6), 825.124, 825.127(b)(2), 825.127(c)(2)"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+    "leave_reason": "adoption",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "placement_for_adoption",
+        "field": "adoption placement",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "child relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "placement with employee",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "adoption connection",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "time since placement",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": "",
+        "notes": ""
+      }
+    ]
+  }

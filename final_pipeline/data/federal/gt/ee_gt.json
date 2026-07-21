@@ -1,0 +1,32 @@
+{
+  "employee_eligibility_conditions": [
+    {
+      "field": "employment_duration_months",
+      "operator": ">=",
+      "required_value": 12,
+      "unit": "months",
+      "citation": "825.110"
+    },
+    {
+      "field": "hours_worked_last_12_months",
+      "operator": ">=",
+      "required_value": 1250,
+      "unit": "hours",
+      "citation": "825.110"
+    },
+    {
+      "field": "airline_flight_crew_hours_worked_or_paid_percentage",
+      "operator": ">=",
+      "required_value": 60,
+      "unit": "percent",
+      "citation": "825.801"
+    },
+    {
+      "field": "airline_flight_crew_hours_worked_or_paid",
+      "operator": ">=",
+      "required_value": 504,
+      "unit": "hours",
+      "citation": "825.801"
+    }
+  ]
+}

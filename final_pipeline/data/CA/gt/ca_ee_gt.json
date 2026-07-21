@@ -1,0 +1,22 @@
+{ 
+  "employee_eligibility_conditions": [
+    {
+      "field": "employment_duration_months",
+      "operator": ">=",
+      "required_value": 12,
+      "unit": "months",
+      "citation": "2 CCR § 11087(g)",
+      "notes": "Employment periods prior to a break in service of seven years or more need not be counted, except for breaks caused by military service obligation or written agreement.",
+      "source_text": "A full- or part-time employee in California who has been employed for a total of at least 12 months (52 weeks) with the employer at any time prior to the commencement of a CFRA leave"
+    },
+    {
+      "field": "hours_worked_last_12_months",
+      "operator": ">=",
+      "required_value": 1250,
+      "unit": "hours",
+      "citation": "2 CCR § 11087(g)",
+      "notes": "Hours must be actually worked within the meaning of the California Labor Code and Industrial Welfare Commission Wage Orders during the 12-month period immediately prior to the date the CFRA leave is to commence.",
+      "source_text": "who has actually worked (within the meaning of the California Labor Code and Industrial Welfare Commission Wage Orders) for the employer at least 1,250 hours during the 12-month period immediately prior to the date the CFRA leave is to commence."
+    }
+  ]
+}

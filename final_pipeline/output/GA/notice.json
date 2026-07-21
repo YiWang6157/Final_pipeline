@@ -1,0 +1,37 @@
+{
+  "extracted_at": "2026-07-15T18:11:19.030493+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/GA/chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "notice_cert",
+  "model_key": "ari_model",
+  "matched_chunk_count": 3,
+  "category": "notice",
+  "conditions": [
+    {
+      "condition_name": "leave_extension_request_timing",
+      "operator": "==",
+      "required_value": "prior to leave expiration",
+      "unit": null,
+      "citation": "478-1-.16(4)(f)",
+      "notes": "Employee must request extension in writing before approved leave expires.",
+      "source_text": "the employee must request it in writing from her/his supervisor prior to the leave expiration"
+    },
+    {
+      "condition_name": "sick_leave_illness_during_annual_leave_substitution",
+      "operator": "<=",
+      "required_value": 2,
+      "unit": "weeks",
+      "citation": "478-1-.16(7)(e)",
+      "notes": "Request to substitute sick leave for annual leave must be made within 2 weeks of return to duty.",
+      "source_text": "A request for substitution of sick leave for annual leave must be made to the agency within two (2) weeks after the employee has returned to duty."
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 5511,
+    "output_tokens": 276,
+    "processing_duration": 4.996267557144165
+  },
+  "raw_llm_response": "{\n  \"category\": \"notice\",\n  \"conditions\": [\n    {\n      \"condition_name\": \"leave_extension_request_timing\",\n      \"operator\": \"==\",\n      \"required_value\": \"prior to leave expiration\",\n      \"unit\": null,\n      \"citation\": \"478-1-.16(4)(f)\",\n      \"notes\": \"Employee must request extension in writing before approved leave expires.\",\n      \"source_text\": \"the employee must request it in writing from her/his supervisor prior to the leave expiration\"\n    },\n    {\n      \"condition_name\": \"sick_leave_illness_during_annual_leave_substitution\",\n      \"operator\": \"<=\",\n      \"required_value\": 2,\n      \"unit\": \"weeks\",\n      \"citation\": \"478-1-.16(7)(e)\",\n      \"notes\": \"Request to substitute sick leave for annual leave must be made within 2 weeks of return to duty.\",\n      \"source_text\": \"A request for substitution of sick leave for annual leave must be made to the agency within two (2) weeks after the employee has returned to duty.\"\n    }\n  ]\n}"
+}

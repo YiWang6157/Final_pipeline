@@ -1,0 +1,200 @@
+{
+  "extracted_at": "2026-07-15T18:12:26.601274+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/tn_extracted_sections_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/schema/tn_adoption.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "adoption",
+  "matched_chunk_count": 5,
+  "section_count": 5,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self"
+    ],
+    "citation": "6.02(B)",
+    "notes": "Leave is taken by the employee with whom the child is placed for adoption or foster care."
+  },
+  "conditions": [
+    {
+      "condition_name": "adoption_placement_and_bonding",
+      "field": "adoption placement or bonding",
+      "operator": "ANY_OF",
+      "required_value": [
+        {
+          "field": "child placed with employee for adoption",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "bonding with newly-placed adopted child",
+          "operator": "ALL_OF",
+          "required_value": [
+            {
+              "field": "child placed for adoption",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "time since placement",
+              "operator": "<=",
+              "required_value": 1,
+              "unit": "year"
+            }
+          ],
+          "unit": null
+        },
+        {
+          "field": "pre-placement activity integral to adoption",
+          "operator": "ALL_OF",
+          "required_value": [
+            {
+              "field": "leave integral to placement",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "activity type",
+              "operator": "IN",
+              "required_value": [
+                "required counseling sessions",
+                "court appearances",
+                "legal consultations",
+                "medical consultations"
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "6.02(B), 6.05",
+      "notes": "No requirement that the adoption source be a licensed adoption agency.",
+      "source_text": "The placement with the employee of a child for adoption or foster care and to bond with the newly-placed child within one year of placement. FMLA leave may be taken prior to an adoptive or foster care placement if the leave is integral to the placement."
+    },
+    {
+      "condition_name": "foster_care_placement_and_bonding",
+      "field": "foster care placement or bonding",
+      "operator": "ANY_OF",
+      "required_value": [
+        {
+          "field": "child placed with employee for foster care",
+          "operator": "ALL_OF",
+          "required_value": [
+            {
+              "field": "placement made by or in agreement with the state",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "state action involved in removal from parental custody",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            }
+          ],
+          "unit": null
+        },
+        {
+          "field": "bonding with newly-placed foster child",
+          "operator": "ALL_OF",
+          "required_value": [
+            {
+              "field": "child placed for foster care",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "time since placement",
+              "operator": "<=",
+              "required_value": 1,
+              "unit": "year"
+            }
+          ],
+          "unit": null
+        },
+        {
+          "field": "pre-placement activity integral to foster care",
+          "operator": "ALL_OF",
+          "required_value": [
+            {
+              "field": "leave integral to placement",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "activity type",
+              "operator": "IN",
+              "required_value": [
+                "required counseling sessions",
+                "court appearances",
+                "legal consultations",
+                "medical consultations"
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "6.02(B), 6.05",
+      "notes": "Foster care is 24-hour care for children in substitution for, and away from, their parents or guardian. State action must be involved in removal of child from parental custody.",
+      "source_text": "The placement with the employee of a child for adoption or foster care and to bond with the newly-placed child within one year of placement. Foster Care is defined as '24-hour care for children in substitution for, and away from, their parents or guardian.' FMLA requires that this placement be made by or in agreement with the state."
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 6171,
+    "output_tokens": 904,
+    "processing_duration": 9.906885385513306
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"adoption\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"self\"],\n    \"citation\": \"6.02(B), 13.01\",\n    \"notes\": \"Leave is taken by the employee receiving the adopted child; no other family member relationship is required.\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"placement_for_adoption\",\n      \"field\": \"adoption placement\",\n      \"operator\": \"ANY_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"child placed for adoption\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"pre-placement activity\",\n          \"operator\": \"ALL_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"integral to placement\",\n              \"operator\": \"==\",\n              \"required_value\": true,\n              \"unit\": null\n            },\n            {\n              \"field\": \"activity type\",\n              \"operator\": \"IN\",\n              \"required_value\": [\"required counseling sessions\", \"court appearances\", \"legal consultations\", \"medical consultations\"],\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.02(B), 6.05\",\n      \"notes\": \"No requirement that adoption source be a licensed adoption agency.\",\n      \"source_text\": \"The placement with the employee of a child for adoption or foster care... FMLA leave may be taken prior to an adoptive or foster care placement if the leave is integral to the placement.\"\n    },\n    {\n      \"condition_name\": \"bonding_after_placement\",\n      \"field\": \"bonding with adopted child\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"child newly placed\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"purpose\",\n          \"operator\": \"==\",\n          \"required_value\": \"bonding with newly-placed child\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"time since placement\",\n          \"operator\": \"<=\",\n          \"required_value\": 1,\n          \"unit\": \"year\"\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.02(B)\",\n      \"notes\": null,\n      \"source_text\": \"The placement with the employee of a child for adoption or foster care and to bond with the newly-placed child within one year of placement.\"\n    },\n    {\n      \"condition_name\": \"parental_leave_adoption\",\n      \"field\": \"parental adoption leave\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"adoption custody received\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"time since custody\",\n          \"operator\": \"<=\",\n          \"required_value\": 4,\n          \"unit\": \"months\"\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"13.01\",\n      \"notes\": \"Four-month period begins at the time the employee receives custody of the child. Employee must have 12 consecutive months of full-time state service for full entitlement; employees with less than 1 year may receive up to 30 workdays.\",\n      \"source_text\": \"With regard to adoption, the four (4) month period shall begin at the time an employee receives custody of the child.\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "included_relationships lists only 'self', which is correct for adoption leave taken by the employee. However, section 6.02(B) frames the qualifying reason as placement with the employee, confirming 'self' is the only applicable relationship. No change needed.",
+      "API1 cites 13.01 in included_relationships citation, but 13.01 is a parental leave eligibility section, not a relationship definition section. Citation should be limited to 6.02(B) for the relationship scope."
+    ],
+    "logic_issues": [
+      "condition 'bonding_after_placement' and 'placement_for_adoption' overlap: placement_for_adoption already covers the placement event, and bonding_after_placement re-states the placement as a sub-check. These are actually two aspects of the same qualifying reason under 6.02(B) and should be merged into one condition, or bonding_after_placement should not re-assert 'child newly placed' as a separate sub-check since it is already covered.",
+      "condition 'parental_leave_adoption' mixes parental leave administrative rules (4-month window, service length) with leave-reason qualification. The 4-month window and service requirements are leave amount/eligibility rules, not leave-reason qualification conditions. However, the 4-month period start trigger (custody receipt) is a timing rule tied to reason qualification and may be retained as a note. The service length requirement in notes is an administrative eligibility rule and should be removed from conditions.",
+      "The 'bonding_after_placement' condition duplicates the 1-year window already implied by 6.02(B) and partially duplicates placement_for_adoption. These should be merged into one condition under 6.02(B)."
+    ],
+    "missing_conditions": [
+      "Foster care placement is a parallel qualifying pathway under 6.02(B) and 6.05 but is not represented as a separate top-level condition. It should be included alongside adoption placement."
+    ],
+    "unsupported_conditions": [
+      "'parental_leave_adoption' as a top-level leave-reason condition is not supported as a separate qualifying pathway. Section 13.01 describes parental leave entitlement rules (duration, eligibility, timing), not a distinct leave reason. The leave reason is adoption placement under 6.02(B); 13.01 governs how much leave is available, not whether the reason qualifies. This condition should be removed or collapsed into a note.",
+      "The 4-month custody window and 12-month service requirement in 'parental_leave_adoption' are leave amount and eligibility rules, not leave-reason qualification conditions, and should not appear as top-level conditions."
+    ],
+    "format_issues": [
+      "included_relationships citation includes '13.01' which is a parental leave eligibility section, not a relationship or leave-reason qualification section. Should be '6.02(B)' only.",
+      "notes in 'parental_leave_adoption' contain administrative eligibility rules (12 consecutive months, 30 workdays) which are leave amount rules, not reason qualification notes."
+    ],
+    "revision_summary": [
+      "Merged placement_for_adoption and bonding_after_placement into one condition covering the full 6.02(B) adoption/foster care placement and bonding pathway, including pre-placement activities from 6.05.",
+      "Added foster care placement as a parallel pathway since 6.02(B) and 6.05 explicitly include it alongside adoption.",
+      "Removed parental_leave_adoption as a top-level condition because 13.01 governs leave amount and eligibility, not leave-reason qualification.",
+      "Fixed included_relationships citation to 6.02(B) only.",
+      "Retained pre-placement activity examples from 6.05 nested under the placement condition.",
+      "Kept 1-year bonding window from 6.02(B) as a nested check within the placement/bonding condition."
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 5786,
+    "output_tokens": 2190,
+    "processing_duration": 30.315542459487915
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"included_relationships lists only 'self', which is correct for adoption leave taken by the employee. However, section 6.02(B) frames the qualifying reason as placement with the employee, confirming 'self' is the only applicable relationship. No change needed.\",\n      \"API1 cites 13.01 in included_relationships citation, but 13.01 is a parental leave eligibility section, not a relationship definition section. Citation should be limited to 6.02(B) for the relationship scope.\"\n    ],\n    \"logic_issues\": [\n      \"condition 'bonding_after_placement' and 'placement_for_adoption' overlap: placement_for_adoption already covers the placement event, and bonding_after_placement re-states the placement as a sub-check. These are actually two aspects of the same qualifying reason under 6.02(B) and should be merged into one condition, or bonding_after_placement should not re-assert 'child newly placed' as a separate sub-check since it is already covered.\",\n      \"condition 'parental_leave_adoption' mixes parental leave administrative rules (4-month window, service length) with leave-reason qualification. The 4-month window and service requirements are leave amount/eligibility rules, not leave-reason qualification conditions. However, the 4-month period start trigger (custody receipt) is a timing rule tied to reason qualification and may be retained as a note. The service length requirement in notes is an administrative eligibility rule and should be removed from conditions.\",\n      \"The 'bonding_after_placement' condition duplicates the 1-year window already implied by 6.02(B) and partially duplicates placement_for_adoption. These should be merged into one condition under 6.02(B).\"\n    ],\n    \"missing_conditions\": [\n      \"Foster care placement is a parallel qualifying pathway under 6.02(B) and 6.05 but is not represented as a separate top-level condition. It should be included alongside adoption placement.\"\n    ],\n    \"unsupported_conditions\": [\n      \"'parental_leave_adoption' as a top-level leave-reason condition is not supported as a separate qualifying pathway. Section 13.01 describes parental leave entitlement rules (duration, eligibility, timing), not a distinct leave reason. The leave reason is adoption placement under 6.02(B); 13.01 governs how much leave is available, not whether the reason qualifies. This condition should be removed or collapsed into a note.\",\n      \"The 4-month custody window and 12-month service requirement in 'parental_leave_adoption' are leave amount and eligibility rules, not leave-reason qualification conditions, and should not appear as top-level conditions.\"\n    ],\n    \"format_issues\": [\n      \"included_relationships citation includes '13.01' which is a parental leave eligibility section, not a relationship or leave-reason qualification section. Should be '6.02(B)' only.\",\n      \"notes in 'parental_leave_adoption' contain administrative eligibility rules (12 consecutive months, 30 workdays) which are leave amount rules, not reason qualification notes.\"\n    ],\n    \"revision_summary\": [\n      \"Merged placement_for_adoption and bonding_after_placement into one condition covering the full 6.02(B) adoption/foster care placement and bonding pathway, including pre-placement activities from 6.05.\",\n      \"Added foster care placement as a parallel pathway since 6.02(B) and 6.05 explicitly include it alongside adoption.\",\n      \"Removed parental_leave_adoption as a top-level condition because 13.01 governs leave amount and eligibility, not leave-reason qualification.\",\n      \"Fixed included_relationships citation to 6.02(B) only.\",\n      \"Retained pre-placement activity examples from 6.05 nested under the placement condition.\",\n      \"Kept 1-year bonding window from 6.02(B) as a nested check within the placement/bonding condition.\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"adoption\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"self\"\n      ],\n      \"citation\": \"6.02(B)\",\n      \"notes\": \"Leave is taken by the employee with whom the child is placed for adoption or foster care.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"adoption_placement_and_bonding\",\n        \"field\": \"adoption placement or bonding\",\n        \"operator\": \"ANY_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"child placed with employee for adoption\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"bonding with newly-placed adopted child\",\n            \"operator\": \"ALL_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"child placed for adoption\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              },\n              {\n                \"field\": \"time since placement\",\n                \"operator\": \"<=\",\n                \"required_value\": 1,\n                \"unit\": \"year\"\n              }\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"pre-placement activity integral to adoption\",\n            \"operator\": \"ALL_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"leave integral to placement\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              },\n              {\n                \"field\": \"activity type\",\n                \"operator\": \"IN\",\n                \"required_value\": [\n                  \"required counseling sessions\",\n                  \"court appearances\",\n                  \"legal consultations\",\n                  \"medical consultations\"\n                ],\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"6.02(B), 6.05\",\n        \"notes\": \"No requirement that the adoption source be a licensed adoption agency.\",\n        \"source_text\": \"The placement with the employee of a child for adoption or foster care and to bond with the newly-placed child within one year of placement. FMLA leave may be taken prior to an adoptive or foster care placement if the leave is integral to the placement.\"\n      },\n      {\n        \"condition_name\": \"foster_care_placement_and_bonding\",\n        \"field\": \"foster care placement or bonding\",\n        \"operator\": \"ANY_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"child placed with employee for foster care\",\n            \"operator\": \"ALL_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"placement made by or in agreement with the state\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              },\n              {\n                \"field\": \"state action involved in removal from parental custody\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"bonding with newly-placed foster child\",\n            \"operator\": \"ALL_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"child placed for foster care\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              },\n              {\n                \"field\": \"time since placement\",\n                \"operator\": \"<=\",\n                \"required_value\": 1,\n                \"unit\": \"year\"\n              }\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"pre-placement activity integral to foster care\",\n            \"operator\": \"ALL_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"leave integral to placement\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              },\n              {\n                \"field\": \"activity type\",\n                \"operator\": \"IN\",\n                \"required_value\": [\n                  \"required counseling sessions\",\n                  \"court appearances\",\n                  \"legal consultations\",\n                  \"medical consultations\"\n                ],\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"6.02(B), 6.05\",\n        \"notes\": \"Foster care is 24-hour care for children in substitution for, and away from, their parents or guardian. State action must be involved in removal of child from parental custody.\",\n        \"source_text\": \"The placement with the employee of a child for adoption or foster care and to bond with the newly-placed child within one year of placement. Foster Care is defined as '24-hour care for children in substitution for, and away from, their parents or guardian.' FMLA requires that this placement be made by or in agreement with the state.\"\n      }\n    ]\n  }\n}"
+}

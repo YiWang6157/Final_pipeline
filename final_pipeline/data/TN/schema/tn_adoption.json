@@ -1,0 +1,95 @@
+{
+    "leave_reason": "adoption",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "placement_for_adoption",
+        "field": "adoption placement",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "child placed for adoption",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "pre-placement activity",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "integral to placement",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "activity type",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": "",
+        "notes": ""
+      },
+      {
+        "condition_name": "bonding_after_placement",
+        "field": "bonding with adopted child",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "child newly placed",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "purpose",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "time since placement",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "parental_leave_adoption",
+        "field": "parental adoption leave",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "adoption custody received",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "time since custody",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": "",
+        "notes": ""
+      }
+    ]
+  }

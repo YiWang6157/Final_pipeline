@@ -1,0 +1,393 @@
+{
+    "leave_reason": "health_condition",
+    "included_relationships": {
+      "operator": "IN",
+      "required_value": [
+        "self",
+        "child",
+        "parent",
+        "grandparent",
+        "grandchild",
+        "sibling",
+        "spouse",
+        "domestic partner",
+        "designated person"
+      ],
+      "citation": "2 CCR § 11087(j)(2), 2 CCR § 11087(k), 2 CCR § 11087(p)",
+      "notes": "Self applies to the employee's own serious health condition. Family care leave applies to the employee's child, parent, grandparent, grandchild, sibling, spouse, domestic partner, or designated person with a serious health condition. Parent includes parent-in-law under the CFRA definition."
+    },
+    "conditions": [
+      {
+        "condition_name": "employee_own_serious_health_condition",
+        "field": "employee own serious health condition",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "==",
+            "required_value": "self",
+            "unit": null
+          },
+          {
+            "field": "serious health condition",
+            "operator": "ANY_OF",
+            "required_value": [
+              {
+                "field": "inpatient care",
+                "operator": "ANY_OF",
+                "required_value": [
+                  {
+                    "field": "hospital hospice or residential care stay",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "subsequent treatment connected to inpatient care",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "incapacity connected to inpatient care",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "2 CCR § 11087(v)(1), 2 CCR § 11097"
+              },
+              {
+                "field": "continuing treatment",
+                "operator": "ANY_OF",
+                "required_value": [
+                  {
+                    "field": "absence plus treatment",
+                    "operator": "ALL_OF",
+                    "required_value": [
+                      {
+                        "field": "incapacity duration",
+                        "operator": ">",
+                        "required_value": 3,
+                        "unit": "consecutive calendar days"
+                      },
+                      {
+                        "field": "treatment requirement",
+                        "operator": "ANY_OF",
+                        "required_value": [
+                          {
+                            "field": "treatment count",
+                            "operator": ">=",
+                            "required_value": 2,
+                            "unit": "treatments"
+                          },
+                          {
+                            "field": "continuing treatment regimen",
+                            "operator": "==",
+                            "required_value": true,
+                            "unit": null
+                          }
+                        ],
+                        "unit": null
+                      }
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "chronic condition",
+                    "operator": "ALL_OF",
+                    "required_value": [
+                      {
+                        "field": "periodic treatment",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      },
+                      {
+                        "field": "extended period",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      },
+                      {
+                        "field": "episodic incapacity",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      }
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "permanent or long-term condition",
+                    "operator": "ALL_OF",
+                    "required_value": [
+                      {
+                        "field": "treatment may not be effective",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      },
+                      {
+                        "field": "continuing supervision",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      }
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "multiple treatments",
+                    "operator": "ALL_OF",
+                    "required_value": [
+                      {
+                        "field": "multiple treatments or recovery",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      },
+                      {
+                        "field": "treatment category",
+                        "operator": "ANY_OF",
+                        "required_value": [
+                          {
+                            "field": "restorative surgery",
+                            "operator": "==",
+                            "required_value": true,
+                            "unit": null
+                          },
+                          {
+                            "field": "would exceed 3 days without treatment",
+                            "operator": "==",
+                            "required_value": true,
+                            "unit": null
+                          }
+                        ],
+                        "unit": null
+                      }
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "substance abuse treatment",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "2 CCR § 11087(v)(3), 2 CCR § 11097"
+              }
+            ],
+            "unit": null
+          },
+          {
+            "field": "work impact",
+            "operator": "IN",
+            "required_value": [
+              ["unable", "work"],
+              ["unable", "essential", "functions"]
+            ],
+            "unit": null
+          },
+          {
+            "field": "pregnancy disability",
+            "operator": "==",
+            "required_value": false,
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "2 CCR § 11087(p), 2 CCR § 11087(v), 2 CCR § 11097",
+        "notes": "CFRA medical leave does not include leave taken for the employee's pregnancy disability, except as specified in 2 CCR § 11093(c)(1)."
+      },
+      {
+        "condition_name": "care_for_family_member_serious_health_condition",
+        "field": "care for family member serious health condition",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "IN",
+            "required_value": [
+              "child",
+              "parent",
+              "grandparent",
+              "grandchild",
+              "sibling",
+              "spouse",
+              "domestic partner",
+              "designated person"
+            ],
+            "unit": null
+          },
+          {
+            "field": "care for family member",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "serious health condition",
+            "operator": "ANY_OF",
+            "required_value": [
+              {
+                "field": "inpatient care",
+                "operator": "ANY_OF",
+                "required_value": [
+                  {
+                    "field": "hospital hospice or residential care stay",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "subsequent treatment connected to inpatient care",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "incapacity connected to inpatient care",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "2 CCR § 11087(v)(1), 2 CCR § 11097"
+              },
+              {
+                "field": "continuing treatment",
+                "operator": "ANY_OF",
+                "required_value": [
+                  {
+                    "field": "absence plus treatment",
+                    "operator": "ALL_OF",
+                    "required_value": [
+                      {
+                        "field": "incapacity duration",
+                        "operator": ">",
+                        "required_value": 3,
+                        "unit": "consecutive calendar days"
+                      },
+                      {
+                        "field": "treatment requirement",
+                        "operator": "ANY_OF",
+                        "required_value": [
+                          {
+                            "field": "treatment count",
+                            "operator": ">=",
+                            "required_value": 2,
+                            "unit": "treatments"
+                          },
+                          {
+                            "field": "continuing treatment regimen",
+                            "operator": "==",
+                            "required_value": true,
+                            "unit": null
+                          }
+                        ],
+                        "unit": null
+                      }
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "chronic condition",
+                    "operator": "ALL_OF",
+                    "required_value": [
+                      {
+                        "field": "periodic treatment",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      },
+                      {
+                        "field": "extended period",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      },
+                      {
+                        "field": "episodic incapacity",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      }
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "permanent or long-term condition",
+                    "operator": "ALL_OF",
+                    "required_value": [
+                      {
+                        "field": "treatment may not be effective",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      },
+                      {
+                        "field": "continuing supervision",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      }
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "multiple treatments",
+                    "operator": "ALL_OF",
+                    "required_value": [
+                      {
+                        "field": "multiple treatments or recovery",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      },
+                      {
+                        "field": "treatment category",
+                        "operator": "ANY_OF",
+                        "required_value": [
+                          {
+                            "field": "restorative surgery",
+                            "operator": "==",
+                            "required_value": true,
+                            "unit": null
+                          },
+                          {
+                            "field": "would exceed 3 days without treatment",
+                            "operator": "==",
+                            "required_value": true,
+                            "unit": null
+                          }
+                        ],
+                        "unit": null
+                      }
+                    ],
+                    "unit": null
+                  },
+                  {
+                    "field": "substance abuse treatment",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "2 CCR § 11087(v)(3), 2 CCR § 11097"
+              }
+            ],
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "2 CCR § 11087(j)(2), 2 CCR § 11087(k), 2 CCR § 11087(v), 2 CCR § 11097",
+        "notes": "Care may include direct medical care, psychological comfort, or arranging third-party care when the family member's serious health condition warrants the employee's participation."
+      }
+    ]
+  }

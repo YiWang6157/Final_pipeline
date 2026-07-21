@@ -1,0 +1,68 @@
+{
+  "leave_reason": "adoption",
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      ["son or daughter"]
+    ],
+    "citation": "825.121(a)",
+    "notes": "Leave is for placement of a son or daughter with the employee for adoption; both mothers and fathers are eligible."
+  },
+  "conditions": [
+    {
+      "condition_name": "placement_for_adoption",
+      "field": "placement with employee of son or daughter for adoption",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "IN",
+          "required_value": [
+            ["placement", "employee", "son", "daughter", "adoption"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "leave taken within entitlement period",
+          "operator": "<=",
+          "required_value": 12,
+          "unit": "months"
+        }
+      ],
+      "unit": null,
+      "citation": "825.121(a), 825.121(a)(2)"
+    },
+    {
+      "condition_name": "pre_placement_absence_required",
+      "field": "pre-placement absence required for adoption to proceed",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "825.121(a)(1)"
+    },
+    {
+      "condition_name": "adopted_child_serious_health_condition",
+      "field": "care for adopted child with serious health condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "IN",
+          "required_value": [
+            ["adopted", "child"],
+            ["foster", "child"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious health condition criteria met",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.121(a)(4), 825.113, 825.114, 825.119"
+    }
+  ]
+}

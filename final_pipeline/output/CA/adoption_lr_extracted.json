@@ -1,0 +1,90 @@
+{
+  "extracted_at": "2026-07-15T18:07:41.941417+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/cfra_chunk_schema_filled.json",
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/pdl_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/schema/adoption.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "adoption",
+  "matched_chunk_count": 27,
+  "section_count": 27,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self",
+      "child"
+    ],
+    "citation": "2 CCR § 11087(j)(1); 2 CCR § 11087(c)",
+    "notes": "Leave is taken by the employee (self) in connection with their adoption of a child. Child includes biological, adopted, foster, stepchild, legal ward, child of employee or employee's domestic partner, or person for whom employee stands in loco parentis per 2 CCR § 11087(c)."
+  },
+  "conditions": [
+    {
+      "condition_name": "placement_for_adoption",
+      "field": "adoption placement",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "placement with employee",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "placement purpose",
+          "operator": "==",
+          "required_value": "adoption",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "2 CCR § 11087(j)(1)",
+      "notes": null,
+      "source_text": "placement of a child with an employee in connection with the adoption or foster care of the child by the employee"
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 11187,
+    "output_tokens": 441,
+    "processing_duration": 7.29287576675415
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"adoption\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"child\"],\n    \"citation\": \"2 CCR § 11087(j)(1)\",\n    \"notes\": \"Child includes biological, adopted, foster, stepchild, legal ward, child of domestic partner, or person for whom employee stands in loco parentis per 2 CCR § 11087(c)\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"placement_for_adoption\",\n      \"field\": \"adoption placement\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"child relationship\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"biological\", \"adopted\", \"foster\", \"stepchild\", \"legal ward\", \"child of domestic partner\", \"in loco parentis\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"placement with employee\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"adoption connection\",\n          \"operator\": \"==\",\n          \"required_value\": \"placement in connection with adoption\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"time since placement\",\n          \"operator\": null,\n          \"required_value\": null,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11087(j)(1)\",\n      \"notes\": \"No time-since-placement deadline specified in the provided regulation chunks.\",\n      \"source_text\": \"placement of a child with an employee in connection with the adoption or foster care of the child by the employee\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "included_relationships.required_value lists only 'child', but the regulation chunk 2 CCR § 11087(j)(1) grants leave for placement of a child with the employee in connection with adoption by the employee — the covered relationship is the employee themselves (self) adopting a child, not a family member. 'self' should be included as the primary relationship since the employee is the one adopting.",
+      "The child relationship sub-types listed in the nested condition (biological, adopted, foster, stepchild, legal ward, child of domestic partner, in loco parentis) belong in included_relationships per 2 CCR § 11087(c), not as a nested sub-check inside conditions."
+    ],
+    "logic_issues": [
+      "The nested 'child relationship' check inside placement_for_adoption duplicates what belongs in included_relationships and should be removed from conditions.",
+      "The nested 'time since placement' check has null operator and null required_value — this is an invalid/incomplete check and should be removed since no time-since-placement deadline is stated in the provided regulation chunks.",
+      "The 'adoption connection' check required_value is a long paraphrase of the regulation rather than a short atomic value."
+    ],
+    "missing_conditions": [],
+    "unsupported_conditions": [
+      "The nested 'child relationship' sub-check inside placement_for_adoption is not a qualifying condition for the leave reason itself — it belongs only in included_relationships.",
+      "The 'time since placement' nested check has no support in the provided regulation chunks and should be removed entirely."
+    ],
+    "format_issues": [
+      "Nested check object 'time since placement' has null operator and null required_value, which is invalid per the output structure rules.",
+      "The 'adoption connection' required_value is a full regulatory sentence rather than a short atomic phrase."
+    ],
+    "revision_summary": [
+      "Added 'self' to included_relationships.required_value since the employee is the one adopting the child per 2 CCR § 11087(j)(1).",
+      "Kept 'child' in included_relationships.required_value and moved child sub-type definitions to notes, grounded in 2 CCR § 11087(c).",
+      "Removed the invalid 'time since placement' nested check (null operator, null value, no regulatory support).",
+      "Removed the 'child relationship' nested check from conditions since relationship coverage belongs only in included_relationships.",
+      "Simplified 'adoption connection' required_value to a short atomic phrase.",
+      "Resulting condition is a clean ALL_OF with two supported sub-checks: placement with employee and adoption connection."
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 10693,
+    "output_tokens": 1027,
+    "processing_duration": 19.19529914855957
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"included_relationships.required_value lists only 'child', but the regulation chunk 2 CCR § 11087(j)(1) grants leave for placement of a child with the employee in connection with adoption by the employee — the covered relationship is the employee themselves (self) adopting a child, not a family member. 'self' should be included as the primary relationship since the employee is the one adopting.\",\n      \"The child relationship sub-types listed in the nested condition (biological, adopted, foster, stepchild, legal ward, child of domestic partner, in loco parentis) belong in included_relationships per 2 CCR § 11087(c), not as a nested sub-check inside conditions.\"\n    ],\n    \"logic_issues\": [\n      \"The nested 'child relationship' check inside placement_for_adoption duplicates what belongs in included_relationships and should be removed from conditions.\",\n      \"The nested 'time since placement' check has null operator and null required_value — this is an invalid/incomplete check and should be removed since no time-since-placement deadline is stated in the provided regulation chunks.\",\n      \"The 'adoption connection' check required_value is a long paraphrase of the regulation rather than a short atomic value.\"\n    ],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [\n      \"The nested 'child relationship' sub-check inside placement_for_adoption is not a qualifying condition for the leave reason itself — it belongs only in included_relationships.\",\n      \"The 'time since placement' nested check has no support in the provided regulation chunks and should be removed entirely.\"\n    ],\n    \"format_issues\": [\n      \"Nested check object 'time since placement' has null operator and null required_value, which is invalid per the output structure rules.\",\n      \"The 'adoption connection' required_value is a full regulatory sentence rather than a short atomic phrase.\"\n    ],\n    \"revision_summary\": [\n      \"Added 'self' to included_relationships.required_value since the employee is the one adopting the child per 2 CCR § 11087(j)(1).\",\n      \"Kept 'child' in included_relationships.required_value and moved child sub-type definitions to notes, grounded in 2 CCR § 11087(c).\",\n      \"Removed the invalid 'time since placement' nested check (null operator, null value, no regulatory support).\",\n      \"Removed the 'child relationship' nested check from conditions since relationship coverage belongs only in included_relationships.\",\n      \"Simplified 'adoption connection' required_value to a short atomic phrase.\",\n      \"Resulting condition is a clean ALL_OF with two supported sub-checks: placement with employee and adoption connection.\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"adoption\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"self\",\n        \"child\"\n      ],\n      \"citation\": \"2 CCR § 11087(j)(1); 2 CCR § 11087(c)\",\n      \"notes\": \"Leave is taken by the employee (self) in connection with their adoption of a child. Child includes biological, adopted, foster, stepchild, legal ward, child of employee or employee's domestic partner, or person for whom employee stands in loco parentis per 2 CCR § 11087(c).\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"placement_for_adoption\",\n        \"field\": \"adoption placement\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"placement with employee\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"placement purpose\",\n            \"operator\": \"==\",\n            \"required_value\": \"adoption\",\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"2 CCR § 11087(j)(1)\",\n        \"notes\": null,\n        \"source_text\": \"placement of a child with an employee in connection with the adoption or foster care of the child by the employee\"\n      }\n    ]\n  }\n}"
+}

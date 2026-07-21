@@ -1,0 +1,51 @@
+{
+    "leave_reason": "military_exigency",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "qualifying_exigency",
+        "field": "qualifying exigency",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "qualifying exigency",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "exigency definition",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "covered active duty status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "service branch",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": "",
+        "notes": ""
+      }
+    ]
+  }

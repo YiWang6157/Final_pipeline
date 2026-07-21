@@ -1,0 +1,30 @@
+{
+  "leave_reason": "birth or pregnancy",
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      ["child"]
+    ],
+    "citation": "478-1-.16(26)(a)1(i)",
+    "notes": "Georgia paid parental leave covers birth of the employee's child. Pregnancy-related illness, injury, or disability is not separately stated in the paid parental leave section; if relevant, it should be handled under the health condition sick leave logic."
+  },
+  "conditions": [
+    {
+      "condition_name": "birth_of_employee_child",
+      "field": "birth of employee child",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "IN",
+          "required_value": [
+            ["birth", "employee", "child"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(26)(a)1(i)"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "extracted_at": "2026-07-15T18:06:27.758479+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/fmla_chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "notice_cert",
+  "model_key": "ari_model",
+  "matched_chunk_count": 5,
+  "category": "notice",
+  "conditions": [
+    {
+      "condition_name": "foreseeable_leave_advance_notice",
+      "operator": ">=",
+      "required_value": "30",
+      "unit": "days",
+      "citation": "825.302(a)",
+      "notes": "Applies when leave is foreseeable based on birth, adoption, placement, or planned medical treatment.",
+      "source_text": "An employee must provide the employer at least 30 days advance notice before FMLA leave is to begin if the need for the leave is foreseeable."
+    },
+    {
+      "condition_name": "foreseeable_leave_30_days_not_practicable",
+      "operator": "==",
+      "required_value": "as soon as practicable",
+      "unit": null,
+      "citation": "825.302(a)",
+      "notes": "When 30-day notice is not practicable due to lack of knowledge, changed circumstances, or medical emergency.",
+      "source_text": "If 30 days notice is not practicable...notice must be given as soon as practicable."
+    },
+    {
+      "condition_name": "foreseeable_qualifying_exigency_notice",
+      "operator": "==",
+      "required_value": "as soon as practicable",
+      "unit": null,
+      "citation": "825.302(a)",
+      "notes": "For qualifying exigency leave, notice must be as soon as practicable regardless of foreseeability.",
+      "source_text": "For foreseeable leave due to a qualifying exigency notice must be provided as soon as practicable, regardless of how far in advance such leave is foreseeable."
+    },
+    {
+      "condition_name": "foreseeable_schedule_change_notice",
+      "operator": "==",
+      "required_value": "as soon as practicable",
+      "unit": null,
+      "citation": "825.302(a)",
+      "notes": "Employee must notify employer when dates of scheduled leave change, are extended, or were initially unknown.",
+      "source_text": "The employee shall advise the employer as soon as practicable if dates of scheduled leave change or are extended, or were initially unknown."
+    },
+    {
+      "condition_name": "unforeseeable_leave_notice",
+      "operator": "==",
+      "required_value": "as soon as practicable",
+      "unit": null,
+      "citation": "825.303(a)",
+      "notes": "When leave timing is not foreseeable; generally same day or next business day when employee becomes aware less than 30 days in advance.",
+      "source_text": "When the approximate timing of the need for leave is not foreseeable, an employee must provide notice to the employer as soon as practicable under the facts and circumstances of the particular case."
+    },
+    {
+      "condition_name": "unforeseeable_leave_awareness_window",
+      "operator": "<=",
+      "required_value": "1",
+      "unit": "business days",
+      "citation": "825.302(b)",
+      "notes": "When employee becomes aware of need less than 30 days in advance, notice should be same day or next business day.",
+      "source_text": "When an employee becomes aware of a need for FMLA leave less than 30 days in advance, it should be practicable for the employee to provide notice of the need for leave either the same day or the next business day."
+    },
+    {
+      "condition_name": "delay_for_missing_30_day_notice",
+      "operator": "==",
+      "required_value": "30",
+      "unit": "days",
+      "citation": "825.304(b)",
+      "notes": "Employer may delay FMLA coverage by 30 days if foreseeable leave required 30-day notice and employee failed to provide it without reasonable excuse.",
+      "source_text": "The employer may delay FMLA coverage until 30 days after the date the employee provides notice."
+    },
+    {
+      "condition_name": "delay_for_missing_short_foreseeable_notice",
+      "operator": "==",
+      "required_value": "facts-based delay",
+      "unit": null,
+      "citation": "825.304(c)",
+      "notes": "When foreseeable leave is less than 30 days and employee fails to give notice as soon as practicable, delay period depends on facts.",
+      "source_text": "The extent to which an employer may delay FMLA coverage for leave depends on the facts of the particular case."
+    },
+    {
+      "condition_name": "delay_for_missing_unforeseeable_notice",
+      "operator": "==",
+      "required_value": "facts-based delay",
+      "unit": null,
+      "citation": "825.304(d)",
+      "notes": "When unforeseeable leave notice is not given as soon as practicable, delay period depends on facts.",
+      "source_text": "The extent to which an employer may delay FMLA coverage for leave depends on the facts of the particular case."
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 15400,
+    "output_tokens": 1260,
+    "processing_duration": 16.39488172531128
+  },
+  "raw_llm_response": "{\n  \"category\": \"notice\",\n  \"conditions\": [\n    {\n      \"condition_name\": \"foreseeable_leave_advance_notice\",\n      \"operator\": \">=\",\n      \"required_value\": \"30\",\n      \"unit\": \"days\",\n      \"citation\": \"825.302(a)\",\n      \"notes\": \"Applies when leave is foreseeable based on birth, adoption, placement, or planned medical treatment.\",\n      \"source_text\": \"An employee must provide the employer at least 30 days advance notice before FMLA leave is to begin if the need for the leave is foreseeable.\"\n    },\n    {\n      \"condition_name\": \"foreseeable_leave_30_days_not_practicable\",\n      \"operator\": \"==\",\n      \"required_value\": \"as soon as practicable\",\n      \"unit\": null,\n      \"citation\": \"825.302(a)\",\n      \"notes\": \"When 30-day notice is not practicable due to lack of knowledge, changed circumstances, or medical emergency.\",\n      \"source_text\": \"If 30 days notice is not practicable...notice must be given as soon as practicable.\"\n    },\n    {\n      \"condition_name\": \"foreseeable_qualifying_exigency_notice\",\n      \"operator\": \"==\",\n      \"required_value\": \"as soon as practicable\",\n      \"unit\": null,\n      \"citation\": \"825.302(a)\",\n      \"notes\": \"For qualifying exigency leave, notice must be as soon as practicable regardless of foreseeability.\",\n      \"source_text\": \"For foreseeable leave due to a qualifying exigency notice must be provided as soon as practicable, regardless of how far in advance such leave is foreseeable.\"\n    },\n    {\n      \"condition_name\": \"foreseeable_schedule_change_notice\",\n      \"operator\": \"==\",\n      \"required_value\": \"as soon as practicable\",\n      \"unit\": null,\n      \"citation\": \"825.302(a)\",\n      \"notes\": \"Employee must notify employer when dates of scheduled leave change, are extended, or were initially unknown.\",\n      \"source_text\": \"The employee shall advise the employer as soon as practicable if dates of scheduled leave change or are extended, or were initially unknown.\"\n    },\n    {\n      \"condition_name\": \"unforeseeable_leave_notice\",\n      \"operator\": \"==\",\n      \"required_value\": \"as soon as practicable\",\n      \"unit\": null,\n      \"citation\": \"825.303(a)\",\n      \"notes\": \"When leave timing is not foreseeable; generally same day or next business day when employee becomes aware less than 30 days in advance.\",\n      \"source_text\": \"When the approximate timing of the need for leave is not foreseeable, an employee must provide notice to the employer as soon as practicable under the facts and circumstances of the particular case.\"\n    },\n    {\n      \"condition_name\": \"unforeseeable_leave_awareness_window\",\n      \"operator\": \"<=\",\n      \"required_value\": \"1\",\n      \"unit\": \"business days\",\n      \"citation\": \"825.302(b)\",\n      \"notes\": \"When employee becomes aware of need less than 30 days in advance, notice should be same day or next business day.\",\n      \"source_text\": \"When an employee becomes aware of a need for FMLA leave less than 30 days in advance, it should be practicable for the employee to provide notice of the need for leave either the same day or the next business day.\"\n    },\n    {\n      \"condition_name\": \"delay_for_missing_30_day_notice\",\n      \"operator\": \"==\",\n      \"required_value\": \"30\",\n      \"unit\": \"days\",\n      \"citation\": \"825.304(b)\",\n      \"notes\": \"Employer may delay FMLA coverage by 30 days if foreseeable leave required 30-day notice and employee failed to provide it without reasonable excuse.\",\n      \"source_text\": \"The employer may delay FMLA coverage until 30 days after the date the employee provides notice.\"\n    },\n    {\n      \"condition_name\": \"delay_for_missing_short_foreseeable_notice\",\n      \"operator\": \"==\",\n      \"required_value\": \"facts-based delay\",\n      \"unit\": null,\n      \"citation\": \"825.304(c)\",\n      \"notes\": \"When foreseeable leave is less than 30 days and employee fails to give notice as soon as practicable, delay period depends on facts.\",\n      \"source_text\": \"The extent to which an employer may delay FMLA coverage for leave depends on the facts of the particular case.\"\n    },\n    {\n      \"condition_name\": \"delay_for_missing_unforeseeable_notice\",\n      \"operator\": \"==\",\n      \"required_value\": \"facts-based delay\",\n      \"unit\": null,\n      \"citation\": \"825.304(d)\",\n      \"notes\": \"When unforeseeable leave notice is not given as soon as practicable, delay period depends on facts.\",\n      \"source_text\": \"The extent to which an employer may delay FMLA coverage for leave depends on the facts of the particular case.\"\n    }\n  ]\n}"
+}

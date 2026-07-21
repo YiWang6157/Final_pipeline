@@ -1,0 +1,463 @@
+{
+    "leave_reason": "health_condition",
+    "included_relationships": {
+      "operator": "IN",
+      "required_value": [
+        "self",
+        "spouse",
+        "child",
+        "parent"
+      ],
+      "citation": "6.02(C), 6.02(D), 6.03",
+      "notes": "Self applies to the employee's own serious health condition. Spouse, child, and parent apply when the employee needs leave to care for that family member with a serious health condition. Parent excludes parent-in-law."
+    },
+    "conditions": [
+      {
+        "condition_name": "employee_own_serious_health_condition",
+        "field": "employee own serious health condition",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "==",
+            "required_value": "self",
+            "unit": null
+          },
+          {
+            "field": "unable to perform job functions",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "serious health condition",
+            "operator": "ANY_OF",
+            "required_value": [
+              {
+                "field": "inpatient care",
+                "operator": "IN",
+                "required_value": [
+                  ["overnight", "hospital"],
+                  ["overnight", "hospice"],
+                  ["overnight", "residential", "medical"]
+                ],
+                "unit": null,
+                "citation": "6.06(A)"
+              },
+              {
+                "field": "incapacity plus treatment",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "incapacity duration",
+                    "operator": ">",
+                    "required_value": 3,
+                    "unit": "consecutive calendar days"
+                  },
+                  {
+                    "field": "treatment requirement",
+                    "operator": "ANY_OF",
+                    "required_value": [
+                      {
+                        "field": "multiple treatments",
+                        "operator": "ALL_OF",
+                        "required_value": [
+                          {
+                            "field": "treatment count",
+                            "operator": ">=",
+                            "required_value": 2,
+                            "unit": "treatments"
+                          },
+                          {
+                            "field": "treatment window",
+                            "operator": "<=",
+                            "required_value": 30,
+                            "unit": "days"
+                          },
+                          {
+                            "field": "first visit window",
+                            "operator": "<=",
+                            "required_value": 7,
+                            "unit": "days"
+                          }
+                        ],
+                        "unit": null
+                      },
+                      {
+                        "field": "continuing treatment regimen",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      }
+                    ],
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.06(B)(1)"
+              },
+              {
+                "field": "pregnancy or prenatal care",
+                "operator": "==",
+                "required_value": true,
+                "unit": null,
+                "citation": "6.06(B)(2), 6.06(D)"
+              },
+              {
+                "field": "chronic condition",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "periodic visits",
+                    "operator": ">=",
+                    "required_value": 2,
+                    "unit": "visits per year"
+                  },
+                  {
+                    "field": "extended period",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "episodic incapacity",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.06(B)(3), 6.06(D)"
+              },
+              {
+                "field": "long-term incapacity",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "treatment may not be effective",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "continuing supervision",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.06(B)(4)"
+              },
+              {
+                "field": "multiple treatments",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "multiple treatments or recovery",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "treatment category",
+                    "operator": "ANY_OF",
+                    "required_value": [
+                      {
+                        "field": "restorative surgery",
+                        "operator": "IN",
+                        "required_value": [
+                          ["restorative", "surgery"]
+                        ],
+                        "unit": null
+                      },
+                      {
+                        "field": "condition without treatment",
+                        "operator": ">",
+                        "required_value": 3,
+                        "unit": "calendar days"
+                      }
+                    ],
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.06(B)(5)"
+              },
+              {
+                "field": "substance abuse treatment",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "absence due to treatment",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "incapacity from substance use covered",
+                    "operator": "==",
+                    "required_value": false,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.06(B)(6)"
+              }
+            ],
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.02(D), 6.06"
+      },
+      {
+        "condition_name": "care_for_family_member_serious_health_condition",
+        "field": "care for family member serious health condition",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "IN",
+            "required_value": [
+              "spouse",
+              "child",
+              "parent"
+            ],
+            "unit": null
+          },
+          {
+            "field": "child relationship rule",
+            "operator": "ANY_OF",
+            "required_value": [
+              {
+                "field": "child under 18",
+                "operator": "<",
+                "required_value": 18,
+                "unit": "years"
+              },
+              {
+                "field": "adult child incapable of self-care",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "child age",
+                    "operator": ">=",
+                    "required_value": 18,
+                    "unit": "years"
+                  },
+                  {
+                    "field": "ADA disability",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "incapable of self-care",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "needs care due to SHC",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null
+              }
+            ],
+            "unit": null,
+            "citation": "6.03"
+          },
+          {
+            "field": "parent in-law excluded",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "serious health condition",
+            "operator": "ANY_OF",
+            "required_value": [
+              {
+                "field": "inpatient care",
+                "operator": "IN",
+                "required_value": [
+                  ["overnight", "hospital"],
+                  ["overnight", "hospice"],
+                  ["overnight", "residential", "medical"]
+                ],
+                "unit": null,
+                "citation": "6.06(A)"
+              },
+              {
+                "field": "incapacity plus treatment",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "incapacity duration",
+                    "operator": ">",
+                    "required_value": 3,
+                    "unit": "consecutive calendar days"
+                  },
+                  {
+                    "field": "treatment requirement",
+                    "operator": "ANY_OF",
+                    "required_value": [
+                      {
+                        "field": "multiple treatments",
+                        "operator": "ALL_OF",
+                        "required_value": [
+                          {
+                            "field": "treatment count",
+                            "operator": ">=",
+                            "required_value": 2,
+                            "unit": "treatments"
+                          },
+                          {
+                            "field": "treatment window",
+                            "operator": "<=",
+                            "required_value": 30,
+                            "unit": "days"
+                          },
+                          {
+                            "field": "first visit window",
+                            "operator": "<=",
+                            "required_value": 7,
+                            "unit": "days"
+                          }
+                        ],
+                        "unit": null
+                      },
+                      {
+                        "field": "continuing treatment regimen",
+                        "operator": "==",
+                        "required_value": true,
+                        "unit": null
+                      }
+                    ],
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.06(B)(1)"
+              },
+              {
+                "field": "pregnancy or prenatal care",
+                "operator": "==",
+                "required_value": true,
+                "unit": null,
+                "citation": "6.02(C), 6.06(B)(2), 6.06(D)"
+              },
+              {
+                "field": "chronic condition",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "periodic visits",
+                    "operator": ">=",
+                    "required_value": 2,
+                    "unit": "visits per year"
+                  },
+                  {
+                    "field": "extended period",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "episodic incapacity",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.06(B)(3), 6.06(D)"
+              },
+              {
+                "field": "long-term incapacity",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "treatment may not be effective",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "continuing supervision",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.06(B)(4)"
+              },
+              {
+                "field": "multiple treatments",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "multiple treatments or recovery",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "treatment category",
+                    "operator": "ANY_OF",
+                    "required_value": [
+                      {
+                        "field": "restorative surgery",
+                        "operator": "IN",
+                        "required_value": [
+                          ["restorative", "surgery"]
+                        ],
+                        "unit": null
+                      },
+                      {
+                        "field": "condition without treatment",
+                        "operator": ">",
+                        "required_value": 3,
+                        "unit": "calendar days"
+                      }
+                    ],
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.06(B)(5)"
+              },
+              {
+                "field": "substance abuse treatment",
+                "operator": "ALL_OF",
+                "required_value": [
+                  {
+                    "field": "absence due to treatment",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "incapacity from substance use covered",
+                    "operator": "==",
+                    "required_value": false,
+                    "unit": null
+                  }
+                ],
+                "unit": null,
+                "citation": "6.06(B)(6)"
+              }
+            ],
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.02(C), 6.03, 6.06"
+      }
+    ]
+  }

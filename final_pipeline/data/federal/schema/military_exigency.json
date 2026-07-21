@@ -1,0 +1,263 @@
+{
+    "leave_reason": "military exigency",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "short_notice_deployment",
+        "field": "short-notice deployment exigency",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered active duty status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "notice period before deployment",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "military_events_and_related_activities",
+        "field": "military events and related activities exigency",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered active duty status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "activity type",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "childcare_and_school_activities",
+        "field": "childcare and school activities exigency",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered active duty status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "activity type",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "child of military member age or capability",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "financial_and_legal_arrangements",
+        "field": "financial and legal arrangements exigency",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered active duty status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "activity type",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "counseling",
+        "field": "counseling exigency",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered active duty status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "counseling provider",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "counseling recipient",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "rest_and_recuperation",
+        "field": "rest and recuperation exigency",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered active duty status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "military member leave status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "post_deployment_activities",
+        "field": "post-deployment activities exigency",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered active duty status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "activity type",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "post-deployment ceremony or event",
+                "operator": "",
+                "required_value": [
+                  {
+                    "field": "activity type",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  },
+                  {
+                    "field": "time after termination of covered active duty",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  }
+                ],
+                "unit": ""
+              },
+              {
+                "field": "death-related activity",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "parental_care",
+        "field": "parental care exigency",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered active duty status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "activity type",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "parent of military member self-care capability",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "incapable of self-care",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "activities requiring active assistance or supervision",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "additional_activities",
+        "field": "additional activities exigency",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered active duty status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "event arises from covered active duty",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "employer and employee agreement",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      }
+    ]
+  }

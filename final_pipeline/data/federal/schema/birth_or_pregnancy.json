@@ -1,0 +1,154 @@
+{
+    "leave_reason": "birth or pregnancy",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "birth_bonding",
+        "field": "qualifying event",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "qualifying event",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "time since birth",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "newborn_bonding",
+        "field": "bonding leave after birth",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "qualifying event",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "time since birth",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "pregnancy_incapacity_prenatal",
+        "field": "expectant mother incapacity or prenatal care",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "qualifying condition",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "qualifying condition",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "qualifying condition",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "post-birth condition",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "serious health condition criteria met",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "spouse_care_for_pregnant_spouse",
+        "field": "care for pregnant or postpartum covered person",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "care need",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "care need",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "care need",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "post-birth condition",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "serious health condition criteria met",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "newborn_serious_health_condition",
+        "field": "care for newborn with serious health condition",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "qualifying event",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "serious health condition criteria met",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      }
+    ]
+  }

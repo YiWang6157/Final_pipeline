@@ -1,0 +1,64 @@
+{
+  "extracted_at": "2026-07-15T18:11:46.270662+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/tn_extracted_sections_chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "ee_extraction",
+  "model_key": "ari_model",
+  "employee_eligibility_chunk_count": 2,
+  "chunks_sent_count": 17,
+  "employee_eligibility_conditions": [
+    {
+      "field": "employment_duration_months",
+      "operator": ">=",
+      "required_value": 12,
+      "unit": "months",
+      "citation": "6.01",
+      "notes": "The 12 months do not need to be consecutive. Service accrued more than 7 years ago shall not be counted. Military service under USERRA counts toward this requirement. 52 weeks of employment equals 12 months.",
+      "source_text": "an employee must: (1) have worked for the State of Tennessee for at least twelve (12) months"
+    },
+    {
+      "field": "hours_worked_last_12_months",
+      "operator": ">=",
+      "required_value": 1250,
+      "unit": "hours",
+      "citation": "6.01",
+      "notes": "Includes overtime hours. Employees returning from USERRA-covered military service receive credit for hours that would have been worked during military service based on pre-service work schedule.",
+      "source_text": "have worked at least one thousand, two-hundred and fifty (1,250) hours during the year preceding the start of the leave."
+    },
+    {
+      "field": "prior_service_age_years",
+      "operator": "<=",
+      "required_value": 7,
+      "unit": "years",
+      "citation": "6.01",
+      "notes": "Service accrued more than 7 years ago shall not be counted toward the 12-month minimum requirement.",
+      "source_text": "service accrued more than seven (7) years ago shall not be counted toward the minimum requirement."
+    },
+    {
+      "field": "employment_duration_months_parental_full_time",
+      "operator": ">=",
+      "required_value": 12,
+      "unit": "months",
+      "citation": "13.01",
+      "notes": "Must be 12 consecutive months as a full-time employee to be eligible for up to 4 months parental leave. Employees with less than 1 year of service may be granted up to 30 workdays following birth.",
+      "source_text": "Any employee who has been employed in state service for at least twelve (12) consecutive months as a full-time employee may be absent from employment for a period not to exceed four (4) months for adoption, pregnancy, childbirth, and nursing the infant."
+    },
+    {
+      "field": "employment_duration_months_parental_limited",
+      "operator": "<",
+      "required_value": 12,
+      "unit": "months",
+      "citation": "13.01",
+      "notes": "Employees with less than 1 year of service are eligible for parental leave not to exceed 30 workdays following the birth of a child only.",
+      "source_text": "Any employee who has less than one (1) year of service may be granted parental leave for a period not to exceed thirty (30) workdays following the birth of a child."
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 9742,
+    "output_tokens": 742,
+    "processing_duration": 9.905742883682251
+  },
+  "raw_llm_response": "{\n  \"employee_eligibility_conditions\": [\n    {\n      \"field\": \"employment_duration_months\",\n      \"operator\": \">=\",\n      \"required_value\": 12,\n      \"unit\": \"months\",\n      \"citation\": \"6.01\",\n      \"notes\": \"The 12 months do not need to be consecutive. Service accrued more than 7 years ago shall not be counted. Military service under USERRA counts toward this requirement. 52 weeks of employment equals 12 months.\",\n      \"source_text\": \"an employee must: (1) have worked for the State of Tennessee for at least twelve (12) months\"\n    },\n    {\n      \"field\": \"hours_worked_last_12_months\",\n      \"operator\": \">=\",\n      \"required_value\": 1250,\n      \"unit\": \"hours\",\n      \"citation\": \"6.01\",\n      \"notes\": \"Includes overtime hours. Employees returning from USERRA-covered military service receive credit for hours that would have been worked during military service based on pre-service work schedule.\",\n      \"source_text\": \"have worked at least one thousand, two-hundred and fifty (1,250) hours during the year preceding the start of the leave.\"\n    },\n    {\n      \"field\": \"prior_service_age_years\",\n      \"operator\": \"<=\",\n      \"required_value\": 7,\n      \"unit\": \"years\",\n      \"citation\": \"6.01\",\n      \"notes\": \"Service accrued more than 7 years ago shall not be counted toward the 12-month minimum requirement.\",\n      \"source_text\": \"service accrued more than seven (7) years ago shall not be counted toward the minimum requirement.\"\n    },\n    {\n      \"field\": \"employment_duration_months_parental_full_time\",\n      \"operator\": \">=\",\n      \"required_value\": 12,\n      \"unit\": \"months\",\n      \"citation\": \"13.01\",\n      \"notes\": \"Must be 12 consecutive months as a full-time employee to be eligible for up to 4 months parental leave. Employees with less than 1 year of service may be granted up to 30 workdays following birth.\",\n      \"source_text\": \"Any employee who has been employed in state service for at least twelve (12) consecutive months as a full-time employee may be absent from employment for a period not to exceed four (4) months for adoption, pregnancy, childbirth, and nursing the infant.\"\n    },\n    {\n      \"field\": \"employment_duration_months_parental_limited\",\n      \"operator\": \"<\",\n      \"required_value\": 12,\n      \"unit\": \"months\",\n      \"citation\": \"13.01\",\n      \"notes\": \"Employees with less than 1 year of service are eligible for parental leave not to exceed 30 workdays following the birth of a child only.\",\n      \"source_text\": \"Any employee who has less than one (1) year of service may be granted parental leave for a period not to exceed thirty (30) workdays following the birth of a child.\"\n    }\n  ]\n}"
+}

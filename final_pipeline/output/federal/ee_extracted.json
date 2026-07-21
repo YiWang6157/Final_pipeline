@@ -1,0 +1,82 @@
+{
+  "extracted_at": "2026-07-15T18:01:49.261208+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/fmla_chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "ee_extraction",
+  "model_key": "ari_model",
+  "employee_eligibility_chunk_count": 4,
+  "chunks_sent_count": 24,
+  "employee_eligibility_conditions": [
+    {
+      "field": "employment_duration_months",
+      "operator": ">=",
+      "required_value": 12,
+      "unit": "months",
+      "citation": "825.110",
+      "notes": "The 12 months need not be consecutive. Employment periods prior to a break in service of 7 or more years generally need not be counted, with exceptions for USERRA-covered service or written rehire agreements. 52 weeks is deemed equal to 12 months for intermittent/occasional/casual employment.",
+      "source_text": "Has been employed by the employer for at least 12 months"
+    },
+    {
+      "field": "hours_worked_last_12_months",
+      "operator": ">=",
+      "required_value": 1250,
+      "unit": "hours",
+      "citation": "825.110",
+      "notes": "Determined according to FLSA principles for compensable hours of work during the 12-month period immediately preceding the commencement of leave. Does not apply to airline flight crew employees, who have special rules under 825.801.",
+      "source_text": "Has been employed for at least 1,250 hours of service during the 12-month period immediately preceding the commencement of the leave"
+    },
+    {
+      "field": "break_in_service_duration_years",
+      "operator": "<",
+      "required_value": 7,
+      "unit": "years",
+      "citation": "825.110",
+      "notes": "Employment periods prior to a break in service of 7 or more years need not be counted toward the 12-month employment requirement, unless the break was due to USERRA-covered service or a written rehire agreement exists.",
+      "source_text": "employment periods prior to a break in service of seven years or more need not be counted in determining whether the employee has been employed by the employer for at least 12 months"
+    },
+    {
+      "field": "userra_covered_service_break",
+      "operator": "applies",
+      "required_value": true,
+      "unit": null,
+      "citation": "825.110",
+      "notes": "If the break in service exceeding 7 years was due to USERRA-covered service, the prior employment periods must be counted. The period of absence due to USERRA-covered service must also be counted toward the 12-month employment requirement.",
+      "source_text": "Employment periods preceding a break in service of more than seven years must be counted in determining whether the employee has been employed by the employer for at least 12 months where: The employee's break in service is occasioned by the fulfillment of his or her Uniformed Services Employment and Reemployment Rights Act (USERRA), 38 U.S.C. 4301, et seq., covered service obligation."
+    },
+    {
+      "field": "written_rehire_agreement_exists",
+      "operator": "applies",
+      "required_value": true,
+      "unit": null,
+      "citation": "825.110",
+      "notes": "If a written agreement (including a collective bargaining agreement) exists concerning the employer's intention to rehire the employee after a break in service of more than 7 years, prior employment periods must be counted.",
+      "source_text": "A written agreement, including a collective bargaining agreement, exists concerning the employer's intention to rehire the employee after the break in service"
+    },
+    {
+      "field": "airline_flight_crew_hours_worked_or_paid_percent_of_monthly_guarantee",
+      "operator": ">=",
+      "required_value": 60,
+      "unit": "percent",
+      "citation": "825.801",
+      "notes": "Applies only to airline flight crew employees. Must meet both this condition AND the 504-hour minimum. Monthly guarantee differs for reserve vs. non-reserve status.",
+      "source_text": "An airline flight crew employee will meet the hours of service requirement during the previous 12-month period if he or she has worked or been paid for not less than 60 percent of the employee's applicable monthly guarantee and has worked or been paid for not less than 504 hours."
+    },
+    {
+      "field": "airline_flight_crew_hours_worked_or_paid_last_12_months",
+      "operator": ">=",
+      "required_value": 504,
+      "unit": "hours",
+      "citation": "825.801",
+      "notes": "Applies only to airline flight crew employees. Must meet both this condition AND the 60% monthly guarantee condition. The 504 hours do not include personal commute time or time spent on vacation, medical, or sick leave.",
+      "source_text": "An airline flight crew employee will meet the hours of service requirement during the previous 12-month period if he or she has worked or been paid for not less than 60 percent of the employee's applicable monthly guarantee and has worked or been paid for not less than 504 hours."
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 40871,
+    "output_tokens": 1201,
+    "processing_duration": 16.428874731063843
+  },
+  "raw_llm_response": "{\n  \"employee_eligibility_conditions\": [\n    {\n      \"field\": \"employment_duration_months\",\n      \"operator\": \">=\",\n      \"required_value\": 12,\n      \"unit\": \"months\",\n      \"citation\": \"825.110\",\n      \"notes\": \"The 12 months need not be consecutive. Employment periods prior to a break in service of 7 or more years generally need not be counted, with exceptions for USERRA-covered service or written rehire agreements. 52 weeks is deemed equal to 12 months for intermittent/occasional/casual employment.\",\n      \"source_text\": \"Has been employed by the employer for at least 12 months\"\n    },\n    {\n      \"field\": \"hours_worked_last_12_months\",\n      \"operator\": \">=\",\n      \"required_value\": 1250,\n      \"unit\": \"hours\",\n      \"citation\": \"825.110\",\n      \"notes\": \"Determined according to FLSA principles for compensable hours of work during the 12-month period immediately preceding the commencement of leave. Does not apply to airline flight crew employees, who have special rules under 825.801.\",\n      \"source_text\": \"Has been employed for at least 1,250 hours of service during the 12-month period immediately preceding the commencement of the leave\"\n    },\n    {\n      \"field\": \"break_in_service_duration_years\",\n      \"operator\": \"<\",\n      \"required_value\": 7,\n      \"unit\": \"years\",\n      \"citation\": \"825.110\",\n      \"notes\": \"Employment periods prior to a break in service of 7 or more years need not be counted toward the 12-month employment requirement, unless the break was due to USERRA-covered service or a written rehire agreement exists.\",\n      \"source_text\": \"employment periods prior to a break in service of seven years or more need not be counted in determining whether the employee has been employed by the employer for at least 12 months\"\n    },\n    {\n      \"field\": \"userra_covered_service_break\",\n      \"operator\": \"applies\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"825.110\",\n      \"notes\": \"If the break in service exceeding 7 years was due to USERRA-covered service, the prior employment periods must be counted. The period of absence due to USERRA-covered service must also be counted toward the 12-month employment requirement.\",\n      \"source_text\": \"Employment periods preceding a break in service of more than seven years must be counted in determining whether the employee has been employed by the employer for at least 12 months where: The employee's break in service is occasioned by the fulfillment of his or her Uniformed Services Employment and Reemployment Rights Act (USERRA), 38 U.S.C. 4301, et seq., covered service obligation.\"\n    },\n    {\n      \"field\": \"written_rehire_agreement_exists\",\n      \"operator\": \"applies\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"825.110\",\n      \"notes\": \"If a written agreement (including a collective bargaining agreement) exists concerning the employer's intention to rehire the employee after a break in service of more than 7 years, prior employment periods must be counted.\",\n      \"source_text\": \"A written agreement, including a collective bargaining agreement, exists concerning the employer's intention to rehire the employee after the break in service\"\n    },\n    {\n      \"field\": \"airline_flight_crew_hours_worked_or_paid_percent_of_monthly_guarantee\",\n      \"operator\": \">=\",\n      \"required_value\": 60,\n      \"unit\": \"percent\",\n      \"citation\": \"825.801\",\n      \"notes\": \"Applies only to airline flight crew employees. Must meet both this condition AND the 504-hour minimum. Monthly guarantee differs for reserve vs. non-reserve status.\",\n      \"source_text\": \"An airline flight crew employee will meet the hours of service requirement during the previous 12-month period if he or she has worked or been paid for not less than 60 percent of the employee's applicable monthly guarantee and has worked or been paid for not less than 504 hours.\"\n    },\n    {\n      \"field\": \"airline_flight_crew_hours_worked_or_paid_last_12_months\",\n      \"operator\": \">=\",\n      \"required_value\": 504,\n      \"unit\": \"hours\",\n      \"citation\": \"825.801\",\n      \"notes\": \"Applies only to airline flight crew employees. Must meet both this condition AND the 60% monthly guarantee condition. The 504 hours do not include personal commute time or time spent on vacation, medical, or sick leave.\",\n      \"source_text\": \"An airline flight crew employee will meet the hours of service requirement during the previous 12-month period if he or she has worked or been paid for not less than 60 percent of the employee's applicable monthly guarantee and has worked or been paid for not less than 504 hours.\"\n    }\n  ]\n}"
+}

@@ -1,0 +1,199 @@
+{
+  "description": "Synthetic claim test cases for plain-code rule evaluation. Runners: run_test_cases_gt.py and run_test_cases_extracted.py. Always evaluate federal EE/notice/cert/leave_reason; CA/TN also evaluate state in parallel (either track APPROVED); GA state track only when facts.is_government_worker is true.",
+  "generated_for": "final_pipeline GT and extracted condition packs",
+  "case_types": [
+    "pass",
+    "fail_ee",
+    "fail_reason"
+  ],
+  "pairs": [
+    {
+      "jurisdiction": "TN",
+      "leave_reason": "health_condition",
+      "path": "TN/health_condition.json",
+      "case_count": 3,
+      "case_ids": [
+        "TN-health_condition-01",
+        "TN-health_condition-02",
+        "TN-health_condition-03"
+      ]
+    },
+    {
+      "jurisdiction": "TN",
+      "leave_reason": "birth_or_pregnancy",
+      "path": "TN/birth_or_pregnancy.json",
+      "case_count": 3,
+      "case_ids": [
+        "TN-birth_or_pregnancy-01",
+        "TN-birth_or_pregnancy-02",
+        "TN-birth_or_pregnancy-03"
+      ]
+    },
+    {
+      "jurisdiction": "TN",
+      "leave_reason": "adoption",
+      "path": "TN/adoption.json",
+      "case_count": 3,
+      "case_ids": [
+        "TN-adoption-01",
+        "TN-adoption-02",
+        "TN-adoption-03"
+      ]
+    },
+    {
+      "jurisdiction": "TN",
+      "leave_reason": "military_exigency",
+      "path": "TN/military_exigency.json",
+      "case_count": 3,
+      "case_ids": [
+        "TN-military_exigency-01",
+        "TN-military_exigency-02",
+        "TN-military_exigency-03"
+      ]
+    },
+    {
+      "jurisdiction": "TN",
+      "leave_reason": "military_caregiver",
+      "path": "TN/military_caregiver.json",
+      "case_count": 3,
+      "case_ids": [
+        "TN-military_caregiver-01",
+        "TN-military_caregiver-02",
+        "TN-military_caregiver-03"
+      ]
+    },
+    {
+      "jurisdiction": "CA",
+      "leave_reason": "health_condition",
+      "path": "CA/health_condition.json",
+      "case_count": 3,
+      "case_ids": [
+        "CA-health_condition-01",
+        "CA-health_condition-02",
+        "CA-health_condition-03"
+      ]
+    },
+    {
+      "jurisdiction": "CA",
+      "leave_reason": "birth_or_pregnancy",
+      "path": "CA/birth_or_pregnancy.json",
+      "case_count": 3,
+      "case_ids": [
+        "CA-birth_or_pregnancy-01",
+        "CA-birth_or_pregnancy-02",
+        "CA-birth_or_pregnancy-03"
+      ]
+    },
+    {
+      "jurisdiction": "CA",
+      "leave_reason": "adoption",
+      "path": "CA/adoption.json",
+      "case_count": 3,
+      "case_ids": [
+        "CA-adoption-01",
+        "CA-adoption-02",
+        "CA-adoption-03"
+      ]
+    },
+    {
+      "jurisdiction": "CA",
+      "leave_reason": "military_exigency",
+      "path": "CA/military_exigency.json",
+      "case_count": 3,
+      "case_ids": [
+        "CA-military_exigency-01",
+        "CA-military_exigency-02",
+        "CA-military_exigency-03"
+      ]
+    },
+    {
+      "jurisdiction": "GA",
+      "leave_reason": "health_condition",
+      "path": "GA/health_condition.json",
+      "case_count": 3,
+      "case_ids": [
+        "GA-health_condition-01",
+        "GA-health_condition-02",
+        "GA-health_condition-03"
+      ]
+    },
+    {
+      "jurisdiction": "GA",
+      "leave_reason": "birth_or_pregnancy",
+      "path": "GA/birth_or_pregnancy.json",
+      "case_count": 3,
+      "case_ids": [
+        "GA-birth_or_pregnancy-01",
+        "GA-birth_or_pregnancy-02",
+        "GA-birth_or_pregnancy-03"
+      ]
+    },
+    {
+      "jurisdiction": "GA",
+      "leave_reason": "adoption",
+      "path": "GA/adoption.json",
+      "case_count": 3,
+      "case_ids": [
+        "GA-adoption-01",
+        "GA-adoption-02",
+        "GA-adoption-03"
+      ]
+    },
+    {
+      "jurisdiction": "federal",
+      "leave_reason": "health_condition",
+      "path": "federal/health_condition.json",
+      "case_count": 3,
+      "case_ids": [
+        "federal-health_condition-01",
+        "federal-health_condition-02",
+        "federal-health_condition-03"
+      ]
+    },
+    {
+      "jurisdiction": "federal",
+      "leave_reason": "birth_or_pregnancy",
+      "path": "federal/birth_or_pregnancy.json",
+      "case_count": 3,
+      "case_ids": [
+        "federal-birth_or_pregnancy-01",
+        "federal-birth_or_pregnancy-02",
+        "federal-birth_or_pregnancy-03"
+      ]
+    },
+    {
+      "jurisdiction": "federal",
+      "leave_reason": "adoption",
+      "path": "federal/adoption.json",
+      "case_count": 3,
+      "case_ids": [
+        "federal-adoption-01",
+        "federal-adoption-02",
+        "federal-adoption-03"
+      ]
+    },
+    {
+      "jurisdiction": "federal",
+      "leave_reason": "military_exigency",
+      "path": "federal/military_exigency.json",
+      "case_count": 3,
+      "case_ids": [
+        "federal-military_exigency-01",
+        "federal-military_exigency-02",
+        "federal-military_exigency-03"
+      ]
+    },
+    {
+      "jurisdiction": "federal",
+      "leave_reason": "military_caregiver",
+      "path": "federal/military_caregiver.json",
+      "case_count": 3,
+      "case_ids": [
+        "federal-military_caregiver-01",
+        "federal-military_caregiver-02",
+        "federal-military_caregiver-03"
+      ]
+    }
+  ],
+  "total_cases": 51
+}

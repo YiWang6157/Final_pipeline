@@ -1,0 +1,266 @@
+{
+  "extracted_at": "2026-07-15T18:14:42.658228+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/tn_extracted_sections_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/schema/tn_health_condition.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "health condition",
+  "matched_chunk_count": 3,
+  "section_count": 3,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self",
+      "spouse",
+      "son or daughter",
+      "parent"
+    ],
+    "citation": "6.02.C, 6.02.D, 6.03",
+    "notes": "Parent-in-law is explicitly excluded per 6.03. Son or daughter age 18+ must have an ADA disability, be incapable of self-care because of the disability, have a serious health condition, and need care because of the serious health condition per 6.03. 'Self' applies to the employee's own serious health condition under 6.02.D."
+  },
+  "conditions": [
+    {
+      "condition_name": "own_serious_health_condition",
+      "field": "employee own serious health condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "unable to perform job functions",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "serious health condition",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "inpatient care",
+              "operator": "IN",
+              "required_value": [
+                "hospital",
+                "hospice",
+                "residential medical care facility"
+              ],
+              "unit": null
+            },
+            {
+              "field": "incapacity plus treatment",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "incapacity duration",
+                  "operator": ">",
+                  "required_value": 3,
+                  "unit": "consecutive calendar days"
+                },
+                {
+                  "field": "treatment requirement",
+                  "operator": "ANY_OF",
+                  "required_value": [
+                    {
+                      "field": "two or more treatments",
+                      "operator": "ALL_OF",
+                      "required_value": [
+                        {
+                          "field": "treatment count",
+                          "operator": ">=",
+                          "required_value": 2,
+                          "unit": "visits"
+                        },
+                        {
+                          "field": "treatment window",
+                          "operator": "<=",
+                          "required_value": 30,
+                          "unit": "days"
+                        },
+                        {
+                          "field": "first visit window",
+                          "operator": "<=",
+                          "required_value": 7,
+                          "unit": "days"
+                        }
+                      ],
+                      "unit": null
+                    },
+                    {
+                      "field": "continuing treatment regimen",
+                      "operator": "==",
+                      "required_value": true,
+                      "unit": null
+                    }
+                  ],
+                  "unit": null
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "pregnancy or prenatal care",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "chronic serious health condition",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "periodic visits",
+                  "operator": ">=",
+                  "required_value": 2,
+                  "unit": "visits per year"
+                },
+                {
+                  "field": "continues over extended period",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                },
+                {
+                  "field": "episodic incapacity",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "long-term incapacity",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "treatment may not be effective",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                },
+                {
+                  "field": "continuing supervision by health care provider",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "multiple treatments or recovery",
+              "operator": "ANY_OF",
+              "required_value": [
+                {
+                  "field": "restorative surgery after accident or injury",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                },
+                {
+                  "field": "condition without treatment would cause incapacity",
+                  "operator": ">",
+                  "required_value": 3,
+                  "unit": "calendar days"
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "substance abuse treatment",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "absence due to treatment",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                },
+                {
+                  "field": "absence due to substance use only",
+                  "operator": "==",
+                  "required_value": false,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "6.02.D, 6.06",
+      "notes": "Pregnancy and chronic condition absences qualify even if the employee does not receive treatment from a health care provider during the absence and even if the absence lasts less than three days per 6.06.D. Treatment window and first visit window for incapacity plus treatment are measured from first day of incapacity.",
+      "source_text": "A serious health condition that makes the employee unable to perform the functions of the employee's job, including incapacity due to pregnancy and for prenatal medical care."
+    },
+    {
+      "condition_name": "care_for_family_member_serious_health_condition",
+      "field": "care for family member serious health condition",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "6.02.C, 6.03, 6.06",
+      "notes": "Family member must have a serious health condition as defined in 6.06. Eligible relationships are spouse, son or daughter, and parent. Parent-in-law is excluded. Son or daughter age 18+ must meet ADA disability and self-care criteria per 6.03. Pregnancy and chronic condition absences qualify even without provider visit and even if absence is fewer than 3 days per 6.06.D.",
+      "source_text": "The care of the employee's spouse, son, daughter, or parent with a serious health condition, including incapacity due to pregnancy and for prenatal care."
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 9019,
+    "output_tokens": 3566,
+    "processing_duration": 29.130009651184082
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"health condition\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"self\", \"spouse\", \"child\", \"parent\"],\n    \"citation\": \"6.02.C, 6.02.D\",\n    \"notes\": \"Parent-in-law is explicitly excluded. Child age 18+ must meet additional ADA/self-care criteria.\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"employee_own_serious_health_condition\",\n      \"field\": \"employee own serious health condition\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"==\",\n          \"required_value\": \"self\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"unable to perform job functions\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"serious health condition\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"inpatient care\",\n              \"operator\": \"IN\",\n              \"required_value\": [\"hospital\", \"hospice\", \"residential medical care facility\"],\n              \"unit\": null,\n              \"citation\": \"6.06.A\"\n            },\n            {\n              \"field\": \"incapacity plus treatment\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"incapacity duration\",\n                  \"operator\": \">\",\n                  \"required_value\": 3,\n                  \"unit\": \"consecutive calendar days\"\n                },\n                {\n                  \"field\": \"treatment requirement\",\n                  \"operator\": \"ANY_OF\",\n                  \"required_value\": [\n                    {\n                      \"field\": \"multiple treatments\",\n                      \"operator\": \"ALL_OF\",\n                      \"required_value\": [\n                        {\n                          \"field\": \"treatment count\",\n                          \"operator\": \">=\",\n                          \"required_value\": 2,\n                          \"unit\": \"visits\"\n                        },\n                        {\n                          \"field\": \"treatment window\",\n                          \"operator\": \"<=\",\n                          \"required_value\": 30,\n                          \"unit\": \"days from first day of incapacity\"\n                        },\n                        {\n                          \"field\": \"first visit window\",\n                          \"operator\": \"<=\",\n                          \"required_value\": 7,\n                          \"unit\": \"days from first day of incapacity\"\n                        }\n                      ],\n                      \"unit\": null\n                    },\n                    {\n                      \"field\": \"continuing treatment regimen\",\n                      \"operator\": \"==\",\n                      \"required_value\": true,\n                      \"unit\": null\n                    }\n                  ],\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.06.B.1\"\n            },\n            {\n              \"field\": \"pregnancy or prenatal care\",\n              \"operator\": \"==\",\n              \"required_value\": true,\n              \"unit\": null,\n              \"citation\": \"6.06.B.2, 6.06.D\"\n            },\n            {\n              \"field\": \"chronic condition\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"periodic visits\",\n                  \"operator\": \">=\",\n                  \"required_value\": 2,\n                  \"unit\": \"visits per year\"\n                },\n                {\n                  \"field\": \"extended period\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"episodic incapacity\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.06.B.3\"\n            },\n            {\n              \"field\": \"long-term incapacity\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"treatment may not be effective\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"continuing supervision\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.06.B.4\"\n            },\n            {\n              \"field\": \"multiple treatments\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"multiple treatments or recovery\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"treatment category\",\n                  \"operator\": \"ANY_OF\",\n                  \"required_value\": [\n                    {\n                      \"field\": \"restorative surgery\",\n                      \"operator\": \"==\",\n                      \"required_value\": true,\n                      \"unit\": null\n                    },\n                    {\n                      \"field\": \"condition without treatment\",\n                      \"operator\": \"==\",\n                      \"required_value\": \"would likely cause incapacity >3 days\",\n                      \"unit\": null\n                    }\n                  ],\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.06.B.5\"\n            },\n            {\n              \"field\": \"substance abuse treatment\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"absence due to treatment\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"incapacity from substance use covered\",\n                  \"operator\": \"==\",\n                  \"required_value\": false,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.06.B.6\"\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.02.D, 6.06\",\n      \"notes\": \"Pregnancy and chronic condition absences qualify even without provider visit and even if absence is fewer than 3 days.\",\n      \"source_text\": \"A serious health condition that makes the employee unable to perform the functions of the employee's job, including incapacity due to pregnancy and for prenatal medical care.\"\n    },\n    {\n      \"condition_name\": \"care_for_family_member_serious_health_condition\",\n      \"field\": \"care for family member serious health condition\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"spouse\", \"child\", \"parent\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"child relationship rule\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"child under 18\",\n              \"operator\": \"<\",\n              \"required_value\": 18,\n              \"unit\": \"years\"\n            },\n            {\n              \"field\": \"adult child incapable of self-care\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"child age\",\n                  \"operator\": \">=\",\n                  \"required_value\": 18,\n                  \"unit\": \"years\"\n                },\n                {\n                  \"field\": \"ADA disability\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"incapable of self-care\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"needs care due to SHC\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null\n            }\n          ],\n          \"unit\": null,\n          \"citation\": \"6.03\"\n        },\n        {\n          \"field\": \"parent in-law excluded\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"serious health condition\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"inpatient care\",\n              \"operator\": \"IN\",\n              \"required_value\": [\"hospital\", \"hospice\", \"residential medical care facility\"],\n              \"unit\": null,\n              \"citation\": \"6.06.A\"\n            },\n            {\n              \"field\": \"incapacity plus treatment\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"incapacity duration\",\n                  \"operator\": \">\",\n                  \"required_value\": 3,\n                  \"unit\": \"consecutive calendar days\"\n                },\n                {\n                  \"field\": \"treatment requirement\",\n                  \"operator\": \"ANY_OF\",\n                  \"required_value\": [\n                    {\n                      \"field\": \"multiple treatments\",\n                      \"operator\": \"ALL_OF\",\n                      \"required_value\": [\n                        {\n                          \"field\": \"treatment count\",\n                          \"operator\": \">=\",\n                          \"required_value\": 2,\n                          \"unit\": \"visits\"\n                        },\n                        {\n                          \"field\": \"treatment window\",\n                          \"operator\": \"<=\",\n                          \"required_value\": 30,\n                          \"unit\": \"days from first day of incapacity\"\n                        },\n                        {\n                          \"field\": \"first visit window\",\n                          \"operator\": \"<=\",\n                          \"required_value\": 7,\n                          \"unit\": \"days from first day of incapacity\"\n                        }\n                      ],\n                      \"unit\": null\n                    },\n                    {\n                      \"field\": \"continuing treatment regimen\",\n                      \"operator\": \"==\",\n                      \"required_value\": true,\n                      \"unit\": null\n                    }\n                  ],\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.06.B.1\"\n            },\n            {\n              \"field\": \"pregnancy or prenatal care\",\n              \"operator\": \"==\",\n              \"required_value\": true,\n              \"unit\": null,\n              \"citation\": \"6.06.B.2, 6.06.D\"\n            },\n            {\n              \"field\": \"chronic condition\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"periodic visits\",\n                  \"operator\": \">=\",\n                  \"required_value\": 2,\n                  \"unit\": \"visits per year\"\n                },\n                {\n                  \"field\": \"extended period\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"episodic incapacity\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.06.B.3\"\n            },\n            {\n              \"field\": \"long-term incapacity\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"treatment may not be effective\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"continuing supervision\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.06.B.4\"\n            },\n            {\n              \"field\": \"multiple treatments\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"multiple treatments or recovery\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"treatment category\",\n                  \"operator\": \"ANY_OF\",\n                  \"required_value\": [\n                    {\n                      \"field\": \"restorative surgery\",\n                      \"operator\": \"==\",\n                      \"required_value\": true,\n                      \"unit\": null\n                    },\n                    {\n                      \"field\": \"condition without treatment\",\n                      \"operator\": \"==\",\n                      \"required_value\": \"would likely cause incapacity >3 days\",\n                      \"unit\": null\n                    }\n                  ],\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.06.B.5\"\n            },\n            {\n              \"field\": \"substance abuse treatment\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"absence due to treatment\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"incapacity from substance use covered\",\n                  \"operator\": \"==\",\n                  \"required_value\": false,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.06.B.6\"\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.02.C, 6.03, 6.06\",\n      \"notes\": \"Parent-in-law is excluded per 6.03. Child relationship rule applies only when relationship is child; spouse and parent have no age/disability sub-requirement.\",\n      \"source_text\": \"The care of the employee's spouse, son, daughter, or parent with a serious health condition, including incapacity due to pregnancy and for prenatal care.\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [
+      "Both top-level conditions embed a 'relationship' nested check inside required_value, which violates the rule that relationship coverage belongs only in included_relationships, not inside conditions.",
+      "The 'care_for_family_member_serious_health_condition' condition includes a 'parent in-law excluded' nested check with required_value true, which is a negative exclusion rule embedded as a positive check and is structurally incorrect.",
+      "The 'care_for_family_member_serious_health_condition' condition includes a 'child relationship rule' nested check inside required_value, which is relationship verification and belongs only in included_relationships notes, not in conditions.",
+      "Nested check objects inside required_value arrays include extra keys 'citation' and 'unit' at the same level, but nested check objects must use exactly field, operator, required_value, unit. Citation is not a valid key inside nested check objects."
+    ],
+    "relationship_issues": [
+      "included_relationships uses 'child' but the regulation text (6.02.C, 6.03) uses 'son or daughter' as the label. Should be 'son or daughter' to match regulation wording.",
+      "The adult child (son or daughter age 18+) ADA/self-care criteria from 6.03 are relationship verification details and belong in included_relationships notes, not as nested conditions inside the conditions list."
+    ],
+    "logic_issues": [
+      "The two top-level conditions duplicate the entire serious health condition definition (6.06 pathways) for self vs. family member. Since the serious health condition definition is the same regardless of relationship, the conditions should be structured as two parallel pathways (own condition vs. care for family member) each referencing the shared SHC definition, but the SHC sub-conditions themselves are correctly parallel within each pathway.",
+      "The 'employee_own_serious_health_condition' condition wraps everything in ALL_OF including a 'relationship == self' check, which is relationship verification and must be removed from conditions.",
+      "The 'care_for_family_member_serious_health_condition' condition wraps everything in ALL_OF including relationship and child-rule checks, which are relationship verification and must be removed from conditions.",
+      "The 'unable to perform job functions' check is correctly part of the self pathway per 6.02.D and should be retained for that pathway only.",
+      "For the family member pathway, there is no 'unable to perform job functions' requirement in the regulation; the employee must need to provide care, but the regulation text in 6.02.C does not state an 'unable to perform job functions' requirement for the family member pathway. The family member pathway condition correctly omits this check."
+    ],
+    "missing_conditions": [],
+    "unsupported_conditions": [
+      "Nested 'relationship == self' check inside employee_own_serious_health_condition is unsupported as a condition; relationship belongs only in included_relationships.",
+      "Nested 'relationship IN [spouse, child, parent]' check inside care_for_family_member_serious_health_condition is unsupported as a condition; relationship belongs only in included_relationships.",
+      "Nested 'child relationship rule' check inside care_for_family_member_serious_health_condition is unsupported as a condition; it is relationship verification.",
+      "Nested 'parent in-law excluded' check with required_value true is unsupported as a condition; it is a relationship exclusion note.",
+      "Citation keys inside nested check objects (e.g., inside inpatient care, incapacity plus treatment, etc.) are not valid per the schema; nested checks must use only field, operator, required_value, unit."
+    ],
+    "format_issues": [
+      "Nested check objects within required_value arrays include 'citation' as a key, which is not permitted in nested check objects. Citation is only valid at the top-level condition object level.",
+      "unit values such as 'days from first day of incapacity' contain timing window language beyond a pure measurement phrase. Should be 'days'.",
+      "The 'condition without treatment' nested check uses a long explanatory string 'would likely cause incapacity >3 days' as required_value instead of a numeric threshold with operator and unit."
+    ],
+    "revision_summary": [
+      "Removed relationship verification checks (relationship == self, relationship IN [...], child relationship rule, parent in-law excluded) from inside conditions; relationship coverage moved entirely to included_relationships.",
+      "Changed included_relationships 'child' label to 'son or daughter' to match regulation wording.",
+      "Moved adult child ADA/self-care criteria note to included_relationships notes.",
+      "Removed citation keys from all nested check objects; citations retained only at top-level condition objects.",
+      "Fixed unit for treatment window and first visit window to 'days' only.",
+      "Fixed 'condition without treatment' required_value to a numeric threshold with operator >= and unit 'calendar days' with a separate field for the condition.",
+      "Retained 'unable to perform job functions' check only in the self pathway per 6.02.D.",
+      "Retained all six serious health condition sub-pathways from 6.06 in both top-level conditions.",
+      "Retained substance abuse exclusion logic as-is since it is directly part of reason qualification per 6.06.B.6.",
+      "Kept both top-level conditions as parallel pathways: own serious health condition and care for family member serious health condition."
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 9008,
+    "output_tokens": 3105,
+    "processing_duration": 46.32809114456177
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [\n      \"Both top-level conditions embed a 'relationship' nested check inside required_value, which violates the rule that relationship coverage belongs only in included_relationships, not inside conditions.\",\n      \"The 'care_for_family_member_serious_health_condition' condition includes a 'parent in-law excluded' nested check with required_value true, which is a negative exclusion rule embedded as a positive check and is structurally incorrect.\",\n      \"The 'care_for_family_member_serious_health_condition' condition includes a 'child relationship rule' nested check inside required_value, which is relationship verification and belongs only in included_relationships notes, not in conditions.\",\n      \"Nested check objects inside required_value arrays include extra keys 'citation' and 'unit' at the same level, but nested check objects must use exactly field, operator, required_value, unit. Citation is not a valid key inside nested check objects.\"\n    ],\n    \"relationship_issues\": [\n      \"included_relationships uses 'child' but the regulation text (6.02.C, 6.03) uses 'son or daughter' as the label. Should be 'son or daughter' to match regulation wording.\",\n      \"The adult child (son or daughter age 18+) ADA/self-care criteria from 6.03 are relationship verification details and belong in included_relationships notes, not as nested conditions inside the conditions list.\"\n    ],\n    \"logic_issues\": [\n      \"The two top-level conditions duplicate the entire serious health condition definition (6.06 pathways) for self vs. family member. Since the serious health condition definition is the same regardless of relationship, the conditions should be structured as two parallel pathways (own condition vs. care for family member) each referencing the shared SHC definition, but the SHC sub-conditions themselves are correctly parallel within each pathway.\",\n      \"The 'employee_own_serious_health_condition' condition wraps everything in ALL_OF including a 'relationship == self' check, which is relationship verification and must be removed from conditions.\",\n      \"The 'care_for_family_member_serious_health_condition' condition wraps everything in ALL_OF including relationship and child-rule checks, which are relationship verification and must be removed from conditions.\",\n      \"The 'unable to perform job functions' check is correctly part of the self pathway per 6.02.D and should be retained for that pathway only.\",\n      \"For the family member pathway, there is no 'unable to perform job functions' requirement in the regulation; the employee must need to provide care, but the regulation text in 6.02.C does not state an 'unable to perform job functions' requirement for the family member pathway. The family member pathway condition correctly omits this check.\"\n    ],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [\n      \"Nested 'relationship == self' check inside employee_own_serious_health_condition is unsupported as a condition; relationship belongs only in included_relationships.\",\n      \"Nested 'relationship IN [spouse, child, parent]' check inside care_for_family_member_serious_health_condition is unsupported as a condition; relationship belongs only in included_relationships.\",\n      \"Nested 'child relationship rule' check inside care_for_family_member_serious_health_condition is unsupported as a condition; it is relationship verification.\",\n      \"Nested 'parent in-law excluded' check with required_value true is unsupported as a condition; it is a relationship exclusion note.\",\n      \"Citation keys inside nested check objects (e.g., inside inpatient care, incapacity plus treatment, etc.) are not valid per the schema; nested checks must use only field, operator, required_value, unit.\"\n    ],\n    \"format_issues\": [\n      \"Nested check objects within required_value arrays include 'citation' as a key, which is not permitted in nested check objects. Citation is only valid at the top-level condition object level.\",\n      \"unit values such as 'days from first day of incapacity' contain timing window language beyond a pure measurement phrase. Should be 'days'.\",\n      \"The 'condition without treatment' nested check uses a long explanatory string 'would likely cause incapacity >3 days' as required_value instead of a numeric threshold with operator and unit.\"\n    ],\n    \"revision_summary\": [\n      \"Removed relationship verification checks (relationship == self, relationship IN [...], child relationship rule, parent in-law excluded) from inside conditions; relationship coverage moved entirely to included_relationships.\",\n      \"Changed included_relationships 'child' label to 'son or daughter' to match regulation wording.\",\n      \"Moved adult child ADA/self-care criteria note to included_relationships notes.\",\n      \"Removed citation keys from all nested check objects; citations retained only at top-level condition objects.\",\n      \"Fixed unit for treatment window and first visit window to 'days' only.\",\n      \"Fixed 'condition without treatment' required_value to a numeric threshold with operator >= and unit 'calendar days' with a separate field for the condition.\",\n      \"Retained 'unable to perform job functions' check only in the self pathway per 6.02.D.\",\n      \"Retained all six serious health condition sub-pathways from 6.06 in both top-level conditions.\",\n      \"Retained substance abuse exclusion logic as-is since it is directly part of reason qualification per 6.06.B.6.\",\n      \"Kept both top-level conditions as parallel pathways: own serious health condition and care for family member serious health condition.\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"health condition\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"self\",\n        \"spouse\",\n        \"son or daughter\",\n        \"parent\"\n      ],\n      \"citation\": \"6.02.C, 6.02.D, 6.03\",\n      \"notes\": \"Parent-in-law is explicitly excluded per 6.03. Son or daughter age 18+ must have an ADA disability, be incapable of self-care because of the disability, have a serious health condition, and need care because of the serious health condition per 6.03. 'Self' applies to the employee's own serious health condition under 6.02.D.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"own_serious_health_condition\",\n        \"field\": \"employee own serious health condition\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"unable to perform job functions\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"serious health condition\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"inpatient care\",\n                \"operator\": \"IN\",\n                \"required_value\": [\n                  \"hospital\",\n                  \"hospice\",\n                  \"residential medical care facility\"\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"incapacity plus treatment\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"incapacity duration\",\n                    \"operator\": \">\",\n                    \"required_value\": 3,\n                    \"unit\": \"consecutive calendar days\"\n                  },\n                  {\n                    \"field\": \"treatment requirement\",\n                    \"operator\": \"ANY_OF\",\n                    \"required_value\": [\n                      {\n                        \"field\": \"two or more treatments\",\n                        \"operator\": \"ALL_OF\",\n                        \"required_value\": [\n                          {\n                            \"field\": \"treatment count\",\n                            \"operator\": \">=\",\n                            \"required_value\": 2,\n                            \"unit\": \"visits\"\n                          },\n                          {\n                            \"field\": \"treatment window\",\n                            \"operator\": \"<=\",\n                            \"required_value\": 30,\n                            \"unit\": \"days\"\n                          },\n                          {\n                            \"field\": \"first visit window\",\n                            \"operator\": \"<=\",\n                            \"required_value\": 7,\n                            \"unit\": \"days\"\n                          }\n                        ],\n                        \"unit\": null\n                      },\n                      {\n                        \"field\": \"continuing treatment regimen\",\n                        \"operator\": \"==\",\n                        \"required_value\": true,\n                        \"unit\": null\n                      }\n                    ],\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"pregnancy or prenatal care\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              },\n              {\n                \"field\": \"chronic serious health condition\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"periodic visits\",\n                    \"operator\": \">=\",\n                    \"required_value\": 2,\n                    \"unit\": \"visits per year\"\n                  },\n                  {\n                    \"field\": \"continues over extended period\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"episodic incapacity\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"long-term incapacity\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"treatment may not be effective\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"continuing supervision by health care provider\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"multiple treatments or recovery\",\n                \"operator\": \"ANY_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"restorative surgery after accident or injury\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"condition without treatment would cause incapacity\",\n                    \"operator\": \">\",\n                    \"required_value\": 3,\n                    \"unit\": \"calendar days\"\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"substance abuse treatment\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"absence due to treatment\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"absence due to substance use only\",\n                    \"operator\": \"==\",\n                    \"required_value\": false,\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"6.02.D, 6.06\",\n        \"notes\": \"Pregnancy and chronic condition absences qualify even if the employee does not receive treatment from a health care provider during the absence and even if the absence lasts less than three days per 6.06.D. Treatment window and first visit window for incapacity plus treatment are measured from first day of incapacity.\",\n        \"source_text\": \"A serious health condition that makes the employee unable to perform the functions of the employee's job, including incapacity due to pregnancy and for prenatal medical care.\"\n      },\n      {\n        \"condition_name\": \"care_for_family_member_serious_health_condition\",\n        \"field\": \"care for family member serious health condition\",\n        \"operator\": \"==\",\n        \"required_value\": true,\n        \"unit\": null,\n        \"citation\": \"6.02.C, 6.03, 6.06\",\n        \"notes\": \"Family member must have a serious health condition as defined in 6.06. Eligible relationships are spouse, son or daughter, and parent. Parent-in-law is excluded. Son or daughter age 18+ must meet ADA disability and self-care criteria per 6.03. Pregnancy and chronic condition absences qualify even without provider visit and even if absence is fewer than 3 days per 6.06.D.\",\n        \"source_text\": \"The care of the employee's spouse, son, daughter, or parent with a serious health condition, including incapacity due to pregnancy and for prenatal care.\"\n      }\n    ]\n  }\n}"
+}

@@ -1,0 +1,217 @@
+{
+  "extracted_at": "2026-07-15T18:04:56.862200+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/fmla_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/schema/military_caregiver.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "military caregiver",
+  "matched_chunk_count": 3,
+  "section_count": 3,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "spouse",
+      "son or daughter",
+      "parent",
+      "next of kin"
+    ],
+    "citation": "825.127(d)",
+    "notes": "Employee must be spouse, son, daughter, parent, or next of kin of the covered servicemember. Next of kin means nearest blood relative other than spouse, parent, son, or daughter."
+  },
+  "conditions": [
+    {
+      "condition_name": "current_servicemember_serious_injury_or_illness",
+      "field": "covered servicemember status and condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "needed to care",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "servicemember type",
+          "operator": "IN",
+          "required_value": [
+            "current Armed Forces member",
+            "National Guard member",
+            "Reserves member"
+          ],
+          "unit": null
+        },
+        {
+          "field": "servicemember medical status",
+          "operator": "IN",
+          "required_value": [
+            "undergoing medical treatment",
+            "recuperation",
+            "therapy",
+            "outpatient status",
+            "temporary disability retired list"
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious injury or illness origin",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "injury or illness origin",
+              "operator": "==",
+              "required_value": "incurred in line of duty on active duty",
+              "unit": null
+            },
+            {
+              "field": "injury or illness origin",
+              "operator": "==",
+              "required_value": "pre-existing condition aggravated in line of duty on active duty",
+              "unit": null
+            }
+          ],
+          "unit": null
+        },
+        {
+          "field": "injury or illness effect",
+          "operator": "==",
+          "required_value": "may render member medically unfit for duties",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.127(b)(1), 825.127(c)(1)",
+      "notes": "Outpatient status includes assignment to military medical treatment facility as outpatient or unit providing command and control of outpatient care members.",
+      "source_text": "A current member of the Armed Forces, including a member of the National Guard or Reserves, who is undergoing medical treatment, recuperation, or therapy, is otherwise in outpatient status; or is otherwise on the temporary disability retired list, for a serious injury or illness... an injury or illness that was incurred by the covered servicemember in the line of duty on active duty... and that may render the member medically unfit to perform the duties of the member's office, grade, rank or rating."
+    },
+    {
+      "condition_name": "covered_veteran_serious_injury_or_illness",
+      "field": "covered veteran status and condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "needed to care",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "veteran discharge status",
+          "operator": "!=",
+          "required_value": "dishonorable discharge",
+          "unit": null
+        },
+        {
+          "field": "time since discharge",
+          "operator": "<=",
+          "required_value": 5,
+          "unit": "years"
+        },
+        {
+          "field": "veteran medical status",
+          "operator": "IN",
+          "required_value": [
+            "undergoing medical treatment",
+            "recuperation",
+            "therapy"
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious injury or illness origin",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "injury or illness origin",
+              "operator": "==",
+              "required_value": "incurred in line of duty on active duty",
+              "unit": null
+            },
+            {
+              "field": "injury or illness origin",
+              "operator": "==",
+              "required_value": "pre-existing condition aggravated in line of duty on active duty",
+              "unit": null
+            }
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious injury or illness manifestation",
+          "operator": "IN",
+          "required_value": [
+            "manifested before becoming veteran",
+            "manifested after becoming veteran"
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious injury or illness qualifying type",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "continuation of serious injury or illness",
+              "operator": "==",
+              "required_value": "rendered servicemember unable to perform duties",
+              "unit": null
+            },
+            {
+              "field": "VASRD rating for condition precipitating military caregiver leave",
+              "operator": ">=",
+              "required_value": 50,
+              "unit": "percent"
+            },
+            {
+              "field": "substantial occupational impairment",
+              "operator": "==",
+              "required_value": "substantially impairs ability to secure or follow gainful occupation",
+              "unit": null
+            },
+            {
+              "field": "VA caregiver program enrollment",
+              "operator": "==",
+              "required_value": "enrolled in VA Program of Comprehensive Assistance for Family Caregivers",
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.127(b)(2), 825.127(c)(2)",
+      "notes": "Five-year period is measured prior to the first date the eligible employee takes FMLA leave to care for the covered veteran. For veterans discharged before the Final Rule effective date, the period between October 28, 2009 and the effective date does not count toward the five-year period.",
+      "source_text": "A covered veteran who is undergoing medical treatment, recuperation or therapy for a serious injury or illness. Covered veteran means an individual who was a member of the Armed Forces... and was discharged or released under conditions other than dishonorable at any time during the five-year period prior to the first date the eligible employee takes FMLA leave to care for the covered veteran."
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 8279,
+    "output_tokens": 1592,
+    "processing_duration": 19.175734281539917
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"military caregiver\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"spouse\", \"child\", \"parent\", \"next of kin\"],\n    \"citation\": \"825.127(d)\",\n    \"notes\": \"Employee must be spouse, son, daughter, parent, or next of kin of the covered servicemember. Next of kin means nearest blood relative other than spouse, parent, son, or daughter.\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"current_servicemember_serious_injury_or_illness\",\n      \"field\": \"covered servicemember status and condition\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"needed to care\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"servicemember type\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"current Armed Forces member\", \"National Guard member\", \"Reserves member\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"servicemember medical status\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"undergoing medical treatment\", \"recuperation\", \"therapy\", \"outpatient status\", \"temporary disability retired list\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"serious injury or illness origin\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"injury or illness origin\",\n              \"operator\": \"==\",\n              \"required_value\": \"incurred in line of duty on active duty\",\n              \"unit\": null\n            },\n            {\n              \"field\": \"injury or illness origin\",\n              \"operator\": \"==\",\n              \"required_value\": \"pre-existing condition aggravated in line of duty on active duty\",\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        },\n        {\n          \"field\": \"injury or illness effect\",\n          \"operator\": \"==\",\n          \"required_value\": \"may render member medically unfit for duties\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.127(b)(1), 825.127(c)(1)\",\n      \"notes\": \"Outpatient status includes assignment to military medical treatment facility as outpatient or unit providing command and control of outpatient care members.\",\n      \"source_text\": \"A current member of the Armed Forces, including a member of the National Guard or Reserves, who is undergoing medical treatment, recuperation, or therapy, is otherwise in outpatient status; or is otherwise on the temporary disability retired list, for a serious injury or illness... an injury or illness that was incurred by the covered servicemember in the line of duty on active duty... and that may render the member medically unfit to perform the duties of the member's office, grade, rank or rating.\"\n    },\n    {\n      \"condition_name\": \"covered_veteran_serious_injury_or_illness\",\n      \"field\": \"covered veteran status and condition\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"needed to care\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"veteran discharge status\",\n          \"operator\": \"!=\",\n          \"required_value\": \"dishonorable discharge\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"time since discharge\",\n          \"operator\": \"<=\",\n          \"required_value\": 5,\n          \"unit\": \"years prior to first date employee takes leave\"\n        },\n        {\n          \"field\": \"veteran medical status\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"undergoing medical treatment\", \"recuperation\", \"therapy\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"serious injury or illness origin\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"injury or illness origin\",\n              \"operator\": \"==\",\n              \"required_value\": \"incurred in line of duty on active duty\",\n              \"unit\": null\n            },\n            {\n              \"field\": \"injury or illness origin\",\n              \"operator\": \"==\",\n              \"required_value\": \"pre-existing condition aggravated in line of duty on active duty\",\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        },\n        {\n          \"field\": \"serious injury or illness manifestation\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"manifested before becoming veteran\", \"manifested after becoming veteran\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"serious injury or illness qualifying type\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"continuation of serious injury or illness\",\n              \"operator\": \"==\",\n              \"required_value\": \"rendered servicemember unable to perform duties\",\n              \"unit\": null\n            },\n            {\n              \"field\": \"VASRD rating for condition precipitating military caregiver leave\",\n              \"operator\": \">=\",\n              \"required_value\": 50,\n              \"unit\": \"percent\"\n            },\n            {\n              \"field\": \"substantial occupational impairment\",\n              \"operator\": \"==\",\n              \"required_value\": \"substantially impairs ability to secure or follow gainful occupation\",\n              \"unit\": null\n            },\n            {\n              \"field\": \"VA caregiver program enrollment\",\n              \"operator\": \"==\",\n              \"required_value\": \"enrolled in VA Program of Comprehensive Assistance for Family Caregivers\",\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.127(b)(2), 825.127(c)(2)\",\n      \"notes\": \"For veterans discharged before the Final Rule effective date, the period between October 28, 2009 and the effective date does not count toward the five-year period.\",\n      \"source_text\": \"A covered veteran who is undergoing medical treatment, recuperation or therapy for a serious injury or illness. Covered veteran means an individual who was a member of the Armed Forces... and was discharged or released under conditions other than dishonorable at any time during the five-year period prior to the first date the eligible employee takes FMLA leave to care for the covered veteran.\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "included_relationships.required_value uses 'child' but the regulation (825.127(d)) uses 'son or daughter'; should be corrected to match the regulatory term"
+    ],
+    "logic_issues": [],
+    "missing_conditions": [],
+    "unsupported_conditions": [],
+    "format_issues": [
+      "unit for 'time since discharge' contains extra rule logic ('prior to the first date employee takes leave'); unit should contain only the measurement word, with the timing detail moved to notes"
+    ],
+    "revision_summary": [
+      "Corrected 'child' to 'son or daughter' in included_relationships.required_value to match 825.127(d) regulatory language",
+      "Simplified unit for 'time since discharge' to 'years'; moved timing detail to notes"
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 8211,
+    "output_tokens": 1899,
+    "processing_duration": 25.766536474227905
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"included_relationships.required_value uses 'child' but the regulation (825.127(d)) uses 'son or daughter'; should be corrected to match the regulatory term\"\n    ],\n    \"logic_issues\": [],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [],\n    \"format_issues\": [\n      \"unit for 'time since discharge' contains extra rule logic ('prior to the first date employee takes leave'); unit should contain only the measurement word, with the timing detail moved to notes\"\n    ],\n    \"revision_summary\": [\n      \"Corrected 'child' to 'son or daughter' in included_relationships.required_value to match 825.127(d) regulatory language\",\n      \"Simplified unit for 'time since discharge' to 'years'; moved timing detail to notes\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"military caregiver\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"spouse\",\n        \"son or daughter\",\n        \"parent\",\n        \"next of kin\"\n      ],\n      \"citation\": \"825.127(d)\",\n      \"notes\": \"Employee must be spouse, son, daughter, parent, or next of kin of the covered servicemember. Next of kin means nearest blood relative other than spouse, parent, son, or daughter.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"current_servicemember_serious_injury_or_illness\",\n        \"field\": \"covered servicemember status and condition\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"needed to care\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"servicemember type\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"current Armed Forces member\",\n              \"National Guard member\",\n              \"Reserves member\"\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"servicemember medical status\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"undergoing medical treatment\",\n              \"recuperation\",\n              \"therapy\",\n              \"outpatient status\",\n              \"temporary disability retired list\"\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"serious injury or illness origin\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"injury or illness origin\",\n                \"operator\": \"==\",\n                \"required_value\": \"incurred in line of duty on active duty\",\n                \"unit\": null\n              },\n              {\n                \"field\": \"injury or illness origin\",\n                \"operator\": \"==\",\n                \"required_value\": \"pre-existing condition aggravated in line of duty on active duty\",\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"injury or illness effect\",\n            \"operator\": \"==\",\n            \"required_value\": \"may render member medically unfit for duties\",\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.127(b)(1), 825.127(c)(1)\",\n        \"notes\": \"Outpatient status includes assignment to military medical treatment facility as outpatient or unit providing command and control of outpatient care members.\",\n        \"source_text\": \"A current member of the Armed Forces, including a member of the National Guard or Reserves, who is undergoing medical treatment, recuperation, or therapy, is otherwise in outpatient status; or is otherwise on the temporary disability retired list, for a serious injury or illness... an injury or illness that was incurred by the covered servicemember in the line of duty on active duty... and that may render the member medically unfit to perform the duties of the member's office, grade, rank or rating.\"\n      },\n      {\n        \"condition_name\": \"covered_veteran_serious_injury_or_illness\",\n        \"field\": \"covered veteran status and condition\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"needed to care\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"veteran discharge status\",\n            \"operator\": \"!=\",\n            \"required_value\": \"dishonorable discharge\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"time since discharge\",\n            \"operator\": \"<=\",\n            \"required_value\": 5,\n            \"unit\": \"years\"\n          },\n          {\n            \"field\": \"veteran medical status\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"undergoing medical treatment\",\n              \"recuperation\",\n              \"therapy\"\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"serious injury or illness origin\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"injury or illness origin\",\n                \"operator\": \"==\",\n                \"required_value\": \"incurred in line of duty on active duty\",\n                \"unit\": null\n              },\n              {\n                \"field\": \"injury or illness origin\",\n                \"operator\": \"==\",\n                \"required_value\": \"pre-existing condition aggravated in line of duty on active duty\",\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"serious injury or illness manifestation\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"manifested before becoming veteran\",\n              \"manifested after becoming veteran\"\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"serious injury or illness qualifying type\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"continuation of serious injury or illness\",\n                \"operator\": \"==\",\n                \"required_value\": \"rendered servicemember unable to perform duties\",\n                \"unit\": null\n              },\n              {\n                \"field\": \"VASRD rating for condition precipitating military caregiver leave\",\n                \"operator\": \">=\",\n                \"required_value\": 50,\n                \"unit\": \"percent\"\n              },\n              {\n                \"field\": \"substantial occupational impairment\",\n                \"operator\": \"==\",\n                \"required_value\": \"substantially impairs ability to secure or follow gainful occupation\",\n                \"unit\": null\n              },\n              {\n                \"field\": \"VA caregiver program enrollment\",\n                \"operator\": \"==\",\n                \"required_value\": \"enrolled in VA Program of Comprehensive Assistance for Family Caregivers\",\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.127(b)(2), 825.127(c)(2)\",\n        \"notes\": \"Five-year period is measured prior to the first date the eligible employee takes FMLA leave to care for the covered veteran. For veterans discharged before the Final Rule effective date, the period between October 28, 2009 and the effective date does not count toward the five-year period.\",\n        \"source_text\": \"A covered veteran who is undergoing medical treatment, recuperation or therapy for a serious injury or illness. Covered veteran means an individual who was a member of the Armed Forces... and was discharged or released under conditions other than dishonorable at any time during the five-year period prior to the first date the eligible employee takes FMLA leave to care for the covered veteran.\"\n      }\n    ]\n  }\n}"
+}

@@ -1,0 +1,181 @@
+{
+  "extracted_at": "2026-07-15T18:13:27.088499+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/tn_extracted_sections_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/schema/tn_birth_or_pregnancy.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "birth or pregnancy",
+  "matched_chunk_count": 6,
+  "section_count": 6,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self",
+      "spouse",
+      "son or daughter",
+      "parent"
+    ],
+    "citation": "6.02.A, 6.02.C, 6.02.D, 6.04, 13.01",
+    "notes": "Self covers birth/bonding, prenatal care, and pregnancy incapacity. Spouse, son or daughter, and parent covered for serious health condition including pregnancy incapacity and prenatal care under 6.02.C."
+  },
+  "conditions": [
+    {
+      "condition_name": "birth_and_bonding",
+      "field": "birth of child and bonding",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": "birth of child",
+          "unit": null
+        },
+        {
+          "field": "time since birth",
+          "operator": "<=",
+          "required_value": 1,
+          "unit": "year"
+        }
+      ],
+      "unit": null,
+      "citation": "6.02.A",
+      "notes": "Leave for bonding must be concluded within one year of birth.",
+      "source_text": "The birth of a child and to bond with the newborn child within one year of birth"
+    },
+    {
+      "condition_name": "prenatal_care",
+      "field": "prenatal care visits",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "6.02.D, 6.04, 6.06.D",
+      "notes": "Prenatal visits qualify even without incapacity preventing job performance, without a provider visit during the absence, and even if absence is less than three days.",
+      "source_text": "FMLA leave may be taken by an expectant mother for the purpose of prenatal visits; leave qualifies even if the employee does not receive treatment from a health care provider during the absence and even if the absence lasts less than three (3) days."
+    },
+    {
+      "condition_name": "pregnancy_incapacity",
+      "field": "incapacity due to pregnancy",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "incapacity due to pregnancy",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "unable to perform job functions",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "6.02.D, 6.04, 6.06.B.2, 6.06.D",
+      "notes": "Applies prior to birth when pregnancy prevents performing job duties. Qualifies even without provider visit during absence and even if absence is less than three days.",
+      "source_text": "A serious health condition that makes the employee unable to perform the functions of the employee's job, including incapacity due to pregnancy; any period of incapacity due to pregnancy or for prenatal care."
+    },
+    {
+      "condition_name": "serious_health_condition_family",
+      "field": "family member serious health condition including pregnancy",
+      "operator": "IN",
+      "required_value": [
+        "serious health condition",
+        "incapacity due to pregnancy",
+        "prenatal care"
+      ],
+      "unit": null,
+      "citation": "6.02.C, 6.06.B.2",
+      "notes": "Covers care for spouse, son or daughter, or parent. Pregnancy incapacity and prenatal care explicitly qualify as serious health conditions.",
+      "source_text": "The care of the employee's spouse, son, daughter, or parent with a serious health condition, including incapacity due to pregnancy and for prenatal care"
+    },
+    {
+      "condition_name": "parental_leave_birth",
+      "field": "parental leave qualifying reason",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying reason",
+          "operator": "IN",
+          "required_value": [
+            "pregnancy",
+            "childbirth",
+            "nursing infant"
+          ],
+          "unit": null
+        },
+        {
+          "field": "time since birth",
+          "operator": "<=",
+          "required_value": 12,
+          "unit": "months"
+        }
+      ],
+      "unit": null,
+      "citation": "13.01",
+      "notes": "Parental leave for pregnancy, childbirth, or nursing infant must conclude within 12 months of birth.",
+      "source_text": "Any employee...may be absent from employment for a period not to exceed four (4) months for adoption, pregnancy, childbirth, and nursing the infant. Leave entitlement expires at the end of the twelve (12) month period beginning on the date of the birth."
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 8008,
+    "output_tokens": 1807,
+    "processing_duration": 19.158807277679443
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"birth or pregnancy\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"self\", \"spouse\", \"child\", \"parent\"],\n    \"citation\": \"6.02, 6.03, 6.04\",\n    \"notes\": \"Self covers expectant mother for prenatal care and pregnancy incapacity; spouse/son/daughter/parent covered for serious health condition including pregnancy incapacity and prenatal care under 6.02.C\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"birth_and_bonding\",\n      \"field\": \"birth and bonding\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"self\", \"spouse\", \"child\", \"parent\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"birth of child\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"bonding with newborn\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"time since birth\",\n          \"operator\": \"<=\",\n          \"required_value\": 1,\n          \"unit\": \"year\"\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.02.A\",\n      \"notes\": \"Leave may be taken after birth for bonding; must be concluded within one year of birth.\",\n      \"source_text\": \"The birth of a child and to bond with the newborn child within one year of birth\"\n    },\n    {\n      \"condition_name\": \"prenatal_care\",\n      \"field\": \"prenatal care\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"==\",\n          \"required_value\": \"self\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"expectant mother\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"prenatal care\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.04, 6.02.D\",\n      \"notes\": \"Prenatal visits qualify even without incapacity preventing job performance.\",\n      \"source_text\": \"FMLA leave may be taken by an expectant mother for the purpose of prenatal visits\"\n    },\n    {\n      \"condition_name\": \"pregnancy_incapacity\",\n      \"field\": \"pregnancy incapacity\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"==\",\n          \"required_value\": \"self\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"incapacity due to pregnancy\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"unable to perform job duties\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.02.D, 6.04\",\n      \"notes\": \"Applies to expectant mother prior to birth when pregnancy prevents performing job duties.\",\n      \"source_text\": \"a serious health condition prevents her from performing her job duties prior to the child's birth\"\n    },\n    {\n      \"condition_name\": \"pregnancy_no_treatment_or_duration_required\",\n      \"field\": \"pregnancy absence\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"==\",\n          \"required_value\": \"self\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"absence reason\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"pregnancy\", \"prenatal care\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"treatment required\",\n          \"operator\": \"==\",\n          \"required_value\": false,\n          \"unit\": null\n        },\n        {\n          \"field\": \"three-day absence required\",\n          \"operator\": \"==\",\n          \"required_value\": false,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.06.D\",\n      \"notes\": \"Pregnancy and prenatal care absences qualify even without provider visit and even if absence is less than three days.\",\n      \"source_text\": \"When an employee is absent from work due to pregnancy, prenatal care...leave taken qualifies as FMLA leave even if the employee...does not receive treatment from a health care provider during the absence and even if the absence lasts less than three (3) days.\"\n    },\n    {\n      \"condition_name\": \"care_for_pregnant_spouse\",\n      \"field\": \"care for pregnant spouse\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"==\",\n          \"required_value\": \"spouse\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"care for spouse\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"spouse condition\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"incapacity due to pregnancy\", \"prenatal care\"],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.02.C\",\n      \"notes\": \"Employee may take leave to care for spouse with serious health condition including pregnancy incapacity or prenatal care.\",\n      \"source_text\": \"The care of the employee's spouse...with a serious health condition, including incapacity due to pregnancy and for prenatal care\"\n    },\n    {\n      \"condition_name\": \"parental_leave_pregnancy_childbirth_nursing\",\n      \"field\": \"parental leave\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"==\",\n          \"required_value\": \"self\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"leave reason\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"pregnancy\", \"childbirth\", \"nursing infant\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"time since birth\",\n          \"operator\": \"<=\",\n          \"required_value\": 12,\n          \"unit\": \"months\"\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"13.01\",\n      \"notes\": \"Up to 4 months for employees with 12+ consecutive months full-time service; up to 30 workdays for employees with less than 1 year service. Leave must conclude within 12 months of birth.\",\n      \"source_text\": \"Any employee...may be absent from employment for a period not to exceed four (4) months for adoption, pregnancy, childbirth, and nursing the infant.\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [
+      "birth_and_bonding condition includes a 'relationship' nested check inside required_value; relationship coverage belongs only in included_relationships, not inside conditions.",
+      "prenatal_care condition includes a 'relationship' nested check inside required_value.",
+      "pregnancy_incapacity condition includes a 'relationship' nested check inside required_value.",
+      "pregnancy_no_treatment_or_duration_required condition includes a 'relationship' nested check inside required_value.",
+      "care_for_pregnant_spouse condition includes a 'relationship' nested check inside required_value.",
+      "parental_leave_pregnancy_childbirth_nursing condition includes a 'relationship' nested check inside required_value."
+    ],
+    "relationship_issues": [
+      "included_relationships lists 'child' and 'parent' but the regulation (6.02.C) uses 'son or daughter' and 'parent'. 'child' should be 'son or daughter' to match regulation wording.",
+      "care_for_pregnant_spouse is a relationship-specific condition; relationship coverage belongs only in included_relationships. The underlying qualifying condition (serious health condition including pregnancy incapacity or prenatal care) is already covered by the general serious_health_condition pathway and should not be a separate relationship-specific top-level condition.",
+      "6.02.C covers spouse, son or daughter, and parent for serious health condition including pregnancy incapacity and prenatal care — these are already captured in included_relationships and the serious_health_condition condition; a separate care_for_pregnant_spouse condition is redundant and relationship-specific."
+    ],
+    "logic_issues": [
+      "birth_and_bonding condition requires both 'birth of child' and 'bonding with newborn' as separate ALL_OF checks, but these are the same qualifying event described in 6.02.A; they should be a single field.",
+      "prenatal_care and pregnancy_incapacity are both sub-pathways of 6.02.D (serious health condition for employee); they can be parallel top-level conditions or merged under a parent, but the 'expectant mother' check in prenatal_care is redundant given the field already states prenatal care.",
+      "pregnancy_no_treatment_or_duration_required overlaps significantly with pregnancy_incapacity and prenatal_care; it is a qualifying rule modifier (no treatment or 3-day absence required) that applies to pregnancy/prenatal absences, not a separate parallel pathway. It should be nested or noted within the relevant conditions.",
+      "parental_leave_pregnancy_childbirth_nursing mixes leave amount/duration rules (4 months, 30 workdays) into conditions; these are leave amount rules, not leave-reason qualification conditions. The qualifying reason itself (pregnancy, childbirth, nursing infant) is the relevant condition.",
+      "parental_leave_pregnancy_childbirth_nursing notes contain leave amount and service length eligibility details that are administrative/amount rules, not reason qualification rules."
+    ],
+    "missing_conditions": [
+      "6.02.D serious health condition pathway for the employee (self) is not explicitly represented as a clean top-level condition separate from the pregnancy-specific sub-pathways; a general serious_health_condition_self condition covering pregnancy incapacity and prenatal care under 6.02.D should be present.",
+      "6.06.B.2 explicitly defines 'any period of incapacity due to pregnancy or for prenatal care' as a serious health condition — this definitional support for pregnancy qualifying as a serious health condition is not surfaced."
+    ],
+    "unsupported_conditions": [
+      "care_for_pregnant_spouse as a standalone top-level condition is not supported as a separate pathway beyond what is already covered by included_relationships and the serious health condition condition for family members.",
+      "parental_leave_pregnancy_childbirth_nursing includes service-length thresholds (12 consecutive months, less than 1 year) and leave duration amounts (4 months, 30 workdays) from 13.01 as part of reason qualification; these are eligibility and leave amount rules, not leave-reason qualification conditions."
+    ],
+    "format_issues": [
+      "included_relationships uses 'child' instead of 'son or daughter' per regulation wording in 6.02 and 6.03.",
+      "Some required_value strings are long explanatory phrases rather than short atomic values."
+    ],
+    "revision_summary": [
+      "Removed all 'relationship' nested checks from inside condition required_value arrays; relationship coverage moved exclusively to included_relationships.",
+      "Corrected 'child' to 'son or daughter' in included_relationships to match regulation wording.",
+      "Removed care_for_pregnant_spouse as a standalone relationship-specific condition; family member serious health condition coverage is captured in included_relationships and the serious_health_condition_family condition.",
+      "Simplified birth_and_bonding to remove redundant dual birth/bonding checks.",
+      "Kept prenatal_care and pregnancy_incapacity as parallel self-only pathways under 6.02.D/6.04.",
+      "Converted pregnancy_no_treatment_or_duration_required into a nested modifier note within the pregnancy_incapacity and prenatal_care conditions via 6.06.D rather than a standalone top-level condition; represented as a top-level condition clarifying the no-treatment/no-3-day rule for pregnancy/prenatal absences.",
+      "Added serious_health_condition_family as a top-level condition covering 6.02.C for spouse/son or daughter/parent with serious health condition including pregnancy incapacity and prenatal care.",
+      "Retained parental_leave_birth as a top-level condition from 13.01 but stripped leave-amount and service-length rules; kept only the qualifying reason (pregnancy, childbirth, nursing infant) and the 12-month window as a reason-qualification deadline.",
+      "Surfaced 6.06.B.2 as the definitional basis that pregnancy incapacity and prenatal care qualify as serious health conditions."
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 7898,
+    "output_tokens": 2703,
+    "processing_duration": 41.22125315666199
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [\n      \"birth_and_bonding condition includes a 'relationship' nested check inside required_value; relationship coverage belongs only in included_relationships, not inside conditions.\",\n      \"prenatal_care condition includes a 'relationship' nested check inside required_value.\",\n      \"pregnancy_incapacity condition includes a 'relationship' nested check inside required_value.\",\n      \"pregnancy_no_treatment_or_duration_required condition includes a 'relationship' nested check inside required_value.\",\n      \"care_for_pregnant_spouse condition includes a 'relationship' nested check inside required_value.\",\n      \"parental_leave_pregnancy_childbirth_nursing condition includes a 'relationship' nested check inside required_value.\"\n    ],\n    \"relationship_issues\": [\n      \"included_relationships lists 'child' and 'parent' but the regulation (6.02.C) uses 'son or daughter' and 'parent'. 'child' should be 'son or daughter' to match regulation wording.\",\n      \"care_for_pregnant_spouse is a relationship-specific condition; relationship coverage belongs only in included_relationships. The underlying qualifying condition (serious health condition including pregnancy incapacity or prenatal care) is already covered by the general serious_health_condition pathway and should not be a separate relationship-specific top-level condition.\",\n      \"6.02.C covers spouse, son or daughter, and parent for serious health condition including pregnancy incapacity and prenatal care — these are already captured in included_relationships and the serious_health_condition condition; a separate care_for_pregnant_spouse condition is redundant and relationship-specific.\"\n    ],\n    \"logic_issues\": [\n      \"birth_and_bonding condition requires both 'birth of child' and 'bonding with newborn' as separate ALL_OF checks, but these are the same qualifying event described in 6.02.A; they should be a single field.\",\n      \"prenatal_care and pregnancy_incapacity are both sub-pathways of 6.02.D (serious health condition for employee); they can be parallel top-level conditions or merged under a parent, but the 'expectant mother' check in prenatal_care is redundant given the field already states prenatal care.\",\n      \"pregnancy_no_treatment_or_duration_required overlaps significantly with pregnancy_incapacity and prenatal_care; it is a qualifying rule modifier (no treatment or 3-day absence required) that applies to pregnancy/prenatal absences, not a separate parallel pathway. It should be nested or noted within the relevant conditions.\",\n      \"parental_leave_pregnancy_childbirth_nursing mixes leave amount/duration rules (4 months, 30 workdays) into conditions; these are leave amount rules, not leave-reason qualification conditions. The qualifying reason itself (pregnancy, childbirth, nursing infant) is the relevant condition.\",\n      \"parental_leave_pregnancy_childbirth_nursing notes contain leave amount and service length eligibility details that are administrative/amount rules, not reason qualification rules.\"\n    ],\n    \"missing_conditions\": [\n      \"6.02.D serious health condition pathway for the employee (self) is not explicitly represented as a clean top-level condition separate from the pregnancy-specific sub-pathways; a general serious_health_condition_self condition covering pregnancy incapacity and prenatal care under 6.02.D should be present.\",\n      \"6.06.B.2 explicitly defines 'any period of incapacity due to pregnancy or for prenatal care' as a serious health condition — this definitional support for pregnancy qualifying as a serious health condition is not surfaced.\"\n    ],\n    \"unsupported_conditions\": [\n      \"care_for_pregnant_spouse as a standalone top-level condition is not supported as a separate pathway beyond what is already covered by included_relationships and the serious health condition condition for family members.\",\n      \"parental_leave_pregnancy_childbirth_nursing includes service-length thresholds (12 consecutive months, less than 1 year) and leave duration amounts (4 months, 30 workdays) from 13.01 as part of reason qualification; these are eligibility and leave amount rules, not leave-reason qualification conditions.\"\n    ],\n    \"format_issues\": [\n      \"included_relationships uses 'child' instead of 'son or daughter' per regulation wording in 6.02 and 6.03.\",\n      \"Some required_value strings are long explanatory phrases rather than short atomic values.\"\n    ],\n    \"revision_summary\": [\n      \"Removed all 'relationship' nested checks from inside condition required_value arrays; relationship coverage moved exclusively to included_relationships.\",\n      \"Corrected 'child' to 'son or daughter' in included_relationships to match regulation wording.\",\n      \"Removed care_for_pregnant_spouse as a standalone relationship-specific condition; family member serious health condition coverage is captured in included_relationships and the serious_health_condition_family condition.\",\n      \"Simplified birth_and_bonding to remove redundant dual birth/bonding checks.\",\n      \"Kept prenatal_care and pregnancy_incapacity as parallel self-only pathways under 6.02.D/6.04.\",\n      \"Converted pregnancy_no_treatment_or_duration_required into a nested modifier note within the pregnancy_incapacity and prenatal_care conditions via 6.06.D rather than a standalone top-level condition; represented as a top-level condition clarifying the no-treatment/no-3-day rule for pregnancy/prenatal absences.\",\n      \"Added serious_health_condition_family as a top-level condition covering 6.02.C for spouse/son or daughter/parent with serious health condition including pregnancy incapacity and prenatal care.\",\n      \"Retained parental_leave_birth as a top-level condition from 13.01 but stripped leave-amount and service-length rules; kept only the qualifying reason (pregnancy, childbirth, nursing infant) and the 12-month window as a reason-qualification deadline.\",\n      \"Surfaced 6.06.B.2 as the definitional basis that pregnancy incapacity and prenatal care qualify as serious health conditions.\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"birth or pregnancy\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"self\",\n        \"spouse\",\n        \"son or daughter\",\n        \"parent\"\n      ],\n      \"citation\": \"6.02.A, 6.02.C, 6.02.D, 6.04, 13.01\",\n      \"notes\": \"Self covers birth/bonding, prenatal care, and pregnancy incapacity. Spouse, son or daughter, and parent covered for serious health condition including pregnancy incapacity and prenatal care under 6.02.C.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"birth_and_bonding\",\n        \"field\": \"birth of child and bonding\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying event\",\n            \"operator\": \"==\",\n            \"required_value\": \"birth of child\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"time since birth\",\n            \"operator\": \"<=\",\n            \"required_value\": 1,\n            \"unit\": \"year\"\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"6.02.A\",\n        \"notes\": \"Leave for bonding must be concluded within one year of birth.\",\n        \"source_text\": \"The birth of a child and to bond with the newborn child within one year of birth\"\n      },\n      {\n        \"condition_name\": \"prenatal_care\",\n        \"field\": \"prenatal care visits\",\n        \"operator\": \"==\",\n        \"required_value\": true,\n        \"unit\": null,\n        \"citation\": \"6.02.D, 6.04, 6.06.D\",\n        \"notes\": \"Prenatal visits qualify even without incapacity preventing job performance, without a provider visit during the absence, and even if absence is less than three days.\",\n        \"source_text\": \"FMLA leave may be taken by an expectant mother for the purpose of prenatal visits; leave qualifies even if the employee does not receive treatment from a health care provider during the absence and even if the absence lasts less than three (3) days.\"\n      },\n      {\n        \"condition_name\": \"pregnancy_incapacity\",\n        \"field\": \"incapacity due to pregnancy\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"incapacity due to pregnancy\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"unable to perform job functions\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"6.02.D, 6.04, 6.06.B.2, 6.06.D\",\n        \"notes\": \"Applies prior to birth when pregnancy prevents performing job duties. Qualifies even without provider visit during absence and even if absence is less than three days.\",\n        \"source_text\": \"A serious health condition that makes the employee unable to perform the functions of the employee's job, including incapacity due to pregnancy; any period of incapacity due to pregnancy or for prenatal care.\"\n      },\n      {\n        \"condition_name\": \"serious_health_condition_family\",\n        \"field\": \"family member serious health condition including pregnancy\",\n        \"operator\": \"IN\",\n        \"required_value\": [\n          \"serious health condition\",\n          \"incapacity due to pregnancy\",\n          \"prenatal care\"\n        ],\n        \"unit\": null,\n        \"citation\": \"6.02.C, 6.06.B.2\",\n        \"notes\": \"Covers care for spouse, son or daughter, or parent. Pregnancy incapacity and prenatal care explicitly qualify as serious health conditions.\",\n        \"source_text\": \"The care of the employee's spouse, son, daughter, or parent with a serious health condition, including incapacity due to pregnancy and for prenatal care\"\n      },\n      {\n        \"condition_name\": \"parental_leave_birth\",\n        \"field\": \"parental leave qualifying reason\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying reason\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"pregnancy\",\n              \"childbirth\",\n              \"nursing infant\"\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"time since birth\",\n            \"operator\": \"<=\",\n            \"required_value\": 12,\n            \"unit\": \"months\"\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"13.01\",\n        \"notes\": \"Parental leave for pregnancy, childbirth, or nursing infant must conclude within 12 months of birth.\",\n        \"source_text\": \"Any employee...may be absent from employment for a period not to exceed four (4) months for adoption, pregnancy, childbirth, and nursing the infant. Leave entitlement expires at the end of the twelve (12) month period beginning on the date of the birth.\"\n      }\n    ]\n  }\n}"
+}

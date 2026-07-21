@@ -1,0 +1,316 @@
+{
+  "leave_reason": "military exigency",
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      ["spouse"],
+      ["son or daughter"],
+      ["parent"]
+    ],
+    "citation": "825.112(a)(5), 825.126(a)",
+    "notes": "The military member must be the employee's spouse, son, daughter, or parent. Son or daughter includes biological, adopted, foster child, stepchild, legal ward, or child for whom employee stood in loco parentis, of any age."
+  },
+  "conditions": [
+    {
+      "condition_name": "short_notice_deployment",
+      "field": "short-notice deployment exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "notice period before deployment",
+          "operator": "<=",
+          "required_value": 7,
+          "unit": "calendar days"
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(5), 825.126(a), 825.126(b)(1)"
+    },
+    {
+      "condition_name": "military_events_and_related_activities",
+      "field": "military events and related activities exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "activity type",
+          "operator": "IN",
+          "required_value": [
+            ["official", "ceremony"],
+            ["official", "program"],
+            ["official", "event"],
+            ["family", "support"],
+            ["assistance", "program"],
+            ["informational", "briefing"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(5), 825.126(a), 825.126(b)(2)"
+    },
+    {
+      "condition_name": "childcare_and_school_activities",
+      "field": "childcare and school activities exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "activity type",
+          "operator": "IN",
+          "required_value": [
+            ["arrange", "alternative", "childcare"],
+            ["urgent", "immediate", "childcare"],
+            ["enroll", "transfer", "school"],
+            ["enroll", "transfer", "daycare"],
+            ["meeting", "school", "staff"],
+            ["meeting", "daycare", "staff"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "child of military member age or capability",
+          "operator": "IN",
+          "required_value": [
+            ["under", "18"],
+            ["18", "older", "incapable", "self-care", "disability"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(5), 825.126(a), 825.126(b)(3)"
+    },
+    {
+      "condition_name": "financial_and_legal_arrangements",
+      "field": "financial and legal arrangements exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "activity type",
+          "operator": "IN",
+          "required_value": [
+            ["make", "financial", "arrangements"],
+            ["update", "financial", "arrangements"],
+            ["make", "legal", "arrangements"],
+            ["update", "legal", "arrangements"],
+            ["representative", "benefits"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(5), 825.126(a), 825.126(b)(4)"
+    },
+    {
+      "condition_name": "counseling",
+      "field": "counseling exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "counseling provider",
+          "operator": "!=",
+          "required_value": [
+            ["health", "care", "provider"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "counseling recipient",
+          "operator": "IN",
+          "required_value": [
+            ["employee"],
+            ["military", "member"],
+            ["child", "military", "member"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(5), 825.126(a), 825.126(b)(5)"
+    },
+    {
+      "condition_name": "rest_and_recuperation",
+      "field": "rest and recuperation exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "military member leave status",
+          "operator": "IN",
+          "required_value": [
+            ["short-term", "temporary"],
+            ["Rest", "Recuperation"],
+            ["deployment"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(5), 825.126(a), 825.126(b)(6)"
+    },
+    {
+      "condition_name": "post_deployment_activities",
+      "field": "post-deployment activities exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "activity type",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "post-deployment ceremony or event",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "activity type",
+                  "operator": "IN",
+                  "required_value": [
+                    ["arrival", "ceremony"],
+                    ["reintegration", "briefing"],
+                    ["reintegration", "event"],
+                    ["official", "ceremony"],
+                    ["official", "program"]
+                  ],
+                  "unit": null
+                },
+                {
+                  "field": "time after termination of covered active duty",
+                  "operator": "<=",
+                  "required_value": 90,
+                  "unit": "days"
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "death-related activity",
+              "operator": "IN",
+              "required_value": [
+                ["death", "military", "member"],
+                ["funeral"],
+                ["recovering", "body"]
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(5), 825.126(a), 825.126(b)(7)"
+    },
+    {
+      "condition_name": "parental_care",
+      "field": "parental care exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "activity type",
+          "operator": "IN",
+          "required_value": [
+            ["arrange", "alternative", "care"],
+            ["urgent", "immediate", "care"],
+            ["admit", "care", "facility"],
+            ["transfer", "care", "facility"],
+            ["non-routine", "meeting", "care", "facility"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "parent of military member self-care capability",
+          "operator": "ALL_OF",
+          "required_value": [
+            {
+              "field": "incapable of self-care",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "activities requiring active assistance or supervision",
+              "operator": ">=",
+              "required_value": 3,
+              "unit": "activities of daily living or instrumental activities of daily living"
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(5), 825.126(a), 825.126(b)(8)"
+    },
+    {
+      "condition_name": "additional_activities",
+      "field": "additional activities exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "event arises from covered active duty",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "employer and employee agreement",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(5), 825.126(a), 825.126(b)(9)"
+    }
+  ]
+}

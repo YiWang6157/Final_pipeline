@@ -1,0 +1,98 @@
+{
+    "leave_reason": "birth_or_pregnancy",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "pregnancy_disability_leave",
+        "field": "pregnancy disability leave",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "disabled by pregnancy",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "disability basis",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "unable to perform essential functions",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "undue risk from performing functions",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "pregnancy-related time off needed",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          },
+          {
+            "field": "health care provider opinion",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": "",
+        "notes": ""
+      },
+      {
+        "condition_name": "cfra_leave_for_birth_of_child",
+        "field": "birth and bonding with child",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "birth of employee's child",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "child born by leave date",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "purpose",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": "",
+        "notes": ""
+      }
+    ]
+  }

@@ -1,0 +1,209 @@
+{
+  "extracted_at": "2026-07-15T18:10:38.568838+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/GA/chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/GA/schema/birth_or_pregnancy.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "birth or pregnancy",
+  "matched_chunk_count": 1,
+  "section_count": 1,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self"
+    ],
+    "citation": "478-1-.16(26)(a)1",
+    "notes": "Leave is triggered by the employee's own qualifying life event (birth, adoption placement, or foster care placement of the employee's child). No covered-person relationship beyond the employee is defined in the regulation."
+  },
+  "conditions": [
+    {
+      "condition_name": "birth_of_child",
+      "field": "qualifying life event — birth",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": "birth of employee's child",
+          "unit": null
+        },
+        {
+          "field": "employment tenure",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "salaried continuous employment",
+              "operator": ">=",
+              "required_value": 6,
+              "unit": "continuous months"
+            },
+            {
+              "field": "hourly hours worked",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "hours worked",
+                  "operator": ">=",
+                  "required_value": 700,
+                  "unit": "hours"
+                },
+                {
+                  "field": "lookback period",
+                  "operator": "==",
+                  "required_value": 6,
+                  "unit": "months immediately preceding first requested leave date"
+                }
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(26)(a)1(i), 478-1-.16(26)(a)2",
+      "notes": "Rehired ERS retirees receiving annuity payments are ineligible during the first 1,040 hours of work in the calendar year, whether salaried or hourly.",
+      "source_text": "birth of the employee's child; if salaried, the employee must have six continuous months of employment; if hourly, the employee must have worked 700 hours in the six months immediately preceding the first requested paid parental leave date."
+    },
+    {
+      "condition_name": "adoption_placement",
+      "field": "qualifying life event — adoption",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": "placement of a minor child for adoption with the employee",
+          "unit": null
+        },
+        {
+          "field": "employment tenure",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "salaried continuous employment",
+              "operator": ">=",
+              "required_value": 6,
+              "unit": "continuous months"
+            },
+            {
+              "field": "hourly hours worked",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "hours worked",
+                  "operator": ">=",
+                  "required_value": 700,
+                  "unit": "hours"
+                },
+                {
+                  "field": "lookback period",
+                  "operator": "==",
+                  "required_value": 6,
+                  "unit": "months immediately preceding first requested leave date"
+                }
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(26)(a)1(ii), 478-1-.16(26)(a)2",
+      "notes": "Rehired ERS retirees receiving annuity payments are ineligible during the first 1,040 hours of work in the calendar year, whether salaried or hourly.",
+      "source_text": "placement of a minor child for adoption with the employee; if salaried, the employee must have six continuous months of employment; if hourly, the employee must have worked 700 hours in the six months immediately preceding the first requested paid parental leave date."
+    },
+    {
+      "condition_name": "foster_care_placement",
+      "field": "qualifying life event — foster care",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": "placement of a minor child for foster care with the employee",
+          "unit": null
+        },
+        {
+          "field": "employment tenure",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "salaried continuous employment",
+              "operator": ">=",
+              "required_value": 6,
+              "unit": "continuous months"
+            },
+            {
+              "field": "hourly hours worked",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "hours worked",
+                  "operator": ">=",
+                  "required_value": 700,
+                  "unit": "hours"
+                },
+                {
+                  "field": "lookback period",
+                  "operator": "==",
+                  "required_value": 6,
+                  "unit": "months immediately preceding first requested leave date"
+                }
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(26)(a)1(iii), 478-1-.16(26)(a)2",
+      "notes": "Rehired ERS retirees receiving annuity payments are ineligible during the first 1,040 hours of work in the calendar year, whether salaried or hourly.",
+      "source_text": "placement of a minor child for foster care with the employee; if salaried, the employee must have six continuous months of employment; if hourly, the employee must have worked 700 hours in the six months immediately preceding the first requested paid parental leave date."
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 4872,
+    "output_tokens": 482,
+    "processing_duration": 6.354437589645386
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"birth or pregnancy\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"self\", \"child\"],\n    \"citation\": \"478-1-.16(26)(a)1(i)\",\n    \"notes\": \"Leave is triggered by birth of the employee's own child; covers employee and child relationship.\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"birth_of_employee_child\",\n      \"field\": \"birth of employee child\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"qualifying event\",\n          \"operator\": \"==\",\n          \"required_value\": \"birth of employee's child\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"employment type and tenure\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"salaried continuous employment\",\n              \"operator\": \">=\",\n              \"required_value\": 6,\n              \"unit\": \"continuous months\"\n            },\n            {\n              \"field\": \"hourly hours worked in preceding period\",\n              \"operator\": \">=\",\n              \"required_value\": 700,\n              \"unit\": \"hours in preceding 6 months\"\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"478-1-.16(26)(a)1(i), 478-1-.16(26)(a)2\",\n      \"notes\": \"Rehired ERS retirees receiving annuity payments are ineligible during first 1,040 hours of work in the calendar year.\",\n      \"source_text\": \"birth of the employee's child; if salaried, the employee must have six continuous months of employment; if hourly, the employee must have worked 700 hours in the six months immediately preceding the first requested paid parental leave date.\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "included_relationships includes 'child' as a relationship, but the regulation text does not describe leave taken to care for a child — it describes leave triggered by the birth of the employee's own child. The relationship is 'self' (the employee's own qualifying life event). 'child' as a covered-person relationship is not supported by the regulation chunks."
+    ],
+    "logic_issues": [
+      "The unit for the hourly hours check reads 'hours in preceding 6 months' — the time window detail belongs in a separate nested check or notes, not in unit. Unit should be measurement-only (e.g., 'hours').",
+      "The employment type and tenure sub-check uses 'employment type and tenure' as a field label, which is vague. It should be split or labeled more specifically."
+    ],
+    "missing_conditions": [
+      "The regulation lists three qualifying life events: (i) birth of employee's child, (ii) placement of a minor child for adoption, (iii) placement of a minor child for foster care. API1 only captures birth. The other two qualifying events are missing as parallel top-level conditions."
+    ],
+    "unsupported_conditions": [
+      "'child' in included_relationships is not supported as a covered-person relationship by the regulation chunks."
+    ],
+    "format_issues": [
+      "unit for hourly check contains a time window phrase ('hours in preceding 6 months') rather than a measurement-only unit ('hours')."
+    ],
+    "revision_summary": [
+      "Removed 'child' from included_relationships; only 'self' is supported by the regulation.",
+      "Added two missing parallel top-level conditions for adoption placement and foster care placement.",
+      "Fixed unit for hourly hours check to 'hours' only; moved the 6-month window into a separate nested check.",
+      "Kept the rehired ERS retiree ineligibility note on each condition as it applies to all three qualifying events.",
+      "Kept salaried and hourly tenure sub-checks nested inside each qualifying event condition."
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 4549,
+    "output_tokens": 2085,
+    "processing_duration": 20.994590282440186
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"included_relationships includes 'child' as a relationship, but the regulation text does not describe leave taken to care for a child — it describes leave triggered by the birth of the employee's own child. The relationship is 'self' (the employee's own qualifying life event). 'child' as a covered-person relationship is not supported by the regulation chunks.\"\n    ],\n    \"logic_issues\": [\n      \"The unit for the hourly hours check reads 'hours in preceding 6 months' — the time window detail belongs in a separate nested check or notes, not in unit. Unit should be measurement-only (e.g., 'hours').\",\n      \"The employment type and tenure sub-check uses 'employment type and tenure' as a field label, which is vague. It should be split or labeled more specifically.\"\n    ],\n    \"missing_conditions\": [\n      \"The regulation lists three qualifying life events: (i) birth of employee's child, (ii) placement of a minor child for adoption, (iii) placement of a minor child for foster care. API1 only captures birth. The other two qualifying events are missing as parallel top-level conditions.\"\n    ],\n    \"unsupported_conditions\": [\n      \"'child' in included_relationships is not supported as a covered-person relationship by the regulation chunks.\"\n    ],\n    \"format_issues\": [\n      \"unit for hourly check contains a time window phrase ('hours in preceding 6 months') rather than a measurement-only unit ('hours').\"\n    ],\n    \"revision_summary\": [\n      \"Removed 'child' from included_relationships; only 'self' is supported by the regulation.\",\n      \"Added two missing parallel top-level conditions for adoption placement and foster care placement.\",\n      \"Fixed unit for hourly hours check to 'hours' only; moved the 6-month window into a separate nested check.\",\n      \"Kept the rehired ERS retiree ineligibility note on each condition as it applies to all three qualifying events.\",\n      \"Kept salaried and hourly tenure sub-checks nested inside each qualifying event condition.\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"birth or pregnancy\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"self\"\n      ],\n      \"citation\": \"478-1-.16(26)(a)1\",\n      \"notes\": \"Leave is triggered by the employee's own qualifying life event (birth, adoption placement, or foster care placement of the employee's child). No covered-person relationship beyond the employee is defined in the regulation.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"birth_of_child\",\n        \"field\": \"qualifying life event — birth\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying event\",\n            \"operator\": \"==\",\n            \"required_value\": \"birth of employee's child\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"employment tenure\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"salaried continuous employment\",\n                \"operator\": \">=\",\n                \"required_value\": 6,\n                \"unit\": \"continuous months\"\n              },\n              {\n                \"field\": \"hourly hours worked\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"hours worked\",\n                    \"operator\": \">=\",\n                    \"required_value\": 700,\n                    \"unit\": \"hours\"\n                  },\n                  {\n                    \"field\": \"lookback period\",\n                    \"operator\": \"==\",\n                    \"required_value\": 6,\n                    \"unit\": \"months immediately preceding first requested leave date\"\n                  }\n                ],\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"478-1-.16(26)(a)1(i), 478-1-.16(26)(a)2\",\n        \"notes\": \"Rehired ERS retirees receiving annuity payments are ineligible during the first 1,040 hours of work in the calendar year, whether salaried or hourly.\",\n        \"source_text\": \"birth of the employee's child; if salaried, the employee must have six continuous months of employment; if hourly, the employee must have worked 700 hours in the six months immediately preceding the first requested paid parental leave date.\"\n      },\n      {\n        \"condition_name\": \"adoption_placement\",\n        \"field\": \"qualifying life event — adoption\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying event\",\n            \"operator\": \"==\",\n            \"required_value\": \"placement of a minor child for adoption with the employee\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"employment tenure\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"salaried continuous employment\",\n                \"operator\": \">=\",\n                \"required_value\": 6,\n                \"unit\": \"continuous months\"\n              },\n              {\n                \"field\": \"hourly hours worked\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"hours worked\",\n                    \"operator\": \">=\",\n                    \"required_value\": 700,\n                    \"unit\": \"hours\"\n                  },\n                  {\n                    \"field\": \"lookback period\",\n                    \"operator\": \"==\",\n                    \"required_value\": 6,\n                    \"unit\": \"months immediately preceding first requested leave date\"\n                  }\n                ],\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"478-1-.16(26)(a)1(ii), 478-1-.16(26)(a)2\",\n        \"notes\": \"Rehired ERS retirees receiving annuity payments are ineligible during the first 1,040 hours of work in the calendar year, whether salaried or hourly.\",\n        \"source_text\": \"placement of a minor child for adoption with the employee; if salaried, the employee must have six continuous months of employment; if hourly, the employee must have worked 700 hours in the six months immediately preceding the first requested paid parental leave date.\"\n      },\n      {\n        \"condition_name\": \"foster_care_placement\",\n        \"field\": \"qualifying life event — foster care\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying event\",\n            \"operator\": \"==\",\n            \"required_value\": \"placement of a minor child for foster care with the employee\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"employment tenure\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"salaried continuous employment\",\n                \"operator\": \">=\",\n                \"required_value\": 6,\n                \"unit\": \"continuous months\"\n              },\n              {\n                \"field\": \"hourly hours worked\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"hours worked\",\n                    \"operator\": \">=\",\n                    \"required_value\": 700,\n                    \"unit\": \"hours\"\n                  },\n                  {\n                    \"field\": \"lookback period\",\n                    \"operator\": \"==\",\n                    \"required_value\": 6,\n                    \"unit\": \"months immediately preceding first requested leave date\"\n                  }\n                ],\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"478-1-.16(26)(a)1(iii), 478-1-.16(26)(a)2\",\n        \"notes\": \"Rehired ERS retirees receiving annuity payments are ineligible during the first 1,040 hours of work in the calendar year, whether salaried or hourly.\",\n        \"source_text\": \"placement of a minor child for foster care with the employee; if salaried, the employee must have six continuous months of employment; if hourly, the employee must have worked 700 hours in the six months immediately preceding the first requested paid parental leave date.\"\n      }\n    ]\n  }\n}"
+}

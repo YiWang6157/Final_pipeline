@@ -1,0 +1,108 @@
+{
+    "category": "notice",
+    "conditions": [
+      {
+        "condition_name": "tn_fmla_foreseeable_advance_notice",
+        "field": "FMLA foreseeable leave notice",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "foreseeable leave",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "advance notice",
+            "operator": ">=",
+            "required_value": 30,
+            "unit": "days"
+          }
+        ],
+        "unit": null,
+        "citation": "6.15"
+      },
+      {
+        "condition_name": "tn_fmla_unforeseeable_notice",
+        "field": "FMLA unforeseeable leave notice",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "30-day notice possible",
+            "operator": "==",
+            "required_value": false,
+            "unit": null
+          },
+          {
+            "field": "notice timing",
+            "operator": "==",
+            "required_value": "as soon as practicable",
+            "unit": null
+          },
+          {
+            "field": "normal notice window after employee knows leave date",
+            "operator": "IN",
+            "required_value": [
+              ["1", "business", "day"],
+              ["2", "business", "days"]
+            ],
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.15"
+      },
+      {
+        "condition_name": "tn_parental_leave_foreseeable_advance_notice",
+        "field": "parental leave foreseeable notice",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "parental leave",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "advance notice",
+            "operator": ">=",
+            "required_value": 30,
+            "unit": "days"
+          }
+        ],
+        "unit": null,
+        "citation": "13.03"
+      },
+      {
+        "condition_name": "tn_parental_leave_unforeseeable_notice",
+        "field": "parental leave unforeseeable notice",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "30-day notice possible",
+            "operator": "==",
+            "required_value": false,
+            "unit": null
+          },
+          {
+            "field": "notice timing",
+            "operator": "==",
+            "required_value": "as soon as reasonably possible",
+            "unit": null
+          },
+          {
+            "field": "normal notice window after employee knows leave date",
+            "operator": "IN",
+            "required_value": [
+              ["1", "business", "day"],
+              ["2", "business", "days"]
+            ],
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "13.03",
+        "notes": "Benefits and rights are not forfeited if advance notice is prevented by a medical emergency requiring earlier parental leave or if notice of adoption was received less than 30 days in advance."
+      }
+    ]
+  }

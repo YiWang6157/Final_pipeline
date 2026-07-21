@@ -1,0 +1,24 @@
+{
+  "extracted_at": "2026-07-01T14:10:09.992307Z",
+  "source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/20260624predefined_trail/data/tn_extracted_sections_chunk_schema_filled.json",
+  "employee_eligibility_conditions": [
+    {
+      "field": "employment_duration_months",
+      "operator": ">=",
+      "required_value": 12,
+      "unit": "months",
+      "citation": "6.01",
+      "notes": "The twelve (12) months of required work with the State do not have to be consecutive.",
+      "source_text": "have worked for the State of Tennessee for at least twelve (12) months"
+    },
+    {
+      "field": "hours_worked_last_12_months",
+      "operator": ">=",
+      "required_value": 1250,
+      "unit": "hours",
+      "citation": "6.01",
+      "notes": null,
+      "source_text": "have worked at least one thousand, two-hundred and fifty (1,250) hours during the year preceding the start of the leave"
+    }
+  ]
+}

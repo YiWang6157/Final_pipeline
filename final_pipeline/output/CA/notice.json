@@ -1,0 +1,101 @@
+{
+  "extracted_at": "2026-07-15T18:09:02.772745+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/cfra_chunk_schema_filled.json",
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/pdl_chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "notice_cert",
+  "model_key": "ari_model",
+  "matched_chunk_count": 21,
+  "category": "notice",
+  "conditions": [
+    {
+      "condition_name": "cfra_foreseeable_advance_notice",
+      "operator": ">=",
+      "required_value": "30",
+      "unit": "days",
+      "citation": "2 CCR § 11091(a)(2)",
+      "notes": "Applies when leave is foreseeable based on birth, adoption, foster care, or planned medical treatment.",
+      "source_text": "employer may require at least 30 days' advance notice before CFRA leave is to begin if the need for the leave is foreseeable"
+    },
+    {
+      "condition_name": "cfra_unforeseeable_notice",
+      "operator": "==",
+      "required_value": "as soon as practicable",
+      "unit": null,
+      "citation": "2 CCR § 11091(a)(3)",
+      "notes": "Applies when 30 days is not practicable due to lack of knowledge, changed circumstances, or medical emergency.",
+      "source_text": "If 30 days' notice is not practicable, notice must be given as soon as practicable"
+    },
+    {
+      "condition_name": "cfra_emergency_no_advance_notice_required",
+      "operator": "==",
+      "required_value": "as soon as practicable",
+      "unit": null,
+      "citation": "2 CCR § 11091(a)(4)",
+      "notes": "Employer cannot deny leave for emergency or unforeseeable need solely due to lack of advance notice.",
+      "source_text": "employer shall not deny a CFRA leave, the need for which is an emergency or is otherwise unforeseeable, on the basis that the employee did not provide advance notice"
+    },
+    {
+      "condition_name": "cfra_verbal_notice_minimum",
+      "operator": "==",
+      "required_value": "verbal notice sufficient",
+      "unit": null,
+      "citation": "2 CCR § 11091(a)(1)",
+      "notes": "Employee need not mention CFRA/FMLA but must state the reason for leave.",
+      "source_text": "employee shall provide at least verbal notice sufficient to make the employer aware that the employee needs CFRA leave, and the anticipated timing and duration"
+    },
+    {
+      "condition_name": "pdl_foreseeable_advance_notice",
+      "operator": ">=",
+      "required_value": "30",
+      "unit": "days",
+      "citation": "2 CCR § 11050(a)(2)",
+      "notes": "Applies when need for pregnancy disability leave, accommodation, or transfer is foreseeable.",
+      "source_text": "employee must provide the employer at least 30 days advance notice before the start of reasonable accommodation, transfer, or pregnancy disability leave if the need is foreseeable"
+    },
+    {
+      "condition_name": "pdl_unforeseeable_notice",
+      "operator": "==",
+      "required_value": "as soon as practicable",
+      "unit": null,
+      "citation": "2 CCR § 11050(a)(3)",
+      "notes": "Applies when 30 days is not practicable due to unknown timing, changed circumstances, medical emergency, or other good cause.",
+      "source_text": "If 30 days advance notice is not practicable, notice must be given as soon as practicable"
+    },
+    {
+      "condition_name": "pdl_emergency_no_advance_notice_required",
+      "operator": "==",
+      "required_value": "as soon as practicable",
+      "unit": null,
+      "citation": "2 CCR § 11050(a)(4)",
+      "notes": "Employer cannot deny accommodation, transfer, or PDL for emergency or unforeseeable need due to lack of advance notice.",
+      "source_text": "employer shall not deny reasonable accommodation, transfer, or pregnancy disability leave, the need for which is an emergency or is otherwise unforeseeable, on the basis that the employee did not provide adequate advance notice"
+    },
+    {
+      "condition_name": "pdl_verbal_or_written_notice",
+      "operator": "==",
+      "required_value": "timely oral or written notice",
+      "unit": null,
+      "citation": "2 CCR § 11050(a)(1)",
+      "notes": "Employee must make employer aware of need and, where practicable, anticipated timing and duration.",
+      "source_text": "employee shall provide timely oral or written notice sufficient to make the employer aware that the employee needs reasonable accommodation, transfer, or pregnancy disability leave"
+    },
+    {
+      "condition_name": "pdl_reasonable_advance_notice_pregnancy",
+      "operator": "==",
+      "required_value": "reasonable advance notice",
+      "unit": null,
+      "citation": "2 CCR § 11042(c)(1)",
+      "notes": "Condition for PDL not being unlawfully denied; employee must provide reasonable advance notice of medical need.",
+      "source_text": "who has provided the employer with reasonable advance notice of the medical need for the leave"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 12078,
+    "output_tokens": 1274,
+    "processing_duration": 16.556946516036987
+  },
+  "raw_llm_response": "{\n  \"category\": \"notice\",\n  \"conditions\": [\n    {\n      \"condition_name\": \"cfra_foreseeable_advance_notice\",\n      \"operator\": \">=\",\n      \"required_value\": \"30\",\n      \"unit\": \"days\",\n      \"citation\": \"2 CCR § 11091(a)(2)\",\n      \"notes\": \"Applies when leave is foreseeable based on birth, adoption, foster care, or planned medical treatment.\",\n      \"source_text\": \"employer may require at least 30 days' advance notice before CFRA leave is to begin if the need for the leave is foreseeable\"\n    },\n    {\n      \"condition_name\": \"cfra_unforeseeable_notice\",\n      \"operator\": \"==\",\n      \"required_value\": \"as soon as practicable\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11091(a)(3)\",\n      \"notes\": \"Applies when 30 days is not practicable due to lack of knowledge, changed circumstances, or medical emergency.\",\n      \"source_text\": \"If 30 days' notice is not practicable, notice must be given as soon as practicable\"\n    },\n    {\n      \"condition_name\": \"cfra_emergency_no_advance_notice_required\",\n      \"operator\": \"==\",\n      \"required_value\": \"as soon as practicable\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11091(a)(4)\",\n      \"notes\": \"Employer cannot deny leave for emergency or unforeseeable need solely due to lack of advance notice.\",\n      \"source_text\": \"employer shall not deny a CFRA leave, the need for which is an emergency or is otherwise unforeseeable, on the basis that the employee did not provide advance notice\"\n    },\n    {\n      \"condition_name\": \"cfra_verbal_notice_minimum\",\n      \"operator\": \"==\",\n      \"required_value\": \"verbal notice sufficient\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11091(a)(1)\",\n      \"notes\": \"Employee need not mention CFRA/FMLA but must state the reason for leave.\",\n      \"source_text\": \"employee shall provide at least verbal notice sufficient to make the employer aware that the employee needs CFRA leave, and the anticipated timing and duration\"\n    },\n    {\n      \"condition_name\": \"pdl_foreseeable_advance_notice\",\n      \"operator\": \">=\",\n      \"required_value\": \"30\",\n      \"unit\": \"days\",\n      \"citation\": \"2 CCR § 11050(a)(2)\",\n      \"notes\": \"Applies when need for pregnancy disability leave, accommodation, or transfer is foreseeable.\",\n      \"source_text\": \"employee must provide the employer at least 30 days advance notice before the start of reasonable accommodation, transfer, or pregnancy disability leave if the need is foreseeable\"\n    },\n    {\n      \"condition_name\": \"pdl_unforeseeable_notice\",\n      \"operator\": \"==\",\n      \"required_value\": \"as soon as practicable\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11050(a)(3)\",\n      \"notes\": \"Applies when 30 days is not practicable due to unknown timing, changed circumstances, medical emergency, or other good cause.\",\n      \"source_text\": \"If 30 days advance notice is not practicable, notice must be given as soon as practicable\"\n    },\n    {\n      \"condition_name\": \"pdl_emergency_no_advance_notice_required\",\n      \"operator\": \"==\",\n      \"required_value\": \"as soon as practicable\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11050(a)(4)\",\n      \"notes\": \"Employer cannot deny accommodation, transfer, or PDL for emergency or unforeseeable need due to lack of advance notice.\",\n      \"source_text\": \"employer shall not deny reasonable accommodation, transfer, or pregnancy disability leave, the need for which is an emergency or is otherwise unforeseeable, on the basis that the employee did not provide adequate advance notice\"\n    },\n    {\n      \"condition_name\": \"pdl_verbal_or_written_notice\",\n      \"operator\": \"==\",\n      \"required_value\": \"timely oral or written notice\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11050(a)(1)\",\n      \"notes\": \"Employee must make employer aware of need and, where practicable, anticipated timing and duration.\",\n      \"source_text\": \"employee shall provide timely oral or written notice sufficient to make the employer aware that the employee needs reasonable accommodation, transfer, or pregnancy disability leave\"\n    },\n    {\n      \"condition_name\": \"pdl_reasonable_advance_notice_pregnancy\",\n      \"operator\": \"==\",\n      \"required_value\": \"reasonable advance notice\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11042(c)(1)\",\n      \"notes\": \"Condition for PDL not being unlawfully denied; employee must provide reasonable advance notice of medical need.\",\n      \"source_text\": \"who has provided the employer with reasonable advance notice of the medical need for the leave\"\n    }\n  ]\n}"
+}

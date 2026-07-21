@@ -1,0 +1,371 @@
+{
+    "leave_reason": "health_condition",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "employee_own_serious_health_condition",
+        "field": "employee own serious health condition",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "serious health condition",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "inpatient care",
+                "operator": "",
+                "required_value": [
+                  {
+                    "field": "hospital hospice or residential care stay",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  },
+                  {
+                    "field": "subsequent treatment connected to inpatient care",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  },
+                  {
+                    "field": "incapacity connected to inpatient care",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  }
+                ],
+                "unit": "",
+                "citation": ""
+              },
+              {
+                "field": "continuing treatment",
+                "operator": "",
+                "required_value": [
+                  {
+                    "field": "absence plus treatment",
+                    "operator": "",
+                    "required_value": [
+                      {
+                        "field": "incapacity duration",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      },
+                      {
+                        "field": "treatment requirement",
+                        "operator": "",
+                        "required_value": [
+                          {
+                            "field": "treatment count",
+                            "operator": "",
+                            "required_value": "",
+                            "unit": ""
+                          },
+                          {
+                            "field": "continuing treatment regimen",
+                            "operator": "",
+                            "required_value": "",
+                            "unit": ""
+                          }
+                        ],
+                        "unit": ""
+                      }
+                    ],
+                    "unit": ""
+                  },
+                  {
+                    "field": "chronic condition",
+                    "operator": "",
+                    "required_value": [
+                      {
+                        "field": "periodic treatment",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      },
+                      {
+                        "field": "extended period",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      },
+                      {
+                        "field": "episodic incapacity",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      }
+                    ],
+                    "unit": ""
+                  },
+                  {
+                    "field": "permanent or long-term condition",
+                    "operator": "",
+                    "required_value": [
+                      {
+                        "field": "treatment may not be effective",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      },
+                      {
+                        "field": "continuing supervision",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      }
+                    ],
+                    "unit": ""
+                  },
+                  {
+                    "field": "multiple treatments",
+                    "operator": "",
+                    "required_value": [
+                      {
+                        "field": "multiple treatments or recovery",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      },
+                      {
+                        "field": "treatment category",
+                        "operator": "",
+                        "required_value": [
+                          {
+                            "field": "restorative surgery",
+                            "operator": "",
+                            "required_value": "",
+                            "unit": ""
+                          },
+                          {
+                            "field": "would exceed 3 days without treatment",
+                            "operator": "",
+                            "required_value": "",
+                            "unit": ""
+                          }
+                        ],
+                        "unit": ""
+                      }
+                    ],
+                    "unit": ""
+                  },
+                  {
+                    "field": "substance abuse treatment",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  }
+                ],
+                "unit": "",
+                "citation": ""
+              }
+            ],
+            "unit": ""
+          },
+          {
+            "field": "work impact",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "pregnancy disability",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": "",
+        "notes": ""
+      },
+      {
+        "condition_name": "care_for_family_member_serious_health_condition",
+        "field": "care for family member serious health condition",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "care for family member",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "serious health condition",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "inpatient care",
+                "operator": "",
+                "required_value": [
+                  {
+                    "field": "hospital hospice or residential care stay",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  },
+                  {
+                    "field": "subsequent treatment connected to inpatient care",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  },
+                  {
+                    "field": "incapacity connected to inpatient care",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  }
+                ],
+                "unit": "",
+                "citation": ""
+              },
+              {
+                "field": "continuing treatment",
+                "operator": "",
+                "required_value": [
+                  {
+                    "field": "absence plus treatment",
+                    "operator": "",
+                    "required_value": [
+                      {
+                        "field": "incapacity duration",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      },
+                      {
+                        "field": "treatment requirement",
+                        "operator": "",
+                        "required_value": [
+                          {
+                            "field": "treatment count",
+                            "operator": "",
+                            "required_value": "",
+                            "unit": ""
+                          },
+                          {
+                            "field": "continuing treatment regimen",
+                            "operator": "",
+                            "required_value": "",
+                            "unit": ""
+                          }
+                        ],
+                        "unit": ""
+                      }
+                    ],
+                    "unit": ""
+                  },
+                  {
+                    "field": "chronic condition",
+                    "operator": "",
+                    "required_value": [
+                      {
+                        "field": "periodic treatment",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      },
+                      {
+                        "field": "extended period",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      },
+                      {
+                        "field": "episodic incapacity",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      }
+                    ],
+                    "unit": ""
+                  },
+                  {
+                    "field": "permanent or long-term condition",
+                    "operator": "",
+                    "required_value": [
+                      {
+                        "field": "treatment may not be effective",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      },
+                      {
+                        "field": "continuing supervision",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      }
+                    ],
+                    "unit": ""
+                  },
+                  {
+                    "field": "multiple treatments",
+                    "operator": "",
+                    "required_value": [
+                      {
+                        "field": "multiple treatments or recovery",
+                        "operator": "",
+                        "required_value": "",
+                        "unit": ""
+                      },
+                      {
+                        "field": "treatment category",
+                        "operator": "",
+                        "required_value": [
+                          {
+                            "field": "restorative surgery",
+                            "operator": "",
+                            "required_value": "",
+                            "unit": ""
+                          },
+                          {
+                            "field": "would exceed 3 days without treatment",
+                            "operator": "",
+                            "required_value": "",
+                            "unit": ""
+                          }
+                        ],
+                        "unit": ""
+                      }
+                    ],
+                    "unit": ""
+                  },
+                  {
+                    "field": "substance abuse treatment",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  }
+                ],
+                "unit": "",
+                "citation": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": "",
+        "notes": ""
+      }
+    ]
+  }

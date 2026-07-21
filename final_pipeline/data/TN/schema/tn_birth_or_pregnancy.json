@@ -1,0 +1,185 @@
+{
+    "leave_reason": "birth_or_pregnancy",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "birth_and_bonding",
+        "field": "birth and bonding",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "birth of child",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "bonding with newborn",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "time since birth",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "prenatal_care",
+        "field": "prenatal care",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "expectant mother",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "prenatal care",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "pregnancy_incapacity",
+        "field": "pregnancy incapacity",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "incapacity due to pregnancy",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "unable to perform job duties",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "pregnancy_no_treatment_or_duration_required",
+        "field": "pregnancy absence",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "absence reason",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "treatment required",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "three-day absence required",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "care_for_pregnant_spouse",
+        "field": "care for pregnant spouse",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "care for spouse",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "spouse condition",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "parental_leave_pregnancy_childbirth_nursing",
+        "field": "parental leave",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "leave reason",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "time since birth",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      }
+    ]
+  }

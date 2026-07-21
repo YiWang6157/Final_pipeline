@@ -1,0 +1,147 @@
+{
+  "extracted_at": "2026-07-15T18:08:22.640484+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/cfra_chunk_schema_filled.json",
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/pdl_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/schema/birth_or_pregnancy.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "birth or pregnancy",
+  "matched_chunk_count": 89,
+  "section_count": 89,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self"
+    ],
+    "citation": "2 CCR § 11035(f); 2 CCR § 11087(t); 2 CCR § 11093(c)",
+    "notes": "Pregnancy disability leave covers the employee's own disability. CFRA birth leave covers the employee's own child's birth and bonding."
+  },
+  "conditions": [
+    {
+      "condition_name": "pregnancy_disability_leave",
+      "field": "pregnancy disability leave",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "disabled by pregnancy",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "disability basis",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "unable to perform essential functions",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "undue risk from performing functions",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "pregnancy-related time off needed",
+              "operator": "IN",
+              "required_value": [
+                "prenatal care",
+                "postnatal care",
+                "bed rest",
+                "gestational diabetes",
+                "pregnancy-induced hypertension",
+                "preeclampsia",
+                "post-partum depression",
+                "childbirth",
+                "loss or end of pregnancy",
+                "recovery from childbirth",
+                "severe morning sickness"
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        },
+        {
+          "field": "health care provider opinion",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "2 CCR § 11035(f); 2 CCR § 11035(r); 2 CCR § 11042(a)",
+      "notes": "No minimum hours worked or length of service required. Leave up to four months per pregnancy.",
+      "source_text": "A woman is 'disabled by pregnancy' if, in the opinion of her health care provider, she is unable because of pregnancy to perform any one or more of the essential functions of her job or to perform any of these functions without undue risk to herself, to her pregnancy's successful completion, or to other persons."
+    },
+    {
+      "condition_name": "cfra_leave_for_birth_of_child",
+      "field": "birth and bonding with child",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "child born by leave date",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "purpose",
+          "operator": "IN",
+          "required_value": [
+            "birth of child",
+            "bonding with child after birth"
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "2 CCR § 11087(j)(1); 2 CCR § 11087(t); 2 CCR § 11093(c); 2 CCR § 11046(c)",
+      "notes": "No requirement that employee or child have a serious health condition. Employee need not be free of pregnancy disability before taking this leave.",
+      "source_text": "A CFRA-eligible employee may request to take CFRA leave of up to 12 workweeks for reason of the birth of the employee's child, if the child has been born by this date. There is no requirement that either the employee or child have a serious health condition."
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 25006,
+    "output_tokens": 1071,
+    "processing_duration": 14.132526159286499
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"birth or pregnancy\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"self\"],\n    \"citation\": \"2 CCR § 11035(f); 2 CCR § 11087(t); 2 CCR § 11093(c)\",\n    \"notes\": \"Pregnancy disability leave covers the employee's own disability. CFRA birth leave covers the employee's own child's birth and bonding.\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"pregnancy_disability_leave\",\n      \"field\": \"pregnancy disability leave\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"==\",\n          \"required_value\": \"self\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"disabled by pregnancy\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"disability basis\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"unable to perform essential functions\",\n              \"operator\": \"==\",\n              \"required_value\": true,\n              \"unit\": null\n            },\n            {\n              \"field\": \"undue risk from performing functions\",\n              \"operator\": \"==\",\n              \"required_value\": true,\n              \"unit\": null\n            },\n            {\n              \"field\": \"pregnancy-related time off needed\",\n              \"operator\": \"IN\",\n              \"required_value\": [\"prenatal care\", \"postnatal care\", \"bed rest\", \"gestational diabetes\", \"pregnancy-induced hypertension\", \"preeclampsia\", \"post-partum depression\", \"childbirth\", \"loss or end of pregnancy\", \"recovery from childbirth\", \"severe morning sickness\"],\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        },\n        {\n          \"field\": \"health care provider opinion\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11035(f); 2 CCR § 11035(r); 2 CCR § 11042(a)\",\n      \"notes\": \"No minimum hours worked or length of service required. Leave up to four months per pregnancy.\",\n      \"source_text\": \"A woman is 'disabled by pregnancy' if, in the opinion of her health care provider, she is unable because of pregnancy to perform any one or more of the essential functions of her job or to perform any of these functions without undue risk to herself, to her pregnancy's successful completion, or to other persons.\"\n    },\n    {\n      \"condition_name\": \"cfra_leave_for_birth_of_child\",\n      \"field\": \"birth and bonding with child\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"==\",\n          \"required_value\": \"self\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"birth of employee's child\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"child born by leave date\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"purpose\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"birth of child\", \"bonding with child after birth\"],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11087(j)(1); 2 CCR § 11087(t); 2 CCR § 11093(c); 2 CCR § 11046(c)\",\n      \"notes\": \"No requirement that employee or child have a serious health condition. Employee need not be free of pregnancy disability before taking this leave.\",\n      \"source_text\": \"A CFRA-eligible employee may request to take CFRA leave of up to 12 workweeks for reason of the birth of the employee's child, if the child has been born by this date. There is no requirement that either the employee or child have a serious health condition.\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "API1 includes 'self' only in included_relationships, which is correct. However, the notes mention 'CFRA birth leave covers the employee's own child's birth and bonding' — this is accurate but the relationship for CFRA birth leave is still 'self' (the employee takes leave for their own child's birth), so no additional relationship label is needed beyond 'self'."
+    ],
+    "logic_issues": [
+      "Both top-level conditions contain a nested 'relationship' check with required_value 'self'. Relationship coverage belongs only in included_relationships, not inside conditions. These nested relationship checks must be removed.",
+      "The cfra_leave_for_birth_of_child condition contains both 'birth of employee's child' and 'purpose: birth of child / bonding with child after birth' as separate nested checks, which are redundant. The purpose check already captures the qualifying reason; the separate 'birth of employee's child' check duplicates it.",
+      "The cfra_leave_for_birth_of_child condition includes 'child born by leave date' as a nested check. This is a qualifying condition supported by 2 CCR § 11093(c) and 2 CCR § 11046(c) and should be retained."
+    ],
+    "missing_conditions": [],
+    "unsupported_conditions": [
+      "Nested 'relationship' checks inside conditions are not leave-reason conditions; they are relationship verification and must be removed per output rules."
+    ],
+    "format_issues": [
+      "Nested check objects inside required_value must use exactly field, operator, required_value, unit. The existing nested objects comply with this requirement."
+    ],
+    "revision_summary": [
+      "Removed nested 'relationship' check objects from both top-level conditions, as relationship coverage belongs only in included_relationships.",
+      "Consolidated redundant 'birth of employee's child' and 'purpose' checks in cfra_leave_for_birth_of_child into a single 'purpose' check using ANY_OF, retaining 'child born by leave date' as a separate required check.",
+      "All other conditions retained as supported by the regulation chunks.",
+      "included_relationships unchanged: 'self' is the only supported relationship for both pregnancy disability leave and CFRA birth/bonding leave."
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 24803,
+    "output_tokens": 1580,
+    "processing_duration": 26.452430248260498
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"API1 includes 'self' only in included_relationships, which is correct. However, the notes mention 'CFRA birth leave covers the employee's own child's birth and bonding' — this is accurate but the relationship for CFRA birth leave is still 'self' (the employee takes leave for their own child's birth), so no additional relationship label is needed beyond 'self'.\"\n    ],\n    \"logic_issues\": [\n      \"Both top-level conditions contain a nested 'relationship' check with required_value 'self'. Relationship coverage belongs only in included_relationships, not inside conditions. These nested relationship checks must be removed.\",\n      \"The cfra_leave_for_birth_of_child condition contains both 'birth of employee's child' and 'purpose: birth of child / bonding with child after birth' as separate nested checks, which are redundant. The purpose check already captures the qualifying reason; the separate 'birth of employee's child' check duplicates it.\",\n      \"The cfra_leave_for_birth_of_child condition includes 'child born by leave date' as a nested check. This is a qualifying condition supported by 2 CCR § 11093(c) and 2 CCR § 11046(c) and should be retained.\"\n    ],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [\n      \"Nested 'relationship' checks inside conditions are not leave-reason conditions; they are relationship verification and must be removed per output rules.\"\n    ],\n    \"format_issues\": [\n      \"Nested check objects inside required_value must use exactly field, operator, required_value, unit. The existing nested objects comply with this requirement.\"\n    ],\n    \"revision_summary\": [\n      \"Removed nested 'relationship' check objects from both top-level conditions, as relationship coverage belongs only in included_relationships.\",\n      \"Consolidated redundant 'birth of employee's child' and 'purpose' checks in cfra_leave_for_birth_of_child into a single 'purpose' check using ANY_OF, retaining 'child born by leave date' as a separate required check.\",\n      \"All other conditions retained as supported by the regulation chunks.\",\n      \"included_relationships unchanged: 'self' is the only supported relationship for both pregnancy disability leave and CFRA birth/bonding leave.\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"birth or pregnancy\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"self\"\n      ],\n      \"citation\": \"2 CCR § 11035(f); 2 CCR § 11087(t); 2 CCR § 11093(c)\",\n      \"notes\": \"Pregnancy disability leave covers the employee's own disability. CFRA birth leave covers the employee's own child's birth and bonding.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"pregnancy_disability_leave\",\n        \"field\": \"pregnancy disability leave\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"disabled by pregnancy\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"disability basis\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"unable to perform essential functions\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              },\n              {\n                \"field\": \"undue risk from performing functions\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              },\n              {\n                \"field\": \"pregnancy-related time off needed\",\n                \"operator\": \"IN\",\n                \"required_value\": [\n                  \"prenatal care\",\n                  \"postnatal care\",\n                  \"bed rest\",\n                  \"gestational diabetes\",\n                  \"pregnancy-induced hypertension\",\n                  \"preeclampsia\",\n                  \"post-partum depression\",\n                  \"childbirth\",\n                  \"loss or end of pregnancy\",\n                  \"recovery from childbirth\",\n                  \"severe morning sickness\"\n                ],\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"health care provider opinion\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"2 CCR § 11035(f); 2 CCR § 11035(r); 2 CCR § 11042(a)\",\n        \"notes\": \"No minimum hours worked or length of service required. Leave up to four months per pregnancy.\",\n        \"source_text\": \"A woman is 'disabled by pregnancy' if, in the opinion of her health care provider, she is unable because of pregnancy to perform any one or more of the essential functions of her job or to perform any of these functions without undue risk to herself, to her pregnancy's successful completion, or to other persons.\"\n      },\n      {\n        \"condition_name\": \"cfra_leave_for_birth_of_child\",\n        \"field\": \"birth and bonding with child\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"child born by leave date\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"purpose\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"birth of child\",\n              \"bonding with child after birth\"\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"2 CCR § 11087(j)(1); 2 CCR § 11087(t); 2 CCR § 11093(c); 2 CCR § 11046(c)\",\n        \"notes\": \"No requirement that employee or child have a serious health condition. Employee need not be free of pregnancy disability before taking this leave.\",\n        \"source_text\": \"A CFRA-eligible employee may request to take CFRA leave of up to 12 workweeks for reason of the birth of the employee's child, if the child has been born by this date. There is no requirement that either the employee or child have a serious health condition.\"\n      }\n    ]\n  }\n}"
+}

@@ -1,0 +1,501 @@
+[
+  {
+    "jurisdiction": "federal",
+    "part": "ee",
+    "status": "ok",
+    "gt_condition_count": 4,
+    "extracted_condition_count": 7,
+    "gt_conditions_filled": 2,
+    "gt_conditions_matched": 2,
+    "exact_match_rate": 0.5,
+    "new_extracted_conditions": [
+      "airline_flight_crew_hours_worked_or_paid_last_12_months",
+      "airline_flight_crew_hours_worked_or_paid_percent_of_monthly_guarantee",
+      "break_in_service_duration_years",
+      "userra_covered_service_break",
+      "written_rehire_agreement_exists"
+    ],
+    "missing_from_extracted": [
+      "airline_flight_crew_hours_worked_or_paid",
+      "airline_flight_crew_hours_worked_or_paid_percentage"
+    ]
+  },
+  {
+    "jurisdiction": "federal",
+    "part": "lr:adoption",
+    "status": "ok",
+    "gt_condition_count": 3,
+    "extracted_condition_count": 3,
+    "gt_conditions_filled": 3,
+    "gt_conditions_matched": 1,
+    "exact_match_rate": 0.3333,
+    "new_extracted_conditions": [],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "federal",
+    "part": "lr:birth or pregnancy",
+    "status": "ok",
+    "gt_condition_count": 5,
+    "extracted_condition_count": 3,
+    "gt_conditions_filled": 2,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "birth_and_bonding"
+    ],
+    "missing_from_extracted": [
+      "birth_bonding",
+      "newborn_bonding",
+      "spouse_care_for_pregnant_spouse"
+    ]
+  },
+  {
+    "jurisdiction": "federal",
+    "part": "lr:health condition",
+    "status": "ok",
+    "gt_condition_count": 8,
+    "extracted_condition_count": 8,
+    "gt_conditions_filled": 8,
+    "gt_conditions_matched": 7,
+    "exact_match_rate": 0.875,
+    "new_extracted_conditions": [],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "federal",
+    "part": "lr:military caregiver",
+    "status": "ok",
+    "gt_condition_count": 2,
+    "extracted_condition_count": 2,
+    "gt_conditions_filled": 2,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "federal",
+    "part": "lr:military exigency",
+    "status": "ok",
+    "gt_condition_count": 9,
+    "extracted_condition_count": 9,
+    "gt_conditions_filled": 9,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "federal",
+    "part": "notice",
+    "status": "ok",
+    "gt_condition_count": 1,
+    "extracted_condition_count": 9,
+    "gt_conditions_filled": 0,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "delay_for_missing_30_day_notice",
+      "delay_for_missing_short_foreseeable_notice",
+      "delay_for_missing_unforeseeable_notice",
+      "foreseeable_leave_30_days_not_practicable",
+      "foreseeable_leave_advance_notice",
+      "foreseeable_qualifying_exigency_notice",
+      "foreseeable_schedule_change_notice",
+      "unforeseeable_leave_awareness_window",
+      "unforeseeable_leave_notice"
+    ],
+    "missing_from_extracted": [
+      "notice_requirement"
+    ]
+  },
+  {
+    "jurisdiction": "federal",
+    "part": "certification",
+    "status": "ok",
+    "gt_condition_count": 3,
+    "extracted_condition_count": 17,
+    "gt_conditions_filled": 0,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "fitness_for_duty_cert_required",
+      "foreseeable_leave_cert_denial",
+      "health_condition_cert_annual_renewal",
+      "health_condition_cert_content",
+      "health_condition_cert_cure_period",
+      "health_condition_cert_employee_return_deadline",
+      "health_condition_cert_permitted",
+      "health_condition_cert_request_timing",
+      "military_caregiver_cert_ito_ita_sufficient",
+      "military_caregiver_cert_permitted",
+      "military_caregiver_cert_va_caregiver_enrollment_sufficient",
+      "military_caregiver_no_recertification",
+      "military_exigency_active_duty_orders_frequency",
+      "military_exigency_cert_content",
+      "military_exigency_cert_permitted",
+      "recertification_deadline",
+      "unforeseeable_leave_cert_deadline"
+    ],
+    "missing_from_extracted": [
+      "military_caregiver_certification",
+      "qualifying_exigency_certification",
+      "serious_health_condition_medical_certification"
+    ]
+  },
+  {
+    "jurisdiction": "CA",
+    "part": "ee",
+    "status": "ok",
+    "gt_condition_count": 2,
+    "extracted_condition_count": 8,
+    "gt_conditions_filled": 2,
+    "gt_conditions_matched": 2,
+    "exact_match_rate": 1.0,
+    "new_extracted_conditions": [
+      "air_crew_employment_duration_months",
+      "air_crew_hours_worked_or_paid_last_12_months",
+      "air_crew_hours_worked_or_paid_percentage",
+      "employee_location",
+      "group_health_plan_coverage",
+      "pregnancy_disability_leave_eligibility_requirement"
+    ],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "CA",
+    "part": "lr:adoption",
+    "status": "ok",
+    "gt_condition_count": 1,
+    "extracted_condition_count": 1,
+    "gt_conditions_filled": 1,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "CA",
+    "part": "lr:birth or pregnancy",
+    "status": "ok",
+    "gt_condition_count": 2,
+    "extracted_condition_count": 2,
+    "gt_conditions_filled": 2,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "CA",
+    "part": "lr:military exigency",
+    "status": "ok",
+    "gt_condition_count": 1,
+    "extracted_condition_count": 1,
+    "gt_conditions_filled": 1,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "CA",
+    "part": "notice",
+    "status": "ok",
+    "gt_condition_count": 5,
+    "extracted_condition_count": 9,
+    "gt_conditions_filled": 4,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "cfra_emergency_no_advance_notice_required",
+      "cfra_verbal_notice_minimum",
+      "pdl_emergency_no_advance_notice_required",
+      "pdl_reasonable_advance_notice_pregnancy",
+      "pdl_verbal_or_written_notice"
+    ],
+    "missing_from_extracted": [
+      "pdl_foreseeable_late_notice_delay"
+    ]
+  },
+  {
+    "jurisdiction": "CA",
+    "part": "certification",
+    "status": "ok",
+    "gt_condition_count": 3,
+    "extracted_condition_count": 15,
+    "gt_conditions_filled": 0,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "cfra_cert_form",
+      "cfra_cert_submission_deadline",
+      "cfra_employee_health_condition_cert",
+      "cfra_family_member_health_condition_cert",
+      "cfra_recertification",
+      "cfra_return_to_work_release",
+      "pregnancy_cert_accommodation_content",
+      "pregnancy_cert_disability_leave_content",
+      "pregnancy_cert_employer_request_timing",
+      "pregnancy_cert_foreseeable_timing",
+      "pregnancy_cert_form",
+      "pregnancy_cert_submission_deadline",
+      "pregnancy_disability_cert",
+      "pregnancy_recertification",
+      "pregnancy_return_to_work_release"
+    ],
+    "missing_from_extracted": [
+      "cfra_employee_own_health_certification_required",
+      "cfra_family_member_health_certification_required",
+      "pdl_medical_certification_required"
+    ]
+  },
+  {
+    "jurisdiction": "GA",
+    "part": "ee",
+    "status": "ok",
+    "gt_condition_count": 2,
+    "extracted_condition_count": 8,
+    "gt_conditions_filled": 0,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "employment_duration_months_continuous_salaried",
+      "employment_type",
+      "hours_worked_last_6_months_hourly",
+      "is_hourly_employee",
+      "is_rehired_ers_retiree_receiving_annuity_within_1040_hours",
+      "is_temporary_employee",
+      "qualifying_life_event",
+      "scheduled_hours_per_week"
+    ],
+    "missing_from_extracted": [
+      "employment_duration_months",
+      "hours_worked_preceding_6_months"
+    ]
+  },
+  {
+    "jurisdiction": "GA",
+    "part": "lr:adoption",
+    "status": "ok",
+    "gt_condition_count": 3,
+    "extracted_condition_count": 3,
+    "gt_conditions_filled": 3,
+    "gt_conditions_matched": 1,
+    "exact_match_rate": 0.3333,
+    "new_extracted_conditions": [],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "GA",
+    "part": "lr:birth or pregnancy",
+    "status": "ok",
+    "gt_condition_count": 1,
+    "extracted_condition_count": 3,
+    "gt_conditions_filled": 0,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "adoption_placement",
+      "birth_of_child",
+      "foster_care_placement"
+    ],
+    "missing_from_extracted": [
+      "birth_of_employee_child"
+    ]
+  },
+  {
+    "jurisdiction": "GA",
+    "part": "lr:health condition",
+    "status": "ok",
+    "gt_condition_count": 4,
+    "extracted_condition_count": 6,
+    "gt_conditions_filled": 4,
+    "gt_conditions_matched": 2,
+    "exact_match_rate": 0.5,
+    "new_extracted_conditions": [
+      "adoption_health_related_presence",
+      "immediate_family_death_requiring_presence"
+    ],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "GA",
+    "part": "notice",
+    "status": "ok",
+    "gt_condition_count": 5,
+    "extracted_condition_count": 2,
+    "gt_conditions_filled": 1,
+    "gt_conditions_matched": 1,
+    "exact_match_rate": 0.2,
+    "new_extracted_conditions": [
+      "sick_leave_illness_during_annual_leave_substitution"
+    ],
+    "missing_from_extracted": [
+      "leave_request_approval_required",
+      "parental_leave_employer_notice_to_employees",
+      "periodic_status_reports_uncertain_leave",
+      "sick_leave_substitution_for_annual_leave_deadline"
+    ]
+  },
+  {
+    "jurisdiction": "GA",
+    "part": "certification",
+    "status": "ok",
+    "gt_condition_count": 6,
+    "extracted_condition_count": 6,
+    "gt_conditions_filled": 5,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "sick_leave_evidence_threshold"
+    ],
+    "missing_from_extracted": [
+      "sick_leave_evidence_requirement"
+    ]
+  },
+  {
+    "jurisdiction": "TN",
+    "part": "ee",
+    "status": "ok",
+    "gt_condition_count": 2,
+    "extracted_condition_count": 5,
+    "gt_conditions_filled": 2,
+    "gt_conditions_matched": 2,
+    "exact_match_rate": 1.0,
+    "new_extracted_conditions": [
+      "employment_duration_months_parental_full_time",
+      "employment_duration_months_parental_limited",
+      "prior_service_age_years"
+    ],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "TN",
+    "part": "lr:adoption",
+    "status": "ok",
+    "gt_condition_count": 3,
+    "extracted_condition_count": 2,
+    "gt_conditions_filled": 0,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "adoption_placement_and_bonding",
+      "foster_care_placement_and_bonding"
+    ],
+    "missing_from_extracted": [
+      "bonding_after_placement",
+      "parental_leave_adoption",
+      "placement_for_adoption"
+    ]
+  },
+  {
+    "jurisdiction": "TN",
+    "part": "lr:birth or pregnancy",
+    "status": "ok",
+    "gt_condition_count": 6,
+    "extracted_condition_count": 5,
+    "gt_conditions_filled": 3,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "parental_leave_birth",
+      "serious_health_condition_family"
+    ],
+    "missing_from_extracted": [
+      "care_for_pregnant_spouse",
+      "parental_leave_pregnancy_childbirth_nursing",
+      "pregnancy_no_treatment_or_duration_required"
+    ]
+  },
+  {
+    "jurisdiction": "TN",
+    "part": "lr:health condition",
+    "status": "ok",
+    "gt_condition_count": 2,
+    "extracted_condition_count": 2,
+    "gt_conditions_filled": 1,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "own_serious_health_condition"
+    ],
+    "missing_from_extracted": [
+      "employee_own_serious_health_condition"
+    ]
+  },
+  {
+    "jurisdiction": "TN",
+    "part": "lr:military caregiver",
+    "status": "ok",
+    "gt_condition_count": 2,
+    "extracted_condition_count": 2,
+    "gt_conditions_filled": 2,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "TN",
+    "part": "lr:military exigency",
+    "status": "ok",
+    "gt_condition_count": 1,
+    "extracted_condition_count": 1,
+    "gt_conditions_filled": 1,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [],
+    "missing_from_extracted": []
+  },
+  {
+    "jurisdiction": "TN",
+    "part": "notice",
+    "status": "ok",
+    "gt_condition_count": 4,
+    "extracted_condition_count": 4,
+    "gt_conditions_filled": 0,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "fmla_foreseeable_advance_notice",
+      "fmla_unforeseeable_notice",
+      "parental_foreseeable_advance_notice",
+      "parental_unforeseeable_notice"
+    ],
+    "missing_from_extracted": [
+      "tn_fmla_foreseeable_advance_notice",
+      "tn_fmla_unforeseeable_notice",
+      "tn_parental_leave_foreseeable_advance_notice",
+      "tn_parental_leave_unforeseeable_notice"
+    ]
+  },
+  {
+    "jurisdiction": "TN",
+    "part": "certification",
+    "status": "ok",
+    "gt_condition_count": 3,
+    "extracted_condition_count": 10,
+    "gt_conditions_filled": 0,
+    "gt_conditions_matched": 0,
+    "exact_match_rate": 0.0,
+    "new_extracted_conditions": [
+      "cert_request_timing_foreseeable",
+      "cert_request_timing_unforeseeable",
+      "cert_submission_foreseeable",
+      "cert_submission_window",
+      "failure_to_certify_foreseeable",
+      "failure_to_certify_unforeseeable",
+      "health_condition_or_caregiver_cert",
+      "incomplete_cert_cure_period",
+      "military_caregiver_cert",
+      "military_exigency_cert"
+    ],
+    "missing_from_extracted": [
+      "tn_fmla_medical_certification_needed",
+      "tn_military_caregiver_certification_needed",
+      "tn_military_exigency_certification_needed"
+    ]
+  }
+]

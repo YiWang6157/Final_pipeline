@@ -1,0 +1,22 @@
+{
+    "condition_name": "notice_requirement",
+    "operator": "ANY_OF",
+    "required_value": [
+      {
+        "field": "foreseeable_leave_notice",
+        "operator": ">=",
+        "required_value": 30,
+        "unit": "days",
+        "citation": "29 CFR 825.302(a)"
+      },
+      {
+        "field": "unforeseeable_leave_notice",
+        "operator": "==",
+        "required_value": "as_soon_as_practicable",
+        "unit": null,
+        "citation": "29 CFR 825.303(a)"
+      }
+    ],
+    "unit": null,
+    "citation": "29 CFR 825.302(a); 29 CFR 825.303(a)"
+  }

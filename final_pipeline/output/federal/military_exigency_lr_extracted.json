@@ -1,0 +1,371 @@
+{
+  "extracted_at": "2026-07-15T18:06:11.309931+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/fmla_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/schema/military_exigency.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "military exigency",
+  "matched_chunk_count": 2,
+  "section_count": 2,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "spouse",
+      "son or daughter",
+      "parent"
+    ],
+    "citation": "825.126(a); 825.112(a)(5)",
+    "notes": "Military member must be the employee's spouse, son, daughter, or parent"
+  },
+  "conditions": [
+    {
+      "condition_name": "short_notice_deployment",
+      "field": "short-notice deployment exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": "on covered active duty or call to covered active duty",
+          "unit": null
+        },
+        {
+          "field": "notice period before deployment",
+          "operator": "<=",
+          "required_value": 7,
+          "unit": "calendar days"
+        }
+      ],
+      "unit": null,
+      "citation": "825.126(b)(1)",
+      "notes": "Leave usable for 7 calendar days beginning on date of notification",
+      "source_text": "To address any issue that arises from the fact that the military member is notified of an impending call or order to covered active duty seven or less calendar days prior to the date of deployment"
+    },
+    {
+      "condition_name": "military_events_and_related_activities",
+      "field": "military events and related activities exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": "on covered active duty or call to covered active duty",
+          "unit": null
+        },
+        {
+          "field": "activity type",
+          "operator": "IN",
+          "required_value": [
+            "official military ceremony or program",
+            "family support program",
+            "informational briefing"
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.126(b)(2)",
+      "notes": "Briefings may be sponsored by military, military service organizations, or American Red Cross",
+      "source_text": "To attend any official ceremony, program, or event sponsored by the military...and to attend family support or assistance programs and informational briefings sponsored or promoted by the military, military service organizations, or the American Red Cross"
+    },
+    {
+      "condition_name": "childcare_and_school_activities",
+      "field": "childcare and school activities exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": "on covered active duty or call to covered active duty",
+          "unit": null
+        },
+        {
+          "field": "activity type",
+          "operator": "IN",
+          "required_value": [
+            "arrange alternative childcare",
+            "provide urgent childcare",
+            "enroll or transfer school or daycare",
+            "attend school or daycare meeting"
+          ],
+          "unit": null
+        },
+        {
+          "field": "child of military member age or capability",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "child age",
+              "operator": "<",
+              "required_value": 18,
+              "unit": "years"
+            },
+            {
+              "field": "child incapable of self-care due to mental or physical disability",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.126(b)(3)",
+      "notes": "Child must be military member's biological, adopted, foster, step, legal ward, or in loco parentis child",
+      "source_text": "a child of the military member must be...under 18 years of age or 18 years of age or older and incapable of self-care because of a mental or physical disability"
+    },
+    {
+      "condition_name": "financial_and_legal_arrangements",
+      "field": "financial and legal arrangements exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": "on covered active duty or call to covered active duty",
+          "unit": null
+        },
+        {
+          "field": "activity type",
+          "operator": "IN",
+          "required_value": [
+            "make or update financial or legal arrangements",
+            "act as representative before federal state or local agency for military benefits"
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.126(b)(4)",
+      "notes": "Acting as representative for benefits also covered for 90 days after termination of covered active duty",
+      "source_text": "To make or update financial or legal arrangements to address the military member's absence...and to act as the military member's representative before a federal, state, or local agency for purposes of obtaining, arranging, or appealing military service benefits"
+    },
+    {
+      "condition_name": "counseling",
+      "field": "counseling exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": "on covered active duty or call to covered active duty",
+          "unit": null
+        },
+        {
+          "field": "counseling provider",
+          "operator": "!=",
+          "required_value": "health care provider",
+          "unit": null
+        },
+        {
+          "field": "counseling recipient",
+          "operator": "IN",
+          "required_value": [
+            "employee",
+            "military member",
+            "qualifying child of military member"
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.126(b)(5)",
+      "notes": "Qualifying child of military member must be under 18 or incapable of self-care due to disability",
+      "source_text": "To attend counseling provided by someone other than a health care provider, for oneself, for the military member, or for the biological, adopted, or foster child...provided that the need for counseling arises from the covered active duty or call to covered active duty status"
+    },
+    {
+      "condition_name": "rest_and_recuperation",
+      "field": "rest and recuperation exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": "on covered active duty or call to covered active duty",
+          "unit": null
+        },
+        {
+          "field": "military member leave status",
+          "operator": "==",
+          "required_value": "short-term temporary Rest and Recuperation leave during deployment",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.126(b)(6)",
+      "notes": "Leave usable for 15 calendar days beginning on date military member commences each R&R instance",
+      "source_text": "To spend time with the military member who is on short-term, temporary, Rest and Recuperation leave during the period of deployment"
+    },
+    {
+      "condition_name": "post_deployment_activities",
+      "field": "post-deployment activities exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": "terminated covered active duty",
+          "unit": null
+        },
+        {
+          "field": "activity type",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "post-deployment ceremony or event",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "activity type",
+                  "operator": "IN",
+                  "required_value": [
+                    "arrival ceremony",
+                    "reintegration briefing",
+                    "official military ceremony or program"
+                  ],
+                  "unit": null
+                },
+                {
+                  "field": "time after termination of covered active duty",
+                  "operator": "<=",
+                  "required_value": 90,
+                  "unit": "days"
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "death-related activity",
+              "operator": "IN",
+              "required_value": [
+                "recovering body",
+                "making funeral arrangements",
+                "attending funeral services"
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.126(b)(7)",
+      "notes": "Death-related activities apply when military member dies while on covered active duty status",
+      "source_text": "To attend arrival ceremonies, reintegration briefings and events...for a period of 90 days following the termination of the military member's covered active duty status; and to address issues that arise from the death of the military member while on covered active duty status"
+    },
+    {
+      "condition_name": "parental_care",
+      "field": "parental care exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": "on covered active duty or call to covered active duty",
+          "unit": null
+        },
+        {
+          "field": "activity type",
+          "operator": "IN",
+          "required_value": [
+            "arrange alternative care",
+            "provide urgent care",
+            "admit or transfer to care facility",
+            "attend care facility meeting"
+          ],
+          "unit": null
+        },
+        {
+          "field": "parent of military member self-care capability",
+          "operator": "ALL_OF",
+          "required_value": [
+            {
+              "field": "incapable of self-care",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "activities requiring active assistance or supervision",
+              "operator": ">=",
+              "required_value": 3,
+              "unit": "activities of daily living or instrumental activities of daily living"
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.126(b)(8)",
+      "notes": "Parent must be military member's biological, adoptive, step, foster parent, or in loco parentis individual",
+      "source_text": "the parent of the military member must be incapable of self-care...requires active assistance or supervision to provide daily self-care in three or more of the activities of daily living or instrumental activities of daily living"
+    },
+    {
+      "condition_name": "additional_activities",
+      "field": "additional activities exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty status",
+          "operator": "==",
+          "required_value": "on covered active duty or call to covered active duty",
+          "unit": null
+        },
+        {
+          "field": "event arises from covered active duty",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "employer and employee agreement",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.126(b)(9)",
+      "notes": "Employer and employee must agree on both timing and duration of leave",
+      "source_text": "To address other events which arise out of the military member's covered active duty or call to covered active duty status provided that the employer and employee agree that such leave shall qualify as an exigency, and agree to both the timing and duration of such leave"
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 8749,
+    "output_tokens": 2987,
+    "processing_duration": 31.359482049942017
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"military exigency\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"spouse\", \"child\", \"parent\"],\n    \"citation\": \"825.126(a)\",\n    \"notes\": \"Military member must be the employee's spouse, son, daughter, or parent\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"short_notice_deployment\",\n      \"field\": \"short-notice deployment exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"covered active duty status\",\n          \"operator\": \"==\",\n          \"required_value\": \"on covered active duty or call to covered active duty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"notice period before deployment\",\n          \"operator\": \"<=\",\n          \"required_value\": 7,\n          \"unit\": \"calendar days\"\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.126(b)(1)\",\n      \"notes\": \"Leave usable for 7 calendar days beginning on date of notification\",\n      \"source_text\": \"To address any issue that arises from the fact that the military member is notified of an impending call or order to covered active duty seven or less calendar days prior to the date of deployment\"\n    },\n    {\n      \"condition_name\": \"military_events_and_related_activities\",\n      \"field\": \"military events and related activities exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"covered active duty status\",\n          \"operator\": \"==\",\n          \"required_value\": \"on covered active duty or call to covered active duty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"activity type\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"official military ceremony or program\", \"family support program\", \"informational briefing\"],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.126(b)(2)\",\n      \"notes\": \"Briefings may be sponsored by military, military service organizations, or American Red Cross\",\n      \"source_text\": \"To attend any official ceremony, program, or event sponsored by the military...and to attend family support or assistance programs and informational briefings sponsored or promoted by the military, military service organizations, or the American Red Cross\"\n    },\n    {\n      \"condition_name\": \"childcare_and_school_activities\",\n      \"field\": \"childcare and school activities exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"covered active duty status\",\n          \"operator\": \"==\",\n          \"required_value\": \"on covered active duty or call to covered active duty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"activity type\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"arrange alternative childcare\", \"provide urgent childcare\", \"enroll or transfer school or daycare\", \"attend school or daycare meeting\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"child of military member age or capability\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"child age\",\n              \"operator\": \"<\",\n              \"required_value\": 18,\n              \"unit\": \"years\"\n            },\n            {\n              \"field\": \"child incapable of self-care due to mental or physical disability\",\n              \"operator\": \"==\",\n              \"required_value\": true,\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.126(b)(3)\",\n      \"notes\": \"Child must be military member's biological, adopted, foster, step, legal ward, or in loco parentis child\",\n      \"source_text\": \"a child of the military member must be...under 18 years of age or 18 years of age or older and incapable of self-care because of a mental or physical disability\"\n    },\n    {\n      \"condition_name\": \"financial_and_legal_arrangements\",\n      \"field\": \"financial and legal arrangements exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"covered active duty status\",\n          \"operator\": \"==\",\n          \"required_value\": \"on covered active duty or call to covered active duty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"activity type\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"make or update financial or legal arrangements\", \"act as representative before federal state or local agency for military benefits\"],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.126(b)(4)\",\n      \"notes\": \"Acting as representative for benefits also covered for 90 days after termination of covered active duty\",\n      \"source_text\": \"To make or update financial or legal arrangements to address the military member's absence...and to act as the military member's representative before a federal, state, or local agency for purposes of obtaining, arranging, or appealing military service benefits\"\n    },\n    {\n      \"condition_name\": \"counseling\",\n      \"field\": \"counseling exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"covered active duty status\",\n          \"operator\": \"==\",\n          \"required_value\": \"on covered active duty or call to covered active duty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"counseling provider\",\n          \"operator\": \"!=\",\n          \"required_value\": \"health care provider\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"counseling recipient\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"employee\", \"military member\", \"qualifying child of military member\"],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.126(b)(5)\",\n      \"notes\": \"Qualifying child of military member must be under 18 or incapable of self-care due to disability\",\n      \"source_text\": \"To attend counseling provided by someone other than a health care provider, for oneself, for the military member, or for the biological, adopted, or foster child...provided that the need for counseling arises from the covered active duty or call to covered active duty status\"\n    },\n    {\n      \"condition_name\": \"rest_and_recuperation\",\n      \"field\": \"rest and recuperation exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"covered active duty status\",\n          \"operator\": \"==\",\n          \"required_value\": \"on covered active duty or call to covered active duty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"military member leave status\",\n          \"operator\": \"==\",\n          \"required_value\": \"short-term temporary Rest and Recuperation leave during deployment\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.126(b)(6)\",\n      \"notes\": \"Leave usable for 15 calendar days beginning on date military member commences each R&R instance\",\n      \"source_text\": \"To spend time with the military member who is on short-term, temporary, Rest and Recuperation leave during the period of deployment\"\n    },\n    {\n      \"condition_name\": \"post_deployment_activities\",\n      \"field\": \"post-deployment activities exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"covered active duty status\",\n          \"operator\": \"==\",\n          \"required_value\": \"terminated covered active duty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"activity type\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"post-deployment ceremony or event\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"activity type\",\n                  \"operator\": \"IN\",\n                  \"required_value\": [\"arrival ceremony\", \"reintegration briefing\", \"official military ceremony or program\"],\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"time after termination of covered active duty\",\n                  \"operator\": \"<=\",\n                  \"required_value\": 90,\n                  \"unit\": \"days\"\n                }\n              ],\n              \"unit\": null\n            },\n            {\n              \"field\": \"death-related activity\",\n              \"operator\": \"IN\",\n              \"required_value\": [\"recovering body\", \"making funeral arrangements\", \"attending funeral services\"],\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.126(b)(7)\",\n      \"notes\": \"Death-related activities apply when military member dies while on covered active duty status\",\n      \"source_text\": \"To attend arrival ceremonies, reintegration briefings and events...for a period of 90 days following the termination of the military member's covered active duty status; and to address issues that arise from the death of the military member while on covered active duty status\"\n    },\n    {\n      \"condition_name\": \"parental_care\",\n      \"field\": \"parental care exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"covered active duty status\",\n          \"operator\": \"==\",\n          \"required_value\": \"on covered active duty or call to covered active duty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"activity type\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"arrange alternative care\", \"provide urgent care\", \"admit or transfer to care facility\", \"attend care facility meeting\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"parent of military member self-care capability\",\n          \"operator\": \"ALL_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"incapable of self-care\",\n              \"operator\": \"==\",\n              \"required_value\": true,\n              \"unit\": null\n            },\n            {\n              \"field\": \"activities requiring active assistance or supervision\",\n              \"operator\": \">=\",\n              \"required_value\": 3,\n              \"unit\": \"activities of daily living or instrumental activities of daily living\"\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.126(b)(8)\",\n      \"notes\": \"Parent must be military member's biological, adoptive, step, foster parent, or in loco parentis individual\",\n      \"source_text\": \"the parent of the military member must be incapable of self-care...requires active assistance or supervision to provide daily self-care in three or more of the activities of daily living or instrumental activities of daily living\"\n    },\n    {\n      \"condition_name\": \"additional_activities\",\n      \"field\": \"additional activities exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"covered active duty status\",\n          \"operator\": \"==\",\n          \"required_value\": \"on covered active duty or call to covered active duty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"event arises from covered active duty\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"employer and employee agreement\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.126(b)(9)\",\n      \"notes\": \"Employer and employee must agree on both timing and duration of leave\",\n      \"source_text\": \"To address other events which arise out of the military member's covered active duty or call to covered active duty status provided that the employer and employee agree that such leave shall qualify as an exigency, and agree to both the timing and duration of such leave\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "included_relationships.required_value uses 'child' but regulation 825.126(a) and 825.112(a)(5) specify 'son or daughter'; should be 'son or daughter'"
+    ],
+    "logic_issues": [
+      "short_notice_deployment: the notice period condition should use operator '<=' with required_value 7 days, which is correct, but the 'covered active duty status' sub-check required_value conflates two states; regulation says 'on covered active duty or call to covered active duty (or has been notified of an impending call or order)' — for short-notice this is specifically a call/order notification scenario, but the current wording is acceptable as a general covered active duty status check",
+      "post_deployment_activities: the nested ANY_OF structure uses a wrapper object with field 'post-deployment ceremony or event' and 'death-related activity' as nested check objects, but nested check objects must use exactly field, operator, required_value, unit — the inner ALL_OF under 'post-deployment ceremony or event' contains further nested objects which is valid structurally, but the outer ANY_OF wrapper objects are not simple checks; this is acceptable given the complexity but worth noting",
+      "financial_and_legal_arrangements: the 90-day window for acting as representative applies only to the 'act as representative' sub-activity, not to 'make or update financial or legal arrangements'; the notes capture this but the required_value does not distinguish the time constraint per activity — this is a minor logic gap but acceptable given notes clarify it",
+      "additional_activities: 'employer and employee agreement' is an administrative/scheduling rule per the regulation text; however, since the regulation explicitly makes employer-employee agreement a condition for this exigency to qualify at all, it is appropriate to include it here"
+    ],
+    "missing_conditions": [],
+    "unsupported_conditions": [],
+    "format_issues": [
+      "included_relationships.required_value uses 'child' instead of 'son or daughter' as stated in the regulation"
+    ],
+    "revision_summary": [
+      "Corrected included_relationships.required_value from 'child' to 'son or daughter' to match regulation 825.126(a) and 825.112(a)(5) wording",
+      "All conditions are otherwise well-structured and grounded in the regulation chunks; no other changes required"
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 9250,
+    "output_tokens": 3685,
+    "processing_duration": 42.978020668029785
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"included_relationships.required_value uses 'child' but regulation 825.126(a) and 825.112(a)(5) specify 'son or daughter'; should be 'son or daughter'\"\n    ],\n    \"logic_issues\": [\n      \"short_notice_deployment: the notice period condition should use operator '<=' with required_value 7 days, which is correct, but the 'covered active duty status' sub-check required_value conflates two states; regulation says 'on covered active duty or call to covered active duty (or has been notified of an impending call or order)' — for short-notice this is specifically a call/order notification scenario, but the current wording is acceptable as a general covered active duty status check\",\n      \"post_deployment_activities: the nested ANY_OF structure uses a wrapper object with field 'post-deployment ceremony or event' and 'death-related activity' as nested check objects, but nested check objects must use exactly field, operator, required_value, unit — the inner ALL_OF under 'post-deployment ceremony or event' contains further nested objects which is valid structurally, but the outer ANY_OF wrapper objects are not simple checks; this is acceptable given the complexity but worth noting\",\n      \"financial_and_legal_arrangements: the 90-day window for acting as representative applies only to the 'act as representative' sub-activity, not to 'make or update financial or legal arrangements'; the notes capture this but the required_value does not distinguish the time constraint per activity — this is a minor logic gap but acceptable given notes clarify it\",\n      \"additional_activities: 'employer and employee agreement' is an administrative/scheduling rule per the regulation text; however, since the regulation explicitly makes employer-employee agreement a condition for this exigency to qualify at all, it is appropriate to include it here\"\n    ],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [],\n    \"format_issues\": [\n      \"included_relationships.required_value uses 'child' instead of 'son or daughter' as stated in the regulation\"\n    ],\n    \"revision_summary\": [\n      \"Corrected included_relationships.required_value from 'child' to 'son or daughter' to match regulation 825.126(a) and 825.112(a)(5) wording\",\n      \"All conditions are otherwise well-structured and grounded in the regulation chunks; no other changes required\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"military exigency\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"spouse\",\n        \"son or daughter\",\n        \"parent\"\n      ],\n      \"citation\": \"825.126(a); 825.112(a)(5)\",\n      \"notes\": \"Military member must be the employee's spouse, son, daughter, or parent\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"short_notice_deployment\",\n        \"field\": \"short-notice deployment exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"covered active duty status\",\n            \"operator\": \"==\",\n            \"required_value\": \"on covered active duty or call to covered active duty\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"notice period before deployment\",\n            \"operator\": \"<=\",\n            \"required_value\": 7,\n            \"unit\": \"calendar days\"\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.126(b)(1)\",\n        \"notes\": \"Leave usable for 7 calendar days beginning on date of notification\",\n        \"source_text\": \"To address any issue that arises from the fact that the military member is notified of an impending call or order to covered active duty seven or less calendar days prior to the date of deployment\"\n      },\n      {\n        \"condition_name\": \"military_events_and_related_activities\",\n        \"field\": \"military events and related activities exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"covered active duty status\",\n            \"operator\": \"==\",\n            \"required_value\": \"on covered active duty or call to covered active duty\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"activity type\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"official military ceremony or program\",\n              \"family support program\",\n              \"informational briefing\"\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.126(b)(2)\",\n        \"notes\": \"Briefings may be sponsored by military, military service organizations, or American Red Cross\",\n        \"source_text\": \"To attend any official ceremony, program, or event sponsored by the military...and to attend family support or assistance programs and informational briefings sponsored or promoted by the military, military service organizations, or the American Red Cross\"\n      },\n      {\n        \"condition_name\": \"childcare_and_school_activities\",\n        \"field\": \"childcare and school activities exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"covered active duty status\",\n            \"operator\": \"==\",\n            \"required_value\": \"on covered active duty or call to covered active duty\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"activity type\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"arrange alternative childcare\",\n              \"provide urgent childcare\",\n              \"enroll or transfer school or daycare\",\n              \"attend school or daycare meeting\"\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"child of military member age or capability\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"child age\",\n                \"operator\": \"<\",\n                \"required_value\": 18,\n                \"unit\": \"years\"\n              },\n              {\n                \"field\": \"child incapable of self-care due to mental or physical disability\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.126(b)(3)\",\n        \"notes\": \"Child must be military member's biological, adopted, foster, step, legal ward, or in loco parentis child\",\n        \"source_text\": \"a child of the military member must be...under 18 years of age or 18 years of age or older and incapable of self-care because of a mental or physical disability\"\n      },\n      {\n        \"condition_name\": \"financial_and_legal_arrangements\",\n        \"field\": \"financial and legal arrangements exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"covered active duty status\",\n            \"operator\": \"==\",\n            \"required_value\": \"on covered active duty or call to covered active duty\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"activity type\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"make or update financial or legal arrangements\",\n              \"act as representative before federal state or local agency for military benefits\"\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.126(b)(4)\",\n        \"notes\": \"Acting as representative for benefits also covered for 90 days after termination of covered active duty\",\n        \"source_text\": \"To make or update financial or legal arrangements to address the military member's absence...and to act as the military member's representative before a federal, state, or local agency for purposes of obtaining, arranging, or appealing military service benefits\"\n      },\n      {\n        \"condition_name\": \"counseling\",\n        \"field\": \"counseling exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"covered active duty status\",\n            \"operator\": \"==\",\n            \"required_value\": \"on covered active duty or call to covered active duty\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"counseling provider\",\n            \"operator\": \"!=\",\n            \"required_value\": \"health care provider\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"counseling recipient\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"employee\",\n              \"military member\",\n              \"qualifying child of military member\"\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.126(b)(5)\",\n        \"notes\": \"Qualifying child of military member must be under 18 or incapable of self-care due to disability\",\n        \"source_text\": \"To attend counseling provided by someone other than a health care provider, for oneself, for the military member, or for the biological, adopted, or foster child...provided that the need for counseling arises from the covered active duty or call to covered active duty status\"\n      },\n      {\n        \"condition_name\": \"rest_and_recuperation\",\n        \"field\": \"rest and recuperation exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"covered active duty status\",\n            \"operator\": \"==\",\n            \"required_value\": \"on covered active duty or call to covered active duty\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"military member leave status\",\n            \"operator\": \"==\",\n            \"required_value\": \"short-term temporary Rest and Recuperation leave during deployment\",\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.126(b)(6)\",\n        \"notes\": \"Leave usable for 15 calendar days beginning on date military member commences each R&R instance\",\n        \"source_text\": \"To spend time with the military member who is on short-term, temporary, Rest and Recuperation leave during the period of deployment\"\n      },\n      {\n        \"condition_name\": \"post_deployment_activities\",\n        \"field\": \"post-deployment activities exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"covered active duty status\",\n            \"operator\": \"==\",\n            \"required_value\": \"terminated covered active duty\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"activity type\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"post-deployment ceremony or event\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"activity type\",\n                    \"operator\": \"IN\",\n                    \"required_value\": [\n                      \"arrival ceremony\",\n                      \"reintegration briefing\",\n                      \"official military ceremony or program\"\n                    ],\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"time after termination of covered active duty\",\n                    \"operator\": \"<=\",\n                    \"required_value\": 90,\n                    \"unit\": \"days\"\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"death-related activity\",\n                \"operator\": \"IN\",\n                \"required_value\": [\n                  \"recovering body\",\n                  \"making funeral arrangements\",\n                  \"attending funeral services\"\n                ],\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.126(b)(7)\",\n        \"notes\": \"Death-related activities apply when military member dies while on covered active duty status\",\n        \"source_text\": \"To attend arrival ceremonies, reintegration briefings and events...for a period of 90 days following the termination of the military member's covered active duty status; and to address issues that arise from the death of the military member while on covered active duty status\"\n      },\n      {\n        \"condition_name\": \"parental_care\",\n        \"field\": \"parental care exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"covered active duty status\",\n            \"operator\": \"==\",\n            \"required_value\": \"on covered active duty or call to covered active duty\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"activity type\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"arrange alternative care\",\n              \"provide urgent care\",\n              \"admit or transfer to care facility\",\n              \"attend care facility meeting\"\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"parent of military member self-care capability\",\n            \"operator\": \"ALL_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"incapable of self-care\",\n                \"operator\": \"==\",\n                \"required_value\": true,\n                \"unit\": null\n              },\n              {\n                \"field\": \"activities requiring active assistance or supervision\",\n                \"operator\": \">=\",\n                \"required_value\": 3,\n                \"unit\": \"activities of daily living or instrumental activities of daily living\"\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.126(b)(8)\",\n        \"notes\": \"Parent must be military member's biological, adoptive, step, foster parent, or in loco parentis individual\",\n        \"source_text\": \"the parent of the military member must be incapable of self-care...requires active assistance or supervision to provide daily self-care in three or more of the activities of daily living or instrumental activities of daily living\"\n      },\n      {\n        \"condition_name\": \"additional_activities\",\n        \"field\": \"additional activities exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"covered active duty status\",\n            \"operator\": \"==\",\n            \"required_value\": \"on covered active duty or call to covered active duty\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"event arises from covered active duty\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"employer and employee agreement\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.126(b)(9)\",\n        \"notes\": \"Employer and employee must agree on both timing and duration of leave\",\n        \"source_text\": \"To address other events which arise out of the military member's covered active duty or call to covered active duty status provided that the employer and employee agree that such leave shall qualify as an exigency, and agree to both the timing and duration of such leave\"\n      }\n    ]\n  }\n}"
+}

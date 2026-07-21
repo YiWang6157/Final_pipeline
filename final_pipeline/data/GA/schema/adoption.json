@@ -1,0 +1,41 @@
+{
+  "leave_reason": "adoption",
+  "included_relationships": {
+    "operator": null,
+    "required_value": null,
+    "citation": null,
+    "notes": null
+  },
+  "conditions": [
+    {
+      "condition_name": "adoption_health_related_presence",
+      "field": "adoption of child requiring employee presence for health-related reasons",
+      "operator": null,
+      "required_value": null,
+      "unit": null,
+      "citation": null,
+      "notes": null,
+      "source_text": null
+    },
+    {
+      "condition_name": "minor_child_placement_for_adoption",
+      "field": "placement of minor child for adoption with employee",
+      "operator": null,
+      "required_value": null,
+      "unit": null,
+      "citation": null,
+      "notes": null,
+      "source_text": null
+    },
+    {
+      "condition_name": "minor_child_placement_for_foster_care",
+      "field": "placement of minor child for foster care with employee",
+      "operator": null,
+      "required_value": null,
+      "unit": null,
+      "citation": null,
+      "notes": null,
+      "source_text": null
+    }
+  ]
+}

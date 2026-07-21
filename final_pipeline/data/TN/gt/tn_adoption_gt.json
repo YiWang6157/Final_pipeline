@@ -1,0 +1,104 @@
+{
+    "leave_reason": "adoption",
+    "included_relationships": {
+      "operator": "IN",
+      "required_value": [
+        "child"
+      ],
+      "citation": "6.02(B), 6.05, 6.10, 13.01",
+      "notes": "Adoption leave applies when a child is placed with the employee for adoption or when the employee receives custody of the child for parental leave purposes."
+    },
+    "conditions": [
+      {
+        "condition_name": "placement_for_adoption",
+        "field": "adoption placement",
+        "operator": "ANY_OF",
+        "required_value": [
+          {
+            "field": "child placed for adoption",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "pre-placement activity",
+            "operator": "ALL_OF",
+            "required_value": [
+              {
+                "field": "integral to placement",
+                "operator": "==",
+                "required_value": true,
+                "unit": null
+              },
+              {
+                "field": "activity type",
+                "operator": "IN",
+                "required_value": [
+                  ["counseling"],
+                  ["court"],
+                  ["legal", "consultation"],
+                  ["medical", "consultation"]
+                ],
+                "unit": null
+              }
+            ],
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.02(B), 6.05",
+        "notes": "Examples are not exhaustive. Adoption does not need to be through a licensed adoption agency."
+      },
+      {
+        "condition_name": "bonding_after_placement",
+        "field": "bonding with adopted child",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "child newly placed",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "purpose",
+            "operator": "IN",
+            "required_value": [
+              ["bond"]
+            ],
+            "unit": null
+          },
+          {
+            "field": "time since placement",
+            "operator": "<=",
+            "required_value": 1,
+            "unit": "year"
+          }
+        ],
+        "unit": null,
+        "citation": "6.02(B), 6.10"
+      },
+      {
+        "condition_name": "parental_leave_adoption",
+        "field": "parental adoption leave",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "adoption custody received",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "time since custody",
+            "operator": "<=",
+            "required_value": 12,
+            "unit": "months"
+          }
+        ],
+        "unit": null,
+        "citation": "13.01",
+        "notes": "For TN parental leave, the adoption leave period begins when the employee receives custody of the child."
+      }
+    ]
+  }

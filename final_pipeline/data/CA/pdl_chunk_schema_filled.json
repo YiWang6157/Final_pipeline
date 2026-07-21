@@ -1,0 +1,1450 @@
+[
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "The following definitions apply only to this article:\n\n(a) “Affected by pregnancy” means that because of pregnancy, childbirth, or a related medical condition, or “a condition related to pregnancy, childbirth, or a related medical condition,” as set forth in Government Code section 12945, it is medically advisable for an employee to transfer or otherwise to be reasonably accommodated by her employer."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) “Because of pregnancy” means due to an employee's actual pregnancy, childbirth or a related medical condition."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(c)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(c) “CFRA” means the Moore-Brown-Roberti Family Rights Act of 1993. (California Family Rights Act, Gov. Code §§ 12945.1 and 12945.2.) “CFRA leave” means family care or medical leave as those leaves are defined at section 11087."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(d)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(d) A “condition related to pregnancy, childbirth, or a related medical condition,” as set forth in Government Code section 12945, means a physical or mental condition intrinsic to pregnancy or childbirth that includes, but is not limited to, lactation. Generally lactation without medical complications is not a disabling related medical condition requiring pregnancy disability leave, although it may require transfer to a less strenuous or hazardous position or other reasonable accommodation."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "employee eligibility",
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(e)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(e) A “covered entity” is any person (as defined in Government Code section 12925), labor organization, apprenticeship training program, training program leading to employment, employment agency, governing board of a school district, licensing board or other entity to which the provisions of Government Code sections 12940, 12943, 12944 or 12945 apply."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(f)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(f) A woman is “disabled by pregnancy” if, in the opinion of her health care provider, she is unable because of pregnancy to perform any one or more of the essential functions of her job or to perform any of these functions without undue risk to herself, to her pregnancy's successful completion, or to other persons. An employee also may be considered to be disabled by pregnancy if, in the opinion of her health care provider, she is suffering from severe morning sickness or needs to take time off for: prenatal or postnatal care; bed rest; gestational diabetes; pregnancy-induced hypertension; preeclampsia; post-partum depression; childbirth; loss or end of pregnancy; or recovery from childbirth, loss or end of pregnancy. The preceding list of conditions is intended to be non-exclusive and illustrative only. Nothing in this Article shall exclude a transgender individual who is disabled by pregnancy."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "employee eligibility",
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(g)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(g) An “eligible female employee” is an employee who qualifies for coverage under her employer's group health plan. An employee's pregnancy, childbirth, or related medical conditions are not lawful bases to make an employee ineligible for coverage. “Eligible female employee” includes a transgender employee who is disabled by pregnancy."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "employee eligibility",
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(h)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(h) “Employer,” as used in these regulations, except for section 11036, is any employer with five or more full or part time employees, who is an employer within the meaning of Government Code section 12926, and section 11008(d), of these regulations. “Employer” includes the state of California, counties, and any other political or civil subdivision of the state and cities, regardless of the number of employees."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(i)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(i) “Employment in the same position” means employment in, or reinstatement to, the position that the employee held prior to reasonable accommodation, transfer, or disability leave because of pregnancy."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(j)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(j) “Employment in a comparable position” means employment in a position that is virtually identical to the employee's position held prior to reasonable accommodation, transfer, or disability leave in terms of pay, benefits, and working conditions, including privileges, perquisites, and status. The position must involve the same or substantially similar duties and responsibilities, which must entail substantially equivalent skill, effort, responsibility, and authority. It must be performed at the same or geographically proximate worksite from the employee's prior position and ordinarily has the same shift or the same or an equivalent work schedule."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(k)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(k) “FMLA” means the federal Family and Medical Leave Act of 1993 and its implementing regulations. “FMLA leave” means family care or medical leave taken pursuant to FMLA."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(l)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(l) “Four months” means the number of days the employee would normally work within four calendar months (one-third of a year equaling 17 ⅓ weeks), if the leave is taken continuously, following the date the pregnancy disability leave commences. If an employee's schedule varies from month to month, a monthly average of the hours worked over the four months prior to the beginning of the leave shall be used for calculating the employee's normal work month."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(m)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(m) “Group health plan” means medical coverage provided by the employer for its employees, as defined, as of December 30, 2012, in the Internal Revenue Code."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(n)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(n) “Health care provider” means:\n(1) A medical or osteopathic doctor, physician, or surgeon, licensed in California, or in another state or country, who directly treats or supervises the treatment of the applicant's or employee's pregnancy, childbirth or a related medical condition, or “a condition related to pregnancy, childbirth, or a related medical condition,” as set forth in Government Code section 12945, or\n(2) A marriage and family therapist or acupuncturist, licensed in California or in another state or country, or any other persons who meet the definition of “others capable of providing health care services” under FMLA and its implementing regulations, including nurse practitioners, nurse midwives, licensed midwives, clinical psychologists, clinical social workers, chiropractors, physician assistants, who directly treats or supervises the treatment of the applicant's or employee's pregnancy, childbirth or a related medical condition, or “a condition related to pregnancy, childbirth, or a related medical condition,” as set forth in Government Code section 12945, or\n(3) A health care provider from whom an employer or a group health plan's benefits manager will accept medical certification of the existence of a health condition to substantiate a claim for benefits."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(o)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(o) “Intermittent leave” means leave taken in separate periods of time because of pregnancy, rather than for one continuous period of time. Examples of intermittent leave include leave taken on an occasional basis for medical appointments, or leave taken several days at a time over a period of several months for purposes related to pregnancy, childbirth or a related medical condition."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(p)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(p) “Medical certification” means a written communication, as specified in section 11050(b)(6) and (b)(7), from the employee's health care provider to the employer stating that the employee is disabled because of pregnancy or that it is medically advisable for the employee to be transferred to a less strenuous or hazardous position or duties or otherwise to be reasonably accommodated."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(q)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(q) “Perceived pregnancy” means being regarded or treated by an employer or other covered entity as being pregnant or having a related medical condition."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(r)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(r) “Pregnancy disability leave” is any leave, whether paid or unpaid, taken by an employee for any period(s) up to a total of four months during which she is disabled by pregnancy."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(s)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(s) “Reasonable accommodation” of an employee affected by pregnancy is any change in the work environment or in the way a job is customarily done that is effective in enabling an employee to perform the essential functions of a job. Reasonable accommodation may include, but is not limited to an employer:\n(1) modifying work practices or policies;\n(2) modifying work duties;\n(3) modifying work schedules to permit earlier or later hours, or to permit more frequent breaks (e.g., to use the restroom);\n(4) providing furniture (e.g., stools or chairs) or acquiring or modifying equipment or devices; or\n(5) providing a reasonable amount of break time and use of a room or other location in close proximity to the employee's work area to express breast milk in private as set forth in the Labor Code."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(t)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(t) “Reduced work schedule” means permitting an employee to work less than the usual number of hours per work week, or hours per work day."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(u)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(u) A “related medical condition” is any medically recognized physical or mental condition related to pregnancy, childbirth or recovery from pregnancy or childbirth. This term includes, but is not limited to, lactation-related medical conditions such as mastitis; gestational diabetes; pregnancy-induced hypertension; preeclampsia; post-partum depression; loss or end of pregnancy; or recovery from loss or end of pregnancy."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11035(v)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(v) “Transfer” means reassigning temporarily an employee affected by pregnancy to a less strenuous or hazardous position or to less strenuous or hazardous duties."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11036"
+    ],
+    "fact sheets number": [],
+    "raw text": "As set forth in Government Code sections 12926 and 12940, it is an unlawful employment practice for any employer with one or more employees or other covered entities to harass an employee or applicant because of pregnancy or perceived pregnancy, childbirth, breastfeeding, or any related medical conditions."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "employee eligibility",
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11037"
+    ],
+    "fact sheets number": [],
+    "raw text": "There is no eligibility requirement, such as minimum hours worked or length of service, before an employee affected or disabled by pregnancy is eligible for reasonable accommodation, transfer, or disability leave."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11038(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(a) Unless a permissible defense applies, discrimination because of pregnancy or perceived pregnancy by any covered entity other than employers constitutes discrimination because of sex under Government Code sections 12926, 12940, 12943 and 12944."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11038(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) It is unlawful for an employer or other covered entity to use an automated-decision system or selection criteria (including a qualification standard, employment test, or proxy) that discriminates against an applicant or employee or a class of applicants or employees on the basis of pregnancy or perceived pregnancy, subject to any available defense. Relevant to any such claim or available defense is evidence, or the lack of evidence, of anti-bias testing or similar proactive efforts to avoid unlawful discrimination, including the quality, efficacy, recency, and scope of such effort, the results of such testing or other effort, and the response to the results."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11039(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(a) Employer Obligations\n(1) Except as excused by a permissible defense, it is unlawful for any employer to:\n(A) refuse to hire or employ an applicant because of pregnancy or perceived pregnancy;\n(B) refuse to select an applicant or employee for a training program leading to employment or promotion because of pregnancy or perceived pregnancy;\n(C) refuse to promote an employee because of pregnancy or perceived pregnancy;\n(D) bar or to discharge an applicant or employee from employment or from a training program leading to employment or promotion because of pregnancy or perceived pregnancy;\n(E) discriminate against an applicant or employee in terms, conditions or privileges of employment because of pregnancy or perceived pregnancy;\n(F) harass an applicant or employee because of pregnancy or perceived pregnancy, as set forth in section 11036;\n(G) transfer an employee affected by pregnancy over her objections to another position, except as provided in section 11041(c). Nothing in this section prevents an employer from transferring an employee for the employer's legitimate operational needs unrelated to the employee's pregnancy or perceived pregnancy;\n(H) require an employee to take a leave of absence because of pregnancy or perceived pregnancy when the employee has not requested leave;\n(I) retaliate, discharge, or otherwise discriminate against an applicant or employee because she has opposed employment practices forbidden under the FEHA or because she has filed a complaint, testified, or assisted in any proceeding under the FEHA;\n(J) use an automated-decision system or selection criteria (including a qualification standard, employment test, or proxy) that discriminates against an applicant or employee or a class of applicants or employees on the basis of pregnancy or perceived pregnancy, subject to any available defense. Relevant to any such claim or available defense is evidence, or the lack of evidence, of anti-bias testing or similar proactive efforts to avoid unlawful discrimination, including the quality, efficacy, recency, and scope of such effort, the results of such testing or other effort, and the response to the results; or\n(K) otherwise discriminate against an applicant or employee because of pregnancy or perceived pregnancy by any practice that is prohibited on the basis of sex.\n(2) Except as excused by a permissible defense, it is unlawful for any employer to:\n(A) refuse to provide employee benefits for pregnancy as set forth at section 11044, if the employer provides such benefits for other temporary disabilities;\n(B) refuse to maintain and to pay for coverage under a group health plan for an eligible employee who takes pregnancy disability leave, as set forth at section 11044, under the same terms and conditions that would have been provided if the employee had not taken leave;\n(C) refuse to provide reasonable accommodation for an employee or applicant affected by pregnancy as set forth at section 11040;\n(D) refuse to transfer an employee affected by pregnancy as set forth at section 11041;\n(E) refuse to grant an employee disabled by pregnancy a pregnancy disability leave, as set forth at section 11042; or\n(F) deny, interfere with, or restrain an employee's rights to reasonable accommodation, to transfer or to take pregnancy disability leave under Government Code section 12945, including retaliating against the employee because she has exercised her right to reasonable accommodation, to transfer or to take pregnancy disability leave."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11039(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) Permissible defenses, as defined at section 11010, include a bona fide occupational qualification, business necessity or where the practice is otherwise required by law."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11040(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(a) It is unlawful for an employer to deny a request for reasonable accommodation made by an employee affected by pregnancy if:\n(1) The employee's request is based on the advice of her health care provider that reasonable accommodation is medically advisable; and\n(2) The requested accommodation is reasonable.\n(A) Whether an accommodation is reasonable is a factual determination to be made on a case-by-case basis, taking into consideration such factors, including but not limited to, the employee's medical needs, the duration of the needed accommodation, the employer's legally permissible past and current practices, and other such factors, under the totality of the circumstances.\n(B) The employee and employer shall engage in a good faith interactive process to identify and implement the employee's request for reasonable accommodation as set forth in section 11050(a)."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11040(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) When a reasonable accommodation, such as a change of work duties or job restructuring, is granted, it shall not affect the employee's independent right to take up to four months for pregnancy disability leave. If the requested reasonable accommodation, however, involves a reduction in hours worked such as a reduced work schedule, or intermittent leave, the employer may consider this as a form of pregnancy disability leave and deduct the hours from the employee's four month leave entitlement."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11040(c)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(c) An employer may, but need not, require a medical certification substantiating the employee's need for reasonable accommodation, as set forth in sections 11049(a) and (b), and 11050(b)."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11041(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(a) Transfer -- All Employers\n(1) It is unlawful for an employer who has a policy, practice, or collective bargaining agreement requiring or authorizing the transfer of temporarily disabled employees to less strenuous or hazardous positions or duties for the duration of the disability, including disabilities or conditions resulting from on-the-job injuries, to fail to apply the policy, practice or collective bargaining agreement to transfer an employee who is disabled by pregnancy and who so requests.\n(2) It is unlawful for an employer to deny the request of an employee affected by pregnancy to transfer provided that:\n(A) The employee's request is based on the advice of her health care provider that a transfer is medically advisable; and\n(B) Such transfer can be reasonably accommodated by the employer. To provide a transfer, an employer need not create additional employment that the employer would not otherwise have created, discharge another employee, violate the terms of a collective bargaining agreement, transfer another employee with more seniority, or promote or transfer any employee who is not qualified to perform the new job. An employer may accommodate a pregnant employee's transfer request by transferring another employee, but there is no obligation to do so.\n(C) An employer may, but need not, require a medical certification substantiating the employee's need for transfer, as set forth in sections 11049(a) and (b), and 11050(b)."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11041(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) Burden of Proof. The burden shall be on the employer to prove, by a preponderance of the evidence, that such transfer cannot be reasonably accommodated for one or more of the enumerated reasons listed in section 11041(a)(2)."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11041(c)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(c) Transfer to Accommodate Intermittent Leave or a Reduced Work Schedule. If an employee's health care provider provides medical certification that an employee has a medical need to take intermittent leave or leave on a reduced work schedule because of pregnancy, the employer may require the employee to transfer temporarily to an available alternative position that meets the needs of the employee. The employee must meet the qualifications of the alternative position. The alternative position must have the equivalent rate of pay and benefits, and must better accommodate the employee's leave requirements than her regular job, but does not have to have equivalent duties."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11041(d)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(d) Right to Reinstatement after Transfer. When the employee's health care provider certifies that there is no further medical advisability for the transfer, intermittent leave, or leave on a reduced work schedule, the employer must reinstate the employee to her same or comparable position in accordance with the requirements of section 11043."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11042(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "The following provisions apply to leave taken for disability because of pregnancy.\n\n(a) Four-Month Leave Requirement for all Employers. All employers must provide a leave of up to four months, as needed, for the period(s) of time an employee is actually disabled because of pregnancy, even if an employer has a policy or practice that provides less than four months of leave for other similarly situated, temporarily disabled employees. Pregnancy disability leave does not need to be taken in one continuous period of time.\n(1) Employees are eligible for up to four months of leave per pregnancy, not per year. A “four month leave” means time off for the number of days or hours the employee would normally work within four calendar months (one-third of a year or 17 ⅓ weeks). For a full time employee who works 40 hours per week, “four months” means 693 hours of leave entitlement, based on 40 hours per week times 17 ⅓ weeks.\n(2) For employees who work more or less than 40 hours per week, or who work on variable work schedules, the number of working days that constitutes four months is calculated on a pro rata or proportional basis.\n(A) For example, for an employee who works 20 hours per week, “four months” means 346.5 hours of leave entitlement. For an employee who normally works 48 hours per week, “four months” means 832 hours of leave entitlement.\n(B) Leave on an intermittent leave or a reduced work schedule.\nAn employer may account for increments of intermittent leave using an increment no greater than the shortest period of time that the employer uses to account for use of other forms of leave, provided it is not greater than one hour. For example, if an employer accounts for sick leave in 30-minute increments and vacation time in one-hour increments, the employer must account for pregnancy disability leave in increments of 30 minutes or less. If an employer accounts for other forms of leave in two-hour increments, the employer must account for pregnancy disability leave in increments no greater than one hour.\n(C) If a holiday falls within a week taken as pregnancy disability leave, the week is nevertheless counted as a week of pregnancy disability leave. If, however, the employer's business activity has temporarily ceased for some reason and employees generally are not expected to report for work for one or more weeks, (e.g., a school closing for two weeks for the Christmas/New Year holiday or summer vacation or an employer closing the plant for retooling), the days the employer's activities have ceased do not count against the employee's pregnancy disability leave entitlement.\n(3) Although all pregnant employees are eligible for up to four months of leave, if that leave is taken in one period of time, taking intermittent or reduced work schedule throughout an employee's pregnancy will differentially affect the number of hours remaining that an employee is entitled to take pregnancy disability leave leading up to and after childbirth, depending on the employee's regular work schedule.\n(A) For example, a full-time employee, who normally works a 40-hour work week is entitled to 693 working hours of leave. If that employee takes 180 hours of intermittent leave throughout her pregnancy, she would still be entitled to take 513 hours, or approximately three months leading up to and after her childbirth.\n(B) In contrast, a part-time employee who normally works 20 hours per week, would be entitled to 346.5 hours of leave. If that employee takes intermittent leave of 180 hours throughout her pregnancy, she would be entitled to only 166.5 more hours of leave, approximately two months of leave, leading up to and after her childbirth.\n(4) Minimum Duration. Leave may be taken intermittently or on a reduced work schedule when an employee is disabled because of pregnancy, as determined by the health care provider of the employee. An employer may account for increments of intermittent leave using the shortest period of time that the employer's payroll system uses to account for other forms of leave, provided it is not greater than one hour, as set forth in section 11042(a)(2)(B)."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11042(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) Employers with More Generous Leave Policies. If an employer has a more generous leave policy for similarly situated employees with other temporary disabilities than is required for pregnancy purposes under these regulations, the employer must provide the more generous leave to employees temporarily disabled by pregnancy. If the employer's more generous leave policy exceeds four months, the employer's return policy after taking the leave would govern, not the return rights specified in these regulations."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11042(c)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(c) Denial of Leave is an Unlawful Employment Practice. It is an unlawful employment practice for an employer to refuse to grant pregnancy disability leave to an employee disabled by pregnancy.\n(1) who has provided the employer with reasonable advance notice of the medical need for the leave, and\n(2) whose health care provider has advised that the employee is disabled by pregnancy.\nThe employer may require medical certification of the medical advisability of the leave, as set forth in sections 11049(a) and (b), and 11050(b)."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11043(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "The following rules apply to reinstatement from any leave or transfer taken for disability because of pregnancy.\n\n(a) Guarantee of Reinstatement. An employee who exercises her right to take pregnancy disability leave is guaranteed a right to return to the same position, or, if the employer is excused by section 11043(c)(1), to a comparable position, and the employer shall provide the guarantee in writing upon request of the employee. It is an unlawful employment practice for any employer, after granting a requested pregnancy disability leave or transfer, to refuse to honor its guarantee of reinstatement unless the refusal is justified by the defenses below in subdivisions (c)(1) and (c)(2). If the employee takes intermittent leave or a reduced work schedule, only one written guarantee of reinstatement is required."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11043(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) Refusal to Reinstate\n(1) Definite Date of Reinstatement. Where a definite date of reinstatement has been agreed upon at the beginning of the leave or transfer, a refusal to reinstate is established if the Department or employee proves, by a preponderance of the evidence, that the leave or transfer was granted by the employer and that the employer failed to reinstate the employee to the same position or, where applicable, to a comparable position, by the date agreed upon, as specified below in subdivisions (c)(1) and (c)(2).\n(2) Change in Date of Reinstatement. If the reinstatement date differs from the employer's and the employee's original agreement or if no agreement was made, the employer shall reinstate the employee within two business days, or, when two business days is not feasible, reinstatement shall be made as soon as it is possible for the employer to expedite the employee's return, after the employee notifies the employer of her readiness to return to the same, or, where applicable, a comparable position, as specified below in subdivisions (c)(1) and (c)(2)."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11043(c)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(c) Permissible Defenses -- Employment Would Have Ceased\n(1) Right to Reinstatement to the Same Position. An employee has no greater right to reinstatement to the same position or to other benefits and conditions of employment than those rights she would have had if she had been continuously at work during the pregnancy disability leave or transfer period. This is true even if the employer has given the employee a written guarantee of reinstatement. A refusal to reinstate the employee to her same position or duties is justified if the employer proves, by a preponderance of the evidence, that the employee would not otherwise have been employed in her same position at the time reinstatement is requested for legitimate business reasons unrelated to the employee taking pregnancy disability leave or transfer (such as a layoff pursuant to a plant closure).\n(2) Right to Reinstatement to a Comparable Position. An employee has no greater right to reinstatement to a comparable position or to other benefits and conditions of employment than an employee who has been continuously employed in another position that is being eliminated. If the employer is excused from reinstating the employee to her same position, or with the same duties, a refusal to reinstate the employee to a comparable position is justified if the employer proves, by a preponderance of the evidence, either of the following:\n(A) The employer would not have offered a comparable position to the employee if she would have been continuously at work during the pregnancy disability leave or transfer period.\n(B) There is no comparable position available.\n1. A position is available if there is a position open on the employee's scheduled date of reinstatement or within 60 calendar days for which the employee is qualified, or to which the employee is entitled by company policy, contract, or collective bargaining agreement.\n2. An employer has an affirmative duty to provide notice of available positions to the employee by means reasonably calculated to inform the employee of comparable positions during the requirement period. Examples include notification in person, by letter, telephone or email, or by links to postings on the company's Web site if there is a section for job openings.\n3. If a comparable position is not available on the employee's scheduled date of reinstatement, but the employee is later reinstated under the 60 calendar day period set forth in section 11043(c)(2)(B)1., the period between the employee's scheduled date of reinstatement and the date of her actual reinstatement shall not be counted for purposes of any employee pay or benefit.\n(3) If an employee is laid off during pregnancy disability leave or transfer for legitimate business reasons unrelated to her leave or transfer, the employer's responsibility to continue the pregnancy disability leave or transfer, maintain benefits, and reinstate the employee ceases at the time the employee is laid off, provided the employer has no continuing obligations under a collective bargaining agreement, or otherwise."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11043(d)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(d) Right to Reinstatement to Job if Additional Leave Taken Following End of Pregnancy Disability Leave; Equal Treatment. If an employee disabled by pregnancy remains on some form of leave following the end of her pregnancy disability leave (e.g., employer's disability leave plan, etc.), an employer shall grant the employee reinstatement rights that are the same as any other similarly situated employee who has taken a similar length disability leave under the employer's policy, practice or collective bargaining agreement. For example, if the employer has a policy that grants reinstatement to other employees who are temporarily disabled for up to six months, the employer must also grant reinstatement to an employee disabled by pregnancy for six months. An employer and employee also may agree to a later date of reinstatement."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11043(e)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(e) Right to Reinstatement to Job if CFRA Leave is Taken Following Pregnancy Disability Leave. At the expiration of pregnancy disability leave, if an employee takes a CFRA leave for reason of the birth of her child, the employee's right to reinstatement to her job is governed by CFRA and not section 11043(c)(1) and (c)(2). Under CFRA, an employer may reinstate an employee either to her same or a comparable position."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11044(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(a) Paid Leave. An employer is not required to pay an employee during pregnancy disability leave unless the employer pays for other temporary disability leaves for similarly situated employees. An employee may be entitled to receive state disability insurance for a period of disability because of pregnancy and may contact the California Employment Development Department for more information."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11044(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) Accrued Time Off\n(1) Sick Leave. An employer may require an employee to use, or an employee may elect to use, any accrued sick leave during the otherwise unpaid portion of her pregnancy disability leave.\n(2) Vacation Time and Other Accrued Time Off. An employee may elect, at her option, to use any vacation time or other accrued personal time off (including undifferentiated paid time off (PTO)) for which the employee is eligible."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11044(c)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(c) Continuation of Group Health Coverage\n(1) An employer shall maintain and pay for group health coverage for an eligible female employee who takes pregnancy disability leave for the duration of the leave, not to exceed four months over the course of a 12-month period per pregnancy, beginning on the date the pregnancy disability leave begins, at the same level and under the same conditions that coverage would have been provided if the employee had not taken pregnancy disability leave.\n(A) An employer may maintain and pay for coverage for a group health plan for longer than four months.\n(B) If the employer is a state agency, the collective bargaining agreement shall govern the continued receipt by an eligible female employee of health care coverage under the employer's group health plan.\n(2) The time that an employer maintains and pays for group health coverage during pregnancy disability leave shall not be used to meet an employer's obligation to pay for 12 weeks of group health coverage during leave taken under CFRA. This shall be true even where an employer designates pregnancy disability leave as family and medical leave under FMLA. The entitlements to employer-paid group health coverage during pregnancy disability leave and during CFRA are two separate and distinct entitlements.\n(3) An employer may recover from the employee the premium paid while the employee was on pregnancy disability leave if both of the following conditions occur:\n(A) The employee fails to return at the end of her pregnancy disability leave.\n(B) The employee's failure to return from leave is for a reason other than one of the following:\n1. Taking CFRA leave, unless the employee chooses not to return to work following the CFRA leave.\n2. The continuation, recurrence or onset of a health condition that entitles the employee to pregnancy disability leave, unless the employee chooses not to return to work following the leave.\n3. Non-pregnancy related medical conditions requiring further leave, unless the employee chooses not to return to work following the leave.\n4. Any other circumstance beyond the control of the employee, including, but not limited to, circumstances where the employer is responsible for the employee's failure to return (e.g., the employer does not return the employee to her same position or reinstate the employee to a comparable position), or circumstances where the employee must care for herself or a family member (e.g., the employee gives birth to a child with a serious health condition)."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11044(d)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(d) Other Benefits and Seniority Accrual. During her pregnancy disability leave, the employee shall accrue seniority and participate in employee benefit plans, including, but not limited to, life, short-term and long-term disability or accident insurance, pension and retirement plans, stock options and supplemental unemployment benefit plans to the same extent and under the same conditions as would apply to any other unpaid disability leave granted by the employer for any reason other than a pregnancy disability.\n(1) If the employer's policy allows seniority to accrue when employees are on paid leave, such as paid sick or vacation leave, and/or unpaid leave, then seniority will accrue during any part of a paid and/or unpaid pregnancy disability leave.\n(2) The employee returning from pregnancy disability leave shall return with no less seniority than the employee had when the leave commenced."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11044(e)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(e) Employee Status. The employee shall retain employee status during the period of the pregnancy disability leave. The leave shall not constitute a break in service for purposes of longevity and/or seniority under any collective bargaining agreement or under any employee benefit plan. Benefits must be resumed upon the employee's reinstatement in the same manner and at the same levels as provided when the leave began, without any new qualification period, physical exam, or other qualifying provisions."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11045(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(a) A Pregnancy Leave May Also Be a FMLA Leave. If the employer is a covered employer and the employee is eligible for leave under the federal Family Care and Medical Leave Act (FMLA), the employer may be able to count the employee's pregnancy disability leave under this article, up to a maximum of 12 weeks, against her FMLA leave entitlement."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11045(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) FMLA Coverage. For more information on rights and obligations under FMLA, consult the FMLA regulations regarding family care and medical leave."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11046(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(a) Separate and Distinct Entitlements. The right to take a pregnancy disability leave under Government Code section 12945 and these regulations is separate and distinct from the right to take leave under the California Family Rights Act (CFRA), Government Code sections 12945.1 and 12945.2."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11046(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) Serious Health Condition -- Pregnancy. An employee's own disability due to pregnancy, childbirth, or related medical conditions is not a serious health condition under CFRA."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11046(c)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(c) CFRA Leave after Pregnancy Disability Leave. At the end of the employee's period(s) of pregnancy disability, or at the end of four months of pregnancy disability leave, whichever occurs first, a CFRA-eligible employee may request to take CFRA leave of up to 12 workweeks for reason of the birth of her child, if the child has been born by this date.\n(1) There is no requirement that either the employee or child have a serious health condition in order for the employee to take CFRA leave for the birth of her child. There is also no requirement that the employee no longer be disabled by her pregnancy before taking CFRA leave for the birth of her child.\n(2) Where an employee has utilized four months of pregnancy disability leave prior to the birth of her child, and her health care provider determines that a continuation of the leave is medically necessary, an employer may, as a reasonable accommodation, allow the employee to utilize CFRA leave prior to the birth of her child. No employer shall, however, be required to provide more CFRA leave than the amount to which the employee is otherwise entitled under CFRA."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "2 CCR § 11046(d)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(d) Maximum Entitlement. The maximum statutory leave entitlement for California employees, provided they qualify for CFRA leave, for both pregnancy disability leave and CFRA leave for reason of the birth of the child and/or the employee's own serious health condition is the working days in 29 ⅓ workweeks. This assumes that the employee is disabled by pregnancy for four months (the working days in 17 ⅓ weeks) and then requests, and is eligible for, a 12-week CFRA leave for reason of the birth of her child."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "2 CCR § 11047"
+    ],
+    "fact sheets number": [],
+    "raw text": "The right to take pregnancy disability leave under Government Code section 12945 and these regulations is separate and distinct from the right to take a leave of absence as a form of reasonable accommodation under Government Code section 12940. At the end or depletion of an employee's pregnancy disability leave, an employee who has a physical or mental disability (which may or may not be due to pregnancy, childbirth, or related medical conditions) may be entitled to reasonable accommodation under Government Code section 12940. Entitlement to leave under section 12940 must be determined on a case-by case basis, using the standards provided in the disability discrimination provisions article 9) of these regulations, and is not diminished by the employee's exercise of her right to pregnancy disability leave."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11049(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(a) Employers to Provide Reasonable Advance Notice Advising Employees Affected by Pregnancy of Their FEHA Rights and Obligations. An employer shall give its employees reasonable advance notice of employees' FEHA rights and obligations regarding pregnancy, childbirth, or related medical conditions as set forth at section 11049(e) and as contained in the Notice as set forth at section 11051(a), or its equivalent."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11049(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) Content of Employer's Reasonable Advance Notice. An employer shall provide its employees with information about:\n(1) an employee's right to request reasonable accommodation, transfer, or pregnancy disability leave;\n(2) employees' notice obligations, as set forth in section 11050, to provide adequate advance notice to the employer of the need for reasonable accommodation, transfer or pregnancy disability leave; and\n(3) the employer's requirement, if any, for the employee to provide medical certification to establish the medical advisability for reasonable accommodation, transfer, or pregnancy disability leave, as set forth in section 11050(b)."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11049(c)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(c) Consequences of Employer Notice Requirement\n(1) If the employer follows the requirements in section 11049(d), such compliance shall constitute reasonable advance notice to the employee of the employer's notice obligations.\n(2) Failure of the employer to provide reasonable advance notice shall preclude the employer from taking any adverse action against the employee, including denying reasonable accommodation, transfer or pregnancy disability leave, for failing to furnish the employer with adequate advance notice of a need for reasonable accommodation, transfer, or pregnancy disability leave."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11049(d)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(d) Distribution of Notices\n(1) Employers shall post and keep posted the appropriate notice on its premises, in conspicuous places where employees are employed. The notice shall explain the Act's provisions and provide information about how to contact the Civil Rights Department to file a complaint and learn more about rights and obligations under the Act. The poster and the text must be large enough to be easily read and contain fully legible text. Electronic posting is sufficient to meet this posting requirement as long as it is posted electronically in a conspicuous place or places where employees would tend to view it in the workplace.\n(2) An employer is also required to give an employee a copy of the appropriate notice as soon as practicable after the employee tells the employer of her pregnancy or sooner if the employee inquires about reasonable accommodation, transfer, or pregnancy disability leaves.\n(3) If the employer publishes an employee handbook that describes other kinds of reasonable accommodation, transfers or temporary disability leaves available to its employees, that employer shall include a description of reasonable accommodation, transfer, and pregnancy disability leave in the next edition of its handbook that it publishes following adoption of these regulations. In the alternative, the employer may distribute to its employees a copy of its Notice at least annually. Distribution may be by electronic mail.\n(4) Non-English Speaking Workforce. Any FEHA-covered employer whose work force at any facility or establishment is comprised of 10 percent or more persons whose spoken language is not English shall translate the notice into every language that is spoken by at least 10 percent of the workforce. In addition, any FEHA-covered employer shall make a reasonable effort to give either verbal or written notice in the appropriate language to any employee who the employer knows is not proficient in English, and for whom written notice previously has not been given in her primary language, of her rights to pregnancy disability leave, reasonable accommodation, and transfer, once the employer knows the employee is pregnant."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11049(e)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(e) Notice. An employer may provide a leave policy that is more generous than that required by FEHA if that more generous policy is provided to all similarly-situated, disabled employees. An employer may develop its own notice or it may choose to use the text provided in section 11051, unless it does not accurately reflect its own policy."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11050(a)"
+    ],
+    "fact sheets number": [],
+    "raw text": "The following rules apply to any request for reasonable accommodation, transfer, or disability leave because of pregnancy.\n\n(a) Adequate Advance Notice\n(1) Verbal or Written Notice. An employee shall provide timely oral or written notice sufficient to make the employer aware that the employee needs reasonable accommodation, transfer, or pregnancy disability leave, and, where practicable, the anticipated timing and duration of the reasonable accommodation, transfer or pregnancy disability leave.\n(2) 30 Days Advance Notice. An employee must provide the employer at least 30 days advance notice before the start of reasonable accommodation, transfer, or pregnancy disability leave if the need for the reasonable accommodation, transfer, or leave is foreseeable. The employee shall consult with the employer and make a reasonable effort to schedule any planned appointment or medical treatment to minimize disruption to the employer's operations, subject to the health care provider's approval.\n(3) When 30 Days Is Not Practicable. If 30 days advance notice is not practicable, because it is not known when reasonable accommodation, transfer, or leave will be required to begin, or because of a change in circumstances, a medical emergency, or other good cause, notice must be given as soon as practicable.\n(4) Prohibition against Denial of Reasonable Accommodation, Transfer, or Leave in Emergency or Unforeseeable Circumstances. An employer shall not deny reasonable accommodation, transfer, or pregnancy disability leave, the need for which is an emergency or is otherwise unforeseeable, on the basis that the employee did not provide adequate advance notice of the need for the reasonable accommodation, transfer, or leave.\n(5) Employer Response to Reasonable Accommodation, Transfer, or Pregnancy Disability Leave Request. The employer shall respond to the reasonable accommodation, transfer, or pregnancy disability leave request as soon as practicable, and, in any event no later than 10 calendar days after receiving the request. The employer shall attempt to respond to the leave request before the date the leave is due to begin. Once given, approval shall be deemed retroactive to the date of the first day of the leave.\n(6) Consequences for Employee Who Fails to Give Employer Adequate Advance Notice of Need for Reasonable Accommodation or Transfer. If an employee fails to give timely advance notice when the need for reasonable accommodation or transfer is foreseeable, the employer may delay the reasonable accommodation or transfer until 30 days after the date the employee provides notice to the employer of the need for the reasonable accommodation or transfer. However, under no circumstances may the employer delay the granting of an employee's reasonable accommodation or transfer if to do so would endanger the employee's health, her pregnancy, or the health of her co-workers.\n(7) Direct notice to the employer from the employee rather than from a third party regarding the employee's need for reasonable accommodation, transfer, or pregnancy disability leave is preferred, but not required. The content of any notice must meet the requirements of this section and the employer may require medical certification."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11050(b)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(b) Medical Certification. As a condition of granting reasonable accommodation, transfer, or pregnancy disability leave, the employer may require written medical certification. The employer must notify the employee of the need to provide medical certification; the deadline for providing certification; what constitutes sufficient medical certification; and the consequences for failing to provide medical certification.\n(1) An employer must notify the employee of the medical certification requirement each time a certification is required and provide the employee with any employer-required medical certification form for the employee's health care provider to complete. An employer may use the form provided at section 11050(e), or may develop its own form. Notice to the employee of the need for medical certification may be oral if the employee is already out on pregnancy disability leave because the need for the leave was unforeseeable. The employer shall thereafter mail or send via electronic mail or by facsimile a copy of the medical certification form to the employee or to her health care provider, whomever the employee designates.\n(2) When the leave is foreseeable and at least 30 days' notice has been provided, the employee shall provide the medical certification before the leave begins. When this is not practicable, the employee shall provide the requested certification to the employer within the time frame requested by the employer (which must be at least 15 calendar days after the employer's request), unless it is not practicable under the particular circumstances to do so despite the employee's diligent, good faith efforts.\n(3) When the employer requires medical certification, the employer shall request that an employee furnish medical certification from a health care provider at the time the employee gives notice of the need for reasonable accommodation, transfer or leave or within two business days thereafter, or, in the case of unforeseen leave, within two business days after the leave commences. The employer may request certification at some later date if the employer later has reason to question the appropriateness of the reasonable accommodation, transfer, or leave or its duration.\n(4) At the time the employer requests medical certification, the employer shall also advise the employee of the anticipated consequences of an employee's failure to provide adequate medical certification. The employer shall also advise the employee whenever the employer finds a medical certification inadequate or incomplete, and provide the employee a reasonable opportunity to cure any deficiency.\n(5) If the employer's sick or medical leave plan imposes medical certification requirements that are less stringent than the medical certification requirements of these regulations, and the employee or employer elects to substitute sick, vacation, personal or family leave for unpaid pregnancy disability leave, only the employer's less stringent leave certification requirements may be imposed.\n(6) The medical certification indicating the medical advisability of reasonable accommodation or a transfer is sufficient if it contains:\n(A) A description of the requested reasonable accommodation or transfer;\n(B) A statement describing the medical advisability of the reasonable accommodation or transfer because of pregnancy; and\n(C) The date on which the need for reasonable accommodation or transfer became or will become medically advisable and the estimated duration of the reasonable accommodation or transfer.\n(7) The medical certification indicating disability necessitating a leave is sufficient if it contains:\n(A) A statement that the employee needs to take pregnancy disability leave because she is disabled by pregnancy, childbirth or a related medical condition;\n(B) The date on which the employee became disabled because of pregnancy and the estimated duration of the leave.\n(8) If the certification satisfies the requirements of section 11050(b), the employer must accept it as sufficient. The employer may not ask the employee to provide additional information beyond that allowed by these regulations. Upon expiration of the time period that the health care provider originally estimated the employee would need reasonable accommodation, transfer, or leave, the employer may require the employee to obtain recertification if additional time is requested.\n(9) The employer is responsible for complying with all applicable law regarding the confidentiality of any medical information received."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11050(c)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(c) Failure to Provide Medical Certification\n(1) In the case of a foreseeable need for reasonable accommodation, transfer, or pregnancy disability leave, an employer may delay granting the reasonable accommodation, transfer or leave to an employee who fails to provide timely certification after the employer has requested the employee to furnish such certification (i.e., within 15 calendar days, if practicable), until the required certification is provided.\n(2) When the need for reasonable accommodation, transfer or leave is not foreseeable, or in the case of recertification, an employee shall provide certification (or recertification) within the time frame requested by the employer (which must be at least 15 days after the employer's request) or as soon as reasonably possible under the circumstances. In the case of a medical emergency, it may not be practicable for an employee to provide the required certification within 15 calendar days. If an employee fails to provide a medical certification within a reasonable time under the pertinent circumstances, the employer may delay the employee's continuation of the reasonable accommodation, transfer or pregnancy disability leave."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility",
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11050(d)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(d) Release to Return to Work. As a condition of an employee's return from pregnancy disability leave or transfer, the employer may require the employee to obtain a release to return-to-work from her health care provider stating that she is able to resume her original job or duties only if the employer has a uniformly applied practice or policy of requiring such releases from other similarly situated employees returning to work after a non-pregnancy related disability leave or transfer."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "2 CCR § 11050(e)"
+    ],
+    "fact sheets number": [],
+    "raw text": "(e) Medical Certification Form. Employers requiring written medical certification from their employees who request a reasonable accommodation, transfer or disability leave because of pregnancy may develop their own form, utilize one provided by the employee's health care provider or use the form provided below.\nCIVIL RIGHTS COUNCIL\nCERTIFICATION OF HEALTH CARE PROVIDER FOR PREGNANCY DISABILITY LEAVE, TRANSFER AND/OR\nREASONABLE ACCOMMODATION\nEmployee's Name:  \nPlease certify that, because of this patient's pregnancy, childbirth, or a related medical condition (including, but not limited to, recovery from pregnancy, childbirth, loss or end of pregnancy, or post-partum depression), this patient needs (check all appropriate category boxes):\nEmpty Checkbox​\nTime off for medical appointments.\nSpecify when and for what duration:\n \n \nEmpty Checkbox​\nA disability leave. [Because of a patient's pregnancy, childbirth or a related medical condition, she cannot perform one or more of the essential functions of her job or cannot perform any of these functions without undue risk to herself, to her pregnancy's successful completion, or to other persons.]\nBeginning (Estimate):  \nEnding (Estimate):  \nEmpty Checkbox​\nIntermittent leave. Specify medically advisable intermittent leave schedule:\n \n \nBeginning (Estimate):  \nEnding (Estimate):  \nEmpty Checkbox​\nReduced work schedule. [Specify medically advisable reduced work schedule.]\n \n \nBeginning (Estimate):  \nEnding (Estimate):  \nEmpty Checkbox​\nTransfer to a less strenuous or hazardous position or to be assigned to less strenuous or hazardous duties [specify what would be a medically advisable position/duties].\n \n \nBeginning (Estimate):  \nEnding (Estimate):  \nEmpty Checkbox​\nReasonable accommodation(s). [Specify medically advisable needed accommodation(s). These could include, but are not limited to, modifying lifting requirements, or providing more frequent breaks, or providing a stool or chair.]\n \n \nBeginning (Estimate):  \nEnding (Estimate):  \nName, license number and medical/health care specialty [printed] of health care provider.\n \n \n \n \nSignature of health care provider:\n \nDate:"
+  }
+]

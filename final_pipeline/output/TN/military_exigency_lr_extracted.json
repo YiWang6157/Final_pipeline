@@ -1,0 +1,310 @@
+{
+  "extracted_at": "2026-07-15T18:16:13.589710+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/tn_extracted_sections_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/schema/tn_military_exigency.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "military exigency",
+  "matched_chunk_count": 3,
+  "section_count": 3,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "spouse",
+      "son or daughter",
+      "parent"
+    ],
+    "citation": "6.08",
+    "notes": "Covered relationships are spouse, son, daughter, or parent of the employee who is a covered military member on covered active duty or called to covered active duty."
+  },
+  "conditions": [
+    {
+      "condition_name": "qualifying_exigency",
+      "field": "qualifying exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "covered active duty",
+          "operator": "ALL_OF",
+          "required_value": [
+            {
+              "field": "active duty status",
+              "operator": "IN",
+              "required_value": [
+                "on covered active duty",
+                "called to covered active duty",
+                "notified of impending call or order to covered active duty"
+              ],
+              "unit": null
+            },
+            {
+              "field": "deployment location",
+              "operator": "==",
+              "required_value": "foreign country",
+              "unit": null
+            }
+          ],
+          "unit": null
+        },
+        {
+          "field": "qualifying exigency type",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "short-notice deployment",
+              "operator": "<=",
+              "required_value": 7,
+              "unit": "calendar days before deployment"
+            },
+            {
+              "field": "military events",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "activity",
+                  "operator": "IN",
+                  "required_value": [
+                    "official ceremony",
+                    "military program or event",
+                    "family support or assistance program",
+                    "informational briefing"
+                  ],
+                  "unit": null
+                },
+                {
+                  "field": "related to active duty or call to active duty",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "childcare and school",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "activity",
+                  "operator": "IN",
+                  "required_value": [
+                    "arranging alternative childcare",
+                    "urgent childcare provision",
+                    "school or daycare enrollment or transfer",
+                    "school or daycare meeting"
+                  ],
+                  "unit": null
+                },
+                {
+                  "field": "necessitated by active duty",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "financial and legal arrangements",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "activity",
+                  "operator": "==",
+                  "required_value": "make or update financial or legal arrangements",
+                  "unit": null
+                },
+                {
+                  "field": "addresses member absence",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "counseling",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "provided by health care provider",
+                  "operator": "==",
+                  "required_value": false,
+                  "unit": null
+                },
+                {
+                  "field": "recipient",
+                  "operator": "IN",
+                  "required_value": [
+                    "employee",
+                    "covered military member",
+                    "child of covered military member"
+                  ],
+                  "unit": null
+                },
+                {
+                  "field": "need arises from active duty",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "rest and recuperation",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "member leave type",
+                  "operator": "==",
+                  "required_value": "short-term temporary rest and recuperation leave during deployment",
+                  "unit": null
+                },
+                {
+                  "field": "time spent with member",
+                  "operator": "<=",
+                  "required_value": 15,
+                  "unit": "days"
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "post-deployment activities",
+              "operator": "ANY_OF",
+              "required_value": [
+                {
+                  "field": "official post-deployment activity",
+                  "operator": "ALL_OF",
+                  "required_value": [
+                    {
+                      "field": "activity",
+                      "operator": "IN",
+                      "required_value": [
+                        "arrival ceremony",
+                        "reintegration briefing or event",
+                        "official military ceremony or program"
+                      ],
+                      "unit": null
+                    },
+                    {
+                      "field": "days after termination of active duty status",
+                      "operator": "<=",
+                      "required_value": 90,
+                      "unit": "days"
+                    }
+                  ],
+                  "unit": null
+                },
+                {
+                  "field": "death of covered member",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "parental care",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "care recipient",
+                  "operator": "==",
+                  "required_value": "parent of covered military member incapable of self-care",
+                  "unit": null
+                },
+                {
+                  "field": "care necessitated by active duty",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                },
+                {
+                  "field": "activity",
+                  "operator": "IN",
+                  "required_value": [
+                    "arranging alternative care",
+                    "immediate care provision",
+                    "admitting or transferring to care facility",
+                    "care facility staff meeting"
+                  ],
+                  "unit": null
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "other qualifying exigency",
+              "operator": "ANY_OF",
+              "required_value": [
+                {
+                  "field": "employee and employer agreement",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                },
+                {
+                  "field": "Secretary of Labor determination",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "6.08",
+      "notes": "Covered active duty means deployment with the Armed Forces to a foreign country, or under a Federal call or order to active duty in support of a contingency operation.",
+      "source_text": "An eligible employee may take FMLA leave while the employee's spouse, son, daughter, or parent is on covered active duty or call to covered active duty status... Eligible employees may take qualifying exigency leave for any of the following reasons..."
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 7168,
+    "output_tokens": 2088,
+    "processing_duration": 21.088201761245728
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"military exigency\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"spouse\", \"child\", \"parent\"],\n    \"citation\": \"6.08\",\n    \"notes\": \"Covered relationships are spouse, son, daughter, or parent of the employee who is a covered military member on covered active duty.\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"qualifying_exigency\",\n      \"field\": \"qualifying exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"covered active duty\",\n          \"operator\": \"ALL_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"active duty status\",\n              \"operator\": \"IN\",\n              \"required_value\": [\"on covered active duty\", \"called to covered active duty\", \"notified of impending call or order\"],\n              \"unit\": null\n            },\n            {\n              \"field\": \"deployment location\",\n              \"operator\": \"==\",\n              \"required_value\": \"foreign country\",\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        },\n        {\n          \"field\": \"qualifying exigency type\",\n          \"operator\": \"ANY_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"short-notice deployment\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"notice before deployment\",\n                  \"operator\": \"<=\",\n                  \"required_value\": 7,\n                  \"unit\": \"calendar days\"\n                },\n                {\n                  \"field\": \"active duty support\",\n                  \"operator\": \"==\",\n                  \"required_value\": \"contingency operation\",\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.08\"\n            },\n            {\n              \"field\": \"military events\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"activity\",\n                  \"operator\": \"IN\",\n                  \"required_value\": [\"official ceremony\", \"military program or event\", \"family support program\", \"informational briefing\"],\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"related to active duty\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.08\"\n            },\n            {\n              \"field\": \"childcare and school\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"activity\",\n                  \"operator\": \"IN\",\n                  \"required_value\": [\"arranging alternative childcare\", \"urgent childcare provision\", \"school or daycare enrollment or transfer\", \"school or daycare meeting\"],\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"necessitated by active duty\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.08\"\n            },\n            {\n              \"field\": \"financial and legal arrangements\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"activity\",\n                  \"operator\": \"==\",\n                  \"required_value\": \"make or update financial or legal arrangements\",\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"member absence\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.08\"\n            },\n            {\n              \"field\": \"counseling\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"health care provider\",\n                  \"operator\": \"==\",\n                  \"required_value\": false,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"recipient\",\n                  \"operator\": \"IN\",\n                  \"required_value\": [\"employee\", \"covered military member\", \"child of covered military member\"],\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"arises from active duty\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.08\"\n            },\n            {\n              \"field\": \"rest and recuperation\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"during deployment\",\n                  \"operator\": \"==\",\n                  \"required_value\": \"short-term temporary rest and recuperation leave\",\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"leave duration\",\n                  \"operator\": \"<=\",\n                  \"required_value\": 15,\n                  \"unit\": \"days\"\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.08\"\n            },\n            {\n              \"field\": \"post-deployment activities\",\n              \"operator\": \"ANY_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"official post-deployment activity\",\n                  \"operator\": \"ALL_OF\",\n                  \"required_value\": [\n                    {\n                      \"field\": \"activity\",\n                      \"operator\": \"IN\",\n                      \"required_value\": [\"arrival ceremony\", \"reintegration briefing\", \"official military program or ceremony\"],\n                      \"unit\": null\n                    },\n                    {\n                      \"field\": \"days after duty ends\",\n                      \"operator\": \"<=\",\n                      \"required_value\": 90,\n                      \"unit\": \"days\"\n                    }\n                  ],\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"death of covered member\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.08\"\n            },\n            {\n              \"field\": \"parental care\",\n              \"operator\": \"ALL_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"military member parent\",\n                  \"operator\": \"==\",\n                  \"required_value\": \"parent of covered military member\",\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"parent incapable of self-care\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"care necessitated by active duty\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"activity\",\n                  \"operator\": \"IN\",\n                  \"required_value\": [\"arranging alternative care\", \"immediate care provision\", \"admitting or transferring to care facility\", \"care facility staff meeting\"],\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.08\"\n            },\n            {\n              \"field\": \"other qualifying exigency\",\n              \"operator\": \"ANY_OF\",\n              \"required_value\": [\n                {\n                  \"field\": \"employee employer agreement\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                },\n                {\n                  \"field\": \"Secretary of Labor determination\",\n                  \"operator\": \"==\",\n                  \"required_value\": true,\n                  \"unit\": null\n                }\n              ],\n              \"unit\": null,\n              \"citation\": \"6.08\"\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.08\",\n      \"notes\": \"Covered active duty means deployment with the Armed Forces to a foreign country or under a Federal call or order in support of a contingency operation.\",\n      \"source_text\": \"An eligible employee may take FMLA leave while the employee's spouse, son, daughter, or parent is on covered active duty or call to covered active duty status... Eligible employees may take qualifying exigency leave for any of the following reasons...\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "included_relationships.required_value uses 'child' but the regulation text specifies 'son or daughter'; should be corrected to match the regulation wording"
+    ],
+    "logic_issues": [
+      "short-notice deployment nested check includes 'active duty support == contingency operation' as a separate sub-check, but the regulation ties contingency operation to the covered active duty definition, not as an additional exigency-type requirement; the short-notice deployment exigency is simply notice of 7 or fewer calendar days before deployment",
+      "rest_and_recuperation nested check uses field 'during deployment' with required_value 'short-term temporary rest and recuperation leave', which conflates the field label and value; field should describe what is being checked and required_value should be the qualifying value",
+      "post-deployment activities uses 'days after duty ends' but the regulation says '90 days following the termination of the covered military member's active duty status'; unit should reflect this precisely"
+    ],
+    "missing_conditions": [],
+    "unsupported_conditions": [],
+    "format_issues": [
+      "nested check objects inside qualifying_exigency.required_value (the ANY_OF list) include extra keys 'citation' and 'unit' at the same level as field/operator/required_value/unit; nested check objects must use exactly field, operator, required_value, unit — no citation key is permitted inside nested checks",
+      "the outer qualifying_exigency condition uses operator ALL_OF but required_value is a list of two items where the second is itself an ANY_OF nested check; this is valid structurally but the inner ANY_OF check object inside required_value carries extra keys (citation, unit at wrong level)"
+    ],
+    "revision_summary": [
+      "Corrected included_relationships.required_value from 'child' to 'son or daughter'",
+      "Removed extra 'citation' keys from nested check objects inside required_value lists",
+      "Simplified short-notice deployment sub-check to remove unsupported 'contingency operation' sub-requirement from the exigency type level",
+      "Corrected rest_and_recuperation field/required_value to be clear and atomic",
+      "Corrected post-deployment 'days after duty ends' unit to 'days after termination of active duty status'",
+      "Preserved all other API1 content which is well-grounded in the regulation chunks"
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 7025,
+    "output_tokens": 2636,
+    "processing_duration": 30.78580951690674
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"included_relationships.required_value uses 'child' but the regulation text specifies 'son or daughter'; should be corrected to match the regulation wording\"\n    ],\n    \"logic_issues\": [\n      \"short-notice deployment nested check includes 'active duty support == contingency operation' as a separate sub-check, but the regulation ties contingency operation to the covered active duty definition, not as an additional exigency-type requirement; the short-notice deployment exigency is simply notice of 7 or fewer calendar days before deployment\",\n      \"rest_and_recuperation nested check uses field 'during deployment' with required_value 'short-term temporary rest and recuperation leave', which conflates the field label and value; field should describe what is being checked and required_value should be the qualifying value\",\n      \"post-deployment activities uses 'days after duty ends' but the regulation says '90 days following the termination of the covered military member's active duty status'; unit should reflect this precisely\"\n    ],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [],\n    \"format_issues\": [\n      \"nested check objects inside qualifying_exigency.required_value (the ANY_OF list) include extra keys 'citation' and 'unit' at the same level as field/operator/required_value/unit; nested check objects must use exactly field, operator, required_value, unit — no citation key is permitted inside nested checks\",\n      \"the outer qualifying_exigency condition uses operator ALL_OF but required_value is a list of two items where the second is itself an ANY_OF nested check; this is valid structurally but the inner ANY_OF check object inside required_value carries extra keys (citation, unit at wrong level)\"\n    ],\n    \"revision_summary\": [\n      \"Corrected included_relationships.required_value from 'child' to 'son or daughter'\",\n      \"Removed extra 'citation' keys from nested check objects inside required_value lists\",\n      \"Simplified short-notice deployment sub-check to remove unsupported 'contingency operation' sub-requirement from the exigency type level\",\n      \"Corrected rest_and_recuperation field/required_value to be clear and atomic\",\n      \"Corrected post-deployment 'days after duty ends' unit to 'days after termination of active duty status'\",\n      \"Preserved all other API1 content which is well-grounded in the regulation chunks\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"military exigency\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"spouse\",\n        \"son or daughter\",\n        \"parent\"\n      ],\n      \"citation\": \"6.08\",\n      \"notes\": \"Covered relationships are spouse, son, daughter, or parent of the employee who is a covered military member on covered active duty or called to covered active duty.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"qualifying_exigency\",\n        \"field\": \"qualifying exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"covered active duty\",\n            \"operator\": \"ALL_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"active duty status\",\n                \"operator\": \"IN\",\n                \"required_value\": [\n                  \"on covered active duty\",\n                  \"called to covered active duty\",\n                  \"notified of impending call or order to covered active duty\"\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"deployment location\",\n                \"operator\": \"==\",\n                \"required_value\": \"foreign country\",\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"qualifying exigency type\",\n            \"operator\": \"ANY_OF\",\n            \"required_value\": [\n              {\n                \"field\": \"short-notice deployment\",\n                \"operator\": \"<=\",\n                \"required_value\": 7,\n                \"unit\": \"calendar days before deployment\"\n              },\n              {\n                \"field\": \"military events\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"activity\",\n                    \"operator\": \"IN\",\n                    \"required_value\": [\n                      \"official ceremony\",\n                      \"military program or event\",\n                      \"family support or assistance program\",\n                      \"informational briefing\"\n                    ],\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"related to active duty or call to active duty\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"childcare and school\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"activity\",\n                    \"operator\": \"IN\",\n                    \"required_value\": [\n                      \"arranging alternative childcare\",\n                      \"urgent childcare provision\",\n                      \"school or daycare enrollment or transfer\",\n                      \"school or daycare meeting\"\n                    ],\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"necessitated by active duty\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"financial and legal arrangements\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"activity\",\n                    \"operator\": \"==\",\n                    \"required_value\": \"make or update financial or legal arrangements\",\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"addresses member absence\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"counseling\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"provided by health care provider\",\n                    \"operator\": \"==\",\n                    \"required_value\": false,\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"recipient\",\n                    \"operator\": \"IN\",\n                    \"required_value\": [\n                      \"employee\",\n                      \"covered military member\",\n                      \"child of covered military member\"\n                    ],\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"need arises from active duty\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"rest and recuperation\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"member leave type\",\n                    \"operator\": \"==\",\n                    \"required_value\": \"short-term temporary rest and recuperation leave during deployment\",\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"time spent with member\",\n                    \"operator\": \"<=\",\n                    \"required_value\": 15,\n                    \"unit\": \"days\"\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"post-deployment activities\",\n                \"operator\": \"ANY_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"official post-deployment activity\",\n                    \"operator\": \"ALL_OF\",\n                    \"required_value\": [\n                      {\n                        \"field\": \"activity\",\n                        \"operator\": \"IN\",\n                        \"required_value\": [\n                          \"arrival ceremony\",\n                          \"reintegration briefing or event\",\n                          \"official military ceremony or program\"\n                        ],\n                        \"unit\": null\n                      },\n                      {\n                        \"field\": \"days after termination of active duty status\",\n                        \"operator\": \"<=\",\n                        \"required_value\": 90,\n                        \"unit\": \"days\"\n                      }\n                    ],\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"death of covered member\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"parental care\",\n                \"operator\": \"ALL_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"care recipient\",\n                    \"operator\": \"==\",\n                    \"required_value\": \"parent of covered military member incapable of self-care\",\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"care necessitated by active duty\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"activity\",\n                    \"operator\": \"IN\",\n                    \"required_value\": [\n                      \"arranging alternative care\",\n                      \"immediate care provision\",\n                      \"admitting or transferring to care facility\",\n                      \"care facility staff meeting\"\n                    ],\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              },\n              {\n                \"field\": \"other qualifying exigency\",\n                \"operator\": \"ANY_OF\",\n                \"required_value\": [\n                  {\n                    \"field\": \"employee and employer agreement\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  },\n                  {\n                    \"field\": \"Secretary of Labor determination\",\n                    \"operator\": \"==\",\n                    \"required_value\": true,\n                    \"unit\": null\n                  }\n                ],\n                \"unit\": null\n              }\n            ],\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"6.08\",\n        \"notes\": \"Covered active duty means deployment with the Armed Forces to a foreign country, or under a Federal call or order to active duty in support of a contingency operation.\",\n        \"source_text\": \"An eligible employee may take FMLA leave while the employee's spouse, son, daughter, or parent is on covered active duty or call to covered active duty status... Eligible employees may take qualifying exigency leave for any of the following reasons...\"\n      }\n    ]\n  }\n}"
+}

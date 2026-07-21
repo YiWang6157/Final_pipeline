@@ -1,0 +1,92 @@
+{
+  "extracted_at": "2026-07-15T18:07:15.342120+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/cfra_chunk_schema_filled.json",
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/pdl_chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "ee_extraction",
+  "model_key": "ari_model",
+  "employee_eligibility_chunk_count": 6,
+  "chunks_sent_count": 126,
+  "employee_eligibility_conditions": [
+    {
+      "field": "employment_duration_months",
+      "operator": ">=",
+      "required_value": 12,
+      "unit": "months",
+      "citation": "2 CCR § 11087(g)",
+      "notes": "Must have been employed for a total of at least 12 months (52 weeks) with the employer at any time prior to the commencement of CFRA leave. Employment periods prior to a break in service of seven years or more need not be counted, except for breaks caused by military service obligation or written agreement.",
+      "source_text": "A full- or part-time employee in California who has been employed for a total of at least 12 months (52 weeks) with the employer at any time prior to the commencement of a CFRA leave"
+    },
+    {
+      "field": "hours_worked_last_12_months",
+      "operator": ">=",
+      "required_value": 1250,
+      "unit": "hours",
+      "citation": "2 CCR § 11087(g)",
+      "notes": "Must have actually worked at least 1,250 hours during the 12-month period immediately prior to the date the CFRA leave is to commence. For employees taking pregnancy disability leave first, the 12-month period is measured from the first day of pregnancy disability leave.",
+      "source_text": "who has actually worked (within the meaning of the California Labor Code and Industrial Welfare Commission Wage Orders) for the employer at least 1,250 hours during the 12-month period immediately prior to the date the CFRA leave is to commence."
+    },
+    {
+      "field": "employee_location",
+      "operator": "==",
+      "required_value": "California",
+      "unit": null,
+      "citation": "2 CCR § 11087(g)",
+      "notes": "Employee must be a full- or part-time employee in California.",
+      "source_text": "A full- or part-time employee in California who has been employed for a total of at least 12 months (52 weeks) with the employer at any time prior to the commencement of a CFRA leave"
+    },
+    {
+      "field": "air_crew_employment_duration_months",
+      "operator": ">=",
+      "required_value": 12,
+      "unit": "months",
+      "citation": "2 CCR § 11087(g)",
+      "notes": "Applies specifically to flight deck or cabin crew members employed by an air carrier.",
+      "source_text": "An employee employed by an air carrier as a flight deck or cabin crew member who has been employed for 12 or more months with the employer"
+    },
+    {
+      "field": "air_crew_hours_worked_or_paid_percentage",
+      "operator": ">=",
+      "required_value": 60,
+      "unit": "percent",
+      "citation": "2 CCR § 11087(g)",
+      "notes": "Applies to flight deck or cabin crew members. Must have worked or been paid for 60 percent of the applicable monthly guarantee or the equivalent annualized over the preceding 12-month period.",
+      "source_text": "has worked or been paid for 60 percent of the applicable monthly guarantee or the equivalent annualized over the preceding 12-month period"
+    },
+    {
+      "field": "air_crew_hours_worked_or_paid_last_12_months",
+      "operator": ">=",
+      "required_value": 504,
+      "unit": "hours",
+      "citation": "2 CCR § 11087(g)",
+      "notes": "Applies specifically to flight deck or cabin crew members employed by an air carrier.",
+      "source_text": "has worked or been paid for at least 504 hours during the preceding 12-month period."
+    },
+    {
+      "field": "pregnancy_disability_leave_eligibility_requirement",
+      "operator": "does_not_apply",
+      "required_value": null,
+      "unit": null,
+      "citation": "2 CCR § 11037",
+      "notes": "There is no minimum hours worked or length of service requirement before an employee affected or disabled by pregnancy is eligible for reasonable accommodation, transfer, or disability leave.",
+      "source_text": "There is no eligibility requirement, such as minimum hours worked or length of service, before an employee affected or disabled by pregnancy is eligible for reasonable accommodation, transfer, or disability leave."
+    },
+    {
+      "field": "group_health_plan_coverage",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "2 CCR § 11035(g)",
+      "notes": "An 'eligible female employee' for pregnancy disability leave purposes is an employee who qualifies for coverage under her employer's group health plan.",
+      "source_text": "An 'eligible female employee' is an employee who qualifies for coverage under her employer's group health plan."
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 39807,
+    "output_tokens": 1218,
+    "processing_duration": 16.332868099212646
+  },
+  "raw_llm_response": "{\n  \"employee_eligibility_conditions\": [\n    {\n      \"field\": \"employment_duration_months\",\n      \"operator\": \">=\",\n      \"required_value\": 12,\n      \"unit\": \"months\",\n      \"citation\": \"2 CCR § 11087(g)\",\n      \"notes\": \"Must have been employed for a total of at least 12 months (52 weeks) with the employer at any time prior to the commencement of CFRA leave. Employment periods prior to a break in service of seven years or more need not be counted, except for breaks caused by military service obligation or written agreement.\",\n      \"source_text\": \"A full- or part-time employee in California who has been employed for a total of at least 12 months (52 weeks) with the employer at any time prior to the commencement of a CFRA leave\"\n    },\n    {\n      \"field\": \"hours_worked_last_12_months\",\n      \"operator\": \">=\",\n      \"required_value\": 1250,\n      \"unit\": \"hours\",\n      \"citation\": \"2 CCR § 11087(g)\",\n      \"notes\": \"Must have actually worked at least 1,250 hours during the 12-month period immediately prior to the date the CFRA leave is to commence. For employees taking pregnancy disability leave first, the 12-month period is measured from the first day of pregnancy disability leave.\",\n      \"source_text\": \"who has actually worked (within the meaning of the California Labor Code and Industrial Welfare Commission Wage Orders) for the employer at least 1,250 hours during the 12-month period immediately prior to the date the CFRA leave is to commence.\"\n    },\n    {\n      \"field\": \"employee_location\",\n      \"operator\": \"==\",\n      \"required_value\": \"California\",\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11087(g)\",\n      \"notes\": \"Employee must be a full- or part-time employee in California.\",\n      \"source_text\": \"A full- or part-time employee in California who has been employed for a total of at least 12 months (52 weeks) with the employer at any time prior to the commencement of a CFRA leave\"\n    },\n    {\n      \"field\": \"air_crew_employment_duration_months\",\n      \"operator\": \">=\",\n      \"required_value\": 12,\n      \"unit\": \"months\",\n      \"citation\": \"2 CCR § 11087(g)\",\n      \"notes\": \"Applies specifically to flight deck or cabin crew members employed by an air carrier.\",\n      \"source_text\": \"An employee employed by an air carrier as a flight deck or cabin crew member who has been employed for 12 or more months with the employer\"\n    },\n    {\n      \"field\": \"air_crew_hours_worked_or_paid_percentage\",\n      \"operator\": \">=\",\n      \"required_value\": 60,\n      \"unit\": \"percent\",\n      \"citation\": \"2 CCR § 11087(g)\",\n      \"notes\": \"Applies to flight deck or cabin crew members. Must have worked or been paid for 60 percent of the applicable monthly guarantee or the equivalent annualized over the preceding 12-month period.\",\n      \"source_text\": \"has worked or been paid for 60 percent of the applicable monthly guarantee or the equivalent annualized over the preceding 12-month period\"\n    },\n    {\n      \"field\": \"air_crew_hours_worked_or_paid_last_12_months\",\n      \"operator\": \">=\",\n      \"required_value\": 504,\n      \"unit\": \"hours\",\n      \"citation\": \"2 CCR § 11087(g)\",\n      \"notes\": \"Applies specifically to flight deck or cabin crew members employed by an air carrier.\",\n      \"source_text\": \"has worked or been paid for at least 504 hours during the preceding 12-month period.\"\n    },\n    {\n      \"field\": \"pregnancy_disability_leave_eligibility_requirement\",\n      \"operator\": \"does_not_apply\",\n      \"required_value\": null,\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11037\",\n      \"notes\": \"There is no minimum hours worked or length of service requirement before an employee affected or disabled by pregnancy is eligible for reasonable accommodation, transfer, or disability leave.\",\n      \"source_text\": \"There is no eligibility requirement, such as minimum hours worked or length of service, before an employee affected or disabled by pregnancy is eligible for reasonable accommodation, transfer, or disability leave.\"\n    },\n    {\n      \"field\": \"group_health_plan_coverage\",\n      \"operator\": \"==\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11035(g)\",\n      \"notes\": \"An 'eligible female employee' for pregnancy disability leave purposes is an employee who qualifies for coverage under her employer's group health plan.\",\n      \"source_text\": \"An 'eligible female employee' is an employee who qualifies for coverage under her employer's group health plan.\"\n    }\n  ]\n}"
+}

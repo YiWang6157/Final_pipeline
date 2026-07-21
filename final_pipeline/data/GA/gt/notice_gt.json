@@ -1,0 +1,54 @@
+{
+    "conditions": [
+      {
+        "condition_name": "leave_request_approval_required",
+        "operator": "==",
+        "required_value": true,
+        "unit": null,
+        "citation": "478-1-.16(4)(a)-(b)",
+        "notes": "Employees must follow agency procedures to request and receive approval for absence.",
+        "source_text": "Employees are expected to properly request and receive approval for absence from work."
+      },
+      {
+        "condition_name": "leave_extension_request_timing",
+        "operator": "IN",
+        "required_value": [
+          ["prior to leave expiration"]
+        ],
+        "unit": null,
+        "citation": "478-1-.16(4)(f)",
+        "notes": "Extension must be requested in writing before leave expires or per agency procedures.",
+        "source_text": "employee must request it in writing from her/his supervisor prior to the leave expiration or adhere to other agency procedures for timely requesting an extension"
+      },
+      {
+        "condition_name": "periodic_status_reports_uncertain_leave",
+        "operator": "==",
+        "required_value": true,
+        "unit": null,
+        "citation": "478-1-.16(4)(d)",
+        "notes": "Agency may require periodic reports during leave with uncertain end date.",
+        "source_text": "The agency may require an employee on leave with an uncertain end date to provide periodic reports during the leave regarding the employee's status and intent to return to work."
+      },
+      {
+        "condition_name": "sick_leave_substitution_for_annual_leave_deadline",
+        "operator": "<=",
+        "required_value": 2,
+        "unit": "weeks",
+        "citation": "478-1-.16(7)(e)",
+        "notes": "Request to substitute sick leave for annual leave must be made within 2 weeks of return to duty.",
+        "source_text": "A request for substitution of sick leave for annual leave must be made to the agency within two (2) weeks after the employee has returned to duty."
+      },
+      {
+        "condition_name": "parental_leave_employer_notice_to_employees",
+        "operator": "IN",
+        "required_value": [
+          ["upon hire"],
+          ["annually"]
+        ],
+        "unit": null,
+        "citation": "478-1-.16(26)(g)",
+        "notes": "Agencies must notify all employees anticipated to become eligible upon hire and annually.",
+        "source_text": "Agencies must provide notice of paid parental leave benefits to all employees anticipated to become eligible for paid parental leave upon hire and annually thereafter."
+      }
+    ]
+  }

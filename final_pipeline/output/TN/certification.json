@@ -1,0 +1,177 @@
+{
+  "extracted_at": "2026-07-15T18:16:37.136489+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/tn_extracted_sections_chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "notice_cert",
+  "model_key": "ari_model",
+  "matched_chunk_count": 5,
+  "category": "certification",
+  "conditions": [
+    {
+      "condition_name": "health_condition_or_caregiver_cert",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "leave_reason",
+          "operator": "IN",
+          "required_value": [
+            "health condition",
+            "military caregiver"
+          ],
+          "unit": null
+        },
+        {
+          "field": "certification required",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "6.17",
+      "notes": "FMLA Coordinator may require certification; written notice of requirement must be given each time.",
+      "source_text": "The FMLA Coordinator may require that an employee's request for leave be supported by certification from a health care provider."
+    },
+    {
+      "condition_name": "cert_submission_foreseeable",
+      "operator": "==",
+      "required_value": "before leave begins",
+      "unit": null,
+      "citation": "6.17",
+      "notes": "Applies when need for leave is foreseeable.",
+      "source_text": "When the need for leave is foreseeable, the employee should provide medical certification before the leave begins."
+    },
+    {
+      "condition_name": "cert_submission_window",
+      "operator": ">=",
+      "required_value": 15,
+      "unit": "calendar days",
+      "citation": "6.17",
+      "notes": "Minimum time allowed for employee to provide requested certification.",
+      "source_text": "At least fifteen (15) calendar days must be allowed for the employee to provide requested medical certification."
+    },
+    {
+      "condition_name": "cert_request_timing_foreseeable",
+      "operator": "<=",
+      "required_value": 2,
+      "unit": "business days",
+      "citation": "6.17",
+      "notes": "Certification should be requested at time of leave request or within 2 business days.",
+      "source_text": "Any request for medical certification should be made at the time the employee requests leave or within two (2) business days."
+    },
+    {
+      "condition_name": "cert_request_timing_unforeseeable",
+      "operator": "<=",
+      "required_value": 2,
+      "unit": "business days",
+      "citation": "6.17",
+      "notes": "For unforeseeable leave, certification requested within 2 business days after leave begins.",
+      "source_text": "If the leave was unforeseen, the certification should be requested within two (2) business days after the leave has begun."
+    },
+    {
+      "condition_name": "incomplete_cert_cure_period",
+      "operator": "==",
+      "required_value": 7,
+      "unit": "calendar days",
+      "citation": "6.17",
+      "notes": "Employer must specify in writing what is lacking; employee has 7 days to cure.",
+      "source_text": "The employer must specify in writing what information is lacking, and give the employee seven (7) calendar days to cure the deficiency."
+    },
+    {
+      "condition_name": "failure_to_certify_foreseeable",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "leave foreseeable",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "cert provided within 15 days",
+          "operator": "==",
+          "required_value": false,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "6.20",
+      "notes": "Leave may be denied until certification is provided if foreseeable.",
+      "source_text": "An employee who fails to provide certification within the requested allowable time frame (minimally fifteen (15) calendar days) may be denied leave until certification is provided if the leave was foreseeable."
+    },
+    {
+      "condition_name": "failure_to_certify_unforeseeable",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "leave foreseeable",
+          "operator": "==",
+          "required_value": false,
+          "unit": null
+        },
+        {
+          "field": "cert provided in reasonable time",
+          "operator": "==",
+          "required_value": false,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "6.20",
+      "notes": "Leave continuation may be denied; reasonable time determined by FMLA Coordinator.",
+      "source_text": "An employee failing to provide certification within this time frame may be denied leave continuation."
+    },
+    {
+      "condition_name": "military_exigency_cert",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "leave_reason",
+          "operator": "==",
+          "required_value": "military exigency",
+          "unit": null
+        },
+        {
+          "field": "documents required",
+          "operator": "==",
+          "required_value": "active duty orders and exigency certification",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "6.19",
+      "notes": "Rest and recuperation exigency requires rest/recuperation orders or equivalent military documentation.",
+      "source_text": "An employee requesting leave for a qualifying exigency must submit a copy of the covered military member's active duty orders and certification providing the appropriate facts."
+    },
+    {
+      "condition_name": "military_caregiver_cert",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "leave_reason",
+          "operator": "==",
+          "required_value": "military caregiver",
+          "unit": null
+        },
+        {
+          "field": "documents required",
+          "operator": "==",
+          "required_value": "health care provider cert or ITO/ITA",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "6.19",
+      "notes": "Certification by authorized health care provider or Invitational Travel Order/Authorization accepted.",
+      "source_text": "An employee requesting leave to care for a covered service member must submit a certification form completed by an authorized health care provider or a copy of an Invitational Travel Order or Invitational Travel Authorization."
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 3532,
+    "output_tokens": 1642,
+    "processing_duration": 16.662204265594482
+  },
+  "raw_llm_response": "{\n  \"category\": \"certification\",\n  \"conditions\": [\n    {\n      \"condition_name\": \"health_condition_or_caregiver_cert\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"leave_reason\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"health condition\", \"military caregiver\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"certification required\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.17\",\n      \"notes\": \"FMLA Coordinator may require certification; written notice of requirement must be given each time.\",\n      \"source_text\": \"The FMLA Coordinator may require that an employee's request for leave be supported by certification from a health care provider.\"\n    },\n    {\n      \"condition_name\": \"cert_submission_foreseeable\",\n      \"operator\": \"==\",\n      \"required_value\": \"before leave begins\",\n      \"unit\": null,\n      \"citation\": \"6.17\",\n      \"notes\": \"Applies when need for leave is foreseeable.\",\n      \"source_text\": \"When the need for leave is foreseeable, the employee should provide medical certification before the leave begins.\"\n    },\n    {\n      \"condition_name\": \"cert_submission_window\",\n      \"operator\": \">=\",\n      \"required_value\": 15,\n      \"unit\": \"calendar days\",\n      \"citation\": \"6.17\",\n      \"notes\": \"Minimum time allowed for employee to provide requested certification.\",\n      \"source_text\": \"At least fifteen (15) calendar days must be allowed for the employee to provide requested medical certification.\"\n    },\n    {\n      \"condition_name\": \"cert_request_timing_foreseeable\",\n      \"operator\": \"<=\",\n      \"required_value\": 2,\n      \"unit\": \"business days\",\n      \"citation\": \"6.17\",\n      \"notes\": \"Certification should be requested at time of leave request or within 2 business days.\",\n      \"source_text\": \"Any request for medical certification should be made at the time the employee requests leave or within two (2) business days.\"\n    },\n    {\n      \"condition_name\": \"cert_request_timing_unforeseeable\",\n      \"operator\": \"<=\",\n      \"required_value\": 2,\n      \"unit\": \"business days\",\n      \"citation\": \"6.17\",\n      \"notes\": \"For unforeseeable leave, certification requested within 2 business days after leave begins.\",\n      \"source_text\": \"If the leave was unforeseen, the certification should be requested within two (2) business days after the leave has begun.\"\n    },\n    {\n      \"condition_name\": \"incomplete_cert_cure_period\",\n      \"operator\": \"==\",\n      \"required_value\": 7,\n      \"unit\": \"calendar days\",\n      \"citation\": \"6.17\",\n      \"notes\": \"Employer must specify in writing what is lacking; employee has 7 days to cure.\",\n      \"source_text\": \"The employer must specify in writing what information is lacking, and give the employee seven (7) calendar days to cure the deficiency.\"\n    },\n    {\n      \"condition_name\": \"failure_to_certify_foreseeable\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"leave foreseeable\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"cert provided within 15 days\",\n          \"operator\": \"==\",\n          \"required_value\": false,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.20\",\n      \"notes\": \"Leave may be denied until certification is provided if foreseeable.\",\n      \"source_text\": \"An employee who fails to provide certification within the requested allowable time frame (minimally fifteen (15) calendar days) may be denied leave until certification is provided if the leave was foreseeable.\"\n    },\n    {\n      \"condition_name\": \"failure_to_certify_unforeseeable\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"leave foreseeable\",\n          \"operator\": \"==\",\n          \"required_value\": false,\n          \"unit\": null\n        },\n        {\n          \"field\": \"cert provided in reasonable time\",\n          \"operator\": \"==\",\n          \"required_value\": false,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.20\",\n      \"notes\": \"Leave continuation may be denied; reasonable time determined by FMLA Coordinator.\",\n      \"source_text\": \"An employee failing to provide certification within this time frame may be denied leave continuation.\"\n    },\n    {\n      \"condition_name\": \"military_exigency_cert\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"leave_reason\",\n          \"operator\": \"==\",\n          \"required_value\": \"military exigency\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"documents required\",\n          \"operator\": \"==\",\n          \"required_value\": \"active duty orders and exigency certification\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.19\",\n      \"notes\": \"Rest and recuperation exigency requires rest/recuperation orders or equivalent military documentation.\",\n      \"source_text\": \"An employee requesting leave for a qualifying exigency must submit a copy of the covered military member's active duty orders and certification providing the appropriate facts.\"\n    },\n    {\n      \"condition_name\": \"military_caregiver_cert\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"leave_reason\",\n          \"operator\": \"==\",\n          \"required_value\": \"military caregiver\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"documents required\",\n          \"operator\": \"==\",\n          \"required_value\": \"health care provider cert or ITO/ITA\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"6.19\",\n      \"notes\": \"Certification by authorized health care provider or Invitational Travel Order/Authorization accepted.\",\n      \"source_text\": \"An employee requesting leave to care for a covered service member must submit a certification form completed by an authorized health care provider or a copy of an Invitational Travel Order or Invitational Travel Authorization.\"\n    }\n  ]\n}"
+}

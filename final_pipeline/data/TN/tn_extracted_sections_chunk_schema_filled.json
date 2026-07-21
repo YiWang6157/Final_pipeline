@@ -1,0 +1,424 @@
+[
+  {
+    "service": true,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "parent",
+      "spouse",
+      "child",
+      "next kin of a covered servicemember"
+    ],
+    "reason": [
+      "health condition",
+      "adoption",
+      "birth or pregnancy",
+      "military exigency",
+      "military caregiver"
+    ],
+    "function": [
+      "employee eligibility"
+    ],
+    "regulation number": [
+      "6.01"
+    ],
+    "fact sheets number": [],
+    "raw text": "CHAPTER 6 – FAMILY AND MEDICAL LEAVE ACT\n6.01 EMPLOYEE ELIGIBILITY\nIn order to be considered eligible for leave under the\nFamily and Medical Leave Act (FMLA),\nan employee must: (1) have worked for the State of Tennessee for at least twelve (12) months; and (2) have worked at least one thousand, two-hundred and fifty (1,250) hours during the year preceding the start of the leave.\n(1) Twelve (12) months of service.\nThe twelve (12) months of required work with the State do not have to be consecutive in order for an employee to be eligible. However, service accrued more than seven (7) years ago shall not be counted toward the minimum requirement. If an employee is maintained on the payroll for any part of a week, including periods of paid or unpaid leave during which other benefits or compensation are provided by the state (such as worker’s compensation or group health plan benefits), that week is considered a week of employment. Fifty-two (52) weeks of such employment equals twelve (12) months.\nAn employee who has a break in employment due to service under the\nUniformed Service Employment and Reemployment Act (USERRA)\nshall receive credit for each month of military service which shall count toward the 12-month minimum service requirement.\nFor example, an employee who has been employed by the state for nine (9) months is ordered to active military service for a period of nine (9) additional months. Upon completion of military service, the employee must be considered to have been employed by the state for more than the required twelve (12) months, since nine (9) months were accrued while actually employed by the state and nine (9) months were accrued while serving on active duty.\n(2) One thousand, two-hundred and fifty (1,250) hours worked.\nIn determining hours worked, the agency shall calculate all hours actually worked by an employee, including overtime hours.\nAn employee who returns to work from fulfilling a USERRA-covered military service obligation shall be credited with the hours of service that would have been performed but for the period of military service. In order to determine the hours that would have been worked during the period of military service, the employee’s pre-service work schedule can generally be used for calculations.\nFor example, an employee who works 37.5 hours per week for the state returns to employment following 20 weeks of military service and requests leave under FMLA. To determine the employee’s eligibility, the hours the employee would have worked during the period of military service (20 x 37.5 = 750 hours) must be added to the hours actually worked during the twelve (12) month period prior to the start of the leave."
+  },
+  {
+    "service": true,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "parent",
+      "spouse",
+      "child",
+      "next kin of a covered servicemember"
+    ],
+    "reason": [
+      "health condition",
+      "adoption",
+      "birth or pregnancy",
+      "military exigency",
+      "military caregiver"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "6.02"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.02 QUALIFYING CRITERIA FOR GRANTING LEAVE\nIf an employee otherwise meets eligibility requirements, he or she may take FMLA leave for any one or combination of the following reasons:\nA. The birth of a child and to bond with the newborn child within one year of birth;\nB. The placement with the employee of a child for adoption or foster care and to bond with the newly-placed child within one year of placement;\nC. The care of the employee's spouse, son, daughter, or parent with a serious health condition, including incapacity due to pregnancy and for prenatal care;\nD. A serious health condition that makes the employee unable to perform the functions of the employee’s job, including incapacity due to pregnancy and for prenatal medical care;\nE. Any qualifying exigency arising out of the fact that an employee’s spouse, son, daughter, or parent is a covered military member on covered active duty (or has been notified of an impending call or order to active covered duty status); or\nF. To care for a covered service member with a serious injury or illness if the employee is the spouse, son, daughter, parent, or next of kin of a covered service member."
+  },
+  {
+    "service": true,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "parent",
+      "spouse",
+      "child",
+      "next kin of a covered servicemember"
+    ],
+    "reason": [
+      "health condition",
+      "adoption",
+      "birth or pregnancy",
+      "military exigency",
+      "military caregiver"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "6.03"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.03 DEFINITIONS OF FAMILY MEMBERS\nSpouse:\nA husband or wife. For purposes of this definition, husband or wife refers to the person with whom an individual entered into marriage as defined or recognized under Tennessee law for purposes of marriage or, in the case of a marriage entered into outside of Tennessee, if the marriage is valid in the place where entered into and could have been entered into in at least one State. This definition includes an individual in a same-sex or common law marriage that either:\n(1) Was entered into in a State that recognizes such marriages; or\n(2) If entered into outside of any State, is valid in the place where entered into and could have been entered into in at least one State.\nParent:\nBiological, adoptive, step or foster parent or an individual who currently stands in place of an absent parent. A person who is “in loco parentis” (standing in place of an absent parent) is not required to have a biological or legal relationship with a child. Persons who are standing in place of an absent parent include those with day-to-day responsibilities to care for and financially support a child or, in the case of an employee, who had such responsibility for the employee when the employee was a child. The FMLA Coordinator may require an employee requesting FMLA leave to provide reasonable documentation confirming the family relationship including such items as a written statement from the employee, a child's birth certificate and relevant court documents. The definition does not include parents- in-law.\nSon/Daughter:\nBiological, adopted, foster child, stepchild, legal ward, or child of a person standing in place of an absent parent who is either under age 18 or age 18 or older and who is incapable of self-care because of a mental or physical disability. In order for an employee to take FMLA leave for a child who is 18 or over, the son or daughter must: (1) have a disability as defined by the Americans with Disability Act (ADA) at the time the leave is to commence; (2) be incapable of self-care because of the disability; (3) have a serious health condition; and (4) need care because of the serious health condition.\nFor purposes of military caregiver leave, a son or daughter refers to the service member’s son or daughter of any age.\nNext of kin:\nThe service member’s nearest blood relative, other than the service member’s spouse, parent, son, or daughter, in the following order of priority: (1) one designated blood relative (in writing); (2) all blood relatives with legal custody; (3) all brothers and sisters; (4) all grandparents; (5) all aunts and uncles; or (6) all first cousins."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "6.04"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.04 BIRTH OF A SON OR DAUGHTER\nIn addition to leave taken after the birth of a child, FMLA leave may be taken by an expectant mother for the purpose of prenatal visits and in situations where a serious health condition prevents her from performing her job duties prior to the child's birth."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "child"
+    ],
+    "reason": [
+      "adoption"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "6.05"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.05 ADOPTIVE OR FOSTER CARE PLACEMENT\nFMLA leave may be taken prior to an adoptive or foster care placement if the leave is integral to the placement. Examples include required counseling sessions, court appearances, and legal or medical consultations. There is no requirement in FMLA that the source of an adoption be from a licensed adoption agency in order for an employee to be eligible for FMLA leave.\nFoster Care is defined as “24-hour care for children in substitution for, and away from, their parents or guardian.\" FMLA requires that this placement be made by or in agreement with the state and that state action be involved in the removal of the child from parental custody."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "parent",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "health condition",
+      "birth or pregnancy"
+    ],
+    "function": [
+      "leave eligibility"
+    ],
+    "regulation number": [
+      "6.06"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.06 SERIOUS HEALTH CONDITION\nFor purposes of the FMLA, serious health condition means an illness, injury, impairment, or physical or mental condition that involves inpatient care or continuing treatment by a health care provider.\nA. Inpatient Care means an overnight stay in a hospital, hospice, or residential medical care facility.\nB. Continuing Treatment by a Health Care Provider: A serious health condition involving continuing treatment by a health care provider includes one or more of the following:\n1. A period of incapacity of more than three (3) consecutive calendar days and any subsequent treatment or period of incapacity relating to the same condition that also involves:\n(a) treatment two (2) or more times, within thirty (30) days of the first day of incapacity, unless extenuating circumstances exist, by a health care provider, by a nurse under direct supervision of a health care provider, or by a provider of health care services under orders of, or on referral by, a health care provider. The first in-person visit to the health care provider must take place within seven (7) days of the first day of incapacity; or\n(b) treatment by a health care provider on at least one (1) occasion which results in a regimen of continuing treatment under the supervision of the health care provider.\n2. Any period of incapacity due to pregnancy or for prenatal care.\n3. Any period of incapacity or treatment for such incapacity due to a chronic serious health condition. A chronic serious health condition is one which (a) requires periodic visits, at least two per year, for treatment by a health care provider or by a nurse or physician's assistant under direct supervision of a health care provider, (b) continues over an extended period of time (including recurring episodes of a single underlying condition), and (c) may cause episodic rather than continuing periods of incapacity (such as asthma, diabetes and epilepsy).\n4. A long-term period of incapacity due to a condition for which treatment may not be effective. In this situation the employee or family member must be under the continuing supervision of but not need to be receiving active treatment by a health care provider. Examples may include Alzheimer's, severe stroke and the terminal stages of a disease.\n5. Any period of absence to receive multiple treatments, including periods of recovery from treatments, by a health care provider or by a provider of health services under orders of or referral by a health care provider, either for restorative surgery after an accident or other injury or for a condition that would likely result in a period of incapacity of more than three (3) calendar days in the absence of medical intervention or treatment, such as cancer chemotherapy or radiation treatment, severe arthritis (physical therapy) and kidney disease (dialysis).\n6. In the case of substance abuse, only the time absent from work due to treatment is qualifying FMLA leave. A period of incapacity resulting from use of the substance is not considered a covered illness. Also, an employee with a substance abuse problem is not protected under FMLA from disciplinary action resulting from such substance abuse. When an agency has a non- discriminatory policy that provides for an employee's termination for substance abuse under certain circumstances and this policy has been communicated to all employees, an appointing authority may terminate the employee, whether or not the employee is on FMLA leave. The appointing authority cannot, however, take action against the employee for exercising his or her right to take FMLA leave for treatment of the substance abuse.\nC. Definition of Health Care Provider\n1. A doctor of medicine or osteopathy who is authorized to practice medicine or surgery (as appropriate) by the state in which the doctor practices;\n2. Podiatrists, dentists, clinical psychologists, optometrists, or chiropractors. A chiropractor is limited to treatment consisting of manual manipulation of the spine to correct a dislocation demonstrated by x-ray. These professionals must be licensed in the state and performing within the scope of their practice as defined by state law;\n3. Nurse practitioner, nurse-midwives, clinical social workers and physician assistants who are authorized to practice under state law and are functioning within the scope of their practice as defined by state law;\n4. Christian Science Practitioners listed with the First Church of Christ, Scientists in Boston, Massachusetts;\n5. Any health care provider from whom the state or Benefits Administration will accept certification of the existence of a serious health condition to substantiate a claim for benefits; or\n6. Any health care provider listed above who practices in a country other than the United States who is authorized to practice in their country and is functioning within the scope of practice as defined by the laws of that country.\nD. When an employee is absent from work due to pregnancy, prenatal care or due to a chronic health condition, leave taken qualifies as FMLA leave even if the employee or family member does not receive treatment from a health care provider during the absence and even if the absence lasts less than three (3) days.\nFor example, an employee with asthma may be unable to report to work due to onset of an asthma attack he or she can treat at home. Even though the employee did not visit a health care provider and was absent for less than three days, the time off qualifies as FMLA leave.\nAnother example is an employee unable to report to work due to severe morning sickness resulting from pregnancy. Although this absence was less than three (3) days and the employee did not need to visit a health care provider, this time off qualifies as FMLA leave."
+  },
+  {
+    "service": true,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "parent",
+      "spouse",
+      "child",
+      "next kin of a covered servicemember"
+    ],
+    "reason": [
+      "military caregiver"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "6.07"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.07 MILITARY CAREGIVER LEAVE\nA covered employer must grant an eligible employee who is a spouse, son, daughter, parent, or next of kin of a covered service member with a serious injury or illness up to a total of twenty-six (26) work weeks of job-protected leave during a single twelve (12) month period to care for the service member. The employee shall use accrued annual, sick, or compensatory leave before entering into a leave without pay status.\nA covered service member is: (1) a current member of the Armed Forces, including a member of the National Guard or Reserves, who is undergoing medical treatment, recuperation or therapy, is otherwise in outpatient status, or is otherwise on the temporary disability retired list, for a serious injury or illness; or (2) a veteran who was discharged or released under conditions other than dishonorable at any time during the five-year period prior to the first date the eligible employee takes FMLA leave to care for the covered veteran, and who is undergoing medical treatment, recuperation, or therapy for a serious injury or illness.\nA serious injury or illness for a current service member includes injuries or illnesses that existed before the beginning of the member’s active duty and were aggravated by service in the line of duty on active duty in the Armed Forces. A serious injury or illness for a covered veteran means an injury or illness that was incurred or aggravated by the member in the line of duty on active duty in the Armed Forces and manifested itself before or after the member became a veteran, and is: (1) a continuation of a serious injury or illness that was incurred or aggravated when the covered veteran was a member of the Armed Forces and rendered the service member unable to perform the duties of the service member’s office, grade, rank, or rating; or (2) a physical or mental condition for which a covered veteran has received a VA Service Related Disability Rating (VASRD) of 50 percent or greater and such VASRD rating is based, in whole or in part, on the condition precipitating the need for caregiver leave; or (3) A physical or mental condition that substantially impairs the veteran’s ability to secure or follow a substantially gainful occupation by reason of a disability or disabilities related to military service or would do so absent treatment; or (4) an injury, include psychological injury, on the basis of which the covered veteran has been enrolled in the Department of Veterans Affairs Program of Comprehensive Assistance for Family Caregivers.\nThe single twelve (12) month period for leave to care for a covered service member with a serious injury or illness begins on the first day the employee takes leave for this reason and ends twelve (12) months later, regardless of the twelve (12) month period established by the employer for other types of FMLA leave. An eligible employee is limited to a combined total of twenty-six (26) work weeks for leave for any FMLA-qualifying reason during the single twelve (12) month period. (Only twelve (12) of the twenty-six (26) weeks total may be for a FMLA-qualifying reason other than to care for a covered service member.)"
+  },
+  {
+    "service": true,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "parent",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "military exigency"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "6.08"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.08 MILITARY QUALIFYING EXIGENCY LEAVE\nAn eligible employee may take FMLA leave while the employee’s spouse, son, daughter, or parent (the military member or member) is on covered active duty or call to covered active duty status (or has been notified of an impending call or order to covered active duty). Covered active duty or call to covered active duty status means duty during the deployment of the member with the Armed Forces to a foreign country or to a foreign country under a Federal call or order to active duty in support of a contingency operation. Eligible employees may take qualifying exigency leave for any of the following reasons:\n• To address issues arising from a covered military member who is notified of an impending call or order to active duty in support of a contingency operation seven (7) or less calendar days before deployment;\n• To attend certain military functions, such as an official ceremony, program, or event sponsored by the military that is related to the active duty or call to active duty status of a covered military member. This may also include attendance at any family support or assistance programs and informational briefings sponsored or promoted by the military, military service organizations, or the American Red Cross that are related to active duty or call to active duty status of a covered military member;\n• To arrange for certain childcare and related activities when the active duty or call to active duty status of a covered military member necessitates a change in the existing childcare arrangement, such as arranging for alternative childcare, providing childcare on a non-routine, urgent, immediate need basis, enrolling or transferring a child in a new school or day care facility, and attending certain meetings at a school or a day care facility if they are necessary due to circumstances arising from the active duty or call to active duty of the covered military member;\n• To make or update financial and legal arrangements to address a covered military member’s absence;\n• To attend counseling provided by someone other than a health care provider for oneself, the covered military member, or the child of the covered military member, the need for which arises from the active duty or call to active duty status of the covered military member;\n• To spend time, up to fifteen (15) days, with a covered military member who is on short-term, temporary, rest and recuperation leave during deployment;\n• To attend certain post-deployment activities, including arrival ceremonies, reintegration briefings and events, and other official ceremonies or programs sponsored by the military for a period of ninety (90) days following the termination of the covered military member’s active duty status, and addressing issues arising from the death of a covered member;\n• To address other events that the employee and employer agree is a qualifying exigency or that the United States Secretary of Labor appropriately determines to be a qualifying exigency.\n• To care for a military member’s parent who is incapable of self-care when the care is necessitated by the member’s covered active duty. Such care may include arranging for alternative care, providing care on an immediate need basis, admitting or transferring the parent to a care facility, or attending meetings with staff at a care facility."
+  },
+  {
+    "service": true,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "parent",
+      "spouse",
+      "child",
+      "next kin of a covered servicemember"
+    ],
+    "reason": [
+      "health condition",
+      "adoption",
+      "birth or pregnancy",
+      "military exigency",
+      "military caregiver"
+    ],
+    "function": [
+      "leave time"
+    ],
+    "regulation number": [
+      "6.09"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.09 LEAVE ENTITLEMENT - LIMITATIONS ON LENGTH AND DURATION\nExcept in the case to care for a covered service member with a serious injury or illness, an eligible employee’s FMLA leave entitlement is limited to a total of twelve (12) work weeks of leave during a twelve (12) month period.\nThis twelve (12) work week limit is equivalent to sixty (60) workdays, including holidays. The initial twelve (12) month period starts on the date the employee's FMLA leave first begins and extends twelve (12) months forward from that date. A new twelve (12) month period would begin the first time FMLA leave is taken after completion of any previous twelve (12) month period. However, an eligible employee who takes leave to care for the covered service member with a serious injury or illness begins on the first day the employee takes leave for this reason and ends twelve (12) months later, regardless of the twelve (12) month period established by an agency for other types of FMLA leave.\nAn eligible employee’s leave is limited to a total of twenty-six (26) work weeks of leave during a single twelve (12) month period to care for a covered service member with a serious injury or illness. If an employee receives twenty-six (26) work weeks of leave for military reasons, the employee is not eligible for additional FMLA leave during the same period. If an employee combines leave for caring for an eligible service member and another qualifying FMLA leave, only twelve (12) work weeks may be used for leave unrelated to the care of a covered service member."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy",
+      "adoption"
+    ],
+    "function": [
+      "leave time"
+    ],
+    "regulation number": [
+      "6.10"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.10 LIMITS ON LEAVE ENTITLEMENT FOR BIRTH, ADOPTION, AND FOSTER CARE\nLeave entitlement for the birth of a child or for adoption or foster care placement expires at the end of the twelve (12) month period beginning on the date of the birth or placement. FMLA leave for these reasons must be concluded within this time period."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy",
+      "adoption"
+    ],
+    "function": [
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "6.14"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.14 COORDINATION WITH PARENTAL LEAVE\nUnder the\nparental leave\nlaw, an employee is entitled to up to four (4) months leave for adoption, pregnancy, childbirth and nursing an infant (“parental leave”). If leave qualifies for both FMLA leave and parental leave, the leave used counts against the employee's entitlement under both laws. Parental leave and FMLA leave shall run concurrently to the extent permitted by law. Once the twelve (12) week FMLA entitlement is completed, this employee is still eligible to take the additional time to complete the four (4) months leave for adoption, pregnancy, childbirth and nursing an infant. However, the state is under no obligation to provide health insurance benefits during this period, should the leave be without pay. If the employee is eligible for Paid Parental Leave (see section 13.02 for more information), only the first six (6) workweeks of parental leave is paid. An employee who wishes to take additional parental leave beyond the six (6) week entitlement must use his or her accrued leave before going on unpaid leave, but may elect to hold up to 10 days of annual, compensatory, and/or sick leave while on leave as noted in section 6.12."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "parent",
+      "spouse",
+      "child",
+      "next kin of a covered servicemember"
+    ],
+    "reason": [
+      "health condition",
+      "adoption",
+      "birth or pregnancy",
+      "military exigency",
+      "military caregiver"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "6.15"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.15 EMPLOYEE NOTIFICATION REQUIREMENTS\nWhen the need for unpaid leave is foreseeable, an employee must provide at least thirty (30) days advance notice prior to the date the leave is to begin. In situations where thirty (30) day notification is not possible because the employee has no knowledge of the exact time when the leave will need to begin or because of change or circumstance or medical emergency, notice must be given as soon as practicable, normally within one (1) or two (2) business days of when the employee knows the date leave will be needed.\nEmployees should request FMLA leave in Edison through Employee Self Service by navigating to HCM > Self Service > Time Reporting > Report Time > Request FMLA Leave. Employees are required to provide the need for the leave and the anticipated timing and duration of the leave.\nIn instances where the employee does not enter the request in Edison, but instead notifies the supervisor of the need for leave under the FMLA, the supervisor shall refer the employee to the agency FMLA Coordinator. The FMLA Coordinator will request additional information to determine if the employee is requesting FMLA leave specifically, obtain the necessary details of the leave being taken, and enter the request in Edison.\nAbsent unusual circumstances, employees failing to provide notice of the need for FMLA leave within the required time frames may be subject to disciplinary action; however, they may not be denied the leave."
+  },
+  {
+    "service": true,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "parent",
+      "spouse",
+      "child",
+      "next kin of a covered servicemember"
+    ],
+    "reason": [
+      "health condition",
+      "birth or pregnancy",
+      "military caregiver"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "6.17"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.17 MEDICAL CERTIFICATION REQUIREMENTS\nThe FMLA Coordinator may require that an employee's request for leave be supported by certification from a health care provider in situations where the leave is requested to care for the employee's seriously ill spouse, son, daughter, parent, or next of kin for qualified military leave, or due to the employee's personal serious health condition. The FMLA Coordinator must give written notice to the employee of the requirement to provide medical certification each time certification is required.\nWhen the need for leave is foreseeable, the employee should provide medical certification before the leave begins. When this is not possible the employee must provide this information within the time frame requested by the FMLA Coordinator. At least fifteen (15) calendar days must be allowed for the employee to provide requested medical certification unless this is not possible under the circumstances, such as an employee's personal health condition preventing his or her ability to obtain the necessary information in a timely manner.\nAny request for medical certification should be made at the time the employee requests leave or within two (2) business days. If the leave was unforeseen, the certification should be requested within two (2) business days after the leave has begun. If the FMLA Coordinator has reason to question the appropriateness of the leave or its duration, certification may be requested at a later date. An employee should be advised of the consequences of not providing medical certification at the time the certification is requested.\nThe FMLA Coordinator may request only the following information from a health care provider certifying an employee's personal serious health condition or that of a son, daughter, parent, or next of kin. A sample form is provided on the Department of Human Resources’ website and should be used to obtain this information:\nA. A statement or description of the appropriate medical facts regarding the patient’s health condition for which leave is requested.\nB. The approximate date the serious health condition began and its probable duration, including the probable duration of the patient's present incapacity, whether it will be necessary for the employee to take intermittent leave or work a reduced schedule and the probable duration of such a schedule. The certification may state if the condition is pregnancy or a chronic condition, whether the patient is presently incapacitated and the likely duration and frequency of periods of incapacity.\nC. If additional treatments will be required for the condition and an estimate of the probable number of treatments. If the patient's incapacity will be intermittent or require a reduced work schedule, an estimate of the probable number of and interval between such treatments and period required for recovery. If any of the treatments listed above will be provided by another provider of health services and the nature of the treatments. If a regimen of continuing treatment by the patient is required under the supervision of the health care provider and a description of the regimen.\nD. If medical leave is required because of the employee's own condition, information may be requested on whether the employee is unable to perform any one or more of the essential functions of the position, including a statement of the essential functions the employee is unable to perform. If the employee is able to perform work of any other kind and if the employee must be absent from work for treatment.\nE. If the leave is required to care for a family member, information may be requested on whether the patient requires assistance for basic medical or personal needs or safety, or for transportation or, if not, whether the employee's presence to provide psychological comfort would be beneficial to the patient or assist in the patient’s recovery. The employee must provide information on the care provided and an estimate of the time period involved. If the employee's family member will need care only intermittently or on a reduced leave schedule, the probable duration of the need\n.\nF. If the employer deems a medical certification to be incomplete or insufficient, the employer must specify in writing what information is lacking, and give the employee seven (7) calendar days to cure the deficiency.\nOnce an employee has submitted a complete and sufficient medical certification document signed by the employee's or family member's health care provider, the FMLA Coordinator may not request any additional information from that health care provider. The employee’s FMLA Coordinator may only contact the employee's health care provider to verify the authenticity of or to clarify the medical certification."
+  },
+  {
+    "service": true,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "parent",
+      "spouse",
+      "child",
+      "next kin of a covered servicemember"
+    ],
+    "reason": [
+      "military exigency",
+      "military caregiver"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "6.19"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.19 MILITARY LEAVE CERTIFICATION REQUIREMENTS\nAn employee requesting leave for a qualifying exigency must submit a copy of the\ncovered military member’s active duty orders and certification providing the appropriate facts related to the particular qualifying exigency for which leave is sought. This information may include contract information if the leave involves meeting with a third party.\nIf the qualifying exigency involves rest and recuperation leave, the employee must submit a copy of the military member’s rest and recuperation orders, or other documentation issued by the military setting forth the dates of the military member’s leave.\nAn employee requesting leave to care for a covered service member with a serious injury or illness must submit a certification form completed by an authorized health care provider or a copy of an Invitational Travel Order or Invitational Travel Authorization issued to any member of the covered service member’s family."
+  },
+  {
+    "service": true,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "parent",
+      "spouse",
+      "child",
+      "next kin of a covered servicemember"
+    ],
+    "reason": [
+      "health condition",
+      "birth or pregnancy",
+      "military caregiver"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [
+      "6.20"
+    ],
+    "fact sheets number": [],
+    "raw text": "6.20 EMPLOYEE FAILURE TO PROVIDE MEDICAL CERTIFICATION\nAn employee who fails to provide certification within the requested allowable time frame (minimally fifteen (15) calendar days) may be denied leave until certification is provided if the leave was foreseeable.\nWhen the need for leave is unforeseeable, an employee must provide certification within a reasonable period of time determined by the FMLA Coordinator based on the particular medical circumstances. An employee failing to provide certification within this time frame may be denied leave continuation.\n\nCHAPTER 13 – PARENTAL LEAVE"
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "birth or pregnancy",
+      "adoption"
+    ],
+    "function": [
+      "employee eligibility",
+      "leave eligibility",
+      "leave time"
+    ],
+    "regulation number": [
+      "13.01"
+    ],
+    "fact sheets number": [],
+    "raw text": "CHAPTER 13 – PARENTAL LEAVE\n13.01 PARENTAL LEAVE ELIGIBILITY\nAny employee who has been employed in state service for at least twelve (12) consecutive months as a full-time employee may be absent from employment for a period not to exceed four (4) months for adoption, pregnancy, childbirth, and nursing the infant. The four (4) month period shall include leave required before and after the birth of a child. With regard to adoption, the four (4) month period shall begin at the time an employee receives custody of the child.\nAny employee who has less than one (1) year of service may be granted parental leave for a period not to exceed thirty (30) workdays following the birth of a child.\nLeave may be taken continuously or intermittently. However, leave entitlement expires at the end of the twelve (12) month period beginning on the date of the birth or placement. Parental leave for these reasons must be concluded within this time period."
+  },
+  {
+    "service": false,
+    "air crew": false,
+    "school workers": false,
+    "spouse in the same company": false,
+    "relationship": [
+      "self",
+      "spouse",
+      "child"
+    ],
+    "reason": [
+      "adoption",
+      "birth or pregnancy"
+    ],
+    "function": [
+      "notice_requirements"
+    ],
+    "regulation number": [],
+    "fact sheets number": [],
+    "raw text": "13.03 – EMPLOYEE NOTICE REQUIREMENTS\nAn employee must provide at least thirty (30) days advance notice prior to the date the leave is to begin. In situations where thirty (30) day notification is not possible because the employee has no knowledge of the exact time when the leave will need to begin or because of change or circumstance or medical emergency, notice must be given as soon as reasonably possible, normally within one (1) or two (2) business days of when the employee knows the date leave will be needed. An employee who gives at least thirty (30) days advance notice of their anticipated date of departure for parental leave, length of parental leave, and intention to return to full-time employment after parental leave shall be restored to their previous or a similar position with the same status, pay, length of service credit and seniority, whenever applicable, as of the date of leave.\nEmployees should request parental leave in Edison through Employee Self Service by navigating to\nHCM > Self Service > Time Reporting > Report Time > Request FMLA Leave\n. Employees are required to provide the need for the leave and the anticipated timing and duration of the leave.\nIn instances where the employee does not enter the request in Edison, but instead notifies the supervisor of the need for parental leave, the supervisor shall refer the employee to the agency FMLA Coordinator, if applicable. The FMLA Coordinator will request additional information to determine if the employee is requesting parental leave specifically, obtain the necessary details of the leave being taken, and enter the request in Edison.\nBenefits and rights provided shall not be forfeited if the employee is prevented  from giving advance notice due to a medical emergency which necessitates the parental leave beginning earlier than anticipated or if the notice of adoption was received less than thirty (30) days in advance.\nIf the employee’s position is so unique that, with reasonable effort, the position cannot be filled temporarily, as determined by the Commissioner, or if the  employee has utilized the period of parental leave to actively pursue other employment opportunities or has worked part-time or full-time for another employer, reinstatement is not required. In such case, the employee shall be notified of the decision not to reinstate."
+  }
+]

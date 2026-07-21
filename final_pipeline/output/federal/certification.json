@@ -1,0 +1,229 @@
+{
+  "extracted_at": "2026-07-15T18:06:58.953669+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/fmla_chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "notice_cert",
+  "model_key": "ari_model",
+  "matched_chunk_count": 5,
+  "category": "certification",
+  "conditions": [
+    {
+      "condition_name": "health_condition_cert_permitted",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "825.305(a)",
+      "notes": "Employer may require certification for employee or family member serious health condition leave.",
+      "source_text": "An employer may require that an employee's leave...be supported by a certification issued by the health care provider."
+    },
+    {
+      "condition_name": "health_condition_cert_request_timing",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "request timing",
+          "operator": "<=",
+          "required_value": "5 business days after notice or leave start",
+          "unit": "business days"
+        }
+      ],
+      "unit": null,
+      "citation": "825.305(b)",
+      "notes": "Employer should request certification at notice or within 5 business days; later request allowed if appropriateness questioned.",
+      "source_text": "The employer should request that an employee furnish certification at the time the employee gives notice...or within five business days thereafter."
+    },
+    {
+      "condition_name": "health_condition_cert_employee_return_deadline",
+      "operator": "<=",
+      "required_value": 15,
+      "unit": "calendar days",
+      "citation": "825.305(b)",
+      "notes": "Employee must return certification within 15 calendar days of employer request unless not practicable.",
+      "source_text": "The employee must provide the requested certification to the employer within 15 calendar days after the employer's request."
+    },
+    {
+      "condition_name": "health_condition_cert_cure_period",
+      "operator": ">=",
+      "required_value": 7,
+      "unit": "calendar days",
+      "citation": "825.305(c)",
+      "notes": "Employer must give employee at least 7 calendar days to cure incomplete or insufficient certification.",
+      "source_text": "The employer must provide the employee with seven calendar days...to cure any such deficiency."
+    },
+    {
+      "condition_name": "health_condition_cert_annual_renewal",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "825.305(e)",
+      "notes": "Employer may require new certification each leave year when need extends beyond a single leave year.",
+      "source_text": "The employer may require the employee to provide a new medical certification in each subsequent leave year."
+    },
+    {
+      "condition_name": "health_condition_cert_content",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "provider info",
+          "operator": "==",
+          "required_value": "name, address, contact, specialty",
+          "unit": null
+        },
+        {
+          "field": "condition onset and duration",
+          "operator": "==",
+          "required_value": "approximate date, probable duration",
+          "unit": null
+        },
+        {
+          "field": "medical facts",
+          "operator": "==",
+          "required_value": "sufficient to support leave need",
+          "unit": null
+        },
+        {
+          "field": "functional limitations",
+          "operator": "==",
+          "required_value": "if employee patient, inability to perform job functions",
+          "unit": null
+        },
+        {
+          "field": "family member care need",
+          "operator": "==",
+          "required_value": "if family member patient, need for care and leave frequency/duration",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.306(a)",
+      "notes": "Employer may use optional forms WH-380E or WH-380F; no information beyond 825.306/307/308 may be required.",
+      "source_text": "An employer may require an employee to obtain a medical certification from a health care provider that sets forth the following information."
+    },
+    {
+      "condition_name": "military_exigency_cert_permitted",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "825.309(a), 825.309(b)",
+      "notes": "Employer may require active duty orders and employee-signed certification for qualifying exigency leave.",
+      "source_text": "An employer may require the employee to provide a copy of the military member's active duty orders...An employer may require that leave for any qualifying exigency...be supported by a certification."
+    },
+    {
+      "condition_name": "military_exigency_active_duty_orders_frequency",
+      "operator": "==",
+      "required_value": "once per active duty period",
+      "unit": null,
+      "citation": "825.309(a)",
+      "notes": "Active duty orders need only be provided once; new orders required only for different covered active duty period.",
+      "source_text": "This information need only be provided to the employer once."
+    },
+    {
+      "condition_name": "military_exigency_cert_content",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "exigency description",
+          "operator": "==",
+          "required_value": "signed statement of facts supporting leave need",
+          "unit": null
+        },
+        {
+          "field": "exigency start date",
+          "operator": "==",
+          "required_value": "approximate commencement date",
+          "unit": null
+        },
+        {
+          "field": "leave duration",
+          "operator": "==",
+          "required_value": "dates or frequency/duration estimate",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.309(b)",
+      "notes": "Optional form WH-384 available; no information beyond 825.309 may be required.",
+      "source_text": "An employer may require that leave for any qualifying exigency...be supported by a certification from the employee that sets forth the following information."
+    },
+    {
+      "condition_name": "military_caregiver_cert_permitted",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "825.310(a)",
+      "notes": "Employer may require certification from authorized health care provider for military caregiver leave.",
+      "source_text": "An employer may require an employee to obtain a certification completed by an authorized health care provider of the covered servicemember."
+    },
+    {
+      "condition_name": "military_caregiver_cert_ito_ita_sufficient",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "825.310(e)",
+      "notes": "ITO or ITA is sufficient certification for duration specified; no additional certification required for intermittent leave during that period.",
+      "source_text": "An employer...must accept as sufficient certification...invitational travel orders (ITOs) or invitational travel authorizations (ITAs)."
+    },
+    {
+      "condition_name": "military_caregiver_cert_va_caregiver_enrollment_sufficient",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "825.310(f)",
+      "notes": "VA Program of Comprehensive Assistance for Family Caregivers enrollment documentation is sufficient certification of serious injury or illness.",
+      "source_text": "An employer...must accept as sufficient certification...documentation indicating the servicemember's enrollment in the Department of Veterans Affairs Program of Comprehensive Assistance for Family Caregivers."
+    },
+    {
+      "condition_name": "military_caregiver_no_recertification",
+      "operator": "==",
+      "required_value": false,
+      "unit": null,
+      "citation": "825.310(d)",
+      "notes": "Recertification is not permitted for military caregiver leave.",
+      "source_text": "Recertifications under § 825.308 are not permitted for leave to care for a covered servicemember."
+    },
+    {
+      "condition_name": "foreseeable_leave_cert_denial",
+      "operator": "==",
+      "required_value": "may deny until cert provided",
+      "unit": null,
+      "citation": "825.313(a)",
+      "notes": "Employer may deny FMLA coverage for foreseeable leave if employee fails to provide timely certification.",
+      "source_text": "If an employee fails to provide certification in a timely manner...then an employer may deny FMLA coverage until the required certification is provided."
+    },
+    {
+      "condition_name": "unforeseeable_leave_cert_deadline",
+      "operator": "<=",
+      "required_value": 15,
+      "unit": "calendar days",
+      "citation": "825.313(b)",
+      "notes": "Employer may deny FMLA coverage if certification not provided within 15 calendar days absent extenuating circumstances.",
+      "source_text": "An employer may deny FMLA coverage...if the employee fails to provide a certification within 15 calendar days from receipt of the request."
+    },
+    {
+      "condition_name": "recertification_deadline",
+      "operator": ">=",
+      "required_value": 15,
+      "unit": "calendar days",
+      "citation": "825.313(c)",
+      "notes": "Employer must allow at least 15 calendar days for recertification; does not apply to exigency or military caregiver leave.",
+      "source_text": "An employee must provide recertification within the time requested by the employer (which must allow at least 15 calendar days after the request)."
+    },
+    {
+      "condition_name": "fitness_for_duty_cert_required",
+      "operator": "==",
+      "required_value": "prior to reinstatement",
+      "unit": null,
+      "citation": "825.313(d)",
+      "notes": "Employer may require fitness-for-duty certification under uniformly applied policy; may delay restoration until provided.",
+      "source_text": "The employee must provide medical certification...that the employee is fit for duty and able to return to work...the employer may delay restoration until the certification is provided."
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 15400,
+    "output_tokens": 2578,
+    "processing_duration": 31.143356800079346
+  },
+  "raw_llm_response": "{\n  \"category\": \"certification\",\n  \"conditions\": [\n    {\n      \"condition_name\": \"health_condition_cert_permitted\",\n      \"operator\": \"==\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"825.305(a)\",\n      \"notes\": \"Employer may require certification for employee or family member serious health condition leave.\",\n      \"source_text\": \"An employer may require that an employee's leave...be supported by a certification issued by the health care provider.\"\n    },\n    {\n      \"condition_name\": \"health_condition_cert_request_timing\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"request timing\",\n          \"operator\": \"<=\",\n          \"required_value\": \"5 business days after notice or leave start\",\n          \"unit\": \"business days\"\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.305(b)\",\n      \"notes\": \"Employer should request certification at notice or within 5 business days; later request allowed if appropriateness questioned.\",\n      \"source_text\": \"The employer should request that an employee furnish certification at the time the employee gives notice...or within five business days thereafter.\"\n    },\n    {\n      \"condition_name\": \"health_condition_cert_employee_return_deadline\",\n      \"operator\": \"<=\",\n      \"required_value\": 15,\n      \"unit\": \"calendar days\",\n      \"citation\": \"825.305(b)\",\n      \"notes\": \"Employee must return certification within 15 calendar days of employer request unless not practicable.\",\n      \"source_text\": \"The employee must provide the requested certification to the employer within 15 calendar days after the employer's request.\"\n    },\n    {\n      \"condition_name\": \"health_condition_cert_cure_period\",\n      \"operator\": \">=\",\n      \"required_value\": 7,\n      \"unit\": \"calendar days\",\n      \"citation\": \"825.305(c)\",\n      \"notes\": \"Employer must give employee at least 7 calendar days to cure incomplete or insufficient certification.\",\n      \"source_text\": \"The employer must provide the employee with seven calendar days...to cure any such deficiency.\"\n    },\n    {\n      \"condition_name\": \"health_condition_cert_annual_renewal\",\n      \"operator\": \"==\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"825.305(e)\",\n      \"notes\": \"Employer may require new certification each leave year when need extends beyond a single leave year.\",\n      \"source_text\": \"The employer may require the employee to provide a new medical certification in each subsequent leave year.\"\n    },\n    {\n      \"condition_name\": \"health_condition_cert_content\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"provider info\",\n          \"operator\": \"==\",\n          \"required_value\": \"name, address, contact, specialty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"condition onset and duration\",\n          \"operator\": \"==\",\n          \"required_value\": \"approximate date, probable duration\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"medical facts\",\n          \"operator\": \"==\",\n          \"required_value\": \"sufficient to support leave need\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"functional limitations\",\n          \"operator\": \"==\",\n          \"required_value\": \"if employee patient, inability to perform job functions\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"family member care need\",\n          \"operator\": \"==\",\n          \"required_value\": \"if family member patient, need for care and leave frequency/duration\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.306(a)\",\n      \"notes\": \"Employer may use optional forms WH-380E or WH-380F; no information beyond 825.306/307/308 may be required.\",\n      \"source_text\": \"An employer may require an employee to obtain a medical certification from a health care provider that sets forth the following information.\"\n    },\n    {\n      \"condition_name\": \"military_exigency_cert_permitted\",\n      \"operator\": \"==\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"825.309(a), 825.309(b)\",\n      \"notes\": \"Employer may require active duty orders and employee-signed certification for qualifying exigency leave.\",\n      \"source_text\": \"An employer may require the employee to provide a copy of the military member's active duty orders...An employer may require that leave for any qualifying exigency...be supported by a certification.\"\n    },\n    {\n      \"condition_name\": \"military_exigency_active_duty_orders_frequency\",\n      \"operator\": \"==\",\n      \"required_value\": \"once per active duty period\",\n      \"unit\": null,\n      \"citation\": \"825.309(a)\",\n      \"notes\": \"Active duty orders need only be provided once; new orders required only for different covered active duty period.\",\n      \"source_text\": \"This information need only be provided to the employer once.\"\n    },\n    {\n      \"condition_name\": \"military_exigency_cert_content\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"exigency description\",\n          \"operator\": \"==\",\n          \"required_value\": \"signed statement of facts supporting leave need\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"exigency start date\",\n          \"operator\": \"==\",\n          \"required_value\": \"approximate commencement date\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"leave duration\",\n          \"operator\": \"==\",\n          \"required_value\": \"dates or frequency/duration estimate\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.309(b)\",\n      \"notes\": \"Optional form WH-384 available; no information beyond 825.309 may be required.\",\n      \"source_text\": \"An employer may require that leave for any qualifying exigency...be supported by a certification from the employee that sets forth the following information.\"\n    },\n    {\n      \"condition_name\": \"military_caregiver_cert_permitted\",\n      \"operator\": \"==\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"825.310(a)\",\n      \"notes\": \"Employer may require certification from authorized health care provider for military caregiver leave.\",\n      \"source_text\": \"An employer may require an employee to obtain a certification completed by an authorized health care provider of the covered servicemember.\"\n      },\n    {\n      \"condition_name\": \"military_caregiver_cert_ito_ita_sufficient\",\n      \"operator\": \"==\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"825.310(e)\",\n      \"notes\": \"ITO or ITA is sufficient certification for duration specified; no additional certification required for intermittent leave during that period.\",\n      \"source_text\": \"An employer...must accept as sufficient certification...invitational travel orders (ITOs) or invitational travel authorizations (ITAs).\"\n    },\n    {\n      \"condition_name\": \"military_caregiver_cert_va_caregiver_enrollment_sufficient\",\n      \"operator\": \"==\",\n      \"required_value\": true,\n      \"unit\": null,\n      \"citation\": \"825.310(f)\",\n      \"notes\": \"VA Program of Comprehensive Assistance for Family Caregivers enrollment documentation is sufficient certification of serious injury or illness.\",\n      \"source_text\": \"An employer...must accept as sufficient certification...documentation indicating the servicemember's enrollment in the Department of Veterans Affairs Program of Comprehensive Assistance for Family Caregivers.\"\n    },\n    {\n      \"condition_name\": \"military_caregiver_no_recertification\",\n      \"operator\": \"==\",\n      \"required_value\": false,\n      \"unit\": null,\n      \"citation\": \"825.310(d)\",\n      \"notes\": \"Recertification is not permitted for military caregiver leave.\",\n      \"source_text\": \"Recertifications under § 825.308 are not permitted for leave to care for a covered servicemember.\"\n    },\n    {\n      \"condition_name\": \"foreseeable_leave_cert_denial\",\n      \"operator\": \"==\",\n      \"required_value\": \"may deny until cert provided\",\n      \"unit\": null,\n      \"citation\": \"825.313(a)\",\n      \"notes\": \"Employer may deny FMLA coverage for foreseeable leave if employee fails to provide timely certification.\",\n      \"source_text\": \"If an employee fails to provide certification in a timely manner...then an employer may deny FMLA coverage until the required certification is provided.\"\n    },\n    {\n      \"condition_name\": \"unforeseeable_leave_cert_deadline\",\n      \"operator\": \"<=\",\n      \"required_value\": 15,\n      \"unit\": \"calendar days\",\n      \"citation\": \"825.313(b)\",\n      \"notes\": \"Employer may deny FMLA coverage if certification not provided within 15 calendar days absent extenuating circumstances.\",\n      \"source_text\": \"An employer may deny FMLA coverage...if the employee fails to provide a certification within 15 calendar days from receipt of the request.\"\n    },\n    {\n      \"condition_name\": \"recertification_deadline\",\n      \"operator\": \">=\",\n      \"required_value\": 15,\n      \"unit\": \"calendar days\",\n      \"citation\": \"825.313(c)\",\n      \"notes\": \"Employer must allow at least 15 calendar days for recertification; does not apply to exigency or military caregiver leave.\",\n      \"source_text\": \"An employee must provide recertification within the time requested by the employer (which must allow at least 15 calendar days after the request).\"\n    },\n    {\n      \"condition_name\": \"fitness_for_duty_cert_required\",\n      \"operator\": \"==\",\n      \"required_value\": \"prior to reinstatement\",\n      \"unit\": null,\n      \"citation\": \"825.313(d)\",\n      \"notes\": \"Employer may require fitness-for-duty certification under uniformly applied policy; may delay restoration until provided.\",\n      \"source_text\": \"The employee must provide medical certification...that the employee is fit for duty and able to return to work...the employer may delay restoration until the certification is provided.\"\n    }\n  ]\n}"
+}

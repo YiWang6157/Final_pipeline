@@ -1,0 +1,164 @@
+{
+    "leave_reason": "military_caregiver",
+    "included_relationships": {
+      "operator": "IN",
+      "required_value": [
+        "spouse",
+        "child",
+        "parent",
+        "next of kin"
+      ],
+      "citation": "6.03, 6.07",
+      "notes": "For military caregiver leave, child means the service member's son or daughter of any age. Next of kin means the service member's nearest blood relative other than spouse, parent, son, or daughter."
+    },
+    "conditions": [
+      {
+        "condition_name": "current_service_member_serious_injury_or_illness",
+        "field": "current service member caregiver",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "covered service member",
+            "operator": "ALL_OF",
+            "required_value": [
+              {
+                "field": "service member type",
+                "operator": "IN",
+                "required_value": [
+                  ["Armed", "Forces"],
+                  ["National", "Guard"],
+                  ["Reserves"]
+                ],
+                "unit": null
+              },
+              {
+                "field": "service member status",
+                "operator": "IN",
+                "required_value": [
+                  ["medical", "treatment"],
+                  ["recuperation"],
+                  ["therapy"],
+                  ["outpatient", "status"],
+                  ["temporary", "disability", "retired", "list"]
+                ],
+                "unit": null
+              }
+            ],
+            "unit": null
+          },
+          {
+            "field": "serious injury or illness",
+            "operator": "ANY_OF",
+            "required_value": [
+              {
+                "field": "current service injury",
+                "operator": "IN",
+                "required_value": [
+                  ["serious", "injury"],
+                  ["serious", "illness"]
+                ],
+                "unit": null
+              },
+              {
+                "field": "preexisting condition aggravated by service",
+                "operator": "==",
+                "required_value": true,
+                "unit": null
+              }
+            ],
+            "unit": null
+            }
+        ],
+        "unit": null,
+        "citation": "6.07"
+      },
+      {
+        "condition_name": "covered_veteran_serious_injury_or_illness",
+        "field": "covered veteran caregiver",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "covered veteran",
+            "operator": "ALL_OF",
+            "required_value": [
+              {
+                "field": "discharge status",
+                "operator": "!=",
+                "required_value": [
+                  ["dishonorable"]
+                ],
+                "unit": null
+              },
+              {
+                "field": "years since discharge",
+                "operator": "<=",
+                "required_value": 5,
+                "unit": "years"
+              },
+              {
+                "field": "treatment status",
+                "operator": "IN",
+                "required_value": [
+                  ["medical", "treatment"],
+                  ["recuperation"],
+                  ["therapy"]
+                ],
+                "unit": null
+              }
+            ],
+            "unit": null
+          },
+          {
+            "field": "serious injury or illness",
+            "operator": "ALL_OF",
+            "required_value": [
+              {
+                "field": "line of duty",
+                "operator": "IN",
+                "required_value": [
+                  ["incurred", "line", "of", "duty"],
+                  ["aggravated", "line", "of", "duty"]
+                ],
+                "unit": null
+              },
+              {
+                "field": "veteran injury rule",
+                "operator": "ANY_OF",
+                "required_value": [
+                  {
+                    "field": "continuation of service injury",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "VASRD rating",
+                    "operator": ">=",
+                    "required_value": 50,
+                    "unit": "percent"
+                  },
+                  {
+                    "field": "substantial occupational impairment",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  },
+                  {
+                    "field": "VA caregiver program enrollment",
+                    "operator": "==",
+                    "required_value": true,
+                    "unit": null
+                  }
+                ],
+                "unit": null
+              }
+            ],
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.07",
+        "notes": "VASRD rating must be based at least in part on the condition causing the need for caregiver leave."
+      }
+    ]
+  }

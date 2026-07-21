@@ -1,0 +1,68 @@
+{
+    "leave_reason": "military_exigency",
+    "included_relationships": {
+      "operator": "IN",
+      "required_value": [
+        "spouse",
+        "domestic partner",
+        "child",
+        "parent"
+      ],
+      "citation": "2 CCR § 11087(j)(3)",
+      "notes": "Leave is available for a qualifying exigency related to covered active duty or a call to covered active duty of the employee's spouse, domestic partner, child, or parent in the Armed Forces of the United States."
+    },
+    "conditions": [
+      {
+        "condition_name": "qualifying_exigency",
+        "field": "qualifying exigency",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "IN",
+            "required_value": [
+              "spouse",
+              "domestic partner",
+              "child",
+              "parent"
+            ],
+            "unit": null
+          },
+          {
+            "field": "qualifying exigency",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "exigency definition",
+            "operator": "IN",
+            "required_value": [
+              ["Unemployment", "Code", "3302.2"]
+            ],
+            "unit": null
+          },
+          {
+            "field": "covered active duty status",
+            "operator": "IN",
+            "required_value": [
+              ["covered", "active", "duty"],
+              ["call", "covered", "active", "duty"]
+            ],
+            "unit": null
+          },
+          {
+            "field": "service branch",
+            "operator": "IN",
+            "required_value": [
+              ["Armed", "Forces", "United", "States"]
+            ],
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "2 CCR § 11087(j)(3)",
+        "notes": "The CA CFRA chunk defines qualifying exigency by cross-reference to Unemployment Code section 3302.2; it does not enumerate the specific exigency categories in the provided raw CFRA text."
+      }
+    ]
+  }

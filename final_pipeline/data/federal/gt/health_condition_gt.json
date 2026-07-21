@@ -1,0 +1,269 @@
+{
+  "leave_reason": "health condition",
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      ["self"],
+      ["spouse"],
+      ["son or daughter"],
+      ["parent"]
+    ],
+    "citation": "825.112(a)(3), 825.112(a)(4), 825.119(a)",
+    "notes": "Employee may take leave for their own serious health condition or to care for spouse, son, daughter, or parent with a serious health condition, including substance abuse treatment."
+  },
+  "conditions": [
+    {
+      "condition_name": "inpatient_care",
+      "field": "inpatient care",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "overnight stay location",
+          "operator": "IN",
+          "required_value": [
+            ["hospital"],
+            ["hospice"],
+            ["residential", "medical", "care", "facility"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.113(a), 825.114"
+    },
+    {
+      "condition_name": "continuing_treatment_incapacity_and_treatment",
+      "field": "incapacity and treatment",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "duration of incapacity",
+          "operator": ">",
+          "required_value": 3,
+          "unit": "consecutive full calendar days"
+        },
+        {
+          "field": "first in-person visit timing",
+          "operator": "<=",
+          "required_value": 7,
+          "unit": "days from first day of incapacity"
+        },
+        {
+          "field": "treatment requirement",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "treatment visits within 30 days",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "visit count",
+                  "operator": ">=",
+                  "required_value": 2,
+                  "unit": "visits"
+                },
+                {
+                  "field": "visit window",
+                  "operator": "<=",
+                  "required_value": 30,
+                  "unit": "days from first day of incapacity"
+                }
+              ],
+              "unit": null
+            },
+            {
+              "field": "single treatment resulting in regimen",
+              "operator": "ALL_OF",
+              "required_value": [
+                {
+                  "field": "treatment by health care provider",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                },
+                {
+                  "field": "regimen of continuing treatment",
+                  "operator": "==",
+                  "required_value": true,
+                  "unit": null
+                }
+              ],
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.115(a), 825.125"
+    },
+    {
+      "condition_name": "continuing_treatment_pregnancy",
+      "field": "pregnancy or prenatal care incapacity",
+      "operator": "IN",
+      "required_value": [
+        ["incapacity", "pregnancy"],
+        ["prenatal", "care"]
+      ],
+      "unit": null,
+      "citation": "825.115(b)"
+    },
+    {
+      "condition_name": "continuing_treatment_chronic_condition",
+      "field": "chronic serious health condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "periodic treatment visits",
+          "operator": ">=",
+          "required_value": 2,
+          "unit": "visits per year"
+        },
+        {
+          "field": "extended duration",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "incapacity pattern",
+          "operator": "IN",
+          "required_value": [
+            ["episodic"],
+            ["continuing"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.115(c), 825.125"
+    },
+    {
+      "condition_name": "continuing_treatment_permanent_long_term",
+      "field": "permanent or long-term condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "incapacity type",
+          "operator": "IN",
+          "required_value": [
+            ["permanent"],
+            ["long-term"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "treatment effectiveness",
+          "operator": "==",
+          "required_value": [
+            ["treatment", "may", "not", "effective"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "continuing supervision by health care provider",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.115(d), 825.125"
+    },
+    {
+      "condition_name": "continuing_treatment_multiple_treatments",
+      "field": "multiple treatments condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "multiple treatments by or on referral of health care provider",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "qualifying condition",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "restorative surgery after accident or injury",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "likely incapacity without treatment",
+              "operator": ">",
+              "required_value": 3,
+              "unit": "consecutive full calendar days"
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.115(e), 825.125"
+    },
+    {
+      "condition_name": "substance_abuse_treatment",
+      "field": "substance abuse treatment",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "serious health condition criteria met",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "leave purpose",
+          "operator": "==",
+          "required_value": [
+            ["treatment"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "treatment provider",
+          "operator": "IN",
+          "required_value": [
+            ["health", "care", "provider"],
+            ["referral", "health", "care", "provider"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.119(a), 825.113, 825.114, 825.115, 825.125"
+    },
+    {
+      "condition_name": "employee_unable_to_perform_job_functions",
+      "field": "employee unable to perform job functions",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "relationship",
+          "operator": "==",
+          "required_value": [
+            ["self"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious health condition criteria met",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "unable to perform job functions",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(4), 825.123"
+    }
+  ]
+}

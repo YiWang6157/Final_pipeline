@@ -1,0 +1,139 @@
+{
+  "extracted_at": "2026-07-15T18:03:04.899341+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/fmla_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/federal/schema/birth_or_pregnancy.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "birth or pregnancy",
+  "matched_chunk_count": 3,
+  "section_count": 3,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self",
+      "spouse"
+    ],
+    "citation": "825.120(a)(1), 825.120(a)(2), 825.120(a)(4), 825.120(a)(5), 825.120(a)(6)",
+    "notes": "Self covers both parents' entitlement for birth, bonding, pregnancy incapacity, prenatal care, post-birth serious health condition, and newborn serious health condition. Spouse covers caring for a pregnant or postpartum spouse."
+  },
+  "conditions": [
+    {
+      "condition_name": "birth_and_bonding",
+      "field": "birth of child and bonding",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": "birth of child",
+          "unit": null
+        },
+        {
+          "field": "time since birth",
+          "operator": "<=",
+          "required_value": 12,
+          "unit": "months"
+        }
+      ],
+      "unit": null,
+      "citation": "825.120(a)(1), 825.120(a)(2)",
+      "notes": "Applies equally to both parents; no serious health condition required for healthy newborn bonding; entitlement expires at end of 12-month period beginning on date of birth.",
+      "source_text": "Both parents are entitled to FMLA leave for the birth of their child... Both parents are entitled to FMLA leave to be with the healthy newborn child (i.e., bonding time) during the 12-month period beginning on the date of birth."
+    },
+    {
+      "condition_name": "pregnancy_incapacity_prenatal",
+      "field": "pregnancy incapacity, prenatal care, or post-birth serious health condition",
+      "operator": "ANY_OF",
+      "required_value": [
+        {
+          "field": "incapacity due to pregnancy",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "prenatal care",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "serious health condition following birth",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.120(a)(4), 825.120(a)(5), 825.115(b)",
+      "notes": "Pregnancy incapacity qualifies even without health care provider treatment and even if absence is fewer than 3 consecutive days. Applies to expectant mother's own condition and to spouse caring for pregnant or postpartum spouse.",
+      "source_text": "The expectant mother is entitled to FMLA leave for incapacity due to pregnancy, for prenatal care, or for her own serious health condition following the birth of the child... A spouse is entitled to FMLA leave if needed to care for a pregnant spouse who is incapacitated or if needed to care for her during her prenatal care, or if needed to care for her following the birth of a child if she has a serious health condition."
+    },
+    {
+      "condition_name": "newborn_serious_health_condition",
+      "field": "newborn child serious health condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": "birth of child",
+          "unit": null
+        },
+        {
+          "field": "serious health condition requirements met",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.120(a)(6), 825.113, 825.115, 825.122(d)",
+      "notes": "Both parents may each take 12 weeks even if employed by same employer; requirements of §§ 825.113–825.115 and 825.122(d) must be met.",
+      "source_text": "Both parents are entitled to FMLA leave if needed to care for a child with a serious health condition if the requirements of §§ 825.113 through 825.115 and 825.122(d) are met."
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 7635,
+    "output_tokens": 1694,
+    "processing_duration": 16.44574809074402
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"birth or pregnancy\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"self\", \"spouse\", \"child\"],\n    \"citation\": \"825.120(a)(1), 825.120(a)(4), 825.120(a)(5), 825.120(a)(6)\",\n    \"notes\": \"Self covers expectant mother's own incapacity/prenatal care; spouse covers care for pregnant/postpartum spouse; child covers bonding and newborn serious health condition\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"birth_bonding\",\n      \"field\": \"qualifying event\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"qualifying event\",\n          \"operator\": \"==\",\n          \"required_value\": \"birth of child\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"time since birth\",\n          \"operator\": \"<=\",\n          \"required_value\": 12,\n          \"unit\": \"months\"\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.120(a)(1), 825.120(a)(2)\",\n      \"notes\": \"Applies equally to both parents; leave entitlement expires at end of 12-month period beginning on date of birth\",\n      \"source_text\": \"Both parents are entitled to FMLA leave for the birth of their child... An employee's entitlement to FMLA leave for a birth expires at the end of the 12-month period beginning on the date of the birth.\"\n    },\n    {\n      \"condition_name\": \"newborn_bonding\",\n      \"field\": \"bonding leave after birth\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"qualifying event\",\n          \"operator\": \"==\",\n          \"required_value\": \"birth of child\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"time since birth\",\n          \"operator\": \"<=\",\n          \"required_value\": 12,\n          \"unit\": \"months\"\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.120(a)(2)\",\n      \"notes\": \"Bonding leave with healthy newborn; no serious health condition required; employer agreement required for intermittent/reduced schedule bonding leave\",\n      \"source_text\": \"Both parents are entitled to FMLA leave to be with the healthy newborn child (i.e., bonding time) during the 12-month period beginning on the date of birth.\"\n    },\n    {\n      \"condition_name\": \"pregnancy_incapacity_prenatal\",\n      \"field\": \"expectant mother incapacity or prenatal care\",\n      \"operator\": \"ANY_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"qualifying condition\",\n          \"operator\": \"==\",\n          \"required_value\": \"incapacity due to pregnancy\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"qualifying condition\",\n          \"operator\": \"==\",\n          \"required_value\": \"prenatal care\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"qualifying condition\",\n          \"operator\": \"ALL_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"post-birth condition\",\n              \"operator\": \"==\",\n              \"required_value\": \"following birth of child\",\n              \"unit\": null\n            },\n            {\n              \"field\": \"serious health condition criteria met\",\n              \"operator\": \"==\",\n              \"required_value\": true,\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.120(a)(4), 825.115(b)\",\n      \"notes\": \"Pregnancy incapacity qualifies even without health care provider treatment and even if absence is fewer than 3 consecutive days\",\n      \"source_text\": \"The expectant mother is entitled to FMLA leave for incapacity due to pregnancy, for prenatal care, or for her own serious health condition following the birth of the child.\"\n    },\n    {\n      \"condition_name\": \"spouse_care_for_pregnant_spouse\",\n      \"field\": \"care for pregnant or postpartum covered person\",\n      \"operator\": \"ANY_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"care need\",\n          \"operator\": \"==\",\n          \"required_value\": \"spouse incapacitated due to pregnancy\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"care need\",\n          \"operator\": \"==\",\n          \"required_value\": \"spouse receiving prenatal care\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"care need\",\n          \"operator\": \"ALL_OF\",\n          \"required_value\": [\n            {\n              \"field\": \"post-birth condition\",\n              \"operator\": \"==\",\n              \"required_value\": \"following birth of child\",\n              \"unit\": null\n            },\n            {\n              \"field\": \"serious health condition criteria met\",\n              \"operator\": \"==\",\n              \"required_value\": true,\n              \"unit\": null\n            }\n          ],\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.120(a)(5)\",\n      \"notes\": \"Applies to spouse caring for pregnant or postpartum spouse; see § 825.124\",\n      \"source_text\": \"A spouse is entitled to FMLA leave if needed to care for a pregnant spouse who is incapacitated or if needed to care for her during her prenatal care, or if needed to care for her following the birth of a child if she has a serious health condition.\"\n    },\n    {\n      \"condition_name\": \"newborn_serious_health_condition\",\n      \"field\": \"care for newborn with serious health condition\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"qualifying event\",\n          \"operator\": \"==\",\n          \"required_value\": \"birth of child\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"serious health condition criteria met\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"825.120(a)(6), 825.113, 825.115\",\n      \"notes\": \"Both parents may each take 12 weeks even if employed by same employer; requirements of §§ 825.113–825.115 and 825.122(d) must be met\",\n      \"source_text\": \"Both parents are entitled to FMLA leave if needed to care for a child with a serious health condition if the requirements of §§ 825.113 through 825.115 and 825.122(d) are met.\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "API1 included 'child' in included_relationships, but § 825.120 does not list 'child' as a separate relationship for birth/pregnancy leave in the same way as spouse. The regulation grants leave to 'both parents' for birth, bonding, and newborn serious health condition — this is leave for the employee's own qualifying reason (birth of their child), not leave defined by a 'child' relationship in the same sense as caring for a sick child. The included_relationships should reflect 'self' (for the employee's own birth/bonding/pregnancy entitlement) and 'spouse' (for caring for a pregnant/postpartum spouse). The newborn serious health condition pathway is also an employee entitlement as a parent, covered under 'self' in this context.",
+      "The regulation chunks do not use 'child' as a relationship label for birth/bonding leave; they use 'both parents are entitled' framing, which is captured under 'self'. Removing 'child' from included_relationships is supported by the chunks."
+    ],
+    "logic_issues": [
+      "birth_bonding and newborn_bonding are duplicate top-level conditions with identical required_value structures. § 825.120(a)(1) covers birth entitlement and § 825.120(a)(2) covers bonding with healthy newborn — these are the same qualifying event and time window and should be merged into one condition.",
+      "spouse_care_for_pregnant_spouse is a relationship-specific condition and should not appear as a top-level condition. Relationship coverage belongs only in included_relationships. The qualifying criteria (incapacity, prenatal care, serious health condition post-birth) are the same as the pregnancy_incapacity_prenatal pathway and are already captured there.",
+      "newborn_serious_health_condition is a valid parallel pathway but its framing as 'care for newborn' implies a relationship-specific condition. It should be reframed as a leave-reason pathway (serious health condition of newborn) without relationship wording."
+    ],
+    "missing_conditions": [],
+    "unsupported_conditions": [
+      "spouse_care_for_pregnant_spouse encodes relationship-specific logic as a top-level condition, which violates the rule that relationship coverage belongs only in included_relationships."
+    ],
+    "format_issues": [
+      "Some nested check objects inside required_value use 'qualifying condition' and 'care need' as field labels when clearer labels are available.",
+      "notes in newborn_bonding mentions employer agreement for intermittent leave, which is an administrative/scheduling rule and should be omitted."
+    ],
+    "revision_summary": [
+      "Removed 'child' from included_relationships; birth/bonding leave is an employee entitlement as a parent, captured under 'self'. Spouse remains for caring for pregnant/postpartum spouse.",
+      "Merged birth_bonding and newborn_bonding into a single birth_and_bonding condition since they share identical qualifying criteria.",
+      "Removed spouse_care_for_pregnant_spouse as a top-level condition; relationship coverage is in included_relationships. The qualifying criteria (incapacity, prenatal care, post-birth serious health condition) are already captured in pregnancy_incapacity_prenatal.",
+      "Reframed newborn_serious_health_condition without relationship-specific wording.",
+      "Cleaned up field labels and removed scheduling/administrative notes."
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 7580,
+    "output_tokens": 1951,
+    "processing_duration": 29.67263436317444
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"API1 included 'child' in included_relationships, but § 825.120 does not list 'child' as a separate relationship for birth/pregnancy leave in the same way as spouse. The regulation grants leave to 'both parents' for birth, bonding, and newborn serious health condition — this is leave for the employee's own qualifying reason (birth of their child), not leave defined by a 'child' relationship in the same sense as caring for a sick child. The included_relationships should reflect 'self' (for the employee's own birth/bonding/pregnancy entitlement) and 'spouse' (for caring for a pregnant/postpartum spouse). The newborn serious health condition pathway is also an employee entitlement as a parent, covered under 'self' in this context.\",\n      \"The regulation chunks do not use 'child' as a relationship label for birth/bonding leave; they use 'both parents are entitled' framing, which is captured under 'self'. Removing 'child' from included_relationships is supported by the chunks.\"\n    ],\n    \"logic_issues\": [\n      \"birth_bonding and newborn_bonding are duplicate top-level conditions with identical required_value structures. § 825.120(a)(1) covers birth entitlement and § 825.120(a)(2) covers bonding with healthy newborn — these are the same qualifying event and time window and should be merged into one condition.\",\n      \"spouse_care_for_pregnant_spouse is a relationship-specific condition and should not appear as a top-level condition. Relationship coverage belongs only in included_relationships. The qualifying criteria (incapacity, prenatal care, serious health condition post-birth) are the same as the pregnancy_incapacity_prenatal pathway and are already captured there.\",\n      \"newborn_serious_health_condition is a valid parallel pathway but its framing as 'care for newborn' implies a relationship-specific condition. It should be reframed as a leave-reason pathway (serious health condition of newborn) without relationship wording.\"\n    ],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [\n      \"spouse_care_for_pregnant_spouse encodes relationship-specific logic as a top-level condition, which violates the rule that relationship coverage belongs only in included_relationships.\"\n    ],\n    \"format_issues\": [\n      \"Some nested check objects inside required_value use 'qualifying condition' and 'care need' as field labels when clearer labels are available.\",\n      \"notes in newborn_bonding mentions employer agreement for intermittent leave, which is an administrative/scheduling rule and should be omitted.\"\n    ],\n    \"revision_summary\": [\n      \"Removed 'child' from included_relationships; birth/bonding leave is an employee entitlement as a parent, captured under 'self'. Spouse remains for caring for pregnant/postpartum spouse.\",\n      \"Merged birth_bonding and newborn_bonding into a single birth_and_bonding condition since they share identical qualifying criteria.\",\n      \"Removed spouse_care_for_pregnant_spouse as a top-level condition; relationship coverage is in included_relationships. The qualifying criteria (incapacity, prenatal care, post-birth serious health condition) are already captured in pregnancy_incapacity_prenatal.\",\n      \"Reframed newborn_serious_health_condition without relationship-specific wording.\",\n      \"Cleaned up field labels and removed scheduling/administrative notes.\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"birth or pregnancy\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"self\",\n        \"spouse\"\n      ],\n      \"citation\": \"825.120(a)(1), 825.120(a)(2), 825.120(a)(4), 825.120(a)(5), 825.120(a)(6)\",\n      \"notes\": \"Self covers both parents' entitlement for birth, bonding, pregnancy incapacity, prenatal care, post-birth serious health condition, and newborn serious health condition. Spouse covers caring for a pregnant or postpartum spouse.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"birth_and_bonding\",\n        \"field\": \"birth of child and bonding\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying event\",\n            \"operator\": \"==\",\n            \"required_value\": \"birth of child\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"time since birth\",\n            \"operator\": \"<=\",\n            \"required_value\": 12,\n            \"unit\": \"months\"\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.120(a)(1), 825.120(a)(2)\",\n        \"notes\": \"Applies equally to both parents; no serious health condition required for healthy newborn bonding; entitlement expires at end of 12-month period beginning on date of birth.\",\n        \"source_text\": \"Both parents are entitled to FMLA leave for the birth of their child... Both parents are entitled to FMLA leave to be with the healthy newborn child (i.e., bonding time) during the 12-month period beginning on the date of birth.\"\n      },\n      {\n        \"condition_name\": \"pregnancy_incapacity_prenatal\",\n        \"field\": \"pregnancy incapacity, prenatal care, or post-birth serious health condition\",\n        \"operator\": \"ANY_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"incapacity due to pregnancy\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"prenatal care\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          },\n          {\n            \"field\": \"serious health condition following birth\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.120(a)(4), 825.120(a)(5), 825.115(b)\",\n        \"notes\": \"Pregnancy incapacity qualifies even without health care provider treatment and even if absence is fewer than 3 consecutive days. Applies to expectant mother's own condition and to spouse caring for pregnant or postpartum spouse.\",\n        \"source_text\": \"The expectant mother is entitled to FMLA leave for incapacity due to pregnancy, for prenatal care, or for her own serious health condition following the birth of the child... A spouse is entitled to FMLA leave if needed to care for a pregnant spouse who is incapacitated or if needed to care for her during her prenatal care, or if needed to care for her following the birth of a child if she has a serious health condition.\"\n      },\n      {\n        \"condition_name\": \"newborn_serious_health_condition\",\n        \"field\": \"newborn child serious health condition\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying event\",\n            \"operator\": \"==\",\n            \"required_value\": \"birth of child\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"serious health condition requirements met\",\n            \"operator\": \"==\",\n            \"required_value\": true,\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"825.120(a)(6), 825.113, 825.115, 825.122(d)\",\n        \"notes\": \"Both parents may each take 12 weeks even if employed by same employer; requirements of §§ 825.113–825.115 and 825.122(d) must be met.\",\n        \"source_text\": \"Both parents are entitled to FMLA leave if needed to care for a child with a serious health condition if the requirements of §§ 825.113 through 825.115 and 825.122(d) are met.\"\n      }\n    ]\n  }\n}"
+}

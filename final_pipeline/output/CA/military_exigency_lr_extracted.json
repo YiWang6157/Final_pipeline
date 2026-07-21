@@ -1,0 +1,96 @@
+{
+  "extracted_at": "2026-07-15T18:08:46.150713+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/cfra_chunk_schema_filled.json",
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/pdl_chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/CA/schema/military_exigency.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "military exigency",
+  "matched_chunk_count": 32,
+  "section_count": 32,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "spouse",
+      "domestic partner",
+      "child",
+      "parent"
+    ],
+    "citation": "2 CCR § 11087(j)(3)",
+    "notes": "Spouse includes registered domestic partner per 2 CCR § 11087(x); domestic partner defined per Family Code § 297 per 2 CCR § 11087(f)"
+  },
+  "conditions": [
+    {
+      "condition_name": "qualifying_exigency",
+      "field": "qualifying exigency",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying exigency type",
+          "operator": "==",
+          "required_value": "qualifying exigency as defined in Unemployment Code § 3302.2",
+          "unit": null
+        },
+        {
+          "field": "military status",
+          "operator": "IN",
+          "required_value": [
+            "covered active duty",
+            "call to covered active duty"
+          ],
+          "unit": null
+        },
+        {
+          "field": "service branch",
+          "operator": "==",
+          "required_value": "Armed Forces of the United States",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "2 CCR § 11087(j)(3)",
+      "notes": "Qualifying exigency definition defers to Unemployment Code § 3302.2",
+      "source_text": "Leave because of a 'qualifying exigency,' as that term is defined in Unemployment Code section 3302.2, related to covered active duty or a call to covered active duty of an employee's spouse, domestic partner, child, or parent in the Armed Forces of the United States"
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 11716,
+    "output_tokens": 559,
+    "processing_duration": 7.0083184242248535
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"military exigency\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"spouse\", \"child\", \"parent\"],\n    \"citation\": \"2 CCR § 11087(j)(3)\",\n    \"notes\": \"Domestic partner is also included; spouse definition includes registered domestic partner per 2 CCR § 11087(x)\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"qualifying_exigency\",\n      \"field\": \"qualifying exigency\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"relationship\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"spouse\", \"domestic partner\", \"child\", \"parent\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"qualifying exigency\",\n          \"operator\": \"==\",\n          \"required_value\": \"qualifying exigency as defined in Unemployment Code § 3302.2\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"exigency definition\",\n          \"operator\": \"==\",\n          \"required_value\": \"related to covered active duty or call to covered active duty\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"covered active duty status\",\n          \"operator\": \"IN\",\n          \"required_value\": [\"covered active duty\", \"call to covered active duty\"],\n          \"unit\": null\n        },\n        {\n          \"field\": \"service branch\",\n          \"operator\": \"==\",\n          \"required_value\": \"Armed Forces of the United States\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"2 CCR § 11087(j)(3)\",\n      \"notes\": \"Qualifying exigency definition defers to Unemployment Code § 3302.2\",\n      \"source_text\": \"Leave of up to a total of 12 workweeks in a 12-month period because of a 'qualifying exigency,' as that term is defined in Unemployment Code section 3302.2, related to covered active duty or a call to covered active duty of an employee's spouse, domestic partner, child, or parent in the Armed Forces of the United States\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "API1 included 'relationship' as a nested check inside the qualifying_exigency condition's required_value. Relationship coverage belongs only in included_relationships, not inside conditions."
+    ],
+    "logic_issues": [
+      "The qualifying_exigency condition duplicates relationship coverage inside required_value (nested 'relationship' check), which should be removed from conditions.",
+      "The condition splits 'qualifying exigency as defined in Unemployment Code § 3302.2' and 'related to covered active duty or call to covered active duty' into two separate nested checks, but these are one unified requirement and can be consolidated.",
+      "The 'covered active duty status' nested check duplicates information already stated in the 'exigency definition' check; these should be merged or one removed."
+    ],
+    "missing_conditions": [],
+    "unsupported_conditions": [
+      "The nested 'relationship' check inside qualifying_exigency is not a leave-reason condition; it is relationship coverage and belongs only in included_relationships."
+    ],
+    "format_issues": [
+      "Nested check objects inside required_value must use exactly field, operator, required_value, unit. No extra keys are present, but the relationship check should be removed entirely from conditions."
+    ],
+    "revision_summary": [
+      "Removed the nested 'relationship' check from the qualifying_exigency condition's required_value, as relationship coverage belongs only in included_relationships.",
+      "Consolidated the redundant 'exigency definition' and 'covered active duty status' nested checks into a single 'military status' check.",
+      "Simplified the qualifying exigency nested check to reference the statutory definition concisely.",
+      "Retained all other content from API1 output as it is correctly grounded in the regulation chunks."
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 11301,
+    "output_tokens": 934,
+    "processing_duration": 16.37513756752014
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"API1 included 'relationship' as a nested check inside the qualifying_exigency condition's required_value. Relationship coverage belongs only in included_relationships, not inside conditions.\"\n    ],\n    \"logic_issues\": [\n      \"The qualifying_exigency condition duplicates relationship coverage inside required_value (nested 'relationship' check), which should be removed from conditions.\",\n      \"The condition splits 'qualifying exigency as defined in Unemployment Code § 3302.2' and 'related to covered active duty or call to covered active duty' into two separate nested checks, but these are one unified requirement and can be consolidated.\",\n      \"The 'covered active duty status' nested check duplicates information already stated in the 'exigency definition' check; these should be merged or one removed.\"\n    ],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [\n      \"The nested 'relationship' check inside qualifying_exigency is not a leave-reason condition; it is relationship coverage and belongs only in included_relationships.\"\n    ],\n    \"format_issues\": [\n      \"Nested check objects inside required_value must use exactly field, operator, required_value, unit. No extra keys are present, but the relationship check should be removed entirely from conditions.\"\n    ],\n    \"revision_summary\": [\n      \"Removed the nested 'relationship' check from the qualifying_exigency condition's required_value, as relationship coverage belongs only in included_relationships.\",\n      \"Consolidated the redundant 'exigency definition' and 'covered active duty status' nested checks into a single 'military status' check.\",\n      \"Simplified the qualifying exigency nested check to reference the statutory definition concisely.\",\n      \"Retained all other content from API1 output as it is correctly grounded in the regulation chunks.\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"military exigency\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"spouse\",\n        \"domestic partner\",\n        \"child\",\n        \"parent\"\n      ],\n      \"citation\": \"2 CCR § 11087(j)(3)\",\n      \"notes\": \"Spouse includes registered domestic partner per 2 CCR § 11087(x); domestic partner defined per Family Code § 297 per 2 CCR § 11087(f)\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"qualifying_exigency\",\n        \"field\": \"qualifying exigency\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying exigency type\",\n            \"operator\": \"==\",\n            \"required_value\": \"qualifying exigency as defined in Unemployment Code § 3302.2\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"military status\",\n            \"operator\": \"IN\",\n            \"required_value\": [\n              \"covered active duty\",\n              \"call to covered active duty\"\n            ],\n            \"unit\": null\n          },\n          {\n            \"field\": \"service branch\",\n            \"operator\": \"==\",\n            \"required_value\": \"Armed Forces of the United States\",\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"2 CCR § 11087(j)(3)\",\n        \"notes\": \"Qualifying exigency definition defers to Unemployment Code § 3302.2\",\n        \"source_text\": \"Leave because of a 'qualifying exigency,' as that term is defined in Unemployment Code section 3302.2, related to covered active duty or a call to covered active duty of an employee's spouse, domestic partner, child, or parent in the Armed Forces of the United States\"\n      }\n    ]\n  }\n}"
+}

@@ -1,0 +1,175 @@
+{
+  "leave_reason": "birth or pregnancy",
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      ["self"],
+      ["spouse"]
+    ],
+    "citation": "825.120",
+    "notes": "Both parents entitled to leave for birth and bonding; spouse entitled to care for pregnant spouse; expectant mother entitled for own pregnancy/birth condition"
+  },
+  "conditions": [
+    {
+      "condition_name": "birth_bonding",
+      "field": "qualifying event",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "IN",
+          "required_value": [
+            ["birth", "child"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "time since birth",
+          "operator": "<=",
+          "required_value": 12,
+          "unit": "months from date of birth"
+        }
+      ],
+      "unit": null,
+      "citation": "825.112(a)(1), 825.120(a)(1), 825.120(a)(2)"
+    },
+    {
+      "condition_name": "newborn_bonding",
+      "field": "bonding leave after birth",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": [
+            ["bonding", "healthy", "newborn"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "time since birth",
+          "operator": "<=",
+          "required_value": 12,
+          "unit": "months from date of birth"
+        }
+      ],
+      "unit": null,
+      "citation": "825.120(a)(2)"
+    },
+    {
+      "condition_name": "pregnancy_incapacity_prenatal",
+      "field": "expectant mother incapacity or prenatal care",
+      "operator": "ANY_OF",
+      "required_value": [
+        {
+          "field": "qualifying condition",
+          "operator": "==",
+          "required_value": [
+            ["incapacity", "pregnancy"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "qualifying condition",
+          "operator": "==",
+          "required_value": [
+            ["prenatal", "care"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "qualifying condition",
+          "operator": "ALL_OF",
+          "required_value": [
+            {
+              "field": "post-birth condition",
+              "operator": "==",
+              "required_value": [
+                ["following", "birth"]
+              ],
+              "unit": null
+            },
+            {
+              "field": "serious health condition criteria met",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.120(a)(4), 825.115(b)"
+    },
+    {
+      "condition_name": "spouse_care_for_pregnant_spouse",
+      "field": "care for pregnant or postpartum covered person",
+      "operator": "ANY_OF",
+      "required_value": [
+        {
+          "field": "care need",
+          "operator": "==",
+          "required_value": [
+            ["incapacitated", "pregnancy"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "care need",
+          "operator": "==",
+          "required_value": [
+            ["prenatal", "care"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "care need",
+          "operator": "ALL_OF",
+          "required_value": [
+            {
+              "field": "post-birth condition",
+              "operator": "==",
+              "required_value": [
+                ["following", "birth"]
+              ],
+              "unit": null
+            },
+            {
+              "field": "serious health condition criteria met",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            }
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.120(a)(5)"
+    },
+    {
+      "condition_name": "newborn_serious_health_condition",
+      "field": "care for newborn with serious health condition",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": [
+            ["child", "serious", "health", "condition"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "serious health condition criteria met",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "825.120(a)(6), 825.115"
+    }
+  ]
+}

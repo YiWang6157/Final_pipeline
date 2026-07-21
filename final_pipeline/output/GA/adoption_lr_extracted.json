@@ -1,0 +1,124 @@
+{
+  "extracted_at": "2026-07-15T18:10:11.110823+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/GA/chunk_schema_filled.json"
+  ],
+  "schema_source": "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/GA/schema/adoption.json",
+  "function_name": "Final",
+  "api1_sub_function": "lr_extraction/API1",
+  "api2_sub_function": "lr_extraction/API2",
+  "model_key": "ari_model",
+  "leave_reason": "adoption",
+  "matched_chunk_count": 2,
+  "section_count": 2,
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self"
+    ],
+    "citation": "478-1-.16(7)(c)1(ii); 478-1-.16(26)(a)1(ii); 478-1-.16(26)(a)1(iii)",
+    "notes": "All three pathways grant leave to the employee (self); the child is the subject of the qualifying event, not a covered relationship for whom leave is taken."
+  },
+  "conditions": [
+    {
+      "condition_name": "adoption_health_related_presence",
+      "field": "adoption requiring employee presence for health-related reasons",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": "adoption of a child by the employee",
+          "unit": null
+        },
+        {
+          "field": "employee presence required",
+          "operator": "==",
+          "required_value": "health-related reasons",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(7)(c)1(ii)",
+      "notes": "Applies to sick leave usage only.",
+      "source_text": "Adoption of a child by the employee when the employee's presence is required for health-related reasons"
+    },
+    {
+      "condition_name": "minor_child_placement_for_adoption",
+      "field": "placement of minor child for adoption with employee",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": "placement for adoption",
+          "unit": null
+        },
+        {
+          "field": "child age",
+          "operator": "==",
+          "required_value": "minor",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(26)(a)1(ii)",
+      "notes": "Applies to paid parental leave.",
+      "source_text": "placement of a minor child for adoption with the employee"
+    },
+    {
+      "condition_name": "minor_child_placement_for_foster_care",
+      "field": "placement of minor child for foster care with employee",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "qualifying event",
+          "operator": "==",
+          "required_value": "placement for foster care",
+          "unit": null
+        },
+        {
+          "field": "child age",
+          "operator": "==",
+          "required_value": "minor",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(26)(a)1(iii)",
+      "notes": "Applies to paid parental leave.",
+      "source_text": "placement of a minor child for foster care with the employee"
+    }
+  ],
+  "api1_token_usage": {
+    "input_tokens": 7625,
+    "output_tokens": 751,
+    "processing_duration": 8.334085941314697
+  },
+  "api1_raw_llm_response": "{\n  \"leave_reason\": \"adoption\",\n  \"included_relationships\": {\n    \"operator\": \"IN\",\n    \"required_value\": [\"self\", \"child\"],\n    \"citation\": \"478-1-.16(7)(c)1(ii); 478-1-.16(26)(a)1(ii)\",\n    \"notes\": \"Self for sick leave when employee's presence required for health-related reasons; child is the subject of adoption or foster care placement\"\n  },\n  \"conditions\": [\n    {\n      \"condition_name\": \"adoption_health_related_presence\",\n      \"field\": \"adoption of child requiring employee presence for health-related reasons\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"qualifying event\",\n          \"operator\": \"==\",\n          \"required_value\": \"adoption of a child\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"employee presence required\",\n          \"operator\": \"==\",\n          \"required_value\": \"health-related reasons\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)(c)1(ii)\",\n      \"notes\": \"Applies to sick leave usage only\",\n      \"source_text\": \"Adoption of a child by the employee when the employee's presence is required for health-related reasons\"\n    },\n    {\n      \"condition_name\": \"minor_child_placement_for_adoption\",\n      \"field\": \"placement of minor child for adoption with employee\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"qualifying event\",\n          \"operator\": \"==\",\n          \"required_value\": \"placement for adoption\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"child age\",\n          \"operator\": \"==\",\n          \"required_value\": \"minor\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"478-1-.16(26)(a)1(ii)\",\n      \"notes\": \"Applies to paid parental leave\",\n      \"source_text\": \"placement of a minor child for adoption with the employee\"\n    },\n    {\n      \"condition_name\": \"minor_child_placement_for_foster_care\",\n      \"field\": \"placement of minor child for foster care with employee\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"qualifying event\",\n          \"operator\": \"==\",\n          \"required_value\": \"placement for foster care\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"child age\",\n          \"operator\": \"==\",\n          \"required_value\": \"minor\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"478-1-.16(26)(a)1(iii)\",\n      \"notes\": \"Applies to paid parental leave\",\n      \"source_text\": \"placement of a minor child for foster care with the employee\"\n    }\n  ]\n}",
+  "review": {
+    "structure_issues": [],
+    "relationship_issues": [
+      "included_relationships includes 'self' and 'child' but the regulation does not frame these as relationship categories in the same way; however, 'self' is supported for sick leave (employee's own adoption requiring presence for health-related reasons) and the child is the subject of placement events, not a covered family member relationship. The child is the subject of the qualifying event, not a relationship for whom leave is taken. Removing 'child' from included_relationships is appropriate; 'self' is the only covered relationship (employee is the one adopting or receiving placement)."
+    ],
+    "logic_issues": [
+      "The three top-level conditions are correctly parallel pathways. No logic issues with ALL_OF nesting."
+    ],
+    "missing_conditions": [],
+    "unsupported_conditions": [
+      "'child' in included_relationships is not supported as a covered relationship; the child is the subject of the qualifying event (adoption/foster placement), not a family member for whom the employee takes leave. The regulation grants leave to the employee for events involving a child, not leave to care for a child as a covered relationship."
+    ],
+    "format_issues": [],
+    "revision_summary": [
+      "Removed 'child' from included_relationships.required_value because the regulation does not grant leave to care for a child as a covered relationship; the child is the subject of the qualifying event and the employee is the leave-taker in all three pathways.",
+      "Updated included_relationships citation and notes to reflect only 'self'.",
+      "All three conditions retained as-is; they are correctly structured and grounded in the regulation chunks."
+    ]
+  },
+  "api2_token_usage": {
+    "input_tokens": 7395,
+    "output_tokens": 1184,
+    "processing_duration": 18.866951942443848
+  },
+  "api2_raw_llm_response": "{\n  \"review\": {\n    \"structure_issues\": [],\n    \"relationship_issues\": [\n      \"included_relationships includes 'self' and 'child' but the regulation does not frame these as relationship categories in the same way; however, 'self' is supported for sick leave (employee's own adoption requiring presence for health-related reasons) and the child is the subject of placement events, not a covered family member relationship. The child is the subject of the qualifying event, not a relationship for whom leave is taken. Removing 'child' from included_relationships is appropriate; 'self' is the only covered relationship (employee is the one adopting or receiving placement).\"\n    ],\n    \"logic_issues\": [\n      \"The three top-level conditions are correctly parallel pathways. No logic issues with ALL_OF nesting.\"\n    ],\n    \"missing_conditions\": [],\n    \"unsupported_conditions\": [\n      \"'child' in included_relationships is not supported as a covered relationship; the child is the subject of the qualifying event (adoption/foster placement), not a family member for whom the employee takes leave. The regulation grants leave to the employee for events involving a child, not leave to care for a child as a covered relationship.\"\n    ],\n    \"format_issues\": [],\n    \"revision_summary\": [\n      \"Removed 'child' from included_relationships.required_value because the regulation does not grant leave to care for a child as a covered relationship; the child is the subject of the qualifying event and the employee is the leave-taker in all three pathways.\",\n      \"Updated included_relationships citation and notes to reflect only 'self'.\",\n      \"All three conditions retained as-is; they are correctly structured and grounded in the regulation chunks.\"\n    ]\n  },\n  \"revised_output\": {\n    \"leave_reason\": \"adoption\",\n    \"included_relationships\": {\n      \"operator\": \"IN\",\n      \"required_value\": [\n        \"self\"\n      ],\n      \"citation\": \"478-1-.16(7)(c)1(ii); 478-1-.16(26)(a)1(ii); 478-1-.16(26)(a)1(iii)\",\n      \"notes\": \"All three pathways grant leave to the employee (self); the child is the subject of the qualifying event, not a covered relationship for whom leave is taken.\"\n    },\n    \"conditions\": [\n      {\n        \"condition_name\": \"adoption_health_related_presence\",\n        \"field\": \"adoption requiring employee presence for health-related reasons\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying event\",\n            \"operator\": \"==\",\n            \"required_value\": \"adoption of a child by the employee\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"employee presence required\",\n            \"operator\": \"==\",\n            \"required_value\": \"health-related reasons\",\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"478-1-.16(7)(c)1(ii)\",\n        \"notes\": \"Applies to sick leave usage only.\",\n        \"source_text\": \"Adoption of a child by the employee when the employee's presence is required for health-related reasons\"\n      },\n      {\n        \"condition_name\": \"minor_child_placement_for_adoption\",\n        \"field\": \"placement of minor child for adoption with employee\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying event\",\n            \"operator\": \"==\",\n            \"required_value\": \"placement for adoption\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"child age\",\n            \"operator\": \"==\",\n            \"required_value\": \"minor\",\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"478-1-.16(26)(a)1(ii)\",\n        \"notes\": \"Applies to paid parental leave.\",\n        \"source_text\": \"placement of a minor child for adoption with the employee\"\n      },\n      {\n        \"condition_name\": \"minor_child_placement_for_foster_care\",\n        \"field\": \"placement of minor child for foster care with employee\",\n        \"operator\": \"ALL_OF\",\n        \"required_value\": [\n          {\n            \"field\": \"qualifying event\",\n            \"operator\": \"==\",\n            \"required_value\": \"placement for foster care\",\n            \"unit\": null\n          },\n          {\n            \"field\": \"child age\",\n            \"operator\": \"==\",\n            \"required_value\": \"minor\",\n            \"unit\": null\n          }\n        ],\n        \"unit\": null,\n        \"citation\": \"478-1-.16(26)(a)1(iii)\",\n        \"notes\": \"Applies to paid parental leave.\",\n        \"source_text\": \"placement of a minor child for foster care with the employee\"\n      }\n    ]\n  }\n}"
+}

@@ -1,0 +1,241 @@
+{
+    "leave_reason": "health condition",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "inpatient_care",
+        "field": "inpatient care",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "overnight stay location",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "continuing_treatment_incapacity_and_treatment",
+        "field": "incapacity and treatment",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "duration of incapacity",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "first in-person visit timing",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "treatment requirement",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "treatment visits within 30 days",
+                "operator": "",
+                "required_value": [
+                  {
+                    "field": "visit count",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  },
+                  {
+                    "field": "visit window",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  }
+                ],
+                "unit": ""
+              },
+              {
+                "field": "single treatment resulting in regimen",
+                "operator": "",
+                "required_value": [
+                  {
+                    "field": "treatment by health care provider",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  },
+                  {
+                    "field": "regimen of continuing treatment",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  }
+                ],
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "continuing_treatment_pregnancy",
+        "field": "pregnancy or prenatal care incapacity",
+        "operator": "",
+        "required_value": "",
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "continuing_treatment_chronic_condition",
+        "field": "chronic serious health condition",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "periodic treatment visits",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "extended duration",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "incapacity pattern",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "continuing_treatment_permanent_long_term",
+        "field": "permanent or long-term condition",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "incapacity type",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "treatment effectiveness",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "continuing supervision by health care provider",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "continuing_treatment_multiple_treatments",
+        "field": "multiple treatments condition",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "multiple treatments by or on referral of health care provider",
+            "operator": "",
+            "required_value": ""
+          },
+          {
+            "field": "qualifying condition",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "restorative surgery after accident or injury",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "likely incapacity without treatment",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "substance_abuse_treatment",
+        "field": "substance abuse treatment",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "serious health condition criteria met",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "leave purpose",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "treatment provider",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "employee_unable_to_perform_job_functions",
+        "field": "employee unable to perform job functions",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "relationship",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "serious health condition criteria met",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "unable to perform job functions",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      }
+    ]
+  }

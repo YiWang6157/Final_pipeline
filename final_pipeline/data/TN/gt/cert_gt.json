@@ -1,0 +1,58 @@
+{
+    "category": "certification",
+    "conditions": [
+      {
+        "condition_name": "tn_fmla_medical_certification_needed",
+        "field": "FMLA medical certification",
+        "operator": "==",
+        "required_value": "FMLA Coordinator may require",
+        "unit": null,
+        "citation": "6.17",
+        "notes": "Applies when leave is requested to care for the employee's seriously ill spouse, child, parent, or next of kin for qualified military leave, or due to the employee's own serious health condition."
+      },
+      {
+        "condition_name": "tn_military_exigency_certification_needed",
+        "field": "military exigency certification",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "covered military member active duty orders",
+            "operator": "==",
+            "required_value": "copy submitted",
+            "unit": null
+          },
+          {
+            "field": "qualifying exigency facts",
+            "operator": "==",
+            "required_value": "certification submitted",
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.19",
+        "notes": "For rest and recuperation leave, the employee must submit the military member's rest and recuperation orders or other military documentation showing the leave dates."
+      },
+      {
+        "condition_name": "tn_military_caregiver_certification_needed",
+        "field": "military caregiver certification",
+        "operator": "ANY_OF",
+        "required_value": [
+          {
+            "field": "authorized health care provider certification",
+            "operator": "==",
+            "required_value": "submitted",
+            "unit": null
+          },
+          {
+            "field": "Invitational Travel Order or Authorization",
+            "operator": "==",
+            "required_value": "copy submitted",
+            "unit": null
+          }
+        ],
+        "unit": null,
+        "citation": "6.19",
+        "notes": "Applies when leave is requested to care for a covered service member with a serious injury or illness."
+      }
+    ]
+  }

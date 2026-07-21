@@ -1,0 +1,104 @@
+{
+  "leave_reason": "birth_or_pregnancy",
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      "self",
+      "child"
+    ],
+    "citation": "2 CCR § 11035(f), 2 CCR § 11035(r), 2 CCR § 11042(a), 2 CCR § 11087(j)(1), 2 CCR § 11087(t), 2 CCR § 11093(c)",
+    "notes": "Self applies to pregnancy disability leave. Child applies to CFRA leave for reason of the birth of the employee's child, including bonding after birth."
+  },
+  "conditions": [
+    {
+      "condition_name": "pregnancy_disability_leave",
+      "field": "pregnancy disability leave",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "relationship",
+          "operator": "==",
+          "required_value": "self",
+          "unit": null
+        },
+        {
+          "field": "disabled by pregnancy",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "disability basis",
+          "operator": "ANY_OF",
+          "required_value": [
+            {
+              "field": "unable to perform essential functions",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "undue risk from performing functions",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            },
+            {
+              "field": "pregnancy-related time off needed",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            }
+          ],
+          "unit": null
+        },
+        {
+          "field": "health care provider opinion",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "2 CCR § 11035(f), 2 CCR § 11035(r), 2 CCR § 11042(a)",
+      "notes": "Includes disability because of pregnancy, childbirth, or a related medical condition. Examples in the regulation include severe morning sickness, prenatal or postnatal care, bed rest, gestational diabetes, pregnancy-induced hypertension, preeclampsia, post-partum depression, childbirth, loss or end of pregnancy, and recovery from childbirth, loss, or end of pregnancy, but the list is non-exclusive."
+    },
+    {
+      "condition_name": "cfra_leave_for_birth_of_child",
+      "field": "birth and bonding with child",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "relationship",
+          "operator": "==",
+          "required_value": "child",
+          "unit": null
+        },
+        {
+          "field": "birth of employee's child",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "child born by leave date",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "purpose",
+          "operator": "IN",
+          "required_value": [
+            ["birth"],
+            ["bonding"]
+          ],
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "2 CCR § 11087(j)(1), 2 CCR § 11087(t), 2 CCR § 11093(c)",
+      "notes": "There is no requirement that either the employee or child have a serious health condition. There is also no requirement that the employee no longer be disabled by pregnancy, childbirth, or a related medical condition before taking CFRA leave for birth of the child."
+    }
+  ]
+}

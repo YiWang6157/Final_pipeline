@@ -1,0 +1,152 @@
+{
+    "leave_reason": "military caregiver",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "current_servicemember_serious_injury_or_illness",
+        "field": "covered servicemember status and condition",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "needed to care",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "servicemember type",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "servicemember medical status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "serious injury or illness origin",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "injury or illness origin",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "injury or illness origin",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          },
+          {
+            "field": "injury or illness effect",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "covered_veteran_serious_injury_or_illness",
+        "field": "covered veteran status and condition",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "needed to care",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "veteran discharge status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "time since discharge",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "veteran medical status",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "serious injury or illness origin",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "injury or illness origin",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "injury or illness origin",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          },
+          {
+            "field": "serious injury or illness manifestation",
+            "operator": "",
+            "required_value": "",
+            "unit": ""
+          },
+          {
+            "field": "serious injury or illness qualifying type",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "continuation of serious injury or illness",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "VASRD rating for condition precipitating military caregiver leave",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "substantial occupational impairment",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "VA caregiver program enrollment",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      }
+    ]
+  }

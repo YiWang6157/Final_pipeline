@@ -1,0 +1,55 @@
+{
+    "leave_reason": "adoption",
+    "included_relationships": {
+      "operator": "IN",
+      "required_value": [
+        "child"
+      ],
+      "citation": "2 CCR § 11087(c), 2 CCR § 11087(j)(1)",
+      "notes": "Adoption leave applies when a child is placed with the employee in connection with the adoption of the child by the employee."
+    },
+    "conditions": [
+      {
+        "condition_name": "placement_for_adoption",
+        "field": "adoption placement",
+        "operator": "ALL_OF",
+        "required_value": [
+          {
+            "field": "child relationship",
+            "operator": "IN",
+            "required_value": [
+              ["biological"],
+              ["adopted"],
+              ["foster"],
+              ["stepchild"],
+              ["legal", "ward"],
+              ["domestic", "partner", "child"],
+              ["in", "loco", "parentis"]
+            ],
+            "unit": null
+          },
+          {
+            "field": "placement with employee",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "adoption connection",
+            "operator": "==",
+            "required_value": true,
+            "unit": null
+          },
+          {
+            "field": "time since placement",
+            "operator": "<=",
+            "required_value": 1,
+            "unit": "year"
+          }
+        ],
+        "unit": null,
+        "citation": "2 CCR § 11087(c), 2 CCR § 11087(j)(1), 2 CCR § 11090(d)",
+        "notes": "CFRA leave for adoption placement must be concluded within one year of placement. The two-week minimum duration rule is a scheduling rule, not a qualifying condition."
+      }
+    ]
+  }

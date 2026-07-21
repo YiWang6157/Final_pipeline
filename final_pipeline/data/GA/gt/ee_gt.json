@@ -1,0 +1,22 @@
+{
+    "employee_eligibility_conditions": [
+      {
+        "field": "employment_duration_months",
+        "operator": ">=",
+        "required_value": 6,
+        "unit": "months",
+        "citation": "478-1-.16(26)(a)2(i)",
+        "notes": "Applies only to salaried employees seeking paid parental leave; rehired retirees receiving annuity payments during first 1,040 hours of the calendar year are not eligible.",
+        "source_text": "if salaried, the employee must have six continuous months of employment with an employing entity (as defined in O.C.G.A. 45-20-17(a)(2)(A))"
+      },
+      {
+        "field": "hours_worked_preceding_6_months",
+        "operator": ">=",
+        "required_value": 700,
+        "unit": "hours",
+        "citation": "478-1-.16(26)(a)2(ii)",
+        "notes": "Applies only to hourly employees seeking paid parental leave; the 700 hours must be worked in the six months immediately preceding the first requested paid parental leave date.",
+        "source_text": "if hourly, the employee must have worked 700 hours for an employing entity (as defined in O.C.G.A. 45-20-17(a)(2)(A)) in the six months immediately preceding the first requested paid parental leave date."
+      }
+    ]
+  }

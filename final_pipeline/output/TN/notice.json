@@ -1,0 +1,55 @@
+{
+  "extracted_at": "2026-07-15T18:16:20.417724+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/TN/tn_extracted_sections_chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "notice_cert",
+  "model_key": "ari_model",
+  "matched_chunk_count": 5,
+  "category": "notice",
+  "conditions": [
+    {
+      "condition_name": "fmla_foreseeable_advance_notice",
+      "operator": ">=",
+      "required_value": "30",
+      "unit": "days",
+      "citation": "6.15",
+      "notes": "Applies to all FMLA leave reasons when leave is foreseeable.",
+      "source_text": "employee must provide at least thirty (30) days advance notice prior to the date the leave is to begin"
+    },
+    {
+      "condition_name": "fmla_unforeseeable_notice",
+      "operator": "<=",
+      "required_value": "2",
+      "unit": "business days",
+      "citation": "6.15",
+      "notes": "When 30-day notice is not possible; notice given as soon as practicable.",
+      "source_text": "notice must be given as soon as practicable, normally within one (1) or two (2) business days of when the employee knows the date leave will be needed"
+    },
+    {
+      "condition_name": "parental_foreseeable_advance_notice",
+      "operator": ">=",
+      "required_value": "30",
+      "unit": "days",
+      "citation": "13.03",
+      "notes": "Applies to birth or pregnancy and adoption leave when foreseeable.",
+      "source_text": "employee must provide at least thirty (30) days advance notice prior to the date the leave is to begin"
+    },
+    {
+      "condition_name": "parental_unforeseeable_notice",
+      "operator": "<=",
+      "required_value": "2",
+      "unit": "business days",
+      "citation": "13.03",
+      "notes": "When 30-day notice is not possible; notice given as soon as reasonably possible.",
+      "source_text": "notice must be given as soon as reasonably possible, normally within one (1) or two (2) business days of when the employee knows the date leave will be needed"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 3532,
+    "output_tokens": 515,
+    "processing_duration": 6.7761383056640625
+  },
+  "raw_llm_response": "{\n  \"category\": \"notice\",\n  \"conditions\": [\n    {\n      \"condition_name\": \"fmla_foreseeable_advance_notice\",\n      \"operator\": \">=\",\n      \"required_value\": \"30\",\n      \"unit\": \"days\",\n      \"citation\": \"6.15\",\n      \"notes\": \"Applies to all FMLA leave reasons when leave is foreseeable.\",\n      \"source_text\": \"employee must provide at least thirty (30) days advance notice prior to the date the leave is to begin\"\n    },\n    {\n      \"condition_name\": \"fmla_unforeseeable_notice\",\n      \"operator\": \"<=\",\n      \"required_value\": \"2\",\n      \"unit\": \"business days\",\n      \"citation\": \"6.15\",\n      \"notes\": \"When 30-day notice is not possible; notice given as soon as practicable.\",\n      \"source_text\": \"notice must be given as soon as practicable, normally within one (1) or two (2) business days of when the employee knows the date leave will be needed\"\n    },\n    {\n      \"condition_name\": \"parental_foreseeable_advance_notice\",\n      \"operator\": \">=\",\n      \"required_value\": \"30\",\n      \"unit\": \"days\",\n      \"citation\": \"13.03\",\n      \"notes\": \"Applies to birth or pregnancy and adoption leave when foreseeable.\",\n      \"source_text\": \"employee must provide at least thirty (30) days advance notice prior to the date the leave is to begin\"\n    },\n    {\n      \"condition_name\": \"parental_unforeseeable_notice\",\n      \"operator\": \"<=\",\n      \"required_value\": \"2\",\n      \"unit\": \"business days\",\n      \"citation\": \"13.03\",\n      \"notes\": \"When 30-day notice is not possible; notice given as soon as reasonably possible.\",\n      \"source_text\": \"notice must be given as soon as reasonably possible, normally within one (1) or two (2) business days of when the employee knows the date leave will be needed\"\n    }\n  ]\n}"
+}

@@ -1,0 +1,118 @@
+{
+  "extracted_at": "2026-07-15T18:11:36.313668+00:00",
+  "source": [
+    "/home/sagemaker-user/DTG_DIAA_AutoRegIntel/final_pipeline/data/GA/chunk_schema_filled.json"
+  ],
+  "function_name": "Final",
+  "sub_function_name": "notice_cert",
+  "model_key": "ari_model",
+  "matched_chunk_count": 3,
+  "category": "certification",
+  "conditions": [
+    {
+      "condition_name": "return_to_work_medical_release",
+      "operator": "==",
+      "required_value": "may require",
+      "unit": null,
+      "citation": "478-1-.16(4)(h)",
+      "notes": "Agency may require medical release or certification showing ability to perform essential functions upon return from illness or injury.",
+      "source_text": "Each agency may, as a condition of return, require an employee who is absent from work because of illness or injury to supply an appropriate medical release or certification that the employee is able to return to work."
+    },
+    {
+      "condition_name": "fitness_for_duty_intermittent_fmla",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "leave type",
+          "operator": "IN",
+          "required_value": "intermittent or reduced schedule FMLA",
+          "unit": null
+        },
+        {
+          "field": "significant harm risk",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "certification frequency",
+          "operator": "<=",
+          "required_value": 30,
+          "unit": "calendar days"
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(4)(h)2",
+      "notes": "Fitness-for-duty certification on return from intermittent/reduced FMLA only if agency reasonably believes significant harm risk; no more than every 30 days.",
+      "source_text": "An agency may require fitness-for-duty certification only if the agency reasonably believes the return could pose significant risk of harm to the employee or others. Such certification may be required no more often than every 30 calendar days."
+    },
+    {
+      "condition_name": "sick_leave_evidence_threshold",
+      "operator": "ANY_OF",
+      "required_value": [
+        {
+          "field": "sick leave used",
+          "operator": ">=",
+          "required_value": 17,
+          "unit": "hours in 30 calendar days"
+        },
+        {
+          "field": "excessive or abusive use",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(7)(c)5",
+      "notes": "Agency may require supporting evidence for sick leave use at or above 17 hours in 30 days or upon demonstrated excessive/abusive use.",
+      "source_text": "An employee may be required to furnish evidence to support the use of sick leave if the employee uses 17 or more hours of sick leave in a 30 calendar day period or has demonstrated excessive or abusive use of sick leave."
+    },
+    {
+      "condition_name": "sick_leave_illness_during_annual_leave",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "illness duration",
+          "operator": ">=",
+          "required_value": 3,
+          "unit": "workdays"
+        },
+        {
+          "field": "written evidence",
+          "operator": "==",
+          "required_value": "satisfactory written evidence",
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(7)(e)",
+      "notes": "Substitution of sick leave for annual leave requires satisfactory written evidence of illness lasting 3+ workdays; request must be made within 2 weeks of return.",
+      "source_text": "the period of illness may be charged to sick leave if the employee provides satisfactory written evidence supporting the illness during annual leave."
+    },
+    {
+      "condition_name": "divested_sick_leave_restoration_documentation",
+      "operator": "==",
+      "required_value": "written application with supporting documentation",
+      "unit": null,
+      "citation": "478-1-.16(7)(h)8",
+      "notes": "Employee must apply in writing with supporting documentation to obtain restoration of divested sick leave.",
+      "source_text": "To obtain restoration of divested sick leave, an employee must apply in writing to the employing agency and include supporting documentation."
+    },
+    {
+      "condition_name": "paid_parental_leave_supporting_documentation",
+      "operator": "==",
+      "required_value": "may require",
+      "unit": null,
+      "citation": "478-1-.16(26)(d)",
+      "notes": "Required documentation must match FMLA documentation requirements under Rule 478-1-.23 Section 7 for the same qualifying event.",
+      "source_text": "Agencies may require employees to submit appropriate supporting documentation for the use of paid parental leave. Any required supporting documentation shall be the same as that required for the use of federal family and medical leave under Section (7) of Rule 478-1-.23."
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 5511,
+    "output_tokens": 1240,
+    "processing_duration": 17.23236584663391
+  },
+  "raw_llm_response": "{\n  \"category\": \"certification\",\n  \"conditions\": [\n    {\n      \"condition_name\": \"return_to_work_medical_release\",\n      \"operator\": \"==\",\n      \"required_value\": \"may require\",\n      \"unit\": null,\n      \"citation\": \"478-1-.16(4)(h)\",\n      \"notes\": \"Agency may require medical release or certification showing ability to perform essential functions upon return from illness or injury.\",\n      \"source_text\": \"Each agency may, as a condition of return, require an employee who is absent from work because of illness or injury to supply an appropriate medical release or certification that the employee is able to return to work.\"\n    },\n    {\n      \"condition_name\": \"fitness_for_duty_intermittent_fmla\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"leave type\",\n          \"operator\": \"IN\",\n          \"required_value\": \"intermittent or reduced schedule FMLA\",\n          \"unit\": null\n        },\n        {\n          \"field\": \"significant harm risk\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        },\n        {\n          \"field\": \"certification frequency\",\n          \"operator\": \"<=\",\n          \"required_value\": 30,\n          \"unit\": \"calendar days\"\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"478-1-.16(4)(h)2\",\n      \"notes\": \"Fitness-for-duty certification on return from intermittent/reduced FMLA only if agency reasonably believes significant harm risk; no more than every 30 days.\",\n      \"source_text\": \"An agency may require fitness-for-duty certification only if the agency reasonably believes the return could pose significant risk of harm to the employee or others. Such certification may be required no more often than every 30 calendar days.\"\n    },\n    {\n      \"condition_name\": \"sick_leave_evidence_threshold\",\n      \"operator\": \"ANY_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"sick leave used\",\n          \"operator\": \">=\",\n          \"required_value\": 17,\n          \"unit\": \"hours in 30 calendar days\"\n        },\n        {\n          \"field\": \"excessive or abusive use\",\n          \"operator\": \"==\",\n          \"required_value\": true,\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)(c)5\",\n      \"notes\": \"Agency may require supporting evidence for sick leave use at or above 17 hours in 30 days or upon demonstrated excessive/abusive use.\",\n      \"source_text\": \"An employee may be required to furnish evidence to support the use of sick leave if the employee uses 17 or more hours of sick leave in a 30 calendar day period or has demonstrated excessive or abusive use of sick leave.\"\n    },\n    {\n      \"condition_name\": \"sick_leave_illness_during_annual_leave\",\n      \"operator\": \"ALL_OF\",\n      \"required_value\": [\n        {\n          \"field\": \"illness duration\",\n          \"operator\": \">=\",\n          \"required_value\": 3,\n          \"unit\": \"workdays\"\n        },\n        {\n          \"field\": \"written evidence\",\n          \"operator\": \"==\",\n          \"required_value\": \"satisfactory written evidence\",\n          \"unit\": null\n        }\n      ],\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)(e)\",\n      \"notes\": \"Substitution of sick leave for annual leave requires satisfactory written evidence of illness lasting 3+ workdays; request must be made within 2 weeks of return.\",\n      \"source_text\": \"the period of illness may be charged to sick leave if the employee provides satisfactory written evidence supporting the illness during annual leave.\"\n    },\n    {\n      \"condition_name\": \"divested_sick_leave_restoration_documentation\",\n      \"operator\": \"==\",\n      \"required_value\": \"written application with supporting documentation\",\n      \"unit\": null,\n      \"citation\": \"478-1-.16(7)(h)8\",\n      \"notes\": \"Employee must apply in writing with supporting documentation to obtain restoration of divested sick leave.\",\n      \"source_text\": \"To obtain restoration of divested sick leave, an employee must apply in writing to the employing agency and include supporting documentation.\"\n    },\n    {\n      \"condition_name\": \"paid_parental_leave_supporting_documentation\",\n      \"operator\": \"==\",\n      \"required_value\": \"may require\",\n      \"unit\": null,\n      \"citation\": \"478-1-.16(26)(d)\",\n      \"notes\": \"Required documentation must match FMLA documentation requirements under Rule 478-1-.23 Section 7 for the same qualifying event.\",\n      \"source_text\": \"Agencies may require employees to submit appropriate supporting documentation for the use of paid parental leave. Any required supporting documentation shall be the same as that required for the use of federal family and medical leave under Section (7) of Rule 478-1-.23.\"\n    }\n  ]\n}"
+}

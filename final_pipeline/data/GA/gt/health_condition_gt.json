@@ -1,0 +1,78 @@
+{
+  "leave_reason": "health condition",
+  "included_relationships": {
+    "operator": "IN",
+    "required_value": [
+      ["self"],
+      ["parent"],
+      ["spouse"],
+      ["child"]
+    ],
+    "citation": "478-1-.16(3)(b), 478-1-.16(7)(c)1(i), 478-1-.16(7)(c)1(iii), 478-1-.16(7)(c)1(iv), 478-1-.16(7)(c)2",
+    "notes": "Georgia sick leave covers the employee's own illness, injury, disability, dental or medical care, exposure to contagious disease, and illness, injury, or disability in the employee's immediate family requiring the employee's presence. Immediate family is broader in the regulation, but this GT uses only the project's predefined relationship tags."
+  },
+  "conditions": [
+    {
+      "condition_name": "personal_illness_injury_or_disability",
+      "field": "employee personal illness injury or disability",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "478-1-.16(7)(c)1(i)"
+    },
+    {
+      "condition_name": "employee_medical_or_dental_care",
+      "field": "employee medical or dental care",
+      "operator": "==",
+      "required_value": true,
+      "unit": null,
+      "citation": "478-1-.16(7)(c)1(iii)"
+    },
+    {
+      "condition_name": "immediate_family_illness_injury_or_disability",
+      "field": "immediate family illness injury or disability requiring employee presence",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "immediate family member condition",
+          "operator": "IN",
+          "required_value": [
+            ["illness"],
+            ["injury"],
+            ["disability"]
+          ],
+          "unit": null
+        },
+        {
+          "field": "employee presence required",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(3)(b), 478-1-.16(7)(c)1(iv)"
+    },
+    {
+      "condition_name": "contagious_disease_exposure",
+      "field": "employee exposed to contagious disease and presence at work may endanger others",
+      "operator": "ALL_OF",
+      "required_value": [
+        {
+          "field": "exposure to contagious disease",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        },
+        {
+          "field": "presence at work may reasonably expose and endanger others",
+          "operator": "==",
+          "required_value": true,
+          "unit": null
+        }
+      ],
+      "unit": null,
+      "citation": "478-1-.16(7)(c)2"
+    }
+  ]
+}

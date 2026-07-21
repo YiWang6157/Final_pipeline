@@ -1,0 +1,137 @@
+{
+    "leave_reason": "military_caregiver",
+    "included_relationships": {
+      "operator": "",
+      "required_value": "",
+      "citation": "",
+      "notes": ""
+    },
+    "conditions": [
+      {
+        "condition_name": "current_service_member_serious_injury_or_illness",
+        "field": "current service member caregiver",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered service member",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "service member type",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "service member status",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          },
+          {
+            "field": "serious injury or illness",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "current service injury",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "preexisting condition aggravated by service",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": ""
+      },
+      {
+        "condition_name": "covered_veteran_serious_injury_or_illness",
+        "field": "covered veteran caregiver",
+        "operator": "",
+        "required_value": [
+          {
+            "field": "covered veteran",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "discharge status",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "years since discharge",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "treatment status",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          },
+          {
+            "field": "serious injury or illness",
+            "operator": "",
+            "required_value": [
+              {
+                "field": "line of duty",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "veteran injury rule",
+                "operator": "",
+                "required_value": [
+                  {
+                    "field": "continuation of service injury",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  },
+                  {
+                    "field": "VASRD rating",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  },
+                  {
+                    "field": "substantial occupational impairment",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  },
+                  {
+                    "field": "VA caregiver program enrollment",
+                    "operator": "",
+                    "required_value": "",
+                    "unit": ""
+                  }
+                ],
+                "unit": ""
+              }
+            ],
+            "unit": ""
+          }
+        ],
+        "unit": "",
+        "citation": "",
+        "notes": ""
+      }
+    ]
+  }
