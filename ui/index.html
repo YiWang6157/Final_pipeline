@@ -348,7 +348,8 @@ const REASON_LABELS = {
 
 async function boot() {
   const [rulesRes, examplesRes] = await Promise.all([
-    fetch('/api/rules'), fetch('/api/examples')
+    // Relative paths so SageMaker / Jupyter /proxy/<port>/ prefixes still work.
+    fetch('api/rules'), fetch('api/examples')
   ]);
   RULES = await rulesRes.json();
   EXAMPLES = await examplesRes.json();
@@ -720,7 +721,7 @@ async function runEvaluation() {
   status.textContent = 'Evaluating…';
 
   try {
-    const res = await fetch('/api/evaluate', {
+    const res = await fetch('api/evaluate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ claims })

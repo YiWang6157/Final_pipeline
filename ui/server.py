@@ -10,9 +10,13 @@ Serves a single-page app for the final_pipeline leave-eligibility rule engine:
     checked with its pass/fail result
 
 Usage (from anywhere — paths are auto-detected relative to this file):
-    python3 ui/server.py [--port 8791]
+    python3 ui/server.py [--port 8791] [--host 0.0.0.0] [--no-browser]
 
 Then open http://localhost:8791 in your browser.
+
+On SageMaker Studio / Code Editor, bind stays 0.0.0.0 (default) and open:
+    https://<domain>.studio.<region>.sagemaker.aws/<app>/default/proxy/8791/
+(Use jupyterlab or jupyter depending on your space; Code Editor proxy support varies.)
 
 No third-party dependencies — stdlib only.
 """
@@ -21,11 +25,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, Dict, List
+from urllib.parse import urlparse
 
 UI_DIR = Path(__file__).resolve().parent
 PIPELINE_DIR = UI_DIR.parent
@@ -47,6 +53,19 @@ JURISDICTIONS = ["federal", "CA", "GA", "TN"]
 # Evaluation source: rules are always evaluated against the saved condition
 # packs (internally keyed "gt" in the evaluator module — not surfaced in the UI).
 SOURCE = "gt"
+
+# SageMaker / Jupyter proxies forward URLs like /proxy/8791/api/rules (or
+# /codeeditor/default/proxy/8791/...). Strip that prefix so route matching works.
+_PROXY_PREFIX_RE = re.compile(r"^(?:/[^/]+)*/proxy/\d+")
+
+
+def _route_path(raw: str) -> str:
+    """Normalize request path: drop query string and any /proxy/<port> prefix."""
+    path = urlparse(raw).path or "/"
+    stripped = _PROXY_PREFIX_RE.sub("", path)
+    if not stripped or stripped == "/":
+        return "/"
+    return stripped if stripped.startswith("/") else f"/{stripped}"
 
 
 def _rel(p: Path) -> str:
@@ -148,23 +167,25 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
-        if self.path == "/" or self.path == "/index.html":
+        path = _route_path(self.path)
+        if path == "/" or path == "/index.html":
             self._send_html(INDEX_HTML)
-        elif self.path == "/api/rules":
+        elif path == "/api/rules":
             try:
                 self._send_json(_load_rules())
             except Exception as e:  # noqa: BLE001
                 self._send_json({"error": str(e)}, status=500)
-        elif self.path == "/api/examples":
+        elif path == "/api/examples":
             try:
                 self._send_json(_examples())
             except Exception as e:  # noqa: BLE001
                 self._send_json({"error": str(e)}, status=500)
         else:
-            self.send_error(404, "Not found")
+            self.send_error(404, f"Not found: {path}")
 
     def do_POST(self):
-        if self.path == "/api/evaluate":
+        path = _route_path(self.path)
+        if path == "/api/evaluate":
             try:
                 length = int(self.headers.get("Content-Length", 0) or 0)
                 raw = self.rfile.read(length) if length else b"{}"
@@ -178,7 +199,7 @@ class Handler(BaseHTTPRequestHandler):
             except Exception as e:  # noqa: BLE001
                 self._send_json({"error": str(e)}, status=400)
         else:
-            self.send_error(404, "Not found")
+            self.send_error(404, f"Not found: {path}")
 
     def do_OPTIONS(self):
         self.send_response(204)
@@ -191,15 +212,21 @@ class Handler(BaseHTTPRequestHandler):
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=8791)
+    # 0.0.0.0 so SageMaker / remote proxies can reach the process (localhost-only
+    # binds are unreachable from the Studio proxy sidecar).
+    parser.add_argument("--host", default="0.0.0.0")
     parser.add_argument("--no-browser", action="store_true")
     args = parser.parse_args()
 
-    server = ThreadingHTTPServer(("localhost", args.port), Handler)
-    url = f"http://localhost:{args.port}"
-    print(f"Leave Eligibility Engine running at {url}  (Ctrl+C to stop)")
+    server = ThreadingHTTPServer((args.host, args.port), Handler)
+    local_url = f"http://127.0.0.1:{args.port}"
+    print(f"Leave Eligibility Engine listening on {args.host}:{args.port}  (Ctrl+C to stop)")
+    print(f"  Local:     {local_url}")
+    print(f"  SageMaker: open …/proxy/{args.port}/ on your Studio / Code Editor URL")
+    print(f"             (e.g. https://<domain>.studio.<region>.sagemaker.aws/jupyterlab/default/proxy/{args.port}/)")
     if not args.no_browser:
         try:
-            webbrowser.open(url)
+            webbrowser.open(local_url)
         except Exception:  # noqa: BLE001
             pass
     try:
