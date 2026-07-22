@@ -19,7 +19,7 @@
         {
           "field": "covered active duty status",
           "operator": "==",
-          "required_value": true,
+          "required_value": [["covered", "active", "duty"]],
           "unit": null
         },
         {
@@ -40,7 +40,7 @@
         {
           "field": "covered active duty status",
           "operator": "==",
-          "required_value": true,
+          "required_value": [["covered", "active", "duty"]],
           "unit": null
         },
         {
@@ -68,7 +68,7 @@
         {
           "field": "covered active duty status",
           "operator": "==",
-          "required_value": true,
+          "required_value": [["covered", "active", "duty"]],
           "unit": null
         },
         {
@@ -76,20 +76,30 @@
           "operator": "IN",
           "required_value": [
             ["arrange", "alternative", "childcare"],
-            ["urgent", "immediate", "childcare"],
+            ["urgent", "childcare"],
             ["enroll", "transfer", "school"],
             ["enroll", "transfer", "daycare"],
-            ["meeting", "school", "staff"],
-            ["meeting", "daycare", "staff"]
+            ["meeting", "school"],
+            ["meeting", "daycare"]
           ],
           "unit": null
         },
         {
           "field": "child of military member age or capability",
-          "operator": "IN",
+          "operator": "ANY_OF",
           "required_value": [
-            ["under", "18"],
-            ["18", "older", "incapable", "self-care", "disability"]
+            {
+              "field": "child age",
+              "operator": "<",
+              "required_value": 18,
+              "unit": "years"
+            },
+            {
+              "field": "child incapable of self-care due to mental or physical disability",
+              "operator": "==",
+              "required_value": true,
+              "unit": null
+            }
           ],
           "unit": null
         }
@@ -105,7 +115,7 @@
         {
           "field": "covered active duty status",
           "operator": "==",
-          "required_value": true,
+          "required_value": [["covered", "active", "duty"]],
           "unit": null
         },
         {
@@ -132,7 +142,7 @@
         {
           "field": "covered active duty status",
           "operator": "==",
-          "required_value": true,
+          "required_value": [["covered", "active", "duty"]],
           "unit": null
         },
         {
@@ -165,12 +175,12 @@
         {
           "field": "covered active duty status",
           "operator": "==",
-          "required_value": true,
+          "required_value": [["covered", "active", "duty"]],
           "unit": null
         },
         {
           "field": "military member leave status",
-          "operator": "IN",
+          "operator": "==",
           "required_value": [
             ["short-term", "temporary"],
             ["Rest", "Recuperation"],
@@ -190,7 +200,7 @@
         {
           "field": "covered active duty status",
           "operator": "==",
-          "required_value": true,
+          "required_value": [["covered", "active", "duty"]],
           "unit": null
         },
         {
@@ -226,7 +236,6 @@
               "field": "death-related activity",
               "operator": "IN",
               "required_value": [
-                ["death", "military", "member"],
                 ["funeral"],
                 ["recovering", "body"]
               ],
@@ -247,7 +256,7 @@
         {
           "field": "covered active duty status",
           "operator": "==",
-          "required_value": true,
+          "required_value": [["covered", "active", "duty"]],
           "unit": null
         },
         {
@@ -255,10 +264,10 @@
           "operator": "IN",
           "required_value": [
             ["arrange", "alternative", "care"],
-            ["urgent", "immediate", "care"],
+            ["urgent", "care"],
             ["admit", "care", "facility"],
             ["transfer", "care", "facility"],
-            ["non-routine", "meeting", "care", "facility"]
+            ["meeting", "care", "facility"]
           ],
           "unit": null
         },
@@ -293,7 +302,7 @@
         {
           "field": "covered active duty status",
           "operator": "==",
-          "required_value": true,
+          "required_value": [["covered", "active", "duty"]],
           "unit": null
         },
         {

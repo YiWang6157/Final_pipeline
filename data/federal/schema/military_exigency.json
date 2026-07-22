@@ -69,7 +69,20 @@
           {
             "field": "child of military member age or capability",
             "operator": "",
-            "required_value": "",
+            "required_value": [
+              {
+                "field": "child age",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              },
+              {
+                "field": "child incapable of self-care due to mental or physical disability",
+                "operator": "",
+                "required_value": "",
+                "unit": ""
+              }
+            ],
             "unit": ""
           }
         ],

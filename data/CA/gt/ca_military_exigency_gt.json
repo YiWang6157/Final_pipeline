@@ -18,17 +18,6 @@
         "operator": "ALL_OF",
         "required_value": [
           {
-            "field": "relationship",
-            "operator": "IN",
-            "required_value": [
-              "spouse",
-              "domestic partner",
-              "child",
-              "parent"
-            ],
-            "unit": null
-          },
-          {
             "field": "qualifying exigency",
             "operator": "==",
             "required_value": true,
@@ -36,10 +25,8 @@
           },
           {
             "field": "exigency definition",
-            "operator": "IN",
-            "required_value": [
-              ["Unemployment", "Code", "3302.2"]
-            ],
+            "operator": "==",
+            "required_value": [["Unemployment", "Code", "3302.2"]],
             "unit": null
           },
           {
@@ -53,10 +40,8 @@
           },
           {
             "field": "service branch",
-            "operator": "IN",
-            "required_value": [
-              ["Armed", "Forces", "United", "States"]
-            ],
+            "operator": "==",
+            "required_value": [["Armed", "Forces", "United", "States"]],
             "unit": null
           }
         ],

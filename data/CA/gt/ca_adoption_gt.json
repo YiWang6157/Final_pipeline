@@ -16,16 +16,8 @@
         "required_value": [
           {
             "field": "child relationship",
-            "operator": "IN",
-            "required_value": [
-              ["biological"],
-              ["adopted"],
-              ["foster"],
-              ["stepchild"],
-              ["legal", "ward"],
-              ["domestic", "partner", "child"],
-              ["in", "loco", "parentis"]
-            ],
+            "operator": "==",
+            "required_value": [["child"]],
             "unit": null
           },
           {
@@ -37,7 +29,7 @@
           {
             "field": "adoption connection",
             "operator": "==",
-            "required_value": true,
+            "required_value": [["adoption"]],
             "unit": null
           },
           {

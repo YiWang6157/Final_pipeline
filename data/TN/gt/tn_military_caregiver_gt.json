@@ -50,21 +50,21 @@
             "field": "serious injury or illness",
             "operator": "ANY_OF",
             "required_value": [
-              {
-                "field": "current service injury",
-                "operator": "IN",
-                "required_value": [
-                  ["serious", "injury"],
-                  ["serious", "illness"]
-                ],
-                "unit": null
-              },
-              {
-                "field": "preexisting condition aggravated by service",
-                "operator": "==",
-                "required_value": true,
-                "unit": null
-              }
+            {
+              "field": "current service injury",
+              "operator": "==",
+              "required_value": [
+                ["serious", "injury"],
+                ["serious", "illness"]
+              ],
+              "unit": null
+            },
+            {
+              "field": "preexisting condition aggravated by service",
+              "operator": "==",
+              "required_value": [["aggravated", "active", "duty"]],
+              "unit": null
+            }
             ],
             "unit": null
             }
@@ -114,7 +114,7 @@
             "required_value": [
               {
                 "field": "line of duty",
-                "operator": "IN",
+                "operator": "==",
                 "required_value": [
                   ["incurred", "line", "of", "duty"],
                   ["aggravated", "line", "of", "duty"]
@@ -128,7 +128,7 @@
                   {
                     "field": "continuation of service injury",
                     "operator": "==",
-                    "required_value": true,
+                    "required_value": [["unable", "perform", "duties"]],
                     "unit": null
                   },
                   {
@@ -140,13 +140,13 @@
                   {
                     "field": "substantial occupational impairment",
                     "operator": "==",
-                    "required_value": true,
+                    "required_value": [["substantially", "impairs", "gainful"]],
                     "unit": null
                   },
                   {
                     "field": "VA caregiver program enrollment",
                     "operator": "==",
-                    "required_value": true,
+                    "required_value": [["VA", "Program", "Comprehensive", "Assistance"]],
                     "unit": null
                   }
                 ],

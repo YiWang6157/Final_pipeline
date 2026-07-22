@@ -16,7 +16,7 @@
       "required_value": [
         {
           "field": "qualifying event",
-          "operator": "IN",
+          "operator": "==",
           "required_value": [
             ["adoption", "child"]
           ],
@@ -24,7 +24,7 @@
         },
         {
           "field": "employee presence required",
-          "operator": "IN",
+          "operator": "==",
           "required_value": [
             ["health-related reasons"]
           ],

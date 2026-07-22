@@ -41,7 +41,7 @@
                 "unit": ""
               },
               {
-                "field": "injury or illness origin",
+                "field": "preexisting injury or illness origin",
                 "operator": "",
                 "required_value": "",
                 "unit": ""
@@ -99,7 +99,7 @@
                 "unit": ""
               },
               {
-                "field": "injury or illness origin",
+                "field": "preexisting injury or illness origin",
                 "operator": "",
                 "required_value": "",
                 "unit": ""

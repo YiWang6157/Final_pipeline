@@ -51,18 +51,17 @@
           "required_value": [
             {
               "field": "injury or illness origin",
-              "operator": "IN",
+              "operator": "==",
               "required_value": [
-                ["incurred", "line", "duty", "active", "duty"]
+                ["incurred", "line", "duty"]
               ],
               "unit": null
             },
             {
-              "field": "injury or illness origin",
-              "operator": "IN",
+              "field": "preexisting injury or illness origin",
+              "operator": "==",
               "required_value": [
-                ["existed", "before", "active", "duty"],
-                ["aggravated", "service", "line", "duty"]
+                ["aggravated", "active", "duty"]
               ],
               "unit": null
             }
@@ -71,10 +70,9 @@
         },
         {
           "field": "injury or illness effect",
-          "operator": "IN",
+          "operator": "==",
           "required_value": [
-            ["medically", "unfit"],
-            ["duties", "office", "grade", "rank", "rating"]
+            ["medically", "unfit"]
           ],
           "unit": null
         }
@@ -95,11 +93,9 @@
         },
         {
           "field": "veteran discharge status",
-          "operator": "IN",
+          "operator": "!=",
           "required_value": [
-            ["discharged"],
-            ["released"],
-            ["other", "than", "dishonorable"]
+            ["dishonorable", "discharge"]
           ],
           "unit": null
         },
@@ -125,18 +121,17 @@
           "required_value": [
             {
               "field": "injury or illness origin",
-              "operator": "IN",
+              "operator": "==",
               "required_value": [
-                ["incurred", "line", "duty", "active", "duty"]
+                ["incurred", "line", "duty"]
               ],
               "unit": null
             },
             {
-              "field": "injury or illness origin",
-              "operator": "IN",
+              "field": "preexisting injury or illness origin",
+              "operator": "==",
               "required_value": [
-                ["existed", "before", "active", "duty"],
-                ["aggravated", "service", "line", "duty"]
+                ["aggravated", "active", "duty"]
               ],
               "unit": null
             }
@@ -158,11 +153,9 @@
           "required_value": [
             {
               "field": "continuation of serious injury or illness",
-              "operator": "IN",
+              "operator": "==",
               "required_value": [
-                ["continuation"],
-                ["unable", "perform", "duties"],
-                ["office", "grade", "rank", "rating"]
+                ["unable", "perform", "duties"]
               ],
               "unit": null
             },
@@ -174,22 +167,18 @@
             },
             {
               "field": "substantial occupational impairment",
-              "operator": "IN",
+              "operator": "==",
               "required_value": [
                 ["substantially", "impairs"],
-                ["secure", "follow"],
-                ["substantially", "gainful", "occupation"],
-                ["military", "service", "disability"]
+                ["gainful", "occupation"]
               ],
               "unit": null
             },
             {
               "field": "VA caregiver program enrollment",
-              "operator": "IN",
+              "operator": "==",
               "required_value": [
-                ["injury"],
-                ["psychological", "injury"],
-                ["VA", "Program", "Comprehensive", "Assistance", "Family", "Caregivers"]
+                ["VA", "Program", "Comprehensive", "Assistance"]
               ],
               "unit": null
             }

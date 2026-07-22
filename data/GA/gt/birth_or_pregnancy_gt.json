@@ -15,8 +15,8 @@
       "operator": "ALL_OF",
       "required_value": [
         {
-          "field": "qualifying event",
-          "operator": "IN",
+          "field": "qualifying life event",
+          "operator": "==",
           "required_value": [
             ["birth", "employee", "child"]
           ],

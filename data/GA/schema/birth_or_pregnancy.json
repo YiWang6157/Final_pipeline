@@ -1,21 +1,26 @@
 {
   "leave_reason": "birth or pregnancy",
   "included_relationships": {
-    "operator": null,
-    "required_value": null,
-    "citation": null,
-    "notes": null
+    "operator": "",
+    "required_value": "",
+    "citation": "",
+    "notes": ""
   },
   "conditions": [
     {
       "condition_name": "birth_of_employee_child",
       "field": "birth of employee child",
-      "operator": null,
-      "required_value": null,
-      "unit": null,
-      "citation": null,
-      "notes": null,
-      "source_text": null
+      "operator": "",
+      "required_value": [
+        {
+          "field": "qualifying life event",
+          "operator": "",
+          "required_value": "",
+          "unit": ""
+        }
+      ],
+      "unit": "",
+      "citation": ""
     }
   ]
 }

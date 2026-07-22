@@ -13,12 +13,6 @@
         "operator": "",
         "required_value": [
           {
-            "field": "relationship",
-            "operator": "",
-            "required_value": "",
-            "unit": ""
-          },
-          {
             "field": "qualifying exigency",
             "operator": "",
             "required_value": "",
