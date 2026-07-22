@@ -217,16 +217,44 @@ def _has_child_nodes(required: Any) -> bool:
     )
 
 
+def _condition_label(node: Dict[str, Any]) -> str:
+    """Human-readable label for a condition node: prefer the plain-language
+    'field' phrase (leave-reason packs write these as prose); fall back to a
+    humanized condition_name. Plain field slugs (e.g. EE conditions like
+    'employment_duration_months') are de-slugged into readable text."""
+    field_val = node.get("field")
+    if isinstance(field_val, str) and field_val.strip():
+        text = field_val.strip()
+        if "_" in text and " " not in text:
+            text = text.replace("_", " ")
+        return text
+    name = node.get("condition_name") or "condition"
+    return str(name).replace("_", " ")
+
+
+def _record(checklist: Optional[List[Dict[str, Any]]], **kwargs: Any) -> None:
+    """Append a citation-annotated checklist entry, if the caller is collecting one."""
+    if checklist is None:
+        return
+    checklist.append(kwargs)
+
+
 def evaluate_node(
     node: Dict[str, Any],
     facts: Dict[str, Any],
     *,
     path: str = "",
+    checklist: Optional[List[Dict[str, Any]]] = None,
 ) -> Tuple[Optional[bool], List[str]]:
     """Recursively evaluate a condition node. None = pending/skip.
 
     Nested rule: a parent with child nodes passes only when its operator is
     satisfied — ALL_OF (default) requires every child; ANY_OF requires one.
+
+    When a `checklist` list is passed, every leaf and group node encountered
+    is recorded with its plain-language label, citation, and pass/fail result
+    (for citation-referenced UI display), without altering the pass/fail
+    logic or the existing (ok, notes) return contract.
     """
     if not isinstance(node, dict):
         return False, [f"{path}: invalid node"]
@@ -238,6 +266,11 @@ def evaluate_node(
         operator = "=="
     required = node.get("required_value")
     field_name = node.get("field")
+    label = _condition_label(node)
+    citation = node.get("citation")
+    unit = node.get("unit")
+    source_text = node.get("source_text")
+    plain_notes = node.get("notes") if isinstance(node.get("notes"), str) else None
 
     # Child-object lists without an operator default to ALL_OF (all subs must pass).
     if _has_child_nodes(required) and operator not in {"ALL_OF", "ANY_OF"}:
@@ -248,6 +281,11 @@ def evaluate_node(
         shortcut, _ = _lookup_fact(facts, node["condition_name"])
         if isinstance(shortcut, bool) and operator in {"", "==", "IN"}:
             note = f"{here}: condition_name fact={shortcut}"
+            _record(
+                checklist, path=here, name=name, label=label, citation=citation, unit=unit,
+                source_text=source_text, plain_notes=plain_notes, operator=operator or "==",
+                required_value=required, actual_value=shortcut, passed=shortcut, is_group=False,
+            )
             return shortcut, [note]
 
     if operator in {"ALL_OF", "ANY_OF"}:
@@ -259,34 +297,65 @@ def evaluate_node(
                 child_results.append(False)
                 notes.append(f"{here}[{i}]: non-object child")
                 continue
-            ok, child_notes = evaluate_node(child, facts, path=here)
+            ok, child_notes = evaluate_node(child, facts, path=here, checklist=checklist)
             child_results.append(ok)
             notes.extend(child_notes)
         known = [r for r in child_results if r is not None]
         if not known:
-            return None, notes + [f"{here}: no evaluable children"]
-        if operator == "ALL_OF":
+            group_ok = None
+        elif operator == "ALL_OF":
             if any(r is False for r in child_results):
-                return False, notes
-            if any(r is None for r in child_results):
-                return None, notes
-            return True, notes
-        # ANY_OF — one successful sub-condition is enough
-        if any(r is True for r in child_results):
-            return True, notes
-        if all(r is False for r in child_results):
-            return False, notes
-        return None, notes
+                group_ok = False
+            elif any(r is None for r in child_results):
+                group_ok = None
+            else:
+                group_ok = True
+        else:
+            # ANY_OF — one successful sub-condition is enough
+            if any(r is True for r in child_results):
+                group_ok = True
+            elif all(r is False for r in child_results):
+                group_ok = False
+            else:
+                group_ok = None
+        _record(
+            checklist, path=here, name=name, label=label, citation=citation, unit=unit,
+            source_text=source_text, plain_notes=plain_notes, operator=operator,
+            required_value=None, actual_value=None, passed=group_ok, is_group=True,
+        )
+        if not known:
+            return None, notes + [f"{here}: no evaluable children"]
+        return group_ok, notes
 
     actual, used_key = _lookup_fact(facts, field_name)
     if actual is None and name:
         actual, used_key = _lookup_fact(facts, name)
 
+    def _finish(ok_val: Optional[bool], extra_note: str) -> Tuple[Optional[bool], List[str]]:
+        _record(
+            checklist, path=here, name=name, label=label, citation=citation, unit=unit,
+            source_text=source_text, plain_notes=plain_notes, operator=op_sym,
+            required_value=required, actual_value=actual, passed=ok_val, is_group=False,
+        )
+        return ok_val, [extra_note]
+
     # Employer-discretion cert/notice phrases are not employee denial rules.
     if isinstance(required, str) and any(m in _norm(required) for m in MAY_REQUIRE_MARKERS):
+        _record(
+            checklist, path=here, name=name, label=label, citation=citation, unit=unit,
+            source_text=source_text, plain_notes=plain_notes, operator=operator or "==",
+            required_value=required, actual_value=actual, passed=True, is_group=False,
+            skipped_reason="employer discretion — not blocking",
+        )
         return True, [f"{here}: employer-discretion rule — not blocking (treated as pass)"]
 
     if actual is None:
+        _record(
+            checklist, path=here, name=name, label=label, citation=citation, unit=unit,
+            source_text=source_text, plain_notes=plain_notes, operator=operator or "==",
+            required_value=required, actual_value=None, passed=None, is_group=False,
+            skipped_reason=f"missing fact '{field_name}'",
+        )
         return None, [f"{here}: missing fact for field '{field_name}'"]
 
     op_sym = (node.get("operator") or "==").strip()
@@ -307,23 +376,23 @@ def evaluate_node(
                     break
             if not ok:
                 ok = actual_n in allowed
-        return ok, [f"{here}: {_norm(used_key)}={actual!r} IN {required!r} → {ok}"]
+        return _finish(ok, f"{here}: {_norm(used_key)}={actual!r} IN {required!r} → {ok}")
 
     if isinstance(required, list) and required and isinstance(required[0], list):
         ok = _matches_word_groups(actual, required)
-        return ok, [f"{here}: {_norm(used_key)}={actual!r} matches groups → {ok}"]
+        return _finish(ok, f"{here}: {_norm(used_key)}={actual!r} matches groups → {ok}")
 
     if isinstance(required, list) and required and all(isinstance(x, str) for x in required):
         # Word-group disguised as flat token list for ==
         if op_sym == "==":
             ok = _matches_word_groups(actual, [required]) or _norm(actual) in {_norm(x) for x in required}
-            return ok, [f"{here}: {_norm(used_key)}={actual!r} == tokens {required!r} → {ok}"]
+            return _finish(ok, f"{here}: {_norm(used_key)}={actual!r} == tokens {required!r} → {ok}")
 
     left = _as_number(actual)
     right = _as_number(required)
     if left is not None and right is not None and op_sym in OPERATORS:
         ok = bool(OPERATORS[op_sym](left, right))
-        return ok, [f"{here}: {used_key}={actual} {op_sym} {required} → {ok}"]
+        return _finish(ok, f"{here}: {used_key}={actual} {op_sym} {required} → {ok}")
 
     if op_sym in OPERATORS:
         if op_sym == "==":
@@ -337,9 +406,21 @@ def evaluate_node(
         elif op_sym == "!=":
             ok = _norm(actual) != _norm(required)
         else:
+            _record(
+                checklist, path=here, name=name, label=label, citation=citation, unit=unit,
+                source_text=source_text, plain_notes=plain_notes, operator=op_sym,
+                required_value=required, actual_value=actual, passed=None, is_group=False,
+                skipped_reason="cannot compare non-numeric values",
+            )
             return None, [f"{here}: cannot compare non-numeric {actual!r} {op_sym} {required!r}"]
-        return ok, [f"{here}: {used_key}={actual!r} {op_sym} {required!r} → {ok}"]
+        return _finish(ok, f"{here}: {used_key}={actual!r} {op_sym} {required!r} → {ok}")
 
+    _record(
+        checklist, path=here, name=name, label=label, citation=citation, unit=unit,
+        source_text=source_text, plain_notes=plain_notes, operator=node.get("operator"),
+        required_value=required, actual_value=actual, passed=None, is_group=False,
+        skipped_reason="unsupported operator",
+    )
     return None, [f"{here}: unsupported operator {node.get('operator')!r}"]
 
 
@@ -369,6 +450,7 @@ def _should_skip_ee_condition(cond: Dict[str, Any], facts: Dict[str, Any]) -> Op
 def evaluate_ee(conditions: Sequence[Dict[str, Any]], facts: Dict[str, Any]) -> PartResult:
     notes: List[str] = []
     detail: List[Dict[str, Any]] = []
+    checklist: List[Dict[str, Any]] = []
     evaluated = 0
     failed = 0
     pending = 0
@@ -378,8 +460,23 @@ def evaluate_ee(conditions: Sequence[Dict[str, Any]], facts: Dict[str, Any]) -> 
         field_name = cond.get("field")
         if skip:
             notes.append(f"EE skip {field_name}: {skip}")
+            checklist.append({
+                "path": f"ee/{cond.get('condition_name') or field_name}",
+                "name": cond.get("condition_name") or field_name,
+                "label": _condition_label(cond),
+                "citation": cond.get("citation"),
+                "unit": cond.get("unit"),
+                "source_text": cond.get("source_text"),
+                "plain_notes": cond.get("notes") if isinstance(cond.get("notes"), str) else None,
+                "operator": cond.get("operator"),
+                "required_value": cond.get("required_value"),
+                "actual_value": None,
+                "passed": None,
+                "is_group": False,
+                "skipped_reason": skip,
+            })
             continue
-        ok, node_notes = evaluate_node(cond, facts, path="ee")
+        ok, node_notes = evaluate_node(cond, facts, path="ee", checklist=checklist)
         notes.extend(node_notes)
         detail.append({"field": field_name, "passed": ok})
         if ok is None:
@@ -390,12 +487,12 @@ def evaluate_ee(conditions: Sequence[Dict[str, Any]], facts: Dict[str, Any]) -> 
                 failed += 1
 
     if evaluated == 0 and pending == 0:
-        return PartResult("ee", False, notes + ["EE: no conditions evaluated"], {"items": detail})
+        return PartResult("ee", False, notes + ["EE: no conditions evaluated"], {"items": detail, "checklist": checklist})
     if failed:
-        return PartResult("ee", False, notes, {"items": detail})
+        return PartResult("ee", False, notes, {"items": detail, "checklist": checklist})
     if pending:
-        return PartResult("ee", None, notes + ["EE: pending missing facts"], {"items": detail})
-    return PartResult("ee", True, notes, {"items": detail})
+        return PartResult("ee", None, notes + ["EE: pending missing facts"], {"items": detail, "checklist": checklist})
+    return PartResult("ee", True, notes, {"items": detail, "checklist": checklist})
 
 
 def evaluate_relationship(included: Optional[Dict[str, Any]], facts: Dict[str, Any]) -> PartResult:
@@ -404,17 +501,21 @@ def evaluate_relationship(included: Optional[Dict[str, Any]], facts: Dict[str, A
     rel, _ = _lookup_fact(facts, "relationship")
     if rel is None:
         return PartResult("relationship", None, ["relationship fact missing"])
+    checklist: List[Dict[str, Any]] = []
     ok, notes = evaluate_node(
         {
             "condition_name": "included_relationships",
             "field": "relationship",
             "operator": included.get("operator", "IN"),
             "required_value": included.get("required_value"),
+            "citation": included.get("citation"),
+            "notes": included.get("notes"),
         },
         facts,
         path="relationship",
+        checklist=checklist,
     )
-    return PartResult("relationship", ok, notes)
+    return PartResult("relationship", ok, notes, {"checklist": checklist})
 
 
 def _eval_top_level_any_of(
@@ -422,6 +523,7 @@ def _eval_top_level_any_of(
     facts: Dict[str, Any],
     *,
     path: str,
+    checklist: Optional[List[Dict[str, Any]]] = None,
 ) -> Tuple[Optional[bool], List[str], List[Dict[str, Any]], List[str]]:
     """Top-level leave/notice/cert: pass if ANY main condition passes.
 
@@ -429,7 +531,13 @@ def _eval_top_level_any_of(
     sub-conditions pass (ALL_OF default) or per its own ANY_OF operator.
     An explicit boolean fact keyed by condition_name may assert that main
     pathway when present (test-author shorthand that all subs are met).
+
+    If `checklist` is provided, every main condition (and its nested
+    sub-conditions) is recorded with citation info for citation-referenced
+    UI display.
     """
+    if checklist is None:
+        checklist = []
     notes: List[str] = []
     detail: List[Dict[str, Any]] = []
     hits: List[str] = []
@@ -442,8 +550,22 @@ def _eval_top_level_any_of(
         if isinstance(shortcut, bool):
             # Author shorthand: True means this main pathway is satisfied.
             ok, node_notes = shortcut, [f"{path}/{name}: main condition_name fact={shortcut}"]
+            checklist.append({
+                "path": f"{path}/{name}",
+                "name": name,
+                "label": _condition_label(cond),
+                "citation": cond.get("citation"),
+                "unit": cond.get("unit"),
+                "source_text": cond.get("source_text"),
+                "plain_notes": cond.get("notes") if isinstance(cond.get("notes"), str) else None,
+                "operator": cond.get("operator"),
+                "required_value": None,
+                "actual_value": shortcut,
+                "passed": ok,
+                "is_group": _has_child_nodes(cond.get("required_value")),
+            })
         else:
-            ok, node_notes = evaluate_node(cond, facts, path=path)
+            ok, node_notes = evaluate_node(cond, facts, path=path, checklist=checklist)
         notes.extend(node_notes)
         detail.append({"condition_name": name, "passed": ok})
         if ok is True:
@@ -461,8 +583,9 @@ def _eval_top_level_any_of(
 def evaluate_leave_reason(pack: Dict[str, Any], facts: Dict[str, Any]) -> Tuple[PartResult, PartResult]:
     rel_part = evaluate_relationship(pack.get("included_relationships"), facts)
     conditions = pack.get("conditions") or []
+    checklist: List[Dict[str, Any]] = []
     leave_ok, notes, pathway_detail, pathway_hits = _eval_top_level_any_of(
-        conditions, facts, path="leave"
+        conditions, facts, path="leave", checklist=checklist
     )
 
     if rel_part.passed is False:
@@ -475,7 +598,12 @@ def evaluate_leave_reason(pack: Dict[str, Any], facts: Dict[str, Any]) -> Tuple[
         "leave_reason",
         leave_ok if rel_part.passed is not False else False,
         notes,
-        {"mode": "any_of_main_conditions", "pathways_passed": pathway_hits, "pathways": pathway_detail},
+        {
+            "mode": "any_of_main_conditions",
+            "pathways_passed": pathway_hits,
+            "pathways": pathway_detail,
+            "checklist": checklist,
+        },
     )
     return rel_part, leave_part
 
@@ -502,17 +630,21 @@ def evaluate_notice(pack: Any, facts: Dict[str, Any]) -> PartResult:
 
     # Single wrapped root (e.g. federal notice_gt): evaluate that tree as-is.
     if len(conditions) == 1 and (conditions[0].get("operator") or "").upper() in {"ANY_OF", "ALL_OF"}:
-        ok, notes = evaluate_node(conditions[0], facts, path="notice")
-        return PartResult("notice", ok, notes, {"mode": "single_root"})
+        checklist: List[Dict[str, Any]] = []
+        ok, notes = evaluate_node(conditions[0], facts, path="notice", checklist=checklist)
+        return PartResult("notice", ok, notes, {"mode": "single_root", "checklist": checklist})
 
-    ok, notes, detail, hits = _eval_top_level_any_of(conditions, facts, path="notice")
+    checklist = []
+    ok, notes, detail, hits = _eval_top_level_any_of(conditions, facts, path="notice", checklist=checklist)
     if ok is True:
         return PartResult(
-            "notice", True, notes, {"mode": "any_of_main_conditions", "passed_mains": hits, "items": detail}
+            "notice", True, notes,
+            {"mode": "any_of_main_conditions", "passed_mains": hits, "items": detail, "checklist": checklist},
         )
     if ok is False:
         return PartResult(
-            "notice", False, notes, {"mode": "any_of_main_conditions", "items": detail}
+            "notice", False, notes,
+            {"mode": "any_of_main_conditions", "items": detail, "checklist": checklist},
         )
     # Pending fallback: foreseeable advance notice facts
     adv, _ = _lookup_fact(facts, "advance_notice")
@@ -522,10 +654,10 @@ def evaluate_notice(pack: Any, facts: Dict[str, Any]) -> PartResult:
             "notice",
             True,
             notes + ["notice: satisfied via foreseeable advance_notice >= 30 fallback"],
-            {"mode": "fallback_foreseeable", "items": detail},
+            {"mode": "fallback_foreseeable", "items": detail, "checklist": checklist},
         )
     return PartResult(
-        "notice", None, notes, {"mode": "any_of_main_conditions", "items": detail}
+        "notice", None, notes, {"mode": "any_of_main_conditions", "items": detail, "checklist": checklist}
     )
 
 
@@ -578,13 +710,14 @@ def evaluate_cert(pack: Any, facts: Dict[str, Any]) -> PartResult:
             notes + ["cert: no applicable main conditions for this leave_reason — pass"],
         )
 
-    ok, more_notes, detail, hits = _eval_top_level_any_of(applicable, facts, path="cert")
+    checklist: List[Dict[str, Any]] = []
+    ok, more_notes, detail, hits = _eval_top_level_any_of(applicable, facts, path="cert", checklist=checklist)
     notes.extend(more_notes)
     return PartResult(
         "cert",
         ok,
         notes,
-        {"mode": "any_of_main_conditions", "passed_mains": hits, "items": detail},
+        {"mode": "any_of_main_conditions", "passed_mains": hits, "items": detail, "checklist": checklist},
     )
 
 

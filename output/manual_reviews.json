@@ -1,0 +1,11 @@
+[
+  {
+    "claim_id": "GA-health_condition-02",
+    "jurisdiction": "GA",
+    "leave_reason": "health_condition",
+    "engine_decision": "NEED HUMAN REVIEW",
+    "manual_decision": "DENIED",
+    "reviewer_note": "",
+    "timestamp": "2026-07-22T16:33:32.022010+00:00"
+  }
+]
